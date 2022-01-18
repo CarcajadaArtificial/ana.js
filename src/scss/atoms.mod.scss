@@ -1,0 +1,334 @@
+//       _   _
+//      / \ | |_ ___  _ __ ___  ___
+//     / _ \| __/ _ \| '_ ` _ \/ __|
+//    / ___ \ || (_) | | | | | \__ \
+//   /_/   \_\__\___/|_| |_| |_|___/
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// -----------------------------------------------------------------------------------------------------
+// Dependencies
+@import './utils/utils.aux';
+
+// -----------------------------------------------------------------------------------------------------
+p.label {
+  @include txt-label($color: clr('blue', 'black'));
+}
+
+// -----------------------------------------------------------------------------------------------------
+/// A Card is a surface that can contain information that revolves around the same subject. It is usually placed as a grid's child and located on the grid using the "column-span" mixin.
+.a-card {
+  @include surface-card;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: min-content;
+
+  // a-card-title
+  &-title {
+    @include txt-subheading($color: clr('blue', 'black'), $text-align: center);
+    width: 100%;
+  }
+}
+
+// -----------------------------------------------------------------------------------------------------
+/// A Link is an element that will take you to another html page or to perform a lesser command than a button would do. A Link must clearly explain where the link will take you to, and this information must be undertandable out of context. Limit the label to two words at most, and these shoulnd't be generic or vague. Open in a new window only in cases when opening a document with different format e.g. PDF.
+.a-link {
+  @include no-select;
+  @include txt-link;
+}
+
+// -----------------------------------------------------------------------------------------------------
+/// The Small is the shortest typographical element, it is used inside small elements that require text, like Chips or small Buttons.
+.a-small {
+  @include txt-small;
+}
+
+// -----------------------------------------------------------------------------------------------------
+/// A Paragraph is one of two base typographical element, along with a Label. This element's use is for text that has multiple lines and more text after it, maybe a heading or another paragraph. If the content inside the element is a few words long, use a Label instead.
+.a-paragraph {
+  @include txt-paragraph;
+}
+
+// -----------------------------------------------------------------------------------------------------
+/// A Label is one of two base typographical elements, along with a Paragraph. This element is used for short text, a few words at most. For multilinear text, use a Paragraph instead.
+.a-label {
+  @include txt-label;
+}
+
+// -----------------------------------------------------------------------------------------------------
+/// A Subheading is the smallest of the three heading types, along with a Heading and Title. It is conventionally used for titles of subsections, multiple of these can be found inside a section.
+.a-subheading {
+  @include txt-subheading;
+}
+
+// -----------------------------------------------------------------------------------------------------
+/// A Heading is the medium-sized heading of the three heading types, the other two being the Subheading and the Title. It is conventionally used for titles of page sections, multiple of these can be found inside a single page.
+.a-heading {
+  @include txt-heading;
+}
+
+// -----------------------------------------------------------------------------------------------------
+/// A Title is the largest heading of the three heading types, the other two being the Heading and Subheading. It is conventionally used for page title and only one can be found, usually at the top of the page.
+.a-title {
+  @include txt-title;
+}
+
+// -----------------------------------------------------------------------------------------------------
+/// A Display is large decorative text found rarely on a page. It can be used in any way as long as the text doesn't feel crowded and is legible.
+.a-display {
+  @include txt-display;
+}
+
+
+
+@mixin chip($background: clr('blue', 'tint-lightest')) {
+  @include txt-label;
+  align-items: center;
+  background-color: $background;
+  border-radius: unit-x($half);
+  display: inline-flex;
+  gap: unit-x($sixth);
+  padding: unit-x($quarter) unit-x($half);
+  max-width: 100%;
+  margin-bottom: unit-x($sixth);
+
+  .a-chip {
+    // a-chip-close, a-chip-icon
+    &-close,
+    &-icon {
+      font-size: 18px;
+    }
+  
+    // a-chip-close
+    &-close {
+      cursor: pointer;
+    }
+  
+    // a-chip-label
+    &-label {
+      @include clamp($whiteSpace: true);
+    }
+  
+    // a-chip-container
+    &-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: unit-x($quarter);
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------------------------------
+/// A Chip is a compact element that shows pieces of similar-leveled information about a subject in common. Chips should appear dynamically as a group of interactive elements.
+.a-chip {
+  @include chip;
+}
+
+// -----------------------------------------------------------------------------------------------------
+/// An Input Text is one of the label-box inputs, it allows users to enter information the site requires from them.
+.a-input-text {
+  @include input-box-label-combo;
+}
+
+// -----------------------------------------------------------------------------------------------------
+/// An Input Select a.k.a. dropdown menu, is one of the label-box inputs, it allows users to select an option from a predefined list without the need for typing.
+.a-input-select {
+  @include input-box-label-combo;
+  position: relative;
+  
+  // a-input-select-element
+  &-element {
+    @include clamp;
+    width: 100%;
+    padding-right: unit-x(1);
+
+    -moz-appearance: none;
+    -webkit-appearance: none;
+  }
+
+  // a-input-select-arrow
+  &-arrow {
+    position: absolute;
+    right: 3px;
+    bottom: 3px;
+    pointer-events: none;
+    color: clr('grey', 'lightest')
+  }
+}
+
+// -----------------------------------------------------------------------------------------------------
+/// An Input Checkbox is a control that allows the user to select any number of choices from a list, including no option. Conventionally, checkboxes are part of a list, for a single and independent control, use the Switch.
+.a-input-checkbox {
+  padding: unit-x($quarter);
+  display: flex;
+  gap: unit-x($third);
+  align-items: center;
+  border: 1px solid clr('grey', 'lighter');
+  border-radius: unit-x($sixth);
+  width: 100%;
+  min-width: unit-x(5);
+  max-width: unit-x(15);
+  cursor: pointer;
+
+  &.input-selected {
+    background-color: clr('blue', 'tint-lightest');
+    border: 1px solid clr('blue', 'tint-light');
+  }
+  
+  &.input-disabled {
+    background: clr('grey', 'light');
+    border: 1px solid clr('grey');
+    cursor: not-allowed;
+    
+    .a-input-checkbox-label {
+      color: clr('grey', 'lightest');
+      text-decoration: none;
+    }
+
+    &:hover,
+    &:focus {
+      background: clr('grey', 'light');
+      border: 1px solid clr('grey');
+      outline: 0;
+  
+      .a-input-checkbox-label {
+        text-decoration: none;
+      }
+    }
+  }
+
+  &.input-selected.input-disabled {
+    background: clr('grey', 'base');
+    border: 1px solid clr('grey', 'dark');
+  }
+  
+  &:hover,
+  &:focus {
+    background-color: clr('grey', 'lightest');
+    border: 1px solid clr('grey', 'light');
+    outline: 0;
+
+    .a-input-checkbox-label {
+      text-decoration: underline;
+    }
+  }
+
+  &-element {
+    pointer-events: none;
+  }
+
+  &-label {
+    @include no-select;
+    @include txt-link($color: clr('grey', 'black'));
+    @include clamp;
+    pointer-events: none;
+  }
+
+  &-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: unit-x($third);
+  }
+}
+
+// -----------------------------------------------------------------------------------------------------
+/// This helper class contains the style variations for incorrect inputs.
+.input-error {
+  .a-input-text, .a-input-select {
+    &-label {
+      @include txt-label($color: clr('red', 'light'), $font-weight: font-weight('bold'))
+    }
+
+    &-element {
+      border-bottom: unit-x($twelfth) solid clr('red', 'light');
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------------------------------
+/// A Button is a very abstract and generalist component, the user should see it as a call to action to the next wanted step. Buttons work by performing a particular action and shouldn't be used when navigating to another page, for that use a link instead.
+.a-button {
+  @include txt-link($color: clr('grey', 'black'));
+  @include no-select;
+  padding: unit-x($third) unit-x($half);
+  background: clr('blue', 'tint-lighter');
+  border: 0;
+  border-bottom: unit-x($twelfth) solid clr('blue', 'tint-lighter');
+  border-radius: unit-x($sixth);
+
+  &:hover,
+  &:focus {
+    background: clr('blue', 'tint-light');
+    outline: 0;
+    text-decoration: underline;
+  }
+
+  &:focus {
+    border-bottom: unit-x($twelfth) solid clr('grey', 'darkest');
+  }
+
+  &:disabled,
+  &:disabled:hover,
+  &:disabled:focus {
+    background: clr('grey', 'light');
+    color: clr('grey', 'lightest');
+    text-decoration: none;
+    cursor: not-allowed;
+  }
+
+}
+
+// -----------------------------------------------------------------------------------------------------
+.a-separator {
+  background-color: clr('grey', 'lightest');
+  height: 1px;
+  margin: unit-x(.75) 0;
+  width: 100%;
+}
+
+// -----------------------------------------------------------------------------------------------------
+@each $name, $shades in $colors {
+  .#{$name}-white {
+    background-color: clr($name, 'white');
+  }
+  .#{$name}-lightest {
+    background-color: clr($name, 'lightest');
+  }
+  .#{$name}-lighter {
+    background-color: clr($name, 'lighter');
+  }
+  .#{$name}-light {
+    background-color: clr($name, 'light');
+  }
+  .#{$name}-base {
+    background-color: clr($name, 'base');
+  }
+  .#{$name}-dark {
+    background-color: clr($name, 'dark');
+  }
+  .#{$name}-darker {
+    background-color: clr($name, 'darker');
+  }
+  .#{$name}-darkest {
+    background-color: clr($name, 'darkest');
+  }
+  .#{$name}-black {
+    background-color: clr($name, 'black');
+  }
+
+  @if ($name != 'grey') {
+    .#{$name}-tint-lightest {
+      background-color: clr($name, 'tint-lightest');
+    }
+    .#{$name}-tint-lighter {
+      background-color: clr($name, 'tint-lighter');
+    }
+    .#{$name}-tint-light {
+      background-color: clr($name, 'tint-light');
+    }
+    .#{$name}-shade {
+      background-color: clr($name, 'shade');
+    }
+  }
+}

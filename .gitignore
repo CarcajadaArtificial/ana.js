@@ -1,3 +1,15 @@
+# Directory of public exported files
+public/
+
+# Directory of files that are immediately deleted after being used.
+bin/
+
+# File that contains the results of unit tests
+test/testResults.html
+
+# Mac OS Files
+.DS_Store
+
 # Logs
 logs
 *.log

@@ -1,0 +1,170 @@
+//     ____      _
+//    / ___|___ | | ___  _ __ ___
+//   | |   / _ \| |/ _ \| '__/ __|
+//   | |__| (_) | | (_) | |  \__ \
+//    \____\___/|_|\___/|_|  |___/
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Dependencies
+@import 'error.mod';
+
+// -----------------------------------------------------------------------------------------------------
+///  Retrieves a color value from the $colors Sass map
+///  @param {string} color-name - quoted, lower-case, dasherized color name (e.g. 'pink', 'amber')
+///  @param {string} color-variant ['base'] - quoted, lowercase color variant (e.g. 'lightest', 'a100')
+@function clr($color-name, $color-variant: 'base') {
+  $color: map-get(map-get($colors, $color-name), $color-variant);
+
+  @if $color {
+    @return $color;
+  } @else {
+    // Libsass still doesn't seem to support @error
+    @return throw(
+      '=> ERROR: COLOR NOT FOUND! <= | Your #{$color-name}, #{$color-variant} combination did not match any of the values in the $colors map.'
+    );
+  }
+}
+
+// -----------------------------------------------------------------------------------------------------
+$colors: (
+  'red': (
+    'white': #ffdeeb,
+    'tint-lightest': #ffcadf,
+    'tint-lighter': #ff7cae,
+    'tint-light': #ff5596,
+    'lightest': #f0005d,
+    'lighter': #d60053,
+    'light': #bd0049,
+    'base': #a3003f,
+    'dark': #8a0035,
+    'darker': #70002b,
+    'darkest': #570021,
+    'shade': #1a000a,
+    'black': #060002,
+  ),
+  'violet': (
+    'white': #fadeff,
+    'tint-lightest': #f5b7ff,
+    'tint-lighter': #ec7cff,
+    'tint-light': #e12eff,
+    'lightest': #ab00c9,
+    'lighter': #9600af,
+    'light': #800096,
+    'base': #6a007c,
+    'dark': #540063,
+    'darker': #3e0049,
+    'darkest': #290030,
+    'shade': #16001a,
+    'black': #050006,
+  ),
+  'blue': (
+    'white': #f9f8ff,
+    'tint-lightest': #c8bdff,
+    'tint-lighter': #9682ff,
+    'tint-light': #6547ff,
+    'lightest': #2100cf,
+    'lighter': #1d00b5,
+    'light': #19009c,
+    'base': #150082,
+    'dark': #110069,
+    'darker': #0d004f,
+    'darkest': #090036,
+    'shade': #050020,
+    'black': #02000c,
+  ),
+  'cyan': (
+    'white': #edf9ff,
+    'tint-lightest': #b2e6ff,
+    'tint-lighter': #77d2ff,
+    'tint-light': #3cbfff,
+    'lightest': #0083c4,
+    'lighter': #0072aa,
+    'light': #006191,
+    'base': #005077,
+    'dark': #003f5e,
+    'darker': #002e44,
+    'darkest': #001d2b,
+    'shade': #000e15,
+    'black': #000101,
+  ),
+  'green': (
+    'white': #fdfffe,
+    'tint-lightest': #aeffd2,
+    'tint-lighter': #87ffbb,
+    'tint-light': #4cff9a,
+    'lightest': #00d45c,
+    'lighter': #00ba51,
+    'light': #00a146,
+    'base': #00873b,
+    'dark': #006e30,
+    'darker': #005425,
+    'darkest': #003b1a,
+    'shade': #00190b,
+    'black': #000602,
+  ),
+  'lime': (
+    'white': #fbffee,
+    'tint-lightest': #e9ff9f,
+    'tint-lighter': #dfff78,
+    'tint-light': #d2ff3d,
+    'lightest': #c3ff00,
+    'lighter': #b0e600,
+    'light': #9dcd00,
+    'base': #89b300,
+    'dark': #759a00,
+    'darker': #628000,
+    'darkest': #4e6700,
+    'shade': #111600,
+    'black': #020200,
+  ),
+  'yellow': (
+    'white': #fdfcf9,
+    'tint-lightest': #e9e1be,
+    'tint-lighter': #dfd3a1,
+    'tint-light': #d1bf75,
+    'lightest': #cbb764,
+    'lighter': #c5ae51,
+    'light': #bda53f,
+    'base': #aa9439,
+    'dark': #978333,
+    'darker': #84732c,
+    'darkest': #716226,
+    'shade': #171408,
+    'black': #080703,
+  ),
+  'orange': (
+    'white': #fffbf7,
+    'tint-lightest': #ffd0a8,
+    'tint-lighter': #ffbb81,
+    'tint-light': #ff9c46,
+    'lightest': #ff7b0a,
+    'lighter': #ef6f00,
+    'light': #d66300,
+    'base': #bc5700,
+    'dark': #a34b00,
+    'darker': #893f00,
+    'darkest': #703400,
+    'shade': #1f0e00,
+    'black': #0b0500,
+  ),
+  'grey': (
+    'white': #fafafb,
+    'lightest': #d1d0d7,
+    'lighter': #888696,
+    'light': #7a788a,
+    'base': #62606f,
+    'dark': #4a4854,
+    'darker': #3e3d46,
+    'darkest': #0e0e10,
+    'black': #050506,
+  )
+);
+
+// -----------------------------------------------------------------------------------------------------
+@mixin surface-card {
+  background-color: clr('blue', 'white');
+  border-radius: 4px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  padding: 16px;
+}

@@ -1,0 +1,33 @@
+{
+  "name": "ana.js",
+  "version": "0.1.0",
+  "description": "Anarchy",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CarcajadaArtificial/ana.js.git"
+  },
+  "author": "Oscar Alfonso Guerrero Nuñez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CarcajadaArtificial/ana.js/issues"
+  },
+  "homepage": "https://github.com/CarcajadaArtificial/ana.js#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-jsdoc3": "^3.0.0",
+    "gulp-minify": "^3.1.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^5.0.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "jest": "^27.3.1",
+    "jest-html-reporter": "^3.3.0",
+    "node-sass": "^6.0.1",
+    "sass": "^1.43.4",
+    "sassdoc": "^2.7.3"
+  }
+}
