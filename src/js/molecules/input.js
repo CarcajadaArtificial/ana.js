@@ -6,18 +6,18 @@
 //                   |_|              
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
- * @module Ana/Atoms
+ * @module Ana/Molecules
  */
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 /**
  * An Input Text allows users to enter information the site requires from them.
- * @param {string} edit.inputLabel The text that states the name of the information being entered.
- * @param {boolean} edit.isMultiline If true, the element will change from an <input type="text"> to a <textarea> enabiling the use of multiple lines.
- * @param {boolean} edit.isRequired If true, will add a required mark (*) next to the label and will add the required attribute to the element.
- * @param {boolean} edit.isIncorrect If true, will add the class .input-error stating a mistaken input.
+ * @param {String} edit.inputLabel The text that states the name of the information being entered.
+ * @param {Boolean} edit.isMultiline If true, the element will change from an `<input type="text">` to a `<textarea>` enabiling the use of multiple lines.
+ * @param {Boolean} edit.isRequired If true, will add a required mark (*) next to the label and will add the required attribute to the element.
+ * @param {Boolean} edit.isIncorrect If true, will add the class .input-error stating a mistaken input.
  */
- function aInputText(
+function aInputText(
   edit = {
     inputLabel: undefined,
     isMultiline: undefined,
@@ -196,7 +196,9 @@ function aInputCheckbox(
       this.children[0].toggleAttribute('checked')
       this.classList.toggle('input-selected')
     }
-    edit.activateEvent(e, this.children[0].checked)
+    if(edit.activateEvent) {
+      edit.activateEvent(e, this.children[0].checked)
+    }
   }
   // a-input-checkbox-label
   let inputLabel = aLabel(

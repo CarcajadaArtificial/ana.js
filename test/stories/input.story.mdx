@@ -1,0 +1,160 @@
+import {
+  Canvas,
+  Meta,
+  Story,
+  Description,
+  ArgsTable,
+} from '@storybook/addon-docs'
+import { parameters, args } from '../../.storybook/preview'
+import {
+  aInputText,
+  aInputSelect,
+  aInputCheckbox,
+} from './helpers/documentation'
+
+<Meta
+  title="Molecules/Input"
+  argTypes={{
+    inputLabel: args('Property', 'undefined'),
+    inputPlaceholder: args('Property', 'undefined'),
+    isMultiline: args('Property', 'false'),
+    isRequired: args('Property', 'false'),
+    isIncorrect: args('Property', 'false'),
+    menuOptions: args('Property', '[]'),
+    placeholder: args('HTML Attribute', 'undefined'),
+    checked: args('HTML Attribute', 'false'),
+  }}
+/>
+
+<!-- -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - -->
+<!-- prettier-ignore-start -->
+
+export const Text = ({
+  inputLabel,
+  isMultiline,
+  isRequired,
+  isIncorrect,
+  placeholder,
+}) =>
+  aInputText.aInputText({
+    inputLabel: inputLabel,
+    isMultiline: isMultiline,
+    isRequired: isRequired,
+    isIncorrect: isIncorrect,
+    placeholder: placeholder,
+  })
+
+<Description>{aInputText.doc.aInputText}</Description>
+
+<!-- prettier-ignore-end -->
+
+<Canvas>
+  <Story
+    name="Text"
+    args={{
+      inputLabel: 'System',
+      isMultiline: false,
+      isRequired: false,
+      isIncorrect: false,
+      placeholder: '(e.g. Anarchy)',
+    }}
+    parameters={{
+      controls: {
+        include: [ 'inputLabel', 'isMultiline', 'isRequired', 'isIncorrect', 'placeholder' ],
+      },
+    }}
+  >
+    {Text.bind({})}
+  </Story>
+</Canvas>
+
+### Live Edit
+
+<ArgsTable story="Text" />
+
+---
+
+<!-- -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - -->
+<!-- prettier-ignore-start -->
+
+export const Select = ({
+  inputLabel,
+  menuOptions,
+  isRequired,
+  isIncorrect,
+  inputPlaceholder,
+}) =>
+  aInputSelect.aInputSelect({
+    inputLabel: inputLabel,
+    menuOptions: menuOptions,
+    isRequired: isRequired,
+    isIncorrect: isIncorrect,
+    inputPlaceholder: inputPlaceholder,
+  })
+
+<Description>{aInputSelect.doc.aInputSelect}</Description>
+
+<!-- prettier-ignore-end -->
+
+<Canvas>
+  <Story
+    name="Select"
+    args={{
+      inputLabel: 'Options',
+      menuOptions: ['Option A', 'Option B', 'Option C'],
+      inputPlaceholder: 'Select an option',
+      isRequired: false,
+      isIncorrect: false,
+    }}
+    parameters={{
+      controls: {
+        include: [ 'inputLabel', 'menuOptions', 'inputPlaceholder', 'isRequired', 'isIncorrect' ],
+      },
+    }}
+  >
+    {Select.bind({})}
+  </Story>
+</Canvas>
+
+### Live Edit
+
+<ArgsTable story="Select" />
+
+---
+
+<!-- -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - -->
+<!-- prettier-ignore-start -->
+
+export const Checkbox = ({ 
+  inputLabel,
+  checked 
+}) =>
+  aInputCheckbox.aInputCheckbox({
+    inputLabel: inputLabel,
+    checked: checked,
+  })
+
+<Description>{aInputCheckbox.doc.aInputCheckbox}</Description>
+
+<!-- prettier-ignore-end -->
+
+<Canvas>
+  <Story
+    name="Checkbox"
+    args={{
+      inputLabel: 'Anarchy',
+      checked: false,
+    }}
+    parameters={{
+      controls: {
+        exclude: [ 'inputLabel', 'checked' ],
+      },
+    }}
+  >
+    {Checkbox.bind({})}
+  </Story>
+</Canvas>
+
+### Live Edit
+
+<ArgsTable story="Checkbox" />

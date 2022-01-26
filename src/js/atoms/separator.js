@@ -10,6 +10,10 @@
  */
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+/**
+ * Separator text
+ * @param {*} edit a
+ */
 function aSeparator(edit = {}) {
   return RR('div', { class: 'a-separator' })
 }

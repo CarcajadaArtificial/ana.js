@@ -1,10 +1,13 @@
 {
   "name": "ana.js",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Anarchy",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "global": "echo node: 16.13.0; node -v && echo npm: 8.1.0; npm -v"
   },
   "repository": {
     "type": "git",
@@ -17,17 +20,26 @@
   },
   "homepage": "https://github.com/CarcajadaArtificial/ana.js#readme",
   "devDependencies": {
+    "@babel/core": "^7.16.7",
+    "@storybook/addon-actions": "^6.4.13",
+    "@storybook/addon-essentials": "^6.4.13",
+    "@storybook/addon-links": "^6.4.13",
+    "@storybook/html": "^6.4.13",
+    "babel-loader": "^8.2.3",
     "gulp": "^4.0.2",
     "gulp-concat": "^2.6.1",
-    "gulp-jsdoc3": "^3.0.0",
     "gulp-minify": "^3.1.0",
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^5.0.0",
     "gulp-sourcemaps": "^3.0.0",
     "jest": "^27.3.1",
     "jest-html-reporter": "^3.3.0",
+    "jsdoc-json": "^2.0.2",
     "node-sass": "^6.0.1",
     "sass": "^1.43.4",
     "sassdoc": "^2.7.3"
+  },
+  "dependencies": {
+    "gulp-jsdoc3": "^3.0.0"
   }
 }

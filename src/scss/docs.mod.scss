@@ -1,0 +1,80 @@
+@import './utils/utils.aux';
+
+@mixin doc-layout($layout-name, $hide-layout-block: 5, $hide-doc-block: 13) {
+  &-#{$layout-name} {
+    background-color: clr('grey', 'base');
+    border-radius: unit-x($sixth);
+
+    @for $i-layout-block from $hide-layout-block to 5 {
+      .a-layout-block:nth-child(#{$i-layout-block}) {
+        display: none;
+      }
+    }
+
+    @for $i-doc-block from $hide-doc-block to 13 {
+      .a-doc-block:nth-child(#{$i-doc-block}) {
+        display: none;
+      }
+    }
+  }
+}
+
+.a-doc-space {
+  margin: unit-x(1) 0 unit-x(1) 0;
+
+  .a-layout {
+    @include doc-layout('full', 2);
+    @include doc-layout('center', 2, 9);
+    @include doc-layout('focus', 2, 7);
+    @include doc-layout('halves', 3, 7);
+    @include doc-layout('thirds', 4, 5);
+    @include doc-layout('quarters', 5, 4);
+    @include doc-layout('right', 3);
+    @include doc-layout('left', 3);
+
+    &-right {
+      .a-layout-block:nth-child(odd) {
+        @for $i from 5 to 13 {
+          .a-doc-block:nth-child(#{$i}) {
+            display: none;
+          }
+        }
+      }
+      .a-layout-block:nth-child(even) {
+        @for $i from 9 to 13 {
+          .a-doc-block:nth-child(#{$i}) {
+            display: none;
+          }
+        }
+      }
+    }
+
+    &-left {
+      .a-layout-block:nth-child(odd) {
+        @for $i from 9 to 13 {
+          .a-doc-block:nth-child(#{$i}) {
+            display: none;
+          }
+        }
+      }
+      .a-layout-block:nth-child(even) {
+        @for $i from 5 to 13 {
+          .a-doc-block:nth-child(#{$i}) {
+            display: none;
+          }
+        }
+      }
+    }
+
+    &-block {
+      background-color: clr('grey', 'lighter');
+      border-radius: unit-x($sixth);
+    }
+  }
+
+  .a-doc-block {
+    background-color: clr('grey', 'light');
+    min-height: unit-x(5);
+    border-radius: unit-x($sixth);
+  }
+}

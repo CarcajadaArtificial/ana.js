@@ -1,0 +1,123 @@
+import {
+  Canvas,
+  Meta,
+  Story,
+  Description,
+  ArgsTable,
+} from '@storybook/addon-docs'
+import { parameters, args } from '../../.storybook/preview'
+import {
+  aDocSpace, aLink, aButton, aIcon, aSeparator
+} from './helpers/documentation'
+
+<Meta
+  title="Atoms/Misc"
+  argTypes={{
+    children: args('Parameter', 'undefined'),
+    href: args('HTMLElement Attribute', 'undefined'),
+    text: args('Property', ''),
+    iconName: args('Property', ''),
+  }}
+/>
+
+<!-- -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - -->
+<!-- prettier-ignore-start -->
+
+export const Link = ({
+  children,
+  href
+}) =>
+  aDocSpace(aLink.aLink({href: href}, children))
+
+<Description>{aLink.doc.aLink}</Description>
+
+<!-- prettier-ignore-end -->
+
+<Story
+  name="Link"
+  args={{
+    children: 'Anarchy',
+    href: 'https://en.wikipedia.org/wiki/Anarchy'
+  }}
+  parameters={{
+    controls: {
+      include: ['children', 'href'],
+    },
+  }}
+>
+  {Link.bind({})}
+</Story>
+
+### Live Edit
+
+<ArgsTable story="Link" />
+
+---
+
+<!-- -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - -->
+<!-- prettier-ignore-start -->
+
+export const Button = ({
+  text
+}) =>
+  aButton.aButton({text: text})
+
+<Description>{aButton.doc.aButton}</Description>
+
+<!-- prettier-ignore-end -->
+
+<Canvas>
+  <Story
+    name="Button"
+    args={{
+      text: 'Anarchy',
+    }}
+    parameters={{
+      controls: {
+        include: ['text'],
+      },
+    }}
+  >
+    {Button.bind({})}
+  </Story>
+</Canvas>
+
+### Live Edit
+
+<ArgsTable story="Button" />
+
+---
+
+<!-- -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - -->
+<!-- prettier-ignore-start -->
+
+export const Icon = ({
+  iconName
+}) =>
+  aIcon.aIcon({iconName: iconName})
+
+<Description>{aIcon.doc.aIcon}</Description>
+
+<!-- prettier-ignore-end -->
+
+<Canvas>
+  <Story
+    name="Icon"
+    args={{
+      iconName: 'balance',
+    }}
+    parameters={{
+      controls: {
+        include: ['iconName'],
+      },
+    }}
+  >
+    {Icon.bind({})}
+  </Story>
+</Canvas>
+
+### Live Edit
+
+<ArgsTable story="Icon" />
+
+---

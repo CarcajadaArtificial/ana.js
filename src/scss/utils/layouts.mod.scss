@@ -339,26 +339,32 @@ $max-sizes: (
 ///     }
 ///   }
 /// @group util_layouts
-@mixin layout {
+@mixin layout(
+  $trio: 3,
+  $sextet: 6,
+  $dozen: 12,
+  $offset-small: 1,
+  $offset-desk: 10%,
+  $offset-wide: 20%,
+) {
   @include display-on(hand) {
-    @include grid($columns: 3, $offset: 1);
-    margin-top: unit-x(1);
+    @include grid($columns: $trio, $offset: $offset-small);
   }
 
   @include display-on(page) {
-    @include grid($columns: 6, $offset: 1);
+    @include grid($columns: $sextet, $offset: $offset-small);
   }
 
   @include display-on(book) {
-    @include grid($columns: 6, $offset: 1);
+    @include grid($columns: $sextet, $offset: $offset-small);
   }
 
   @include display-on(desk) {
-    @include grid($columns: 12, $offset: 10%);
+    @include grid($columns: $dozen, $offset: $offset-desk);
   }
 
   @include display-on(wide) {
-    @include grid($columns: 12, $offset: 20%);
+    @include grid($columns: $dozen, $offset: $offset-wide);
   }
 }
 
@@ -385,23 +391,35 @@ $max-sizes: (
 ///     }
 ///   }
 /// @group util_layouts
-@mixin column-span($trio: 3, $sextet: 6, $dozen: 12) {
-  @include display-on(hand) {
-    grid-column: span $trio;
+@mixin column-span($trio: 3, $sextet: 6, $dozen: 12, $trio-skip: 0, $sextet-skip: 0, $dozen-skip: 0) {
+  @include display-on('hand') {
+    @if ($trio-skip == 0) {
+      grid-column: span $trio;
+    } @else {
+      grid-column: $trio-skip / span $trio;
+    }
     @if ($trio == 0) {
       display: none;
     }
   }
 
-  @include display-on(page, $until: book) {
-    grid-column: span $sextet;
+  @include display-on('page', $until: 'book') {
+    @if ($sextet-skip == 0) {
+      grid-column: span $sextet;
+    } @else {
+      grid-column: $sextet-skip / span $sextet;
+    }
     @if ($sextet == 0) {
       display: none;
     }
   }
 
-  @include display-on(desk, $until: wide) {
-    grid-column: span $dozen;
+  @include display-on('desk', $until: 'wide') {
+    @if ($dozen-skip == 0) {
+      grid-column: span $dozen;
+    } @else {
+      grid-column: $dozen-skip / span $dozen;
+    }
     @if ($dozen == 0) {
       display: none;
     }

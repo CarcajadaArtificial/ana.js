@@ -12,7 +12,7 @@
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 /**
  * A Paragraph is one of two base typographical elements, slightly larger than a Label. This element is used for text that has multiple lines and more text after it, maybe a heading or another paragraph. If the content inside the element is a few words long, use a Label instead.
- * @param {array} children All of the elements immediatly inside the Paragraph.
+ * @param {(String|HTMLElement)} [children=[]] (Spread) All of the elements immediatly inside the element.
  */
  function aParagraph(edit = {}, ...children) {
   // Parameter Validation

@@ -27,6 +27,7 @@ const dirPath = {
   publicCss: './public/css',
   publicJs: './public/js',
   publicSassdoc: './public/sassdoc',
+  publicJsdoc: './public/jsdoc'
 };
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
@@ -166,9 +167,12 @@ function documentSass() {
  */
 function documentJs(done) {
   const options = {
-    plugins: ['plugins/markdown'],
+    plugins: [
+      'plugins/markdown',
+    ],
     opts: {
-      destination: './public/jsdoc',
+      destination: './public/jsdoc/jsdoc.json',
+      template: './node_modules/jsdoc-json'
     },
     source: {
       include: ['./gulpfile.js'],

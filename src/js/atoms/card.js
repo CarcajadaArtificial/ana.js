@@ -12,8 +12,8 @@
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 /**
  * A Card is a surface that can contain information that revolves around the same subject. It is usually placed as a grid's child and located on the grid using the "column-span" mixin.
- * @param {string,undefined} edit.cardTitle [Optional] A Card can have a centered title on top that works to identify the subjects inside the card.
- * @param {array} children All of the elements immediatly inside the Card.
+ * @param {(String|Undefined)} edit.cardTitle A Card can have a centered title on top that works to identify the subjects inside the card.
+ * @param {(String|HTMLElement)} [children=[]] (Spread) All of the elements immediatly inside the Card..
  */
  function aCard(
   edit = {

@@ -8,6 +8,7 @@
   try {
     module.exports = {
       R: _render,
+      RR: RR,
       CLIENT_ENVIRONMENT: CLIENT_ENVIRONMENT,
       GLOBAL_ATTRIBUTES: GLOBAL_ATTRIBUTES,
       CHECK: CHECK,
@@ -21,6 +22,25 @@
       eID: eID,
       bring: bring,
       _writeDatatypeErrorMessage: _writeDatatypeErrorMessage,
+      //Atoms
+      aLabel: aLabel,
+      aSmall: aSmall,
+      aParagraph: aParagraph,
+      aSubheading: aSubheading,
+      aHeading: aHeading,
+      aTitle: aTitle,
+      aDisplay: aDisplay,
+      aButton: aButton,
+      aIcon: aIcon,
+      aLink: aLink,
+      aSeparator: aSeparator,
+      aLayoutBlock: aLayoutBlock,
+      aLayout: aLayout,
+      //Molecules
+      aInputText: aInputText,
+      aInputSelect: aInputSelect,
+      aInputCheckbox: aInputCheckbox,
+      //Organisms
     }
   } catch (error) {
     if (error.name === 'ReferenceError') {

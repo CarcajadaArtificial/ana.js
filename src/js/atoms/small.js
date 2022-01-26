@@ -12,7 +12,7 @@
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 /**
  * A Small is the shortest typographical element, it is used inside small elements that require text, like Chips or small Buttons.
- * @param {array} children All of the elements immediatly inside the Small.
+ * @param {(String|HTMLElement)} [children=[]] (Spread) All of the elements immediatly inside the element.
  */
  function aSmall(edit = {}, ...children) {
   // Parameter Validation

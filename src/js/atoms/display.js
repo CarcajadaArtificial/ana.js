@@ -12,7 +12,7 @@
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 /**
  * A Display is large decorative text found rarely on a page. It can be used in any way as long as the text doesn't feel crowded and is legible.
- * @param {array} children All of the elements immediatly inside the Title.
+ * @param {(String|HTMLElement)} [children=[]] (Spread) All of the elements immediatly inside the Display.
  */
  function aDisplay(edit = {}, ...children) {
   // Parameter Validation

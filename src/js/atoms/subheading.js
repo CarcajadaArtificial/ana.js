@@ -12,7 +12,7 @@
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 /**
  * A Subheading is the smallest of the three heading types, the other two being the Heading and Title. It is conventionally used for titles of subsections, multiple of these can be found inside a section.
- * @param {array} children All of the elements immediatly inside the Subheading.
+ * @param {(String|HTMLElement)} [children=[]] (Spread) All of the elements immediatly inside the element.
  */
  function aSubheading(edit = {}, ...children) {
   // Parameter Validation

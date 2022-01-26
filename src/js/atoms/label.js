@@ -12,7 +12,7 @@
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 /**
  * A Label is one of two base typographical elements, slightly smaller than a Paragraph. This element is used for short text, a few words at most. For multilinear text, use a Paragraph instead.
- * @param {array} children All of the elements immediatly inside the Label.
+ * @param {(String|HTMLElement)} [children=[]] (Spread) All of the elements immediatly inside the element.
  */
  function aLabel(edit = {}, ...children) {
   // Parameter Validation

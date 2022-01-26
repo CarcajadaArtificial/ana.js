@@ -12,7 +12,8 @@
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 /**
  * A Heading is the medium-sized heading of the three heading types, the other two being the Subheading and the Title. It is conventionally used for titles of page sections, multiple of these can be found inside a single page.
- * @param {array} children All of the elements immediatly inside the Heading.
+ * @param {Object} edit Dictionary of editing properties, it includes html element attributes and properties exclusive to the component.
+ * @param {(String|HTMLElement)} [children=[]] (Spread) All of the elements immediatly inside the element.
  */
  function aHeading(edit = {}, ...children) {
   // Parameter Validation

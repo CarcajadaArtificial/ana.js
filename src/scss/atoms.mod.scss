@@ -332,3 +332,102 @@ p.label {
     }
   }
 }
+
+// -----------------------------------------------------------------------------------------------------
+@mixin layout-block(
+  $trio: 3,
+  $sextet: 6,
+  $dozen: 12,
+  $trio-skip: 0,
+  $sextet-skip: 0,
+  $dozen-skip: 0,
+  $count: 'null'
+) {
+  @if ($count == 'null') {
+    .a-layout-block {
+      @include column-span(
+        $trio: $trio,
+        $sextet: $sextet,
+        $dozen: $dozen,
+        $trio-skip: $trio-skip,
+        $sextet-skip: $sextet-skip,
+        $dozen-skip: $dozen-skip
+      );
+  
+      &.a-subgrid {
+        @include layout(
+          $trio: $trio,
+          $sextet: $sextet,
+          $dozen: $dozen,
+          $offset-small: 0,
+          $offset-desk: 0,
+          $offset-wide: 0,
+        )
+      }
+    }
+  } @else {
+    .a-layout-block:nth-child(#{$count}) {
+      @include column-span(
+        $trio: $trio,
+        $sextet: $sextet,
+        $dozen: $dozen,
+        $trio-skip: $trio-skip,
+        $sextet-skip: $sextet-skip,
+        $dozen-skip: $dozen-skip
+      );
+  
+      &.a-subgrid {
+        @include layout(
+          $trio: $trio,
+          $sextet: $sextet,
+          $dozen: $dozen,
+          $offset-small: 0,
+          $offset-desk: 0,
+          $offset-wide: 0,
+        )
+      }
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------------------------------
+.a-layout {
+  &-full {
+    @include layout-block;
+  }
+  &-center {
+    @include layout-block(3, 6, 8, 0, 0, 3);
+  }
+  &-focus {
+    @include layout-block(3, 4, 6, 0, 2, 4);
+  }
+  &-halves {
+    @include layout-block(3, 3, 6);
+  }
+  &-thirds {
+    @include layout-block(3, 2, 4);
+  }
+  &-quarters {
+    @include layout-block(3, 3, 3);
+  }
+  &-right {
+    @include layout-block(3, 2, 4, 0, 0, 0, 'odd');
+    @include layout-block(3, 4, 8, 0, 0, 0, 'even');
+  }
+  &-left {
+    @include layout-block(3, 4, 8, 0, 0, 0, 'odd');
+    @include layout-block(3, 2, 4, 0, 0, 0, 'even');
+  }
+  
+  &-margin {
+    &-full {
+      @include layout;
+    }
+    &-single {
+      @include layout($offset-small: 1, $offset-desk: 1, $offset-wide: 1);
+    }
+    &-none {
+      @include layout($offset-small: 0, $offset-desk: 0, $offset-wide: 0);
+    }
+  }
+}
