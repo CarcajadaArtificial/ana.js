@@ -19,37 +19,37 @@ $unit: 24px;
 /// Short for a standard 1/2.
 /// @type unitless
 /// @group util_layouts
-$half: math.div(1, 2);
+$half: 1/2;
 
 // -----------------------------------------------------------------------------------------------------
 /// Short for a standard 1/3.
 /// @type unitless
 /// @group util_layouts
-$third: math.div(1, 3);
+$third: 1/3;
 
 // -----------------------------------------------------------------------------------------------------
 /// Short for a standard 1/4.
 /// @type unitless
 /// @group util_layouts
-$quarter: math.div(1, 4);
+$quarter: 1/4;
 
 // -----------------------------------------------------------------------------------------------------
 /// Short for a standard 1/6.
 /// @type unitless
 /// @group util_layouts
-$sixth: math.div(1, 6);
+$sixth: 1/6;
 
 // -----------------------------------------------------------------------------------------------------
 /// Short for a standard 1/8.
 /// @type unitless
 /// @group util_layouts
-$eighth: math.div(1, 8);
+$eighth: 1/8;
 
 // -----------------------------------------------------------------------------------------------------
 /// Short for a standard 1/12.
 /// @type unitless
 /// @group util_layouts
-$twelfth: math.div(1, 12);
+$twelfth: 1/12;
 
 // -----------------------------------------------------------------------------------------------------
 /// Looks for a standard size by it's name.

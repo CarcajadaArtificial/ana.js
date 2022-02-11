@@ -2,7 +2,40 @@
 
 ## Unreleased
 
-### **0.2.0** (Latest)
+### **0.3.0** (Latest)
+
+- `Added` Typescript Classes
+  - `~/src/ts/standard.ts` constains the classes that make up the Ana standard's data structures.
+  - `~/src/ts/elements.ts` constains the class AnaElements that renders all HTMLElements using the standard.
+  - `~/src/ts/ana.ts` constains the class Ana, the target developer will mainly interact with this class.
+  - `~/src/ts/index.ts` constains global object overrides and exports.
+  - `~/tsconfig.json` contains TypeScript global configurations.
+  - `~/webpack.config.json` contains Webpack global configurations.
+
+- `Added` Playground testing HTML file.
+  - `~/test/playground-html`
+
+- `Removed` Gulpfile because all gulp functions were substituted by NPM scripts.
+  - `~/gulpfile.js`
+
+- `Removed` package-lock.json because is automatically generated.
+  - `~/package-lock.json`
+
+- `Changed` Package to newer framework technology (`./package.json`)
+  - `Removed` All gulp dependencies (`gulp`, `gulp-concat`, `gulp-minify`, `gulp-rename`, `gulp-sass`, `gulp-jsdoc3`, and `gulp-sourcemaps`) becuase they were substituted by the TypeScript compiler and NPM scripts.
+  - `Removed` All jest dependencies (`jest` and `jest-html-reporter`) because unit tests will be implemented in a future release.
+  - `Removed` The `jsdoc-json` dependency becuse they were substituted by TypeScript's TypeDoc.
+  - `Removed` All scss dependencies (`node-sass`, `sass`, and `sassdoc`) because they were substituted by NPM scripts.
+  - `Added` The TypeScript loader dependency `ts-loader`.
+  - `Added` Webpack required dependencies for TypeScript compiling (`webpack` and `webpack-cli`)
+
+- `Changed` Layout math syntax from `math.div(1, 2)` to `1/2.`
+  - `~/src/scss/utils/layouts.mod.scss`
+
+- `Changed` Gitignore directory from `public/` to `dist/`.
+  - `~/.gitignore`
+
+### **0.2.0**
 
 - `Added` Storybook module.
   - `~/.storybook/main.js` contains the general configuration for the storybook module. [Read more](https://storybook.js.org/docs/react/configure/overview)

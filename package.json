@@ -1,13 +1,19 @@
 {
   "name": "ana.js",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Anarchy",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
-    "global": "echo node: 16.13.0; node -v && echo npm: 8.1.0; npm -v"
+    "nvm": "echo 16.13.0",
+    "watch-sass": "sass --watch ./src/scss/style.scss ./dist/css/style.css",
+    "build-sass": "sass ./src/scss/style.scss ./dist/css/style.css",
+    "build-sass-min": "sass --style=compressed --no-source-map ./src/scss/style.scss ./dist/css/style.min.css",
+    "build-sass-doc": "mkdir ./dist/sassdoc; sassdoc src/ --parse > ./dist/sassdoc/sassdoc.json",
+    "publish-sass": "npm run build-sass; npm run build-sass-min; npm run build-sass-doc",
+    "watch-ts": "webpack --watch --mode development",
+    "build-ts": "webpack --mode production",
+    "build-ts-doc": "npx typedoc --out ./dist/typedoc"
   },
   "repository": {
     "type": "git",
@@ -26,20 +32,8 @@
     "@storybook/addon-links": "^6.4.13",
     "@storybook/html": "^6.4.13",
     "babel-loader": "^8.2.3",
-    "gulp": "^4.0.2",
-    "gulp-concat": "^2.6.1",
-    "gulp-minify": "^3.1.0",
-    "gulp-rename": "^2.0.0",
-    "gulp-sass": "^5.0.0",
-    "gulp-sourcemaps": "^3.0.0",
-    "jest": "^27.3.1",
-    "jest-html-reporter": "^3.3.0",
-    "jsdoc-json": "^2.0.2",
-    "node-sass": "^6.0.1",
-    "sass": "^1.43.4",
-    "sassdoc": "^2.7.3"
-  },
-  "dependencies": {
-    "gulp-jsdoc3": "^3.0.0"
+    "ts-loader": "^9.2.6",
+    "webpack": "^5.0.0",
+    "webpack-cli": "^4.9.2"
   }
 }

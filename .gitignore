@@ -1,5 +1,5 @@
 # Directory of public exported files
-public/
+dist/
 
 # Directory of files that are immediately deleted after being used.
 bin/
