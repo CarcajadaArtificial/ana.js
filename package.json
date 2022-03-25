@@ -1,10 +1,9 @@
 {
   "name": "ana.js",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Anarchy",
   "main": "gulpfile.js",
   "scripts": {
-    "storybook": "start-storybook -p 6006",
     "nvm": "echo 16.13.0",
     "watch-sass": "sass --watch ./src/scss/style.scss ./dist/css/style.css",
     "build-sass": "sass ./src/scss/style.scss ./dist/css/style.css",
@@ -13,7 +12,10 @@
     "publish-sass": "npm run build-sass; npm run build-sass-min; npm run build-sass-doc",
     "watch-ts": "webpack --watch --mode development",
     "build-ts": "webpack --mode production",
-    "build-ts-doc": "npx typedoc --out ./dist/typedoc"
+    "build-ts-doc": "npx typedoc --out ./dist/typedoc --json ./dist/typedoc/typedoc.json",
+    "watch-test": "nodemon test/app.ts",
+    "start-test": "node dist/js/app.js",
+    "build-test": "tsc -p ./test"
   },
   "repository": {
     "type": "git",
@@ -27,13 +29,17 @@
   "homepage": "https://github.com/CarcajadaArtificial/ana.js#readme",
   "devDependencies": {
     "@babel/core": "^7.16.7",
-    "@storybook/addon-actions": "^6.4.13",
-    "@storybook/addon-essentials": "^6.4.13",
-    "@storybook/addon-links": "^6.4.13",
-    "@storybook/html": "^6.4.13",
+    "@types/express": "^4.17.13",
+    "@types/node": "^17.0.17",
     "babel-loader": "^8.2.3",
+    "nodemon": "^2.0.15",
     "ts-loader": "^9.2.6",
+    "ts-node": "^10.5.0",
     "webpack": "^5.0.0",
     "webpack-cli": "^4.9.2"
+  },
+  "dependencies": {
+    "express": "^4.17.2",
+    "html-element": "^2.3.1"
   }
 }

@@ -10,15 +10,14 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitAny": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "resolveJsonModule": true
   },
   "typedocOptions": {
     "entryPoints": [
-      "src/ts/index.ts",
-      "src/ts/ana.ts",
-      "src/ts/elements.ts",
-      "src/ts/standard.ts",
+      "src/ts/",
     ],
+    "entryPointStrategy": "expand",
     "out": "docs"
   }
 }

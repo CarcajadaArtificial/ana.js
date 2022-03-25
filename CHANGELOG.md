@@ -2,7 +2,16 @@
 
 ## Unreleased
 
-### **0.3.0** (Latest)
+### **0.4.0** (Latest)
+
+- `Added` (WIP) Markdown creation module for easy formatting in .mdx files.
+
+- `Removed` Storybook because it was having compiling error and dependancy vulnerabilities and can be avoided with a customized component testing.
+  - `~/.storybook`
+  - `~/test/stories`
+  - `~/test/utils`
+
+### **0.3.0**
 
 - `Added` Typescript Classes
   - `~/src/ts/standard.ts` constains the classes that make up the Ana standard's data structures.

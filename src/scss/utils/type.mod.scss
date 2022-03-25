@@ -195,7 +195,7 @@ $default-type-color: clr('grey', 'darkest');
 /// @param {string} color ['#fff']
 /// @param {number} font-weight [400]
 /// @param {number} margin-bottom [0]
-/// @param {string} text-align [center]
+/// @param {string} text-align [left]
 /// @output Standard label style for text.
 /// @example scss - Sass
 ///   span {
@@ -208,7 +208,7 @@ $default-type-color: clr('grey', 'darkest');
 ///     color: #fff;
 ///     font-weight: 400;
 ///     margin-bottom: 0;
-///     text-align: center;
+///     text-align: left;
 ///   }
 /// @group util_type
 @mixin txt-label(

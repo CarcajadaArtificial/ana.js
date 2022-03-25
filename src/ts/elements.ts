@@ -1,5 +1,5 @@
-//    _____ _                           _       
-//   | ____| | ___ _ __ ___   ___ _ __ | |_ ___ 
+//    _____ _                           _
+//   | ____| | ___ _ __ ___   ___ _ __ | |_ ___
 //   |  _| | |/ _ \ '_ ` _ \ / _ \ '_ \| __/ __|
 //   | |___| |  __/ | | | | |  __/ | | | |_\__ \
 //   |_____|_|\___|_| |_| |_|\___|_| |_|\__|___/
@@ -7,7 +7,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
  * Elements module.
- * @module Elements
+ * @module Ana/Elements
  */
 
 import {
@@ -18,16 +18,17 @@ import {
   AttributeBoolean,
   AttributeList,
   AttributeInput,
-  Element
+  Element,
 } from './standard'
 
-import { AnaConfiguration } from './ana' 
+import { AnaConfiguration } from './ana'
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 /**
  * This interface contains the list of all supported HTMLElement renders in the framework.
  */
 export interface AnaElements {
+  // HTML Elements
   a: Function
   audio: Function
   blockquote: Function
@@ -138,7 +139,7 @@ export interface AnaElements {
   title: Function
   u: Function
   var: Function
-  addElements: Function
+  // SVG Elements
 }
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
@@ -153,7 +154,7 @@ export class AnaElements {
   /**
    * This function is used to add HTMLElement render functions as class properties. This was abstracted into a function in order for it to occurr after the class construction.
    */
-  addElements:Function = (standardVerificationMode: boolean):void => {
+  addElements: Function = (standardVerificationMode: boolean): void => {
     this.a = new Element('a', false, {
       rel: new AttributeList('rel', 'validLinkTypes', 'invalidLinkTypes'),
       hreflang: new AttributeList('hreflang', 'isoCodes'),
@@ -179,11 +180,11 @@ export class AnaElements {
       muted: new AttributeBoolean('muted'),
       disableRemotePlayback: new AttributeExperimental('disableRemotePlayback'),
     }).render(standardVerificationMode)
-  
+
     this.blockquote = new Element('blockquote', false, {
       cite: new AttributeString('cite'),
     }).render(standardVerificationMode)
-  
+
     this.body = new Element('body', false, {
       alink: new AttributeDeprecated('alink'),
       background: new AttributeDeprecated('background'),
@@ -196,7 +197,7 @@ export class AnaElements {
       topmargin: new AttributeDeprecated('topmargin'),
       vlink: new AttributeDeprecated('vlink'),
     }).render(standardVerificationMode)
-  
+
     this.button = new Element('button', false, {
       formenctype: new AttributeList('formenctype', 'encryption'),
       formmethod: new AttributeList('formmethod', 'formmethod'),
@@ -211,17 +212,17 @@ export class AnaElements {
       formnovalidate: new AttributeBoolean('formnovalidate'),
       autocomplete: new AttributeExperimental('autocomplete'),
     }).render(standardVerificationMode)
-  
+
     this.canvas = new Element('canvas', false, {
       height: new AttributeString('height'),
       width: new AttributeString('width'),
       'moz-opaque': new AttributeDeprecated('moz-opaque'),
     }).render(standardVerificationMode)
-  
+
     this.caption = new Element('caption', false, {
       align: new AttributeDeprecated('align'),
     }).render(standardVerificationMode)
-  
+
     this.colgroup = new Element('colgroup', false, {
       span: new AttributeString('span'),
       align: new AttributeDeprecated('align'),
@@ -230,39 +231,39 @@ export class AnaElements {
       charoff: new AttributeDeprecated('charoff'),
       valign: new AttributeDeprecated('valign'),
     }).render(standardVerificationMode)
-  
+
     this.data = new Element('data', false, {
       value: new AttributeString('value'),
     }).render(standardVerificationMode)
-  
+
     this.dd = new Element('dd', false, {
       nowrap: new AttributeNonstandard('nowrap'),
     }).render(standardVerificationMode)
-  
+
     this.del = new Element('del', false, {
       cite: new AttributeString('cite'),
       datetime: new AttributeString('datetime'),
     }).render(standardVerificationMode)
-  
+
     this.details = new Element('details', false, {
       open: new AttributeBoolean('open'),
     }).render(standardVerificationMode)
-  
+
     this.dialog = new Element('dialog', false, {
       open: new AttributeBoolean('open'),
       tabindex: new AttributeNonstandard('tabindex'),
     }).render(standardVerificationMode)
-  
+
     this.div = new Element('div', false, {
       align: new AttributeDeprecated('align'),
     }).render(standardVerificationMode)
-  
+
     this.fieldset = new Element('fieldset', false, {
       name: new AttributeString('name'),
       form: new AttributeString('form'),
       disabled: new AttributeBoolean('disabled'),
     }).render(standardVerificationMode)
-  
+
     this.form = new Element('form', false, {
       autocomplete: new AttributeList('autocomplete', 'inputAutocomplete'),
       method: new AttributeList('method', 'formmethod'),
@@ -274,41 +275,41 @@ export class AnaElements {
       'accept-charset': new AttributeString('accept-charset'),
       novalidate: new AttributeBoolean('novalidate'),
     }).render(standardVerificationMode)
-  
+
     this.h1 = new Element('h1', false, {
       align: new AttributeDeprecated('align'),
     }).render(standardVerificationMode)
-  
+
     this.h2 = new Element('h2', false, {
       align: new AttributeDeprecated('align'),
     }).render(standardVerificationMode)
-  
+
     this.h3 = new Element('h3', false, {
       align: new AttributeDeprecated('align'),
     }).render(standardVerificationMode)
-  
+
     this.h4 = new Element('h4', false, {
       align: new AttributeDeprecated('align'),
     }).render(standardVerificationMode)
-  
+
     this.h5 = new Element('h5', false, {
       align: new AttributeDeprecated('align'),
     }).render(standardVerificationMode)
-  
+
     this.h6 = new Element('h6', false, {
       align: new AttributeDeprecated('align'),
     }).render(standardVerificationMode)
-  
+
     this.head = new Element('head', false, {
       profile: new AttributeDeprecated('profile'),
     }).render(standardVerificationMode)
-  
+
     this.html = new Element('html', false, {
       xmlns: new AttributeString('xmlns'),
       manifest: new AttributeDeprecated('manifest'),
       version: new AttributeDeprecated('version'),
     }).render(standardVerificationMode)
-  
+
     this.iframe = new Element('iframe', false, {
       sandbox: new AttributeList('sandbox', 'validSandbox', 'invalidSandbox'),
       allow: new AttributeString('allow'),
@@ -330,25 +331,25 @@ export class AnaElements {
       referrerpolicy: new AttributeExperimental('referrerpolicy'),
       mozbrowser: new AttributeNonstandard('mozbrowser'),
     }).render(standardVerificationMode)
-  
+
     this.ins = new Element('ins', false, {
       cite: new AttributeString('cite'),
       datetime: new AttributeString('datetime'),
     }).render(standardVerificationMode)
-  
+
     this.label = new Element('label', false, {
       for: new AttributeString('for'),
     }).render(standardVerificationMode)
-  
+
     this.li = new Element('li', false, {
       value: new AttributeString('value'),
       type: new AttributeDeprecated('type'),
     }).render(standardVerificationMode)
-  
+
     this.map = new Element('map', false, {
       name: new AttributeString('name'),
     }).render(standardVerificationMode)
-  
+
     this.meter = new Element('meter', false, {
       high: new AttributeString('high'),
       low: new AttributeString('low'),
@@ -358,7 +359,7 @@ export class AnaElements {
       max: new AttributeString('max'),
       min: new AttributeString('min'),
     }).render(standardVerificationMode)
-  
+
     this.object = new Element('object', false, {
       data: new AttributeString('data'),
       name: new AttributeString('name'),
@@ -375,50 +376,50 @@ export class AnaElements {
       declare: new AttributeDeprecated('declare'),
       standby: new AttributeDeprecated('standby'),
     }).render(standardVerificationMode)
-  
+
     this.ol = new Element('ol', false, {
       type: new AttributeList('type', 'orderedListType'),
       start: new AttributeString('start'),
       reversed: new AttributeBoolean('reversed'),
     }).render(standardVerificationMode)
-  
+
     this.optgroup = new Element('optgroup', false, {
       label: new AttributeString('label'),
       disabled: new AttributeBoolean('disabled'),
     }).render(standardVerificationMode)
-  
+
     this.option = new Element('option', false, {
       selected: new AttributeBoolean('selected'),
       disabled: new AttributeBoolean('disabled'),
       label: new AttributeString('label'),
       value: new AttributeString('value'),
     }).render(standardVerificationMode)
-  
+
     this.output = new Element('output', false, {
       for: new AttributeString('for'),
       name: new AttributeString('name'),
       form: new AttributeString('form'),
     }).render(standardVerificationMode)
-  
+
     this.portal = new Element('portal', false, {
       src: new AttributeString('src'),
     }).render(standardVerificationMode)
-  
+
     this.pre = new Element('pre', false, {
       cols: new AttributeDeprecated('cols'),
       width: new AttributeDeprecated('width'),
       wrap: new AttributeNonstandard('wrap'),
     }).render(standardVerificationMode)
-  
+
     this.progress = new Element('progress', false, {
       value: new AttributeString('value'),
       max: new AttributeString('max'),
     }).render(standardVerificationMode)
-  
+
     this.q = new Element('q', false, {
       cite: new AttributeString('cite'),
     }).render(standardVerificationMode)
-  
+
     this.script = new Element('script', false, {
       crossorigin: new AttributeList('crossorigin', 'crossorigin'),
       src: new AttributeString('src'),
@@ -432,7 +433,7 @@ export class AnaElements {
       charset: new AttributeDeprecated('charset'),
       language: new AttributeDeprecated('language'),
     }).render(standardVerificationMode)
-  
+
     this.select = new Element('select', false, {
       autocomplete: new AttributeList('autocomplete', 'inputAutocomplete'),
       form: new AttributeString('form'),
@@ -443,17 +444,17 @@ export class AnaElements {
       multiple: new AttributeBoolean('multiple'),
       required: new AttributeBoolean('required'),
     }).render(standardVerificationMode)
-  
+
     this.slot = new Element('slot', false, {
       name: new AttributeString('name'),
     }).render(standardVerificationMode)
-  
+
     this.style = new Element('style', false, {
       type: new AttributeList('type', 'typeStyle'),
       media: new AttributeString('media'),
       nonce: new AttributeString('nonce'),
     }).render(standardVerificationMode)
-  
+
     this.table = new Element('table', false, {
       align: new AttributeDeprecated('align'),
       bgcolor: new AttributeDeprecated('bgcolor'),
@@ -465,7 +466,7 @@ export class AnaElements {
       summary: new AttributeDeprecated('summary'),
       width: new AttributeDeprecated('width'),
     }).render(standardVerificationMode)
-  
+
     this.tbody = new Element('tbody', false, {
       align: new AttributeDeprecated('align'),
       bgcolor: new AttributeDeprecated('bgcolor'),
@@ -473,7 +474,7 @@ export class AnaElements {
       charoff: new AttributeDeprecated('charoff'),
       valign: new AttributeDeprecated('valign'),
     }).render(standardVerificationMode)
-  
+
     this.td = new Element('td', false, {
       colspan: new AttributeString('colspan'),
       headers: new AttributeString('headers'),
@@ -488,7 +489,7 @@ export class AnaElements {
       valign: new AttributeDeprecated('valign'),
       width: new AttributeDeprecated('width'),
     }).render(standardVerificationMode)
-  
+
     this.textarea = new Element('textarea', false, {
       autocomplete: new AttributeList('autocomplete', 'inputAutocomplete'),
       spellcheck: new AttributeList('spellcheck', 'softBoolean'),
@@ -505,7 +506,7 @@ export class AnaElements {
       autocapitalize: new AttributeDeprecated('autocapitalize'),
       autocorrect: new AttributeDeprecated('autocorrect'),
     }).render(standardVerificationMode)
-  
+
     this.tfoot = new Element('tfoot', false, {
       align: new AttributeDeprecated('align'),
       bgcolor: new AttributeDeprecated('bgcolor'),
@@ -513,7 +514,7 @@ export class AnaElements {
       charoff: new AttributeDeprecated('charoff'),
       valign: new AttributeDeprecated('valign'),
     }).render(standardVerificationMode)
-  
+
     this.th = new Element('th', false, {
       abbr: new AttributeString('abbr'),
       colspan: new AttributeString('colspan'),
@@ -529,7 +530,7 @@ export class AnaElements {
       valign: new AttributeDeprecated('valign'),
       width: new AttributeDeprecated('width'),
     }).render(standardVerificationMode)
-  
+
     this.thead = new Element('thead', false, {
       align: new AttributeDeprecated('align'),
       bgcolor: new AttributeDeprecated('bgcolor'),
@@ -537,11 +538,11 @@ export class AnaElements {
       charoff: new AttributeDeprecated('charoff'),
       valign: new AttributeDeprecated('valign'),
     }).render(standardVerificationMode)
-  
+
     this.time = new Element('time', false, {
       datetime: new AttributeString('datetime'),
     }).render(standardVerificationMode)
-  
+
     this.tr = new Element('tr', false, {
       align: new AttributeDeprecated('align'),
       bgcolor: new AttributeDeprecated('bgcolor'),
@@ -549,12 +550,12 @@ export class AnaElements {
       charoff: new AttributeDeprecated('charoff'),
       valign: new AttributeDeprecated('valign'),
     }).render(standardVerificationMode)
-  
+
     this.ul = new Element('ul', false, {
       compact: new AttributeDeprecated('compact'),
       type: new AttributeDeprecated('type'),
     }).render(standardVerificationMode)
-  
+
     this.video = new Element('video', false, {
       preload: new AttributeList('preload', 'preload'),
       crossorigin: new AttributeList('crossorigin', 'crossorigin'),
@@ -568,9 +569,9 @@ export class AnaElements {
       autoplay: new AttributeBoolean('autoplay'),
       controls: new AttributeBoolean('controls'),
     }).render(standardVerificationMode)
-  
+
     // Empty Elements
-  
+
     this.area = new Element('area', true, {
       rel: new AttributeList('rel', 'validLinkTypes', 'invalidLinkTypes'),
       hreflang: new AttributeList('hreflang', 'isoCodes'),
@@ -582,16 +583,16 @@ export class AnaElements {
       target: new AttributeString('target'),
       alt: new AttributeString('alt'),
     }).render(standardVerificationMode)
-  
+
     this.base = new Element('base', true, {
       href: new AttributeString('href'),
       target: new AttributeString('target'),
     }).render(standardVerificationMode)
-  
+
     this.br = new Element('br', true, {
       clear: new AttributeDeprecated('clear'),
     }).render(standardVerificationMode)
-  
+
     this.col = new Element('col', true, {
       span: new AttributeString('span'),
       align: new AttributeDeprecated('align'),
@@ -601,14 +602,14 @@ export class AnaElements {
       valign: new AttributeDeprecated('valign'),
       width: new AttributeDeprecated('width'),
     }).render(standardVerificationMode)
-  
+
     this.embed = new Element('embed', true, {
       src: new AttributeString('src'),
       height: new AttributeString('height'),
       width: new AttributeString('width'),
       type: new AttributeString('type'),
     }).render(standardVerificationMode)
-  
+
     this.hr = new Element('hr', true, {
       align: new AttributeDeprecated('align'),
       noshade: new AttributeDeprecated('noshade'),
@@ -616,7 +617,7 @@ export class AnaElements {
       width: new AttributeDeprecated('width'),
       color: new AttributeNonstandard('color'),
     }).render(standardVerificationMode)
-  
+
     this.img = new Element('img', true, {
       crossorigin: new AttributeList('crossorigin', 'crossorigin'),
       decoding: new AttributeList('decoding', 'decoding'),
@@ -629,7 +630,7 @@ export class AnaElements {
       usemap: new AttributeString('usemap'),
       ismap: new AttributeBoolean('ismap'),
     }).render(standardVerificationMode)
-  
+
     this.input = new Element('input', true, {
       autocomplete: new AttributeList('autocomplete', 'inputAutocomplete'),
       type: new AttributeList('type', 'inputType', 'invalidInputType'),
@@ -677,7 +678,7 @@ export class AnaElements {
       // prettier-ignore
       step: new AttributeInput('step', ['date', 'month', 'week', 'time', 'datetime-local', 'number', 'range'], 'string'),
     }).render(standardVerificationMode)
-  
+
     this.link = new Element('link', true, {
       rel: new AttributeList('rel', 'validLinkTypes', 'invalidLinkTypes'),
       as: new AttributeList('as', 'linkAs'),
@@ -690,21 +691,21 @@ export class AnaElements {
       type: new AttributeString('type'),
       disabled: new AttributeBoolean('disabled'),
     }).render(standardVerificationMode)
-  
+
     this.meta = new Element('meta', true, {
       'http-equiv': new AttributeList('http-equiv', 'httpEquiv'),
       content: new AttributeString('content'),
       name: new AttributeString('name'),
       charset: new AttributeString('charset'),
     }).render(standardVerificationMode)
-  
+
     this.param = new Element('param', true, {
       name: new AttributeString('name'),
       value: new AttributeString('value'),
       type: new AttributeDeprecated('type'),
       valuetype: new AttributeDeprecated('valuetype'),
     }).render(standardVerificationMode)
-  
+
     this.source = new Element('source', true, {
       srcset: new AttributeDeprecated('srcset'),
       src: new AttributeDeprecated('src'),
@@ -712,7 +713,7 @@ export class AnaElements {
       sizes: new AttributeDeprecated('sizes'),
       type: new AttributeDeprecated('type'),
     }).render(standardVerificationMode)
-  
+
     this.track = new Element('track', true, {
       kind: new AttributeList('kind', 'trackKind'),
       srclang: new AttributeList('srclang', 'isoCodes'),
@@ -720,94 +721,159 @@ export class AnaElements {
       label: new AttributeString('label'),
       default: new AttributeBoolean('default'),
     }).render(standardVerificationMode)
-  
+
     this.wbr = new Element('wbr', true, {}).render(standardVerificationMode)
-  
-  
+
     // Elements with only global attributes
     this.abbr = new Element('abbr', false, {}).render(standardVerificationMode)
-  
-    this.address = new Element('address', false, {}).render(standardVerificationMode)
-  
-    this.article = new Element('article', false, {}).render(standardVerificationMode)
-  
-    this.aside = new Element('aside', false, {}).render(standardVerificationMode)
-  
+
+    this.address = new Element('address', false, {}).render(
+      standardVerificationMode
+    )
+
+    this.article = new Element('article', false, {}).render(
+      standardVerificationMode
+    )
+
+    this.aside = new Element('aside', false, {}).render(
+      standardVerificationMode
+    )
+
     this.b = new Element('b', false, {}).render(standardVerificationMode)
-  
+
     this.bdi = new Element('bdi', false, {}).render(standardVerificationMode)
-  
+
     this.cite = new Element('cite', false, {}).render(standardVerificationMode)
-  
+
     this.code = new Element('code', false, {}).render(standardVerificationMode)
-  
-    this.datalist = new Element('datalist', false, {}).render(standardVerificationMode)
-  
+
+    this.datalist = new Element('datalist', false, {}).render(
+      standardVerificationMode
+    )
+
     this.dfn = new Element('dfn', false, {}).render(standardVerificationMode)
-  
+
     this.dl = new Element('dl', false, {}).render(standardVerificationMode)
-  
+
     this.dt = new Element('dt', false, {}).render(standardVerificationMode)
-  
+
     this.em = new Element('em', false, {}).render(standardVerificationMode)
-  
-    this.figcaption = new Element('figcaption', false, {}).render(standardVerificationMode)
-  
-    this.figure = new Element('figure', false, {}).render(standardVerificationMode)
-  
-    this.footer = new Element('footer', false, {}).render(standardVerificationMode)
-  
-    this.header = new Element('header', false, {}).render(standardVerificationMode)
-  
+
+    this.figcaption = new Element('figcaption', false, {}).render(
+      standardVerificationMode
+    )
+
+    this.figure = new Element('figure', false, {}).render(
+      standardVerificationMode
+    )
+
+    this.footer = new Element('footer', false, {}).render(
+      standardVerificationMode
+    )
+
+    this.header = new Element('header', false, {}).render(
+      standardVerificationMode
+    )
+
     this.i = new Element('i', false, {}).render(standardVerificationMode)
-  
+
     this.kbd = new Element('kbd', false, {}).render(standardVerificationMode)
-  
-    this.legend = new Element('legend', false, {}).render(standardVerificationMode)
-  
+
+    this.legend = new Element('legend', false, {}).render(
+      standardVerificationMode
+    )
+
     this.main = new Element('main', false, {}).render(standardVerificationMode)
-  
+
     this.mark = new Element('mark', false, {}).render(standardVerificationMode)
-  
+
     this.nav = new Element('nav', false, {}).render(standardVerificationMode)
-  
-    this.noscript = new Element('noscript', false, {}).render(standardVerificationMode)
-  
+
+    this.noscript = new Element('noscript', false, {}).render(
+      standardVerificationMode
+    )
+
     this.p = new Element('p', false, {}).render(standardVerificationMode)
-  
-    this.picture = new Element('picture', false, {}).render(standardVerificationMode)
-  
+
+    this.picture = new Element('picture', false, {}).render(
+      standardVerificationMode
+    )
+
     this.rp = new Element('rp', false, {}).render(standardVerificationMode)
-  
+
     this.rt = new Element('rt', false, {}).render(standardVerificationMode)
-  
+
     this.ruby = new Element('ruby', false, {}).render(standardVerificationMode)
-  
+
     this.s = new Element('s', false, {}).render(standardVerificationMode)
-  
+
     this.samp = new Element('samp', false, {}).render(standardVerificationMode)
-  
-    this.section = new Element('section', false, {}).render(standardVerificationMode)
-  
-    this.small = new Element('small', false, {}).render(standardVerificationMode)
-  
+
+    this.section = new Element('section', false, {}).render(
+      standardVerificationMode
+    )
+
+    this.small = new Element('small', false, {}).render(
+      standardVerificationMode
+    )
+
     this.span = new Element('span', false, {}).render(standardVerificationMode)
-  
-    this.strong = new Element('strong', false, {}).render(standardVerificationMode)
-  
+
+    this.strong = new Element('strong', false, {}).render(
+      standardVerificationMode
+    )
+
     this.sub = new Element('sub', false, {}).render(standardVerificationMode)
-  
-    this.summary = new Element('summary', false, {}).render(standardVerificationMode)
-  
+
+    this.summary = new Element('summary', false, {}).render(
+      standardVerificationMode
+    )
+
     this.sup = new Element('sup', false, {}).render(standardVerificationMode)
-  
-    this.template = new Element('template', false, {}).render(standardVerificationMode)
-  
-    this.title = new Element('title', false, {}).render(standardVerificationMode)
-  
+
+    this.template = new Element('template', false, {}).render(
+      standardVerificationMode
+    )
+
+    this.title = new Element('title', false, {}).render(
+      standardVerificationMode
+    )
+
     this.u = new Element('u', false, {}).render(standardVerificationMode)
-  
+
     this.var = new Element('var', false, {}).render(standardVerificationMode)
     // // UI Components
   }
 }
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+/**
+ * All component classes inherit this properties.
+ */
+export class AnaComponent {
+  constructor(
+    public a: AnaElements,
+    public config: AnaConfiguration,
+    public classRoot: string
+  ) {}
+}
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+/**
+ * Function extendParameterDefaults
+ * @param param 
+ * @param defaultValues 
+ * @returns 
+ */
+export function extendParameterDefaults<Type>(
+  param: { [key: string]: Type },
+  defaultValues: { [key: string]: Type }
+): { [key: string]: Type } {
+  Object.keys(defaultValues).forEach((defaultPropertyName: string) => {
+    if(param[defaultPropertyName] === undefined) {
+      param[defaultPropertyName] = defaultValues[defaultPropertyName]
+    }
+  })
+  return param
+}
+

@@ -1,4 +1,4 @@
-//    ____  _                  _               _ 
+//    ____  _                  _               _
 //   / ___|| |_ __ _ _ __   __| | __ _ _ __ __| |
 //   \___ \| __/ _` | '_ \ / _` |/ _` | '__/ _` |
 //    ___) | || (_| | | | | (_| | (_| | | | (_| |
@@ -7,7 +7,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
  * The Standard module contains a diversity of classes, they are abstracts for standard HTML Elements with attributes and event listeners
- * @module Standard
+ * @module Ana/Standard
  */
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
@@ -15,7 +15,9 @@
 declare global {
   // HTML Element interface override to support match functions.
   interface HTMLElement {
-    match: MatchFunctionsDictionary
+    matchDictionary: MatchFunctionsDictionary
+    has(attributes: AttributeValuesDictionary): HTMLElement
+    setAttributes(attributes: AttributeValuesDictionary): HTMLElement
   }
 }
 
@@ -79,7 +81,7 @@ export type AttributeValue = {
   /**
    * The attribute values are generally strings, and in case of event listeners are functions.
    */
-  value: string | Function,
+  value: string | Function
   /**
    * In the cases of attributes in the `<input/>` element that depend on the value of the type attribute, must also receive said value to compare.
    */
@@ -94,12 +96,12 @@ export class AttributeBase {
   /**
    * Every attribute needs a string name for it to be indexed in a `AttributeDictionary`. These names must remain unchanged from their original HTMLElement Attribute name.
    */
-  name:string = ''
+  name: string = ''
 
   /**
    * This property is set according to the expected correct value for the attribute. If unsure of which to choose look into the classes that inherit `AttributeBase`.
    */
-  type:AttributeType = '_empty'
+  type: AttributeType = '_empty'
 
   /**
    * This constructor should not be used except for the `super()` call.
@@ -298,15 +300,14 @@ export class AttributeList extends AttributeBase {
    * ```
    * @param name {@link AttributeBase.name | Read more}
    */
-  constructor(
-    name: string,
-    validList: string,
-    invalidList?: string
-  ) {
+  constructor(name: string, validList: string, invalidList?: string) {
     super(name, 'list')
     if (!Object.keys(ATTRIBUTE_VALUES).includes(validList)) {
       // Error: the attribute ${this.name} received an unknown list name (${validList}), it must be included in the list of keys in the ATTRIBUTE_VALUES global constant: ${Object.keys(ATTRIBUTE_VALUES)}
-    } else if (invalidList && !Object.keys(ATTRIBUTE_VALUES).includes(invalidList)) {
+    } else if (
+      invalidList &&
+      !Object.keys(ATTRIBUTE_VALUES).includes(invalidList)
+    ) {
       // Error: the attribute ${this.name} received an unknown list name (${invalidList}), it must be included in the list of keys in the ATTRIBUTE_VALUES global constant: ${Object.keys(ATTRIBUTE_VALUES)}
     }
     this.invalidList = invalidList
@@ -362,7 +363,7 @@ export class AttributeInput extends AttributeBase {
   constructor(
     name: string,
     dependantValue: string[],
-    matchingType: 'string' | 'boolean',
+    matchingType: 'string' | 'boolean'
   ) {
     super(name, 'input')
     this.matchingType = matchingType
@@ -405,7 +406,7 @@ export class Element {
    * The individual HTMLElement Tag Name in lowercase. It is used as a unique identifier among all Elements.
    */
   name: string = ''
-  
+
   /**
    * Most elements can have children elements rendered inside, but some are built specifically to not have one, and doing so would go against it's design. The list of empty elements is the following:
    * - `<area/>`
@@ -424,43 +425,59 @@ export class Element {
    * - `<wbr/>`
    */
   empty: boolean = false
-  
+
   /**
    * The Attribute Dictionary with all attributes related to the element. This dictionary is what standarizes all elements and their attributes.
    */
   attributes?: AttributesDictionary = {}
 
   /**
-   * ```Typescript
-   * new Element('example', true, {
-   *  exampleAttribute: new AttributeString('exampleAttribute')
-   * })
-   * ```
-   * @param name {@link Element.name | Read more}
-   * @param empty {@link Element.empty | Read more} 
-   * @param attributes {@link Element.attributes | Read more}  
+   * This function extends the HTMLElement prototype to support a attribute standard filter. If `standardVerificationMode` is set to False, this function will simply continue to `this.setAttributes(attributes)`.
+   * @param attributes The attributes that might be set to this element.
+   * @returns An element with the dictionary of attributes applied if the attributes match the element's satandard.
    */
-  constructor(
-    name: string,
-    empty: boolean,
-    attributes?: AttributesDictionary
-  ) {
-    this.name = name
-    this.attributes = attributes
-    this.empty = empty
+  private has = function (
+    this: HTMLElement,
+    attributes: AttributeValuesDictionary
+  ): HTMLElement {
+    let tagName = this.tagName.toLowerCase()
+    if (this.matchDictionary[tagName](attributes)) {
+      return this.setAttributes(attributes)
+    } else {
+      return this
+    }
+  }
+
+  /**
+   * This function extends the HTMLElement prototype to support a dictionary version of the similar method `.setAttribute()`.
+   * @param attributes The attributes that will be set to this element.
+   * @returns An element with the dictionary of attributes applied.
+   */
+  private setAttributes = function (
+    this: HTMLElement,
+    attributes: AttributeValuesDictionary
+  ): HTMLElement {
+    Object.keys(attributes).forEach((attributeName: string) => {
+      let attribute = attributes[attributeName]
+      if (typeof attribute === 'string') {
+        this.setAttribute(attributeName, attribute)
+      } else {
+        let listenerFunction: Function = attribute
+        this.addEventListener(attributeName, (event: Event) => {
+          listenerFunction(event)
+        })
+      }
+    })
+    return this
   }
 
   /**
    * This function overrides the HTMLElement prototype to support the `HTMLElement.prototype.match` dictionary.
    * @param standardVerificationMode If True, it creates standarized `match` functions inside the overriten dictionary. If False, it all `match` functions return true, without standarization.
-   * @todo Change name from `HTMLElement.prototype.match` to `HTMLElement.prototype.matchDictionary`
-   * @todo Create a new function that searches inside `matchingDictionary` called `match`.
-   * @todo Update `HTMLElement.prototype.has` to support new `match` functionality.
+   * @returns The match function for this particular Element adjusted to `standardVerificationMode`.
    */
-  addMatch = (standardVerificationMode: boolean) => {
-    let newMatch: MatchFunctionsDictionary = {}
-
-    newMatch[this.name] = standardVerificationMode
+  addMatch = (standardVerificationMode: boolean): Function =>
+    standardVerificationMode
       ? (attributes: AttributeValuesDictionary): boolean => {
           let allGood = true
           Object.keys(attributes).forEach((attributeName: string) => {
@@ -490,12 +507,6 @@ export class Element {
         }
       : () => true
 
-    HTMLElement.prototype.match = {
-      ...HTMLElement.prototype.match,
-      ...newMatch,
-    }
-  }
-
   /**
    * This function assigns renderer functions. This will be the building block of the framework.
    * @param standardVerificationMode If True, it creates standarized `match` functions inside the overriten dictionary. If False, it all `match` functions return true, without standarization.
@@ -504,7 +515,15 @@ export class Element {
    * - renderWithoutChildren `a.input({type: 'text', class: 'example'})`
    */
   render = (standardVerificationMode: boolean): Function => {
-    this.addMatch(standardVerificationMode)
+    let newMatch: MatchFunctionsDictionary = {}
+    newMatch[this.name] = this.addMatch(standardVerificationMode)
+
+    HTMLElement.prototype.matchDictionary = {
+      ...HTMLElement.prototype.matchDictionary,
+      ...newMatch
+    }
+    HTMLElement.prototype.has = this.has
+    HTMLElement.prototype.setAttributes = this.setAttributes
 
     const renderWithChildren = (
       ...children: [HTMLElement | string]
@@ -514,15 +533,33 @@ export class Element {
       return elem
     }
 
-    const renderWithoutChildren = (attributes: {
-      [key: string]: string | Function
-    } = {}): HTMLElement => {
+    const renderWithoutChildren = (
+      attributes: {
+        [key: string]: string | Function
+      } = {}
+    ): HTMLElement => {
       let elem = document.createElement(this.name)
       elem.has(attributes)
       return elem
     }
 
     return this.empty ? renderWithoutChildren : renderWithChildren
+  }
+
+  /**
+   * ```Typescript
+   * new Element('example', true, {
+   *  exampleAttribute: new AttributeString('exampleAttribute')
+   * })
+   * ```
+   * @param name {@link Element.name | Read more}
+   * @param empty {@link Element.empty | Read more}
+   * @param attributes {@link Element.attributes | Read more}
+   */
+  constructor(name: string, empty: boolean, attributes?: AttributesDictionary) {
+    this.name = name
+    this.attributes = attributes
+    this.empty = empty
   }
 }
 
