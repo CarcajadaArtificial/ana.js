@@ -1,63 +1,52 @@
 import express, { Application, Request, Response, NextFunction } from 'express'
-import path from 'path';
-import typedoc from '../dist/typedoc/typedoc.json'
+import path from 'path'
+import fs from 'fs'
 
 const app: Application = express()
 
 // Static Member
-app.get('/ana.css',function(req,res){
-  res.sendFile(path.join(__dirname,'..','/dist/css/style.css')); 
-});
+app.get('/ana.css', function (req, res) {
+  res.sendFile(path.join(__dirname, '..', '/dist/ana/ana.css'))
+})
 
 // Static Member
-app.get('/style.css.map',function(req,res){
-  res.sendFile(path.join(__dirname,'..','/dist/css/style.css.map')); 
-});
+app.get('/ana.css.map', function (req, res) {
+  res.sendFile(path.join(__dirname, '..', '/dist/ana/ana.css.map'))
+})
 
 // Static Member
-app.get('/ana.js',function(req,res){
-  res.sendFile(path.join(__dirname,'..','/dist/js/ana.js')); 
-});
+app.get('/ana.js', function (req, res) {
+  res.sendFile(path.join(__dirname, '..', '/dist/ana/ana.js'))
+})
 
 // Index Page
 app.get('/', (req: Request, res: Response, next: NextFunction) => {
-  res.sendFile(path.join(__dirname, '/components/index.html'));
+  res.sendFile(path.join(__dirname, '/components/index.html'))
 })
 
-// Document Getter function
-app.post('/func/getDocumentation', (req: Request, res: Response, next: NextFunction) => {
-  const documentation: { [key: string]: any} = {}
-  
-  // Atoms
-  var atomsModule = typedoc.children.find(child => child.name === "Atoms")
-  var atoms: any[] = atomsModule ? atomsModule.children : []
-  atoms.forEach(atom => {
-    if(!documentation[atom.name]) {
-      documentation[atom.name] = {}
-    }
+app.get('/:componentType/:componentName', (req, res) => {
+  const type = req.params.componentType
+  const name = req.params.componentName
+  const componentPath =
+    name === 'ana.css' || name === 'ana.js'
+      ? path.join(__dirname, '..', `dist/ana/${name}`)
+      : path.join(__dirname, `components/${type}/${name}.html`)
 
-    if(atom.kindString === 'Class') {
-      documentation[atom.name].class = atom
-    } else if(atom.kindString === 'Interface') {
-      documentation[atom.name.substr(1)].type = atom
-    }
-  })
+  let pageExists = false
+  try {
+    pageExists = fs.existsSync(componentPath)
+  } catch (err) {
+    console.error(err)
+  }
 
-  // Molecules
-
-  // Organisms
-
-  // HTMLElements
-
-  let emptyDocModules: string[] = []
-  Object.keys(documentation).forEach(docModule => {
-    if(Object.keys(documentation[docModule]).length === 0) {
-      delete documentation[docModule]
-      emptyDocModules.push(docModule)
-    }
-  })
-
-  res.send(documentation)
+  console.log(name, componentPath, 'Page Exists:', pageExists)
+  if (pageExists) {
+    res.sendFile(componentPath)
+  } else {
+    res.sendStatus(404)
+  }
 })
 
-app.listen(4444, () => console.log('Component tests running\nhttp://localhost:4444/'))
+app.listen(4444, () =>
+  console.log('Component tests running\nhttp://localhost:4444/')
+)

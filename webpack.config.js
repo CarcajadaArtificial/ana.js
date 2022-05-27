@@ -4,9 +4,9 @@ module.exports = {
   context: __dirname,
   entry: './src/ts/index.ts',
   output: {
-    path: path.resolve(__dirname, 'dist/js'),
+    path: path.resolve(__dirname, 'dist/ana'),
     filename: 'ana.js',
-    publicPath: '/dist/js/'
+    publicPath: '/dist/ana/'
   },
   module: {
     rules: [

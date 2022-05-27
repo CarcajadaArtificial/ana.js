@@ -5,7 +5,7 @@
     "module": "es6",
     "moduleResolution": "node",
     "sourceMap": true,
-    "outDir": "./dist/js/build",
+    "outDir": "./dist/ana/build",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,

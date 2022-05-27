@@ -10,7 +10,7 @@
  * @module Ana/Index
  */
 
-import { Ana } from './ana'
+import { Ana } from './Ana/Ana'
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 // Global Overrides

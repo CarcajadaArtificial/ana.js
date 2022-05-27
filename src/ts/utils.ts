@@ -1,3 +1,5 @@
+import { PartTree } from "./types"
+
 /**
  * @module Ana/Utils
  */
@@ -48,8 +50,6 @@ export const areEqualArrays: Function = (): void => {
   // Applies override
 }
 
-export type PartTree = { [key: string]: HTMLElement }
-
 /**
  *
  */
@@ -65,4 +65,23 @@ export const createPartTree: Function = (
     }
   })
   return defaultTree
+}
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+/**
+ * Function extendParameterDefaults
+ * @param param 
+ * @param defaultValues 
+ * @returns 
+ */
+ export function extendParameterDefaults<Type>(
+  param: { [key: string]: Type },
+  defaultValues: { [key: string]: Type }
+): { [key: string]: Type } {
+  Object.keys(defaultValues).forEach((defaultPropertyName: string) => {
+    if(param[defaultPropertyName] === undefined) {
+      param[defaultPropertyName] = defaultValues[defaultPropertyName]
+    }
+  })
+  return param
 }

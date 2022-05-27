@@ -2,7 +2,44 @@
 
 ## Unreleased
 
-### **0.4.0** (Latest)
+### **0.5.0** (Latest)
+
+In this update, I'm going all-in with TypeScript and using this opportunity to do it cleanly. The source code is modular now, with every *one thing* inside a directory. That is why there are a lot of changes, but really, not much has changed. The function `extendParameterDefaults` has been in my mind a lot lately. I know how to avoid it altogether using a "constants" object, maybe inside a new file with the name: `component.constants.ts`.
+
+- `Added` new fraction system, this has been going on back and forth for a while. I need to decide for one sasslinter and stick to it.
+  - `~/src/scss/utils/layout.mod.scss`
+
+- `Added` modular organization to the Ana framework.
+  - `~/src/ts/Ana/*`
+  - `~/src/ts/Components/*`
+  - `~/src/ts/Elements/*`
+
+- `Removed` previous organization of the Ana framework.
+  - `~/src/ts/ana.ts`
+  - `~/src/ts/elements.ts`
+  - `~/src/ts/molecules.ts`
+  - `~/src/ts/organisms.ts`
+  - `~/src/ts/standard.ts`
+
+- `Removed` previous organization of component testing
+  - `~/src/test/components/*`
+
+- `Added` a home view for component testing
+  - `~/src/test/index.html`
+
+- `Added` a cleaner organization of package scripts.
+  - `~/package.json`
+  - `~/tsconfig.json`
+  - `~/test/tsconfig.json`
+  - `~/webpack.config.js`
+
+- `Added` a better contributing file.
+  - `~/CONTRIBUTING.md`
+
+- `Removed` Docuemnation getter function. The problem is that the typedoc script uses all .ts files to generate the `~/dist/typedoc/typedoc.json`, including `~/test/app.ts` that references the generated `typedoc.json`. So, the typedoc script must exclude the test server or else it won't run.
+  - `~/test/app.ts`
+
+### **0.4.0**
 
 - `Added` (WIP) Markdown creation module for easy formatting in .mdx files.
 
