@@ -2,7 +2,49 @@
 
 ## Unreleased
 
-### **0.5.1** (Latest)
+### **0.5.2** (Latest)
+
+I made a design decision regarding the project's readability when using the Ana framework. Firstly, moved the class assignation to a curried function: `a.div(...children).has({class: 'class'})` -> `a.div('class')(...children)`. Secondly a children checker was implemented for cases when a function accidentaly is sent as a child: `a.div('class')(a.div())`, the correct way is as follows: `a.div('class')(a.div()())`. Empty elements like `<img/>` or `<input/>` are also affected.
+
+```typescript
+// Before
+a.div(
+  a.div(
+    ...children
+  ).has({ class: 'child' })
+).has({ class: 'parent' })
+
+// After
+a.div('parent')(
+  a.div('child')(
+    ...children
+  )
+)
+
+// --- Empty Elements ---
+
+// Before
+a.div(
+  a.input({
+    class: 'child',
+    type: 'checkbox',
+    checked: true,
+  })
+).has({ class: 'parent' })
+
+// After
+a.div('parent')(
+  a.input('child').has({ type: 'checkbox', checked: true })
+)
+```
+
+- `Added` a more readable render function.
+  - `~/src/ts/Elements/Element/Element.ts`
+
+- `Added` minor documentation to playrgound.
+  - `~/src/test/playground.html`
+
+### **0.5.1**
 
 This is another update with lots of files but few changes.
 

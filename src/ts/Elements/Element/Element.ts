@@ -145,13 +145,33 @@ export class Element {
     }
 
   /**
+   * Checks if a function is being passed as children to an element. Usually because of a missed parenthesis: div('class')(div('class')) -> div('class')(div('class')()) 
+   */
+  private checkChildren = (children: [Node | string | Function]):[Node | string] => {
+    var checkedChildren: any[] = [];
+    children.forEach((child) => {
+      if(typeof child === 'function') {
+        // Error: Recieved a function as an element's child. This is because the second parentesis was missed: a.div() => a.div()()
+      } else {
+        checkedChildren.push(child)
+      }
+    })
+    return checkedChildren as [Node | string]
+  }
+
+  /**
    *
    */
   render = (configuration: iAnaConfiguration): Function => {
-    const renderWithChildren = (...children: [Node | string]): HTMLElement => {
-      let elem = document.createElement(this.name)
-      elem.append(...children)
-      return elem
+    const renderWithChildren = (...classes:string[]) => {
+      return (...children: [Node | string | Function]): HTMLElement => {
+        let elem = document.createElement(this.name)
+        elem.append(...this.checkChildren(children))
+        if(classes.length>0) {
+          elem.classList.add(...classes)
+        }
+        return elem
+      }
     }
 
     const renderWithoutChildren = (
