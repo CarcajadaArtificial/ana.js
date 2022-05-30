@@ -1,10 +1,10 @@
-import { AttributeList } from './Element/Attribute/AttributeList/AttributeList'
-import { AttributeBoolean } from './Element/Attribute/AttributeBoolean/AttributeBoolean'
-import { AttributeDeprecated } from './Element/Attribute/AttributeDeprecated/AttributeDeprecated'
-import { AttributeExperimental } from './Element/Attribute/AttributeExperimental/AttributeExperimental'
-import { AttributeInput } from './Element/Attribute/AttributeInput/AttributeInput'
-import { AttributeNonstandard } from './Element/Attribute/AttributeNonstandard/AttributeNonstandard'
-import { AttributeString } from './Element/Attribute/AttributeString/AttributeString'
+import { AttList } from './Element/Attribute/AttList'
+import { AttBoolean } from './Element/Attribute/AttBoolean'
+import { AttDeprecated } from './Element/Attribute/AttDeprecated'
+import { AttExperimental } from './Element/Attribute/AttExperimental'
+import { AttInput } from './Element/Attribute/AttInput'
+import { AttNonstandard } from './Element/Attribute/AttNonstandard'
+import { AttString } from './Element/Attribute/AttString'
 import { Element } from './Element/Element'
 import { iAnaConfiguration } from '../Ana/Ana.interface'
 import { RenderDictionary } from '../types'
@@ -18,582 +18,577 @@ import { RenderDictionary } from '../types'
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
- * Elements module.
- * @module Ana/Elements
- */
-
-//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-/**
- * This class is in charge of adding all HTMLELement render methods to the `Ana` class.
+ * This dictionary is a compendium that contains instances of all of the `Element` and `Attribute` classes. Here lies what it means to be correct or incorrect in accordance to me. I studied every HTML reference I could find, it ended with this standard.
+ * @module Ana/Render
  */
 export function getElements(configuration: iAnaConfiguration): RenderDictionary {
 
   return {
     a: new Element('a', false, {
-      rel: new AttributeList('rel', 'validLinkTypes', 'invalidLinkTypes'),
-      hreflang: new AttributeList('hreflang', 'isoCodes'),
-      download: new AttributeString('download'),
-      href: new AttributeString('href'),
-      ping: new AttributeString('ping'),
-      target: new AttributeString('target'),
-      referrerpolicy: new AttributeExperimental('referrerpolicy'),
-      charset: new AttributeDeprecated('charset'),
-      coords: new AttributeDeprecated('coords'),
-      name: new AttributeDeprecated('name'),
-      rev: new AttributeDeprecated('rev'),
-      shape: new AttributeDeprecated('shape'),
+      rel: new AttList('rel', 'validLinkTypes', 'invalidLinkTypes').match,
+      hreflang: new AttList('hreflang', 'isoCodes').match,
+      download: new AttString('download').match,
+      href: new AttString('href').match,
+      ping: new AttString('ping').match,
+      target: new AttString('target').match,
+      referrerpolicy: new AttExperimental('referrerpolicy').match,
+      charset: new AttDeprecated('charset').match,
+      coords: new AttDeprecated('coords').match,
+      name: new AttDeprecated('name').match,
+      rev: new AttDeprecated('rev').match,
+      shape: new AttDeprecated('shape').match,
     }).render(configuration),
   
     audio:new Element('audio', false, {
-      crossorigin: new AttributeList('crossorigin', 'crossorigin'),
-      preload: new AttributeList('preload', 'preload'),
-      src: new AttributeString('src'),
-      autoplay: new AttributeBoolean('autoplay'),
-      controls: new AttributeBoolean('controls'),
-      loop: new AttributeBoolean('loop'),
-      muted: new AttributeBoolean('muted'),
-      disableRemotePlayback: new AttributeExperimental('disableRemotePlayback'),
+      crossorigin: new AttList('crossorigin', 'crossorigin').match,
+      preload: new AttList('preload', 'preload').match,
+      src: new AttString('src').match,
+      autoplay: new AttBoolean('autoplay').match,
+      controls: new AttBoolean('controls').match,
+      loop: new AttBoolean('loop').match,
+      muted: new AttBoolean('muted').match,
+      disableRemotePlayback: new AttExperimental('disableRemotePlayback').match,
     }).render(configuration),
   
     blockquote:new Element('blockquote', false, {
-      cite: new AttributeString('cite'),
+      cite: new AttString('cite').match,
     }).render(configuration),
   
     body:new Element('body', false, {
-      alink: new AttributeDeprecated('alink'),
-      background: new AttributeDeprecated('background'),
-      bgcolor: new AttributeDeprecated('bgcolor'),
-      bottommargin: new AttributeDeprecated('bottommargin'),
-      leftmargin: new AttributeDeprecated('leftmargin'),
-      link: new AttributeDeprecated('link'),
-      rightmargin: new AttributeDeprecated('rightmargin'),
-      text: new AttributeDeprecated('text'),
-      topmargin: new AttributeDeprecated('topmargin'),
-      vlink: new AttributeDeprecated('vlink'),
+      alink: new AttDeprecated('alink').match,
+      background: new AttDeprecated('background').match,
+      bgcolor: new AttDeprecated('bgcolor').match,
+      bottommargin: new AttDeprecated('bottommargin').match,
+      leftmargin: new AttDeprecated('leftmargin').match,
+      link: new AttDeprecated('link').match,
+      rightmargin: new AttDeprecated('rightmargin').match,
+      text: new AttDeprecated('text').match,
+      topmargin: new AttDeprecated('topmargin').match,
+      vlink: new AttDeprecated('vlink').match,
     }).render(configuration),
   
     button:new Element('button', false, {
-      formenctype: new AttributeList('formenctype', 'encryption'),
-      formmethod: new AttributeList('formmethod', 'formmethod'),
-      type: new AttributeList('type', 'buttonType'),
-      name: new AttributeString('name'),
-      value: new AttributeString('value'),
-      form: new AttributeString('form'),
-      formaction: new AttributeString('formaction'),
-      formtarget: new AttributeString('formtarget'),
-      disabled: new AttributeBoolean('disabled'),
-      autofocus: new AttributeBoolean('autofocus'),
-      formnovalidate: new AttributeBoolean('formnovalidate'),
-      autocomplete: new AttributeExperimental('autocomplete'),
+      formenctype: new AttList('formenctype', 'encryption').match,
+      formmethod: new AttList('formmethod', 'formmethod').match,
+      type: new AttList('type', 'buttonType').match,
+      name: new AttString('name').match,
+      value: new AttString('value').match,
+      form: new AttString('form').match,
+      formaction: new AttString('formaction').match,
+      formtarget: new AttString('formtarget').match,
+      disabled: new AttBoolean('disabled').match,
+      autofocus: new AttBoolean('autofocus').match,
+      formnovalidate: new AttBoolean('formnovalidate').match,
+      autocomplete: new AttExperimental('autocomplete').match,
     }).render(configuration),
   
     canvas:new Element('canvas', false, {
-      height: new AttributeString('height'),
-      width: new AttributeString('width'),
-      'moz-opaque': new AttributeDeprecated('moz-opaque'),
+      height: new AttString('height').match,
+      width: new AttString('width').match,
+      'moz-opaque': new AttDeprecated('moz-opaque').match,
     }).render(configuration),
   
     caption:new Element('caption', false, {
-      align: new AttributeDeprecated('align'),
+      align: new AttDeprecated('align').match,
     }).render(configuration),
   
     colgroup:new Element('colgroup', false, {
-      span: new AttributeString('span'),
-      align: new AttributeDeprecated('align'),
-      bgcolor: new AttributeDeprecated('bgcolor'),
-      char: new AttributeDeprecated('char'),
-      charoff: new AttributeDeprecated('charoff'),
-      valign: new AttributeDeprecated('valign'),
+      span: new AttString('span').match,
+      align: new AttDeprecated('align').match,
+      bgcolor: new AttDeprecated('bgcolor').match,
+      char: new AttDeprecated('char').match,
+      charoff: new AttDeprecated('charoff').match,
+      valign: new AttDeprecated('valign').match,
     }).render(configuration),
   
     data:new Element('data', false, {
-      value: new AttributeString('value'),
+      value: new AttString('value').match,
     }).render(configuration),
   
     dd:new Element('dd', false, {
-      nowrap: new AttributeNonstandard('nowrap'),
+      nowrap: new AttNonstandard('nowrap').match,
     }).render(configuration),
   
     del:new Element('del', false, {
-      cite: new AttributeString('cite'),
-      datetime: new AttributeString('datetime'),
+      cite: new AttString('cite').match,
+      datetime: new AttString('datetime').match,
     }).render(configuration),
   
     details:new Element('details', false, {
-      open: new AttributeBoolean('open'),
+      open: new AttBoolean('open').match,
     }).render(configuration),
   
     dialog:new Element('dialog', false, {
-      open: new AttributeBoolean('open'),
-      tabindex: new AttributeNonstandard('tabindex'),
+      open: new AttBoolean('open').match,
+      tabindex: new AttNonstandard('tabindex').match,
     }).render(configuration),
   
     div:new Element('div', false, {
-      align: new AttributeDeprecated('align'),
+      align: new AttDeprecated('align').match,
     }).render(configuration),
   
     fieldset:new Element('fieldset', false, {
-      name: new AttributeString('name'),
-      form: new AttributeString('form'),
-      disabled: new AttributeBoolean('disabled'),
+      name: new AttString('name').match,
+      form: new AttString('form').match,
+      disabled: new AttBoolean('disabled').match,
     }).render(configuration),
   
     form:new Element('form', false, {
-      autocomplete: new AttributeList('autocomplete', 'inputAutocomplete'),
-      method: new AttributeList('method', 'formmethod'),
-      enctype: new AttributeList('enctype', 'encryption'),
-      rel: new AttributeList('rel', 'validLinkTypes', 'invalidLinkTypes'),
-      name: new AttributeString('name'),
-      target: new AttributeString('target'),
-      action: new AttributeString('action'),
-      'accept-charset': new AttributeString('accept-charset'),
-      novalidate: new AttributeBoolean('novalidate'),
+      autocomplete: new AttList('autocomplete', 'inputAutocomplete').match,
+      method: new AttList('method', 'formmethod').match,
+      enctype: new AttList('enctype', 'encryption').match,
+      rel: new AttList('rel', 'validLinkTypes', 'invalidLinkTypes').match,
+      name: new AttString('name').match,
+      target: new AttString('target').match,
+      action: new AttString('action').match,
+      'accept-charset': new AttString('accept-charset').match,
+      novalidate: new AttBoolean('novalidate').match,
     }).render(configuration),
   
     h1:new Element('h1', false, {
-      align: new AttributeDeprecated('align'),
+      align: new AttDeprecated('align').match,
     }).render(configuration),
   
     h2:new Element('h2', false, {
-      align: new AttributeDeprecated('align'),
+      align: new AttDeprecated('align').match,
     }).render(configuration),
   
     h3:new Element('h3', false, {
-      align: new AttributeDeprecated('align'),
+      align: new AttDeprecated('align').match,
     }).render(configuration),
   
     h4:new Element('h4', false, {
-      align: new AttributeDeprecated('align'),
+      align: new AttDeprecated('align').match,
     }).render(configuration),
   
     h5:new Element('h5', false, {
-      align: new AttributeDeprecated('align'),
+      align: new AttDeprecated('align').match,
     }).render(configuration),
   
     h6:new Element('h6', false, {
-      align: new AttributeDeprecated('align'),
+      align: new AttDeprecated('align').match,
     }).render(configuration),
   
     head:new Element('head', false, {
-      profile: new AttributeDeprecated('profile'),
+      profile: new AttDeprecated('profile').match,
     }).render(configuration),
   
     html:new Element('html', false, {
-      xmlns: new AttributeString('xmlns'),
-      manifest: new AttributeDeprecated('manifest'),
-      version: new AttributeDeprecated('version'),
+      xmlns: new AttString('xmlns').match,
+      manifest: new AttDeprecated('manifest').match,
+      version: new AttDeprecated('version').match,
     }).render(configuration),
   
     iframe:new Element('iframe', false, {
-      sandbox: new AttributeList('sandbox', 'validSandbox', 'invalidSandbox'),
-      allow: new AttributeString('allow'),
-      name: new AttributeString('name'),
-      srcdoc: new AttributeString('srcdoc'),
-      src: new AttributeString('src'),
-      hieght: new AttributeString('hieght'),
-      width: new AttributeString('width'),
-      allowfullscreen: new AttributeBoolean('allowfullscreen'),
-      allowpaymentrequest: new AttributeBoolean('allowpaymentrequest'),
-      align: new AttributeDeprecated('align'),
-      frameborder: new AttributeDeprecated('frameborder'),
-      longdesc: new AttributeDeprecated('longdesc'),
-      marginheight: new AttributeDeprecated('marginheight'),
-      marginwidth: new AttributeDeprecated('marginwidth'),
-      scrolling: new AttributeDeprecated('scrolling'),
-      csp: new AttributeExperimental('csp'),
-      loading: new AttributeExperimental('loading'),
-      referrerpolicy: new AttributeExperimental('referrerpolicy'),
-      mozbrowser: new AttributeNonstandard('mozbrowser'),
+      sandbox: new AttList('sandbox', 'validSandbox', 'invalidSandbox').match,
+      allow: new AttString('allow').match,
+      name: new AttString('name').match,
+      srcdoc: new AttString('srcdoc').match,
+      src: new AttString('src').match,
+      hieght: new AttString('hieght').match,
+      width: new AttString('width').match,
+      allowfullscreen: new AttBoolean('allowfullscreen').match,
+      allowpaymentrequest: new AttBoolean('allowpaymentrequest').match,
+      align: new AttDeprecated('align').match,
+      frameborder: new AttDeprecated('frameborder').match,
+      longdesc: new AttDeprecated('longdesc').match,
+      marginheight: new AttDeprecated('marginheight').match,
+      marginwidth: new AttDeprecated('marginwidth').match,
+      scrolling: new AttDeprecated('scrolling').match,
+      csp: new AttExperimental('csp').match,
+      loading: new AttExperimental('loading').match,
+      referrerpolicy: new AttExperimental('referrerpolicy').match,
+      mozbrowser: new AttNonstandard('mozbrowser').match,
     }).render(configuration),
   
     ins:new Element('ins', false, {
-      cite: new AttributeString('cite'),
-      datetime: new AttributeString('datetime'),
+      cite: new AttString('cite').match,
+      datetime: new AttString('datetime').match,
     }).render(configuration),
   
     label:new Element('label', false, {
-      for: new AttributeString('for'),
+      for: new AttString('for').match,
     }).render(configuration),
   
     li:new Element('li', false, {
-      value: new AttributeString('value'),
-      type: new AttributeDeprecated('type'),
+      value: new AttString('value').match,
+      type: new AttDeprecated('type').match,
     }).render(configuration),
   
     map:new Element('map', false, {
-      name: new AttributeString('name'),
+      name: new AttString('name').match,
     }).render(configuration),
   
     meter:new Element('meter', false, {
-      high: new AttributeString('high'),
-      low: new AttributeString('low'),
-      optimum: new AttributeString('optimum'),
-      value: new AttributeString('value'),
-      form: new AttributeString('form'),
-      max: new AttributeString('max'),
-      min: new AttributeString('min'),
+      high: new AttString('high').match,
+      low: new AttString('low').match,
+      optimum: new AttString('optimum').match,
+      value: new AttString('value').match,
+      form: new AttString('form').match,
+      max: new AttString('max').match,
+      min: new AttString('min').match,
     }).render(configuration),
   
     object:new Element('object', false, {
-      data: new AttributeString('data'),
-      name: new AttributeString('name'),
-      form: new AttributeString('form'),
-      type: new AttributeString('type'),
-      usemap: new AttributeString('usemap'),
-      height: new AttributeString('height'),
-      width: new AttributeString('width'),
-      archive: new AttributeDeprecated('archive'),
-      border: new AttributeDeprecated('border'),
-      classid: new AttributeDeprecated('classid'),
-      codebase: new AttributeDeprecated('codebase'),
-      codetype: new AttributeDeprecated('codetype'),
-      declare: new AttributeDeprecated('declare'),
-      standby: new AttributeDeprecated('standby'),
+      data: new AttString('data').match,
+      name: new AttString('name').match,
+      form: new AttString('form').match,
+      type: new AttString('type').match,
+      usemap: new AttString('usemap').match,
+      height: new AttString('height').match,
+      width: new AttString('width').match,
+      archive: new AttDeprecated('archive').match,
+      border: new AttDeprecated('border').match,
+      classid: new AttDeprecated('classid').match,
+      codebase: new AttDeprecated('codebase').match,
+      codetype: new AttDeprecated('codetype').match,
+      declare: new AttDeprecated('declare').match,
+      standby: new AttDeprecated('standby').match,
     }).render(configuration),
   
     ol:new Element('ol', false, {
-      type: new AttributeList('type', 'orderedListType'),
-      start: new AttributeString('start'),
-      reversed: new AttributeBoolean('reversed'),
+      type: new AttList('type', 'orderedListType').match,
+      start: new AttString('start').match,
+      reversed: new AttBoolean('reversed').match,
     }).render(configuration),
   
     optgroup:new Element('optgroup', false, {
-      label: new AttributeString('label'),
-      disabled: new AttributeBoolean('disabled'),
+      label: new AttString('label').match,
+      disabled: new AttBoolean('disabled').match,
     }).render(configuration),
   
     option:new Element('option', false, {
-      selected: new AttributeBoolean('selected'),
-      disabled: new AttributeBoolean('disabled'),
-      label: new AttributeString('label'),
-      value: new AttributeString('value'),
+      selected: new AttBoolean('selected').match,
+      disabled: new AttBoolean('disabled').match,
+      label: new AttString('label').match,
+      value: new AttString('value').match,
     }).render(configuration),
   
     output:new Element('output', false, {
-      for: new AttributeString('for'),
-      name: new AttributeString('name'),
-      form: new AttributeString('form'),
+      for: new AttString('for').match,
+      name: new AttString('name').match,
+      form: new AttString('form').match,
     }).render(configuration),
   
     portal:new Element('portal', false, {
-      src: new AttributeString('src'),
+      src: new AttString('src').match,
     }).render(configuration),
   
     pre:new Element('pre', false, {
-      cols: new AttributeDeprecated('cols'),
-      width: new AttributeDeprecated('width'),
-      wrap: new AttributeNonstandard('wrap'),
+      cols: new AttDeprecated('cols').match,
+      width: new AttDeprecated('width').match,
+      wrap: new AttNonstandard('wrap').match,
     }).render(configuration),
   
     progress:new Element('progress', false, {
-      value: new AttributeString('value'),
-      max: new AttributeString('max'),
+      value: new AttString('value').match,
+      max: new AttString('max').match,
     }).render(configuration),
   
     q:new Element('q', false, {
-      cite: new AttributeString('cite'),
+      cite: new AttString('cite').match,
     }).render(configuration),
   
     script:new Element('script', false, {
-      crossorigin: new AttributeList('crossorigin', 'crossorigin'),
-      src: new AttributeString('src'),
-      type: new AttributeString('type'),
-      nonce: new AttributeString('nonce'),
-      integrity: new AttributeString('integrity'),
-      async: new AttributeBoolean('async'),
-      defer: new AttributeBoolean('defer'),
-      nomodule: new AttributeBoolean('nomodule'),
-      referrerpolicy: new AttributeExperimental('referrerpolicy'),
-      charset: new AttributeDeprecated('charset'),
-      language: new AttributeDeprecated('language'),
+      crossorigin: new AttList('crossorigin', 'crossorigin').match,
+      src: new AttString('src').match,
+      type: new AttString('type').match,
+      nonce: new AttString('nonce').match,
+      integrity: new AttString('integrity').match,
+      async: new AttBoolean('async').match,
+      defer: new AttBoolean('defer').match,
+      nomodule: new AttBoolean('nomodule').match,
+      referrerpolicy: new AttExperimental('referrerpolicy').match,
+      charset: new AttDeprecated('charset').match,
+      language: new AttDeprecated('language').match,
     }).render(configuration),
   
     select:new Element('select', false, {
-      autocomplete: new AttributeList('autocomplete', 'inputAutocomplete'),
-      form: new AttributeString('form'),
-      name: new AttributeString('name'),
-      size: new AttributeString('size'),
-      autofocus: new AttributeBoolean('autofocus'),
-      disabled: new AttributeBoolean('disabled'),
-      multiple: new AttributeBoolean('multiple'),
-      required: new AttributeBoolean('required'),
+      autocomplete: new AttList('autocomplete', 'inputAutocomplete').match,
+      form: new AttString('form').match,
+      name: new AttString('name').match,
+      size: new AttString('size').match,
+      autofocus: new AttBoolean('autofocus').match,
+      disabled: new AttBoolean('disabled').match,
+      multiple: new AttBoolean('multiple').match,
+      required: new AttBoolean('required').match,
     }).render(configuration),
   
     slot:new Element('slot', false, {
-      name: new AttributeString('name'),
+      name: new AttString('name').match,
     }).render(configuration),
   
     style:new Element('style', false, {
-      type: new AttributeList('type', 'typeStyle'),
-      media: new AttributeString('media'),
-      nonce: new AttributeString('nonce'),
+      type: new AttList('type', 'typeStyle').match,
+      media: new AttString('media').match,
+      nonce: new AttString('nonce').match,
     }).render(configuration),
   
     table:new Element('table', false, {
-      align: new AttributeDeprecated('align'),
-      bgcolor: new AttributeDeprecated('bgcolor'),
-      border: new AttributeDeprecated('border'),
-      cellpadding: new AttributeDeprecated('cellpadding'),
-      cellspacing: new AttributeDeprecated('cellspacing'),
-      frame: new AttributeDeprecated('frame'),
-      rules: new AttributeDeprecated('rules'),
-      summary: new AttributeDeprecated('summary'),
-      width: new AttributeDeprecated('width'),
+      align: new AttDeprecated('align').match,
+      bgcolor: new AttDeprecated('bgcolor').match,
+      border: new AttDeprecated('border').match,
+      cellpadding: new AttDeprecated('cellpadding').match,
+      cellspacing: new AttDeprecated('cellspacing').match,
+      frame: new AttDeprecated('frame').match,
+      rules: new AttDeprecated('rules').match,
+      summary: new AttDeprecated('summary').match,
+      width: new AttDeprecated('width').match,
     }).render(configuration),
   
     tbody:new Element('tbody', false, {
-      align: new AttributeDeprecated('align'),
-      bgcolor: new AttributeDeprecated('bgcolor'),
-      char: new AttributeDeprecated('char'),
-      charoff: new AttributeDeprecated('charoff'),
-      valign: new AttributeDeprecated('valign'),
+      align: new AttDeprecated('align').match,
+      bgcolor: new AttDeprecated('bgcolor').match,
+      char: new AttDeprecated('char').match,
+      charoff: new AttDeprecated('charoff').match,
+      valign: new AttDeprecated('valign').match,
     }).render(configuration),
   
     td:new Element('td', false, {
-      colspan: new AttributeString('colspan'),
-      headers: new AttributeString('headers'),
-      rowspan: new AttributeString('rowspan'),
-      align: new AttributeDeprecated('align'),
-      axis: new AttributeDeprecated('axis'),
-      bgcolor: new AttributeDeprecated('bgcolor'),
-      char: new AttributeDeprecated('char'),
-      charoff: new AttributeDeprecated('charoff'),
-      height: new AttributeDeprecated('height'),
-      scope: new AttributeDeprecated('scope'),
-      valign: new AttributeDeprecated('valign'),
-      width: new AttributeDeprecated('width'),
+      colspan: new AttString('colspan').match,
+      headers: new AttString('headers').match,
+      rowspan: new AttString('rowspan').match,
+      align: new AttDeprecated('align').match,
+      axis: new AttDeprecated('axis').match,
+      bgcolor: new AttDeprecated('bgcolor').match,
+      char: new AttDeprecated('char').match,
+      charoff: new AttDeprecated('charoff').match,
+      height: new AttDeprecated('height').match,
+      scope: new AttDeprecated('scope').match,
+      valign: new AttDeprecated('valign').match,
+      width: new AttDeprecated('width').match,
     }).render(configuration),
   
     textarea:new Element('textarea', false, {
-      autocomplete: new AttributeList('autocomplete', 'inputAutocomplete'),
-      spellcheck: new AttributeList('spellcheck', 'softBoolean'),
-      wrap: new AttributeList('wrap', 'wrap'),
-      cols: new AttributeString('cols'),
-      form: new AttributeString('form'),
-      maxlength: new AttributeString('maxlength'),
-      name: new AttributeString('name'),
-      placeholder: new AttributeString('placeholder'),
-      rows: new AttributeString('rows'),
-      disabled: new AttributeBoolean('disabled'),
-      readonly: new AttributeBoolean('readonly'),
-      required: new AttributeBoolean('required'),
-      autocapitalize: new AttributeDeprecated('autocapitalize'),
-      autocorrect: new AttributeDeprecated('autocorrect'),
+      autocomplete: new AttList('autocomplete', 'inputAutocomplete').match,
+      spellcheck: new AttList('spellcheck', 'softBoolean').match,
+      wrap: new AttList('wrap', 'wrap').match,
+      cols: new AttString('cols').match,
+      form: new AttString('form').match,
+      maxlength: new AttString('maxlength').match,
+      name: new AttString('name').match,
+      placeholder: new AttString('placeholder').match,
+      rows: new AttString('rows').match,
+      disabled: new AttBoolean('disabled').match,
+      readonly: new AttBoolean('readonly').match,
+      required: new AttBoolean('required').match,
+      autocapitalize: new AttDeprecated('autocapitalize').match,
+      autocorrect: new AttDeprecated('autocorrect').match,
     }).render(configuration),
   
     tfoot:new Element('tfoot', false, {
-      align: new AttributeDeprecated('align'),
-      bgcolor: new AttributeDeprecated('bgcolor'),
-      char: new AttributeDeprecated('char'),
-      charoff: new AttributeDeprecated('charoff'),
-      valign: new AttributeDeprecated('valign'),
+      align: new AttDeprecated('align').match,
+      bgcolor: new AttDeprecated('bgcolor').match,
+      char: new AttDeprecated('char').match,
+      charoff: new AttDeprecated('charoff').match,
+      valign: new AttDeprecated('valign').match,
     }).render(configuration),
   
     th:new Element('th', false, {
-      abbr: new AttributeString('abbr'),
-      colspan: new AttributeString('colspan'),
-      headers: new AttributeString('headers'),
-      rowspan: new AttributeString('rowspan'),
-      align: new AttributeDeprecated('align'),
-      axis: new AttributeDeprecated('axis'),
-      bgcolor: new AttributeDeprecated('bgcolor'),
-      char: new AttributeDeprecated('char'),
-      charoff: new AttributeDeprecated('charoff'),
-      height: new AttributeDeprecated('height'),
-      scope: new AttributeDeprecated('scope'),
-      valign: new AttributeDeprecated('valign'),
-      width: new AttributeDeprecated('width'),
+      abbr: new AttString('abbr').match,
+      colspan: new AttString('colspan').match,
+      headers: new AttString('headers').match,
+      rowspan: new AttString('rowspan').match,
+      align: new AttDeprecated('align').match,
+      axis: new AttDeprecated('axis').match,
+      bgcolor: new AttDeprecated('bgcolor').match,
+      char: new AttDeprecated('char').match,
+      charoff: new AttDeprecated('charoff').match,
+      height: new AttDeprecated('height').match,
+      scope: new AttDeprecated('scope').match,
+      valign: new AttDeprecated('valign').match,
+      width: new AttDeprecated('width').match,
     }).render(configuration),
   
     thead:new Element('thead', false, {
-      align: new AttributeDeprecated('align'),
-      bgcolor: new AttributeDeprecated('bgcolor'),
-      char: new AttributeDeprecated('char'),
-      charoff: new AttributeDeprecated('charoff'),
-      valign: new AttributeDeprecated('valign'),
+      align: new AttDeprecated('align').match,
+      bgcolor: new AttDeprecated('bgcolor').match,
+      char: new AttDeprecated('char').match,
+      charoff: new AttDeprecated('charoff').match,
+      valign: new AttDeprecated('valign').match,
     }).render(configuration),
   
     time:new Element('time', false, {
-      datetime: new AttributeString('datetime'),
+      datetime: new AttString('datetime').match,
     }).render(configuration),
   
     tr:new Element('tr', false, {
-      align: new AttributeDeprecated('align'),
-      bgcolor: new AttributeDeprecated('bgcolor'),
-      char: new AttributeDeprecated('char'),
-      charoff: new AttributeDeprecated('charoff'),
-      valign: new AttributeDeprecated('valign'),
+      align: new AttDeprecated('align').match,
+      bgcolor: new AttDeprecated('bgcolor').match,
+      char: new AttDeprecated('char').match,
+      charoff: new AttDeprecated('charoff').match,
+      valign: new AttDeprecated('valign').match,
     }).render(configuration),
   
     ul:new Element('ul', false, {
-      compact: new AttributeDeprecated('compact'),
-      type: new AttributeDeprecated('type'),
+      compact: new AttDeprecated('compact').match,
+      type: new AttDeprecated('type').match,
     }).render(configuration),
   
     video:new Element('video', false, {
-      preload: new AttributeList('preload', 'preload'),
-      crossorigin: new AttributeList('crossorigin', 'crossorigin'),
-      poster: new AttributeString('poster'),
-      src: new AttributeString('src'),
-      height: new AttributeString('height'),
-      width: new AttributeString('width'),
-      loop: new AttributeBoolean('loop'),
-      muted: new AttributeBoolean('muted'),
-      playsinline: new AttributeBoolean('playsinline'),
-      autoplay: new AttributeBoolean('autoplay'),
-      controls: new AttributeBoolean('controls'),
+      preload: new AttList('preload', 'preload').match,
+      crossorigin: new AttList('crossorigin', 'crossorigin').match,
+      poster: new AttString('poster').match,
+      src: new AttString('src').match,
+      height: new AttString('height').match,
+      width: new AttString('width').match,
+      loop: new AttBoolean('loop').match,
+      muted: new AttBoolean('muted').match,
+      playsinline: new AttBoolean('playsinline').match,
+      autoplay: new AttBoolean('autoplay').match,
+      controls: new AttBoolean('controls').match,
     }).render(configuration),
   
     // Empty Elements
   
     area:new Element('area', true, {
-      rel: new AttributeList('rel', 'validLinkTypes', 'invalidLinkTypes'),
-      hreflang: new AttributeList('hreflang', 'isoCodes'),
-      shape: new AttributeList('shape', 'areaShape'),
-      coords: new AttributeString('coords'),
-      download: new AttributeString('download'),
-      href: new AttributeString('href'),
-      ping: new AttributeString('ping'),
-      target: new AttributeString('target'),
-      alt: new AttributeString('alt'),
+      rel: new AttList('rel', 'validLinkTypes', 'invalidLinkTypes').match,
+      hreflang: new AttList('hreflang', 'isoCodes').match,
+      shape: new AttList('shape', 'areaShape').match,
+      coords: new AttString('coords').match,
+      download: new AttString('download').match,
+      href: new AttString('href').match,
+      ping: new AttString('ping').match,
+      target: new AttString('target').match,
+      alt: new AttString('alt').match,
     }).render(configuration),
   
     base:new Element('base', true, {
-      href: new AttributeString('href'),
-      target: new AttributeString('target'),
+      href: new AttString('href').match,
+      target: new AttString('target').match,
     }).render(configuration),
   
     br:new Element('br', true, {
-      clear: new AttributeDeprecated('clear'),
+      clear: new AttDeprecated('clear').match,
     }).render(configuration),
   
     col:new Element('col', true, {
-      span: new AttributeString('span'),
-      align: new AttributeDeprecated('align'),
-      bgcolor: new AttributeDeprecated('bgcolor'),
-      char: new AttributeDeprecated('char'),
-      charoff: new AttributeDeprecated('charoff'),
-      valign: new AttributeDeprecated('valign'),
-      width: new AttributeDeprecated('width'),
+      span: new AttString('span').match,
+      align: new AttDeprecated('align').match,
+      bgcolor: new AttDeprecated('bgcolor').match,
+      char: new AttDeprecated('char').match,
+      charoff: new AttDeprecated('charoff').match,
+      valign: new AttDeprecated('valign').match,
+      width: new AttDeprecated('width').match,
     }).render(configuration),
   
     embed:new Element('embed', true, {
-      src: new AttributeString('src'),
-      height: new AttributeString('height'),
-      width: new AttributeString('width'),
-      type: new AttributeString('type'),
+      src: new AttString('src').match,
+      height: new AttString('height').match,
+      width: new AttString('width').match,
+      type: new AttString('type').match,
     }).render(configuration),
   
     hr:new Element('hr', true, {
-      align: new AttributeDeprecated('align'),
-      noshade: new AttributeDeprecated('noshade'),
-      size: new AttributeDeprecated('size'),
-      width: new AttributeDeprecated('width'),
-      color: new AttributeNonstandard('color'),
+      align: new AttDeprecated('align').match,
+      noshade: new AttDeprecated('noshade').match,
+      size: new AttDeprecated('size').match,
+      width: new AttDeprecated('width').match,
+      color: new AttNonstandard('color').match,
     }).render(configuration),
   
     img:new Element('img', true, {
-      crossorigin: new AttributeList('crossorigin', 'crossorigin'),
-      decoding: new AttributeList('decoding', 'decoding'),
-      srcset: new AttributeString('srcset'),
-      src: new AttributeString('src'),
-      alt: new AttributeString('alt'),
-      height: new AttributeString('height'),
-      sizes: new AttributeString('sizes'),
-      width: new AttributeString('width'),
-      usemap: new AttributeString('usemap'),
-      ismap: new AttributeBoolean('ismap'),
+      crossorigin: new AttList('crossorigin', 'crossorigin').match,
+      decoding: new AttList('decoding', 'decoding').match,
+      srcset: new AttString('srcset').match,
+      src: new AttString('src').match,
+      alt: new AttString('alt').match,
+      height: new AttString('height').match,
+      sizes: new AttString('sizes').match,
+      width: new AttString('width').match,
+      usemap: new AttString('usemap').match,
+      ismap: new AttBoolean('ismap').match,
     }).render(configuration),
   
     input:new Element('input', true, {
-      autocomplete: new AttributeList('autocomplete', 'inputAutocomplete'),
-      type: new AttributeList('type', 'inputType', 'invalidInputType'),
-      form: new AttributeString('form'),
-      name: new AttributeString('name'),
-      value: new AttributeString('value'),
-      autofocus: new AttributeBoolean('autofocus'),
-      disabled: new AttributeBoolean('disabled'),
-      accept: new AttributeInput('accept', ['file'], 'string'),
-      alt: new AttributeInput('alt', ['file'], 'string'),
-      capture: new AttributeInput('capture', ['file'], 'string'),
+      autocomplete: new AttList('autocomplete', 'inputAutocomplete').match,
+      type: new AttList('type', 'inputType', 'invalidInputType').match,
+      form: new AttString('form').match,
+      name: new AttString('name').match,
+      value: new AttString('value').match,
+      autofocus: new AttBoolean('autofocus').match,
+      disabled: new AttBoolean('disabled').match,
+      accept: new AttInput('accept', ['file'], 'string').match,
+      alt: new AttInput('alt', ['file'], 'string').match,
+      capture: new AttInput('capture', ['file'], 'string').match,
       // prettier-ignore
-      checked: new AttributeInput('checked', ['radio', 'checkbox'], 'boolean'),
-      dirname: new AttributeInput('dirname', ['text', 'search'], 'string'),
+      checked: new AttInput('checked', ['radio', 'checkbox'], 'boolean').match,
+      dirname: new AttInput('dirname', ['text', 'search'], 'string').match,
       // prettier-ignore
-      formaction: new AttributeInput('formaction', ['image', 'submit'], 'string'),
+      formaction: new AttInput('formaction', ['image', 'submit'], 'string').match,
       // prettier-ignore
-      formenctype: new AttributeInput('formenctype', ['image', 'submit'], 'string'),
+      formenctype: new AttInput('formenctype', ['image', 'submit'], 'string').match,
       // prettier-ignore
-      formmethod: new AttributeInput('formmethod', ['image', 'submit'], 'string'),
+      formmethod: new AttInput('formmethod', ['image', 'submit'], 'string').match,
       // prettier-ignore
-      formnovalidate: new AttributeInput('formnovalidate', ['image', 'submit'], 'boolean'),
+      formnovalidate: new AttInput('formnovalidate', ['image', 'submit'], 'boolean').match,
       // prettier-ignore
-      formtarget: new AttributeInput('formtarget', ['image', 'submit'], 'string'),
+      formtarget: new AttInput('formtarget', ['image', 'submit'], 'string').match,
       // prettier-ignore
-      list: new AttributeInput('list', [ 'text', 'search', 'url', 'tel', 'email', 'date', 'month', 'week', 'time', 'datetime-local', 'number', 'range', 'color' ], 'string'),
+      list: new AttInput('list', [ 'text', 'search', 'url', 'tel', 'email', 'date', 'month', 'week', 'time', 'datetime-local', 'number', 'range', 'color' ], 'string').match,
       // prettier-ignore
-      max: new AttributeInput('max', ['date', 'month', 'week', 'time', 'datetime-local', 'number', 'range'], 'string'),
+      max: new AttInput('max', ['date', 'month', 'week', 'time', 'datetime-local', 'number', 'range'], 'string').match,
       // prettier-ignore
-      maxlength: new AttributeInput('maxlength', ['password', 'search', 'tel', 'text', 'url'], 'string'),
+      maxlength: new AttInput('maxlength', ['password', 'search', 'tel', 'text', 'url'], 'string').match,
       // prettier-ignore
-      min: new AttributeInput('min', ['date', 'month', 'week', 'time', 'datetime-local', 'number', 'range'], 'string'),
+      min: new AttInput('min', ['date', 'month', 'week', 'time', 'datetime-local', 'number', 'range'], 'string').match,
       // prettier-ignore
-      minlength: new AttributeInput('minlength', ['password', 'search', 'tel', 'text', 'url'], 'string'),
-      multiple: new AttributeInput('multiple', ['email', 'file'], 'boolean'),
+      minlength: new AttInput('minlength', ['password', 'search', 'tel', 'text', 'url'], 'string').match,
+      multiple: new AttInput('multiple', ['email', 'file'], 'boolean').match,
       // prettier-ignore
-      pattern: new AttributeInput('pattern', ['password', 'text', 'tel'], 'string'),
+      pattern: new AttInput('pattern', ['password', 'text', 'tel'], 'string').match,
       // prettier-ignore
-      placeholder: new AttributeInput('placeholder', ['password', 'search', 'text', 'tel', 'url'], 'string'),
+      placeholder: new AttInput('placeholder', ['password', 'search', 'text', 'tel', 'url'], 'string').match,
       // prettier-ignore
-      readonly: new AttributeInput('readonly', [ 'text', 'search', 'url', 'tel', 'email', 'password', 'date', 'month', 'week', 'time', 'datetime-local', 'number' ], 'boolean'),
+      readonly: new AttInput('readonly', [ 'text', 'search', 'url', 'tel', 'email', 'password', 'date', 'month', 'week', 'time', 'datetime-local', 'number' ], 'boolean').match,
       // prettier-ignore
-      required: new AttributeInput('required', [ 'text', 'search', 'url', 'tel', 'email', 'password', 'date', 'month', 'week', 'time', 'datetime-local', 'number', 'checkbox', 'radio', 'file' ], 'boolean'),
-      src: new AttributeInput('src', ['image'], 'string'),
+      required: new AttInput('required', [ 'text', 'search', 'url', 'tel', 'email', 'password', 'date', 'month', 'week', 'time', 'datetime-local', 'number', 'checkbox', 'radio', 'file' ], 'boolean').match,
+      src: new AttInput('src', ['image'], 'string').match,
       // prettier-ignore
-      step: new AttributeInput('step', ['date', 'month', 'week', 'time', 'datetime-local', 'number', 'range'], 'string'),
+      step: new AttInput('step', ['date', 'month', 'week', 'time', 'datetime-local', 'number', 'range'], 'string').match,
     }).render(configuration),
   
     link:new Element('link', true, {
-      rel: new AttributeList('rel', 'validLinkTypes', 'invalidLinkTypes'),
-      as: new AttributeList('as', 'linkAs'),
-      crossorigin: new AttributeList('crossorigin', 'crossorigin'),
-      hreflang: new AttributeList('hreflang', 'isoCodes'),
-      href: new AttributeString('href'),
-      imagesizes: new AttributeString('imagesizes'),
-      imagesrcset: new AttributeString('imagesrcset'),
-      media: new AttributeString('media'),
-      type: new AttributeString('type'),
-      disabled: new AttributeBoolean('disabled'),
+      rel: new AttList('rel', 'validLinkTypes', 'invalidLinkTypes').match,
+      as: new AttList('as', 'linkAs').match,
+      crossorigin: new AttList('crossorigin', 'crossorigin').match,
+      hreflang: new AttList('hreflang', 'isoCodes').match,
+      href: new AttString('href').match,
+      imagesizes: new AttString('imagesizes').match,
+      imagesrcset: new AttString('imagesrcset').match,
+      media: new AttString('media').match,
+      type: new AttString('type').match,
+      disabled: new AttBoolean('disabled').match,
     }).render(configuration),
   
     meta:new Element('meta', true, {
-      'http-equiv': new AttributeList('http-equiv', 'httpEquiv'),
-      content: new AttributeString('content'),
-      name: new AttributeString('name'),
-      charset: new AttributeString('charset'),
+      'http-equiv': new AttList('http-equiv', 'httpEquiv').match,
+      content: new AttString('content').match,
+      name: new AttString('name').match,
+      charset: new AttString('charset').match,
     }).render(configuration),
   
     param:new Element('param', true, {
-      name: new AttributeString('name'),
-      value: new AttributeString('value'),
-      type: new AttributeDeprecated('type'),
-      valuetype: new AttributeDeprecated('valuetype'),
+      name: new AttString('name').match,
+      value: new AttString('value').match,
+      type: new AttDeprecated('type').match,
+      valuetype: new AttDeprecated('valuetype').match,
     }).render(configuration),
   
     source:new Element('source', true, {
-      srcset: new AttributeDeprecated('srcset'),
-      src: new AttributeDeprecated('src'),
-      media: new AttributeDeprecated('media'),
-      sizes: new AttributeDeprecated('sizes'),
-      type: new AttributeDeprecated('type'),
+      srcset: new AttDeprecated('srcset').match,
+      src: new AttDeprecated('src').match,
+      media: new AttDeprecated('media').match,
+      sizes: new AttDeprecated('sizes').match,
+      type: new AttDeprecated('type').match,
     }).render(configuration),
   
     track:new Element('track', true, {
-      kind: new AttributeList('kind', 'trackKind'),
-      srclang: new AttributeList('srclang', 'isoCodes'),
-      src: new AttributeString('src'),
-      label: new AttributeString('label'),
-      default: new AttributeBoolean('default'),
+      kind: new AttList('kind', 'trackKind').match,
+      srclang: new AttList('srclang', 'isoCodes').match,
+      src: new AttString('src').match,
+      label: new AttString('label').match,
+      default: new AttBoolean('default').match,
     }).render(configuration),
   
     wbr:new Element('wbr', true, {}).render(configuration),
@@ -684,18 +679,3 @@ export function getElements(configuration: iAnaConfiguration): RenderDictionary 
     var:new Element('var', false, {}).render(configuration)
   }
 }
-
-export const aElem = new Element('a', false, {
-  rel: new AttributeList('rel', 'validLinkTypes', 'invalidLinkTypes'),
-  hreflang: new AttributeList('hreflang', 'isoCodes'),
-  download: new AttributeString('download'),
-  href: new AttributeString('href'),
-  ping: new AttributeString('ping'),
-  target: new AttributeString('target'),
-  referrerpolicy: new AttributeExperimental('referrerpolicy'),
-  charset: new AttributeDeprecated('charset'),
-  coords: new AttributeDeprecated('coords'),
-  name: new AttributeDeprecated('name'),
-  rev: new AttributeDeprecated('rev'),
-  shape: new AttributeDeprecated('shape'),
-}).render

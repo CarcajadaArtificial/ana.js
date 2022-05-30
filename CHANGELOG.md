@@ -2,7 +2,19 @@
 
 ## Unreleased
 
-### **0.5.0** (Latest)
+### **0.5.1** (Latest)
+
+This is another update with lots of files but few changes.
+
+- `Added` cleaner code to the framework in general:
+  - `~/src/ts/Ana/*`
+  - `~/src/ts/Elements/*` - Implemented the matching dictionary inside `Window` instead of `HTMLElement`.
+  - `~/src/ts/types.ts`
+
+- `Removed` the `html-element` package, `Added` the `classnames` package.
+  - `~/package.json`
+
+### **0.5.0**
 
 In this update, I'm going all-in with TypeScript and using this opportunity to do it cleanly. The source code is modular now, with every *one thing* inside a directory. That is why there are a lot of changes, but really, not much has changed. The function `extendParameterDefaults` has been in my mind a lot lately. I know how to avoid it altogether using a "constants" object, maybe inside a new file with the name: `component.constants.ts`.
 

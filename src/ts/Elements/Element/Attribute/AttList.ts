@@ -1,29 +1,13 @@
-import { Attribute } from '../Attribute'
-import { iAttributeList } from './AttributeList.interface'
+import { MatchAttributeValue } from '../../../types'
+import { Attribute } from './Attribute'
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 /**
  * A List Attribute is one that not only must be a string, it must be part of a predefined list of string values. This lists are organized in the `ATTRIBUTE_VALUES` dictionary.
+ * @module Ana/Render
  */
-export class AttributeList extends Attribute implements iAttributeList {
-  /**
-   * The name of the list that contains the valid values for this attribute. Must be an index of the dictionary `ATTRIBUTE_VALUES`.
-   */
-  validList: string
-
-  /**
-   * The name of the list that contains invalid values for this attribute. Must be an index of the dictionary `ATTRIBUTE_VALUES`.
-   */
-  invalidList?: string
-
-  /**
-   * ```Typescript
-   * new AttributeList('example', 'validListName', 'invalidListName')
-   * ```
-   * @param name {@link Attribute.name | Read more}
-   */
-  constructor(name: string, validList: string, invalidList?: string) {
-    super(name, 'list')
+export class AttList extends Attribute {
+  constructor(name: string, public validList: string, public invalidList?: string) {
     if (!Object.keys(ATTRIBUTE_VALUES).includes(validList)) {
       // Error: the attribute ${this.name} received an unknown list name (${validList}), it must be included in the list of keys in the ATTRIBUTE_VALUES global constant: ${Object.keys(ATTRIBUTE_VALUES)}
     } else if (
@@ -32,33 +16,33 @@ export class AttributeList extends Attribute implements iAttributeList {
     ) {
       // Error: the attribute ${this.name} received an unknown list name (${invalidList}), it must be included in the list of keys in the ATTRIBUTE_VALUES global constant: ${Object.keys(ATTRIBUTE_VALUES)}
     }
-    this.invalidList = invalidList
-    this.validList = validList
+    
+    super(name, (attributeValues: MatchAttributeValue): boolean => {
+      let value = attributeValues.value
+      if (typeof value === 'string') {
+        if (ATTRIBUTE_VALUES[this.validList].includes(value)) {
+          return true
+        } else if (
+          this.invalidList &&
+          ATTRIBUTE_VALUES[this.invalidList].includes(value)
+        ) {
+          // Error: the attribute ${this.name} received an invalid value (${value}), it must not be included in the ATTRIBUTE_VALUES[${this.invalidList}] array: ${ATTRIBUTE_VALUES[this.invalidList]}
+          return false
+        } else {
+          // Error: the attribute ${this.name} received an unknown value (${value}), it must be included in the ATTRIBUTE_VALUES[${this.validList}] array: ${ATTRIBUTE_VALUES[this.validList]}
+          return false
+        }
+      } else {
+        // Error: the attribute ${this.name} must receive a string value, instead found: ${value} with type of ${typeof value}.
+        return false
+      }
+    })
   }
 
   /**
    * This function checks if the value matches the valid and invalid lists.
    * @returns True if the value is included inside `ATTRIBUTE_VALUES[this.validList]` and not included inside `ATTRIBUTE_VALUES[this.invalidList]`
    */
-  match = (value: string | Function, typeValue: string | Function): boolean => {
-    if (typeof value === 'string') {
-      if (ATTRIBUTE_VALUES[this.validList].includes(value)) {
-        return true
-      } else if (
-        this.invalidList &&
-        ATTRIBUTE_VALUES[this.invalidList].includes(value)
-      ) {
-        // Error: the attribute ${this.name} received an invalid value (${value}), it must not be included in the ATTRIBUTE_VALUES[${this.invalidList}] array: ${ATTRIBUTE_VALUES[this.invalidList]}
-        return false
-      } else {
-        // Error: the attribute ${this.name} received an unknown value (${value}), it must be included in the ATTRIBUTE_VALUES[${this.validList}] array: ${ATTRIBUTE_VALUES[this.validList]}
-        return false
-      }
-    } else {
-      // Error: the attribute ${this.name} must receive a string value, instead found: ${value} with type of ${typeof value}.
-      return false
-    }
-  }
 }
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -

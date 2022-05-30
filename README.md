@@ -15,9 +15,9 @@ Anarchy
 
 These are the things I’m currently working on and planning to release in the next few updates.
 
+- [ ] Component reactivity using JS Proxies.
 - [ ] Add SVG Elements support.
 - [ ] Add Chart, CoverArt, Mail, Record and Table Organisms.
-- [ ] Remove all of `~/src/js`.
 - [ ] Publish the project as an npm package.
 - [ ] Add publish process to `CONTRIBUTING.md`.
 

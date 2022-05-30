@@ -1,14 +1,16 @@
 {
   "name": "ana.js",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Anarchy",
   "main": "gulpfile.js",
   "scripts": {
     "_build-sass": "sass ./src/scss/style.scss ./dist/ana/ana.css",
     "_build-sass:doc": "mkdir ./dist/sassdoc; sassdoc src/ --parse > ./dist/sassdoc/sassdoc.json",
-    "_build-sass:min": "sass --style=compressed --no-source-map ./src/scss/style.scss ./dist/css/style.min.css",
+    "_build-sass:watch": "sass ./src/scss/style.scss ./dist/ana/ana.css --watch",
+    "_publish-scss": "sass --style=compressed --no-source-map ./src/scss/style.scss ./dist/css/style.min.css",
     "_build-ts": "webpack --mode development",
-    "_build-ts:doc": "npx typedoc --out ./dist/typedoc --json ./dist/typedoc/typedoc.json",
+    "_build-ts:watch": "webpack --mode development --watch",
+    "_build-ts:doc": "npx typedoc",
     "_publish-ts": "webpack --mode production",
     "test": "nodemon -e ts,scss,html test/app.ts",
     "build": "npm run _build-sass; npm run _build-ts;",
@@ -32,11 +34,12 @@
     "nodemon": "^2.0.15",
     "ts-loader": "^9.2.6",
     "ts-node": "^10.5.0",
+    "typedoc": "^0.22.15",
     "webpack": "^5.0.0",
     "webpack-cli": "^4.9.2"
   },
   "dependencies": {
     "express": "^4.17.2",
-    "html-element": "^2.3.1"
+    "classnames": "^2.3.1"
   }
 }

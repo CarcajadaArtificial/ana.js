@@ -1,3 +1,24 @@
+import { iAna, iAnaConfiguration } from './Ana.interface'
+import { getElements } from '../Elements/Elements'
+import { RenderDictionary } from '../types'
+import { AttributeValuesDictionary, MatchFunctionsDictionary } from '../types'
+import * as utils from '../utils'
+// import { rDisplay } from '../Components/Atoms/Display/Display'
+// import { rTitle } from '../Components/Atoms/Title/Title'
+// import { rTestpage } from '../Components/Organisms/Testpage/Testpage'
+
+declare global {
+  interface HTMLElement {
+    has(attributes: AttributeValuesDictionary): HTMLElement
+    setAttributes(attributes: AttributeValuesDictionary): HTMLElement
+  }
+}
+
+declare class Window {
+  static matchDictionary: MatchFunctionsDictionary
+}
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 //       _
 //      / \   _ __   __ _
 //     / _ \ | '_ \ / _` |
@@ -6,42 +27,86 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
- * The `Ana` class is the first thing that has contact with developers using this framework. It's main job is to give access to everything they
+ * 
  * @module Ana
- */
-
-import { iAna, iAnaConfiguration } from './Ana.interface'
-import { getElements } from '../Elements/Elements'
-import { RenderDictionary } from '../types';
-
-//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-/**
- * The main class of the framework.
  */
 export class Ana implements iAna {
   /**
-   * This property is used to manage the developing mode that enables or disables the standard checking in HTMLElements and all of their attributes.
+   * 
    */
   configuration: iAnaConfiguration = {
-    standardVerificationMode: true
+    standardVerificationMode: true,
   }
 
   /**
    *
    */
-  render: Function = ():RenderDictionary => {
-    let elements = getElements(this.configuration);
-    return elements
+  eId: Function = utils.eId
+
+  /**
+   * 
+   */
+   private has = function (
+    this: HTMLElement,
+    attributes: AttributeValuesDictionary
+  ): HTMLElement {
+    let tagName = this.tagName.toLowerCase()
+    if (Window.matchDictionary[tagName](attributes)) {
+      return this.setAttributes(attributes)
+    } else {
+      return this
+    }
   }
 
   /**
-   * ```Typescript
-   * const a = new Ana({
-   *  // Options
-   * })
-   * ```
+   * 
+   */
+  private setAttributes = function (
+    this: HTMLElement,
+    attributes: AttributeValuesDictionary
+  ): HTMLElement {
+    Object.keys(attributes).forEach((attributeName: string) => {
+      let attribute = attributes[attributeName]
+      if (typeof attribute === 'string') {
+        this.setAttribute(attributeName, attribute)
+      } else if (typeof attribute === 'boolean') {
+        if(attribute === true) {
+          this.setAttribute(attributeName, '')
+        } else {
+          this.removeAttribute(attributeName)
+        }
+      } else {
+        let listenerFunction: Function = attribute
+        this.addEventListener(attributeName, (event: Event) => {
+          listenerFunction(event)
+        })
+      }
+    })
+    return this
+  }
+
+  /**
+   * 
+   */
+  render: Function = (): RenderDictionary => {
+    HTMLElement.prototype.has = this.has
+    HTMLElement.prototype.setAttributes = this.setAttributes
+    let elements = getElements(this.configuration)
+    // let atoms = {
+    //   Display: rDisplay(elements, this.configuration),
+    //   Title: rTitle(elements, this.configuration),
+    // }
+    // let organisms = {
+    //   Testpage: rTestpage(elements, this.configuration)
+    // }
+    // return { ...elements, ...atoms, ...organisms }
+    return { ...elements }
+  }
+
+  /**
+   * 
    */
   constructor(configuration: iAnaConfiguration = {}) {
-    this.configuration = {...this.configuration, ...configuration}
+    this.configuration = { ...this.configuration, ...configuration }
   }
 }
