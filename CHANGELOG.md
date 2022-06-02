@@ -2,7 +2,18 @@
 
 ## Unreleased
 
-### **0.5.2** (Latest)
+### **0.5.3** (Latest)
+
+- `Added` cleaner code inside in the Element class.
+  - `~/src/ts/Elements/Element/Element.ts`
+
+- `Added` playground to the gitignore file, because now the changes made on it wont be staged.
+  - `~/.gitignore``
+
+- `Added` references to the package scripts `_build-ts:watch` and `_publish-ts` in the changelog.
+  - `~/CHANGELOG.md`
+
+### **0.5.2**
 
 I made a design decision regarding the project's readability when using the Ana framework. Firstly, moved the class assignation to a curried function: `a.div(...children).has({class: 'class'})` -> `a.div('class')(...children)`. Secondly a children checker was implemented for cases when a function accidentaly is sent as a child: `a.div('class')(a.div())`, the correct way is as follows: `a.div('class')(a.div()())`. Empty elements like `<img/>` or `<input/>` are also affected.
 

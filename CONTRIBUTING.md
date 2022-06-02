@@ -58,6 +58,14 @@ This scripts are the main
 
   It uses the typedoc comment standard to process all typescript files inside the source directory (`~/src/ts/*.ts` and `~/src/ts/**/*.ts`)
 
+* `_build-ts:watch`
+
+  It runs the same process as `_build-ts`, but watches for changes made to source files.
+
+* `_publish-ts`
+
+  It creates a minified version of the compiled project and does not create a sourcemap for debugging. But the result is ready to be deployed.
+
 ## Creating a Component
 
 ```typescript
