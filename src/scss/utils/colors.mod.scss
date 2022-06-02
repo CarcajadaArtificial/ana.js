@@ -149,7 +149,11 @@ $colors: (
     'black': #0b0500,
   ),
   'grey': (
+    // Todo: fix this color palette
     'white': #fafafb,
+    'tint-lightest': #d1d0d7,
+    'tint-lighter': #888696,
+    'tint-light': #7a788a,
     'lightest': #d1d0d7,
     'lighter': #888696,
     'light': #7a788a,
@@ -157,6 +161,7 @@ $colors: (
     'dark': #4a4854,
     'darker': #3e3d46,
     'darkest': #0e0e10,
+    'shade': #050506,
     'black': #050506,
   )
 );

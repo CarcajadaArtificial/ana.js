@@ -1,5 +1,5 @@
 import { iAnaConfiguration } from '../../../Ana/Ana.interface'
-import { RenderDictionary } from '../../../types'
+import { LayoutMargin, LayoutType, RenderDictionary } from '../../../types'
 import classNames from 'classnames'
 import { LayoutClass } from '../../Particles/Particles'
 
@@ -22,17 +22,17 @@ export function rLayout(
     return (param: iLayout = {}): HTMLElement => {
       // Default values
       param = {
-        ...{ layoutType: 'full', layoutMargin: 'full' },
+        ...{ type: 'full', margin: 'full' },
         ...param,
       }
       let classes = {
-        layout: classNames(LayoutClass(param.layoutType, param.layoutMargin)).split(' ')
+        layout: classNames(LayoutClass(param.type, param.margin)).split(' ')
       }
   
       let layoutBlocks:HTMLElement[] = []
       if(children.length > 0) {
         layoutBlocks = children.map((block) => {
-          return a.div('a-layout-block')(block)
+          return a.div('a-Layout-block')(block)
         })
       }
 
@@ -44,15 +44,6 @@ export function rLayout(
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 export interface iLayout {
-  layoutType?:
-    | 'full'
-    | 'center'
-    | 'focus'
-    | 'halves'
-    | 'thirds'
-    | 'quarters'
-    | 'right'
-    | 'left'
-
-  layoutMargin?: 'full' | 'single' | 'none'
+  type?: LayoutType
+  margin?: LayoutMargin
 }

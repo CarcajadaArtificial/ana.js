@@ -2,7 +2,21 @@
 
 ## Unreleased
 
-### **0.5.4** (Latest)
+### **0.5.5** (Latest)
+
+- `Added` the Surface atom
+  - `~/src/scss/utils/colors.mod.scss`
+  - `~/src/scss/atoms.mod.scss`
+  - `~/src/ts/Ana/Ana.ts`
+  - `~/src/ts/Components/Atoms/Surface/Surface.ts`
+  - `~/src/ts/Components/Particles/Particles.ts`
+  - `~/src/ts/types.ts`
+
+- `Added` a better implementation for Layout atom
+  - `~/src/ts/Components/Atoms/Layout/Layout.ts`
+  - `~/src/ts/types.ts`
+
+### **0.5.4**
 
 - `Added` the Layout atom
   - `~/src/scss/atoms.mod.scss`

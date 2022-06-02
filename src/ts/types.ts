@@ -8,7 +8,9 @@ export type MatchFunctionsDictionary = { [key: string]: Function }
 /**
  * This type represents the dictionary of attribte values inputed by the user.
  */
-export type AttributeValuesDictionary = { [key: string]: boolean | string | Function }
+export type AttributeValuesDictionary = {
+  [key: string]: boolean | string | Function
+}
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 /**
@@ -48,6 +50,47 @@ export type MatchAttributeValue = {
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 /**
- * 
+ *
  */
 export type PartTree = { [key: string]: HTMLElement }
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+/**
+ *
+ */
+export type ContrastValues = 'lowest' | 'low' | 'mid' | 'high' | 'highest'
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+/**
+ *
+ */
+export type ColorValues =
+  | 'red'
+  | 'violet'
+  | 'blue'
+  | 'cyan'
+  | 'green'
+  | 'lime'
+  | 'yellow'
+  | 'orange'
+  | 'grey'
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+/**
+ *
+ */
+export type LayoutType =
+  | 'full'
+  | 'center'
+  | 'focus'
+  | 'halves'
+  | 'thirds'
+  | 'quarters'
+  | 'right'
+  | 'left'
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+/**
+ *
+ */
+export type LayoutMargin = 'full' | 'single' | 'none'

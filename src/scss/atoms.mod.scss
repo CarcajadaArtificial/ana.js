@@ -80,8 +80,6 @@ p.label {
   @include txt-display;
 }
 
-
-
 @mixin chip($background: clr('blue', 'tint-lightest')) {
   @include txt-label;
   align-items: center;
@@ -288,52 +286,6 @@ p.label {
 }
 
 // -----------------------------------------------------------------------------------------------------
-@each $name, $shades in $colors {
-  .#{$name}-white {
-    background-color: clr($name, 'white');
-  }
-  .#{$name}-lightest {
-    background-color: clr($name, 'lightest');
-  }
-  .#{$name}-lighter {
-    background-color: clr($name, 'lighter');
-  }
-  .#{$name}-light {
-    background-color: clr($name, 'light');
-  }
-  .#{$name}-base {
-    background-color: clr($name, 'base');
-  }
-  .#{$name}-dark {
-    background-color: clr($name, 'dark');
-  }
-  .#{$name}-darker {
-    background-color: clr($name, 'darker');
-  }
-  .#{$name}-darkest {
-    background-color: clr($name, 'darkest');
-  }
-  .#{$name}-black {
-    background-color: clr($name, 'black');
-  }
-
-  @if ($name != 'grey') {
-    .#{$name}-tint-lightest {
-      background-color: clr($name, 'tint-lightest');
-    }
-    .#{$name}-tint-lighter {
-      background-color: clr($name, 'tint-lighter');
-    }
-    .#{$name}-tint-light {
-      background-color: clr($name, 'tint-light');
-    }
-    .#{$name}-shade {
-      background-color: clr($name, 'shade');
-    }
-  }
-}
-
-// -----------------------------------------------------------------------------------------------------
 @mixin layout-block(
   $trio: 3,
   $sextet: 6,
@@ -398,7 +350,7 @@ p.label {
   &-center {
     @include layout-block(3, 6, 8, 0, 0, 3);
   }
-  &-focus {
+  &-focus { 
     @include layout-block(3, 4, 6, 0, 2, 4);
   }
   &-halves {
@@ -428,6 +380,47 @@ p.label {
     }
     &-none {
       @include layout($offset-small: 0, $offset-desk: 0, $offset-wide: 0);
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------------------------------
+@each $color, $shade in $colors {
+  .#{$color} {
+    &-txt {
+      &.cont-hst {
+        color: clr($color, 'black')
+      }
+      &.cont-h {
+        color: clr($color, 'shade')
+      }
+      &.cont-m {
+        color: clr($color, 'darkest')
+      }
+      &.cont-l {
+        color: clr($color, 'darker')
+      }
+      &.cont-lst {
+        color: clr($color, 'dark')
+      }
+    }
+
+    &-bg {
+      &.cont-hst {
+        background-color: clr($color, 'white')
+      }
+      &.cont-h {
+        background-color: clr($color, 'tint-lightest')
+      }
+      &.cont-m {
+        background-color: clr($color, 'tint-lighter')
+      }
+      &.cont-l {
+        background-color: clr($color, 'tint-light')
+      }
+      &.cont-lst {
+        background-color: clr($color, 'lightest')
+      }
     }
   }
 }
