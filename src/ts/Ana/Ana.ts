@@ -5,6 +5,8 @@ import { AttributeValuesDictionary, MatchFunctionsDictionary } from '../types'
 import * as utils from '../utils'
 import { rLayout } from '../Components/Atoms/Layout/Layout'
 import { rSurface } from '../Components/Atoms/Surface/Surface'
+import { rBox } from '../Components/Atoms/Box/Box'
+import { rList } from '../Components/Atoms/List/List'
 // import { rDisplay } from '../Components/Atoms/Display/Display'
 // import { rTitle } from '../Components/Atoms/Title/Title'
 // import { rTestpage } from '../Components/Organisms/Testpage/Testpage'
@@ -96,7 +98,9 @@ export class Ana implements iAna {
     let elements = getElements(this.configuration)
     let atoms = {
       Layout: rLayout(elements, this.configuration),
-      Surface: rSurface(elements, this.configuration)
+      Surface: rSurface(elements, this.configuration),
+      Box: rBox(elements, this.configuration),
+      List: rList(elements, this.configuration),
       //   Display: rDisplay(elements, this.configuration),
       //   Title: rTitle(elements, this.configuration),
     }

@@ -2,7 +2,23 @@
 
 ## Unreleased
 
-### **0.5.5** (Latest)
+### **0.5.6** (Latest)
+
+- `Added` the Box atom
+  - `~/src/scss/atoms.mod.scss`
+  - `~/src/ts/Ana/Ana.ts`
+  - `~/src/ts/Components/Atoms/Box/Box.ts`
+  - `~/src/ts/Components/Particles/Particles.ts`
+  - `~/src/ts/types.ts`
+
+- `Added` the List atom
+  - `~/src/scss/atoms.mod.scss`
+  - `~/src/ts/Ana/Ana.ts`
+  - `~/src/ts/Components/Atoms/List/List.ts`
+  - `~/src/ts/Components/Particles/Particles.ts`
+  - `~/src/ts/types.ts`
+
+### **0.5.5**
 
 - `Added` the Surface atom
   - `~/src/scss/utils/colors.mod.scss`

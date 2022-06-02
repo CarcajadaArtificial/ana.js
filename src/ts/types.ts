@@ -94,3 +94,9 @@ export type LayoutType =
  *
  */
 export type LayoutMargin = 'full' | 'single' | 'none'
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+/**
+ *
+ */
+export type Spacing = 'triple' | 'double' | 'single' | 'none'

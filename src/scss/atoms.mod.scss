@@ -424,3 +424,44 @@ p.label {
     }
   }
 }
+
+// -----------------------------------------------------------------------------------------------------
+.a-Box {
+  &-m0 {
+    padding: unit-x(0)
+  }
+  &-m1 {
+    padding: unit-x($eighth)
+  }
+  &-m2 {
+    padding: unit-x($quarter)
+  }
+  &-m3 {
+    padding: unit-x($half)
+  }
+}
+
+// -----------------------------------------------------------------------------------------------------
+.a-List {
+  &-g0,
+  &-g1,
+  &-g2,
+  &-g3 {
+    display: flex;
+    flex-direction: column;
+  }
+
+  
+  &-g0 {
+    gap: unit-x(0)
+  }
+  &-g1 {
+    gap: unit-x($eighth)
+  }
+  &-g2 {
+    gap: unit-x($quarter)
+  }
+  &-g3 {
+    gap: unit-x($half)
+  }
+}
