@@ -2,7 +2,13 @@
 
 ## Unreleased
 
-### **0.5.6** (Latest)
+### **0.5.7** (Latest)
+
+- `Added` hotfix where untracked files didn't commit
+  - `~/src/ts/Components/Atoms/Box/Box.ts`
+  - `~/src/ts/Components/Atoms/List/List.ts`
+
+### **0.5.6**
 
 - `Added` the Box atom
   - `~/src/scss/atoms.mod.scss`
