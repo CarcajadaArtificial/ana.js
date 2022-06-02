@@ -344,7 +344,7 @@ p.label {
   $count: 'null'
 ) {
   @if ($count == 'null') {
-    .a-layout-block {
+    .a-Layout-block {
       @include column-span(
         $trio: $trio,
         $sextet: $sextet,
@@ -366,7 +366,7 @@ p.label {
       }
     }
   } @else {
-    .a-layout-block:nth-child(#{$count}) {
+    .a-Layout-block:nth-child(#{$count}) {
       @include column-span(
         $trio: $trio,
         $sextet: $sextet,
@@ -391,7 +391,7 @@ p.label {
 }
 
 // -----------------------------------------------------------------------------------------------------
-.a-layout {
+.a-Layout {
   &-full {
     @include layout-block;
   }

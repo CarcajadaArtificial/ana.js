@@ -2,7 +2,17 @@
 
 ## Unreleased
 
-### **0.5.3** (Latest)
+### **0.5.4** (Latest)
+
+- `Added` the Layout atom
+  - `~/src/scss/atoms.mod.scss`
+  - `~/src/ts/Components/Atoms/Layout/Layout.ts`
+  - `~/src/ts/Components/Particles/Particles.ts`
+
+- `Added` an Element render fix
+  - `~/src/Elements/Element/Element.ts`
+
+### **0.5.3**
 
 - `Added` cleaner code inside in the Element class.
   - `~/src/ts/Elements/Element/Element.ts`

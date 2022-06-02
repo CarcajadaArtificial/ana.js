@@ -89,9 +89,7 @@ export class Element {
       if (typeof child === 'function') {
         // Error: Recieved a function as an element's child. This is because the second parentesis was missed: a.div() => a.div()()
       } else {
-        typeof child === 'string'
-          ? checkedChildren.push(child)
-          : checkedChildren.push(child.cloneNode())
+        checkedChildren.push(child)
       }
     })
     return checkedChildren as [Node | string]
