@@ -1,3 +1,6 @@
+/**
+ * @module Atoms/Box
+ */
 import { iAnaConfiguration } from '../../../Ana/Ana.interface'
 import { Spacing, RenderDictionary } from '../../../types'
 import classNames from 'classnames'
@@ -12,7 +15,7 @@ import { BoxMarginClass } from '../../Particles/Particles'
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
- * This is an Ana Component, it is not used to render the HTMLElement itself. Instead, this class is used to create a render function based on the global configuration.
+ * 
  */
 export function rBox(
   a: RenderDictionary,

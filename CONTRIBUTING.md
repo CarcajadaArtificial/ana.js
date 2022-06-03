@@ -69,39 +69,40 @@ This scripts are the main
 ## Creating a Component
 
 ```typescript
-//   ___                     _     
-//  | __|_ ____ _ _ __  _ __| |___ 
-//  | _|\ \ / _` | '  \| '_ \ / -_)
-//  |___/_\_\__,_|_|_|_| .__/_\___|
-//                     |_|         
+/**
+ * @module Type/Example
+ */
+import { iAnaConfiguration } from '../../../Ana/Ana.interface'
+import { RenderDictionary } from '../../../types'
+import classNames from 'classnames'
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+// Example
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
- * @module Component/ComponentType/Example
- * Description
+ * 
  */
-import { AnaComponent, extendParameterDefaults } from '../../elements'
-// import { Component } from '../ComponentType/component'
-
-/**
- * Usage
- */
-export class Example extends AnaComponent {
-  render: Function = (param: iExample = {}): HTMLElement => {
-    const a = this.a
-
-    return a.div(a.span('Example'))
+export function rExample(
+  a: RenderDictionary,
+  config: iAnaConfiguration
+): Function {
+  return (...children: [Node | string | Function]): Function  => {
+    return (param: iExample = {}): HTMLElement => {
+      param = {
+        ...{ },
+        ...param,
+      }
+      let classes = {
+        Example: classNames().split(' ')
+      }
+  
+      return a.div(...classes.Example)(...children)
+    }
   }
 }
 
-/**
- * Properties
- */
-interface iExample {
-  // Properties of Example
-  [key: string]: tExample
-}
-
-type tExample = undefined // | Property types of Example
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+export interface iExample {}
 ```
 
 ```html

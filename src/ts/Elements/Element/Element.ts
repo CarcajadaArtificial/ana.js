@@ -1,3 +1,7 @@
+/**
+ * @module Ana/Element
+ */
+
 import {
   MatchFunctionsDictionary,
   AttributeValuesDictionary,
@@ -24,7 +28,6 @@ declare class Window {
  * What is the most important feature of Ana.js? Well, the whole point is to be able to render HTMLElements in a quick, readable, and standard way. This module is in charge of all of this. The `Element` class is made to store an HTML standard. Every instance of this class works as a building block for the whole standard.
  *
  * Now I've mentioned this before but what does 'standard' mean? It's a feature in the framework that helps you write code with higher quality. Who's standard? Definitely, *my* standard, but also *your* standard, or even *anyone's* standard, because you can override any block with your own instance of the Element class.
- * @module Ana/Render
  */
 export class Element {
   constructor(

@@ -18,6 +18,6 @@
       "src/ts/",
     ],
     "entryPointStrategy": "expand",
-    "out": "docs"
+    "out": "dist/docs"
   }
 }

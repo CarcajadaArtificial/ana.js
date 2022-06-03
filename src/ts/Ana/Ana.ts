@@ -7,9 +7,11 @@ import { rLayout } from '../Components/Atoms/Layout/Layout'
 import { rSurface } from '../Components/Atoms/Surface/Surface'
 import { rBox } from '../Components/Atoms/Box/Box'
 import { rList } from '../Components/Atoms/List/List'
-// import { rDisplay } from '../Components/Atoms/Display/Display'
-// import { rTitle } from '../Components/Atoms/Title/Title'
-// import { rTestpage } from '../Components/Organisms/Testpage/Testpage'
+import { rTitle } from '../Components/Atoms/Title/Title'
+import { rHeading } from '../Components/Atoms/Heading/Heading'
+import { rSubheading } from '../Components/Atoms/Subheading/Subheading'
+import { rParagraph } from '../Components/Atoms/Paragraph/Paragraph'
+import { rLabel } from '../Components/Atoms/Label/Label'
 
 declare global {
   interface HTMLElement {
@@ -101,8 +103,12 @@ export class Ana implements iAna {
       Surface: rSurface(elements, this.configuration),
       Box: rBox(elements, this.configuration),
       List: rList(elements, this.configuration),
+      Title: rTitle(elements, this.configuration),
+      Heading: rHeading(elements, this.configuration),
+      Subheading: rSubheading(elements, this.configuration),
+      Paragraph: rParagraph(elements, this.configuration),
+      Label: rLabel(elements, this.configuration),
       //   Display: rDisplay(elements, this.configuration),
-      //   Title: rTitle(elements, this.configuration),
     }
     // let organisms = {
     //   Testpage: rTestpage(elements, this.configuration)

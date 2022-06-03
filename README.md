@@ -13,7 +13,7 @@
 
 These are the things I’m currently working on and planning to release in the next few updates.
 
-- [ ] Add 
+- [ ] Add component testing server.
 - [ ] Component reactivity using JS Proxies.
 - [ ] Add SVG Elements support.
 - [ ] Publish the project as an npm package, and add publish process to `CONTRIBUTING.md`.
@@ -26,6 +26,7 @@ These are things that I will work on if I’m in the mood to spend time on tasks
 - [ ] Add a `setup` script for an easier initial setup.
 - [ ] Add server side rendering.
 - [ ] Add Chart, CoverArt, Mail, Record and Table Organisms.
+- [ ] Setup Unit Testing
 - [ ] Setup Github Actions for CI/CD
 
 ### Wild Dreams

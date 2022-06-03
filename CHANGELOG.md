@@ -2,7 +2,27 @@
 
 ## Unreleased
 
-### **0.5.7** (Latest)
+### **0.5.8** (Latest)
+
+- `Added` a better component example in `CONTRIBUTING.md`.
+  `~/CONTRIBUTING.md`
+
+- `Added` a Title, Heading, Subheading, Label and Paragraph atoms
+  `~/src/ts/Components/Atoms/Title/Title.ts`
+  `~/src/ts/Components/Atoms/Heading/Heading.ts`
+  `~/src/ts/Components/Atoms/Subheading/Subheading.ts`
+  `~/src/ts/Components/Atoms/Paragraph/Paragraph.ts`
+  `~/src/ts/Components/Atoms/Label/Label.ts`
+  `~/src/scss/atoms.mod.scss`
+  `~/src/ts/Ana/Ana.ts`
+
+- `Added` reset Element Surface, Box and List documentation comments
+  `~/src/ts/Components/Atoms/Box/Box.ts`
+  `~/src/ts/Components/Atoms/List/List.ts`
+  `~/src/ts/Components/Atoms/Surface/Surface.ts`
+  `~/src/ts/Elements/Element/Element.ts`
+
+### **0.5.7**
 
 - `Added` hotfix where untracked files didn't commit
   - `~/src/ts/Components/Atoms/Box/Box.ts`

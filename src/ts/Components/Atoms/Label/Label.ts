@@ -1,47 +1,47 @@
-//    _         _         _ 
-//   | |   __ _| |__  ___| |
-//   | |__/ _` | '_ \/ -_) |
-//   |____\__,_|_.__/\___|_|
+/**
+ * @module Atoms/Label
+ */
+import { iAnaConfiguration } from '../../../Ana/Ana.interface'
+import { RenderDictionary, ContrastValues, ColorValues } from '../../../types'
+import classNames from 'classnames'
+import { ColorContrastClass } from '../../Particles/Particles'
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+//   _          _          _ 
+//  | |    __ _| |__   ___| |
+//  | |   / _` | '_ \ / _ \ |
+//  | |__| (_| | |_) |  __/ |
+//  |_____\__,_|_.__/ \___|_|
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
- * @module Component/Atom/Label
+ * A Label is one of two base typographical elements, slightly smaller than a Paragraph. This element is used for short text, a few words at most. For multilinear text, use a Paragraph instead
  */
- import { AnaComponent } from '../../Components'
+export function rLabel(
+  a: RenderDictionary,
+  config: iAnaConfiguration
+): Function {
+  return (...children: [Node | string | Function]): Function => {
+    return (param: iLabel = {}): HTMLElement => {
+      // Default values
+      param = {
+        ...{ contrast: 'highest', color: 'grey' },
+        ...param,
+      }
+      let classes = {
+        Label: classNames(
+          'a-Label',
+          ColorContrastClass(param.color, param.contrast, 'txt')
+        ).split(' '),
+      }
 
- /**
-  * ## Description
-  * A Label is one of two base typographical elements, slightly smaller than a Paragraph.
-  * 
-  * ## Usage
-  * - This element is used for short text, a few words at most. For multilinear text, use a Paragraph instead
-  * 
-  * ## Anatomy
-  * 
-  * ### Properties
-  * - `text?` Every typographical element must be able to render custom text.
-  * 
-  * ### Styles
-  * - `font-size` 12px
-  * - `line-height` 16px
-  * - `font-weight` 400
-  * - `margin-bottom` 0px
-  * - `text-align` left
-  */
- export class Label extends AnaComponent {
-   render: Function = (param: iLabel = {}): HTMLElement => {
-     const a = this.a
-     //param = extendParameterDefaults<tLabel>(param, { text: 'Label' })
- 
-     return a
-       .div(a.span(param.text).has({ class: this.classRoot }))
-       .has({ class: `${this.classRoot}-container` })
-   }
- }
- 
- interface iLabel {
-   text?: string
-   [key: string]: tLabel
- }
- 
- type tLabel = undefined | string
+      return a.div(...classes.Label)(...children)
+    }
+  }
+}
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+export interface iLabel {
+  contrast?: ContrastValues
+  color?: ColorValues
+}

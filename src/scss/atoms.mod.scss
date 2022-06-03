@@ -47,31 +47,46 @@ p.label {
 // -----------------------------------------------------------------------------------------------------
 /// A Paragraph is one of two base typographical element, along with a Label. This element's use is for text that has multiple lines and more text after it, maybe a heading or another paragraph. If the content inside the element is a few words long, use a Label instead.
 .a-paragraph {
-  @include txt-paragraph;
+  font-size: font-size('paragraph');
+  line-height: line-height('paragraph');
+  font-weight: font-weight('regular');
+  margin-bottom: 0;
 }
 
 // -----------------------------------------------------------------------------------------------------
 /// A Label is one of two base typographical elements, along with a Paragraph. This element is used for short text, a few words at most. For multilinear text, use a Paragraph instead.
-.a-label {
-  @include txt-label;
+.a-Label {
+  font-size: font-size('label');
+  line-height: line-height('label');
+  font-weight: font-weight('regular');
+  margin-bottom: 0;
 }
 
 // -----------------------------------------------------------------------------------------------------
 /// A Subheading is the smallest of the three heading types, along with a Heading and Title. It is conventionally used for titles of subsections, multiple of these can be found inside a section.
-.a-subheading {
-  @include txt-subheading;
+.a-Subheading {
+  font-size: font-size('subheading');
+  line-height: line-height('subheading');
+  font-weight: font-weight('regular');
+  margin-bottom: 0;
 }
 
 // -----------------------------------------------------------------------------------------------------
 /// A Heading is the medium-sized heading of the three heading types, the other two being the Subheading and the Title. It is conventionally used for titles of page sections, multiple of these can be found inside a single page.
-.a-heading {
-  @include txt-heading;
+.a-Heading {
+  font-size: font-size('heading');
+  line-height: line-height('heading');
+  font-weight: font-weight('bold');
+  margin-bottom: 0;
 }
 
 // -----------------------------------------------------------------------------------------------------
 /// A Title is the largest heading of the three heading types, the other two being the Heading and Subheading. It is conventionally used for page title and only one can be found, usually at the top of the page.
-.a-title {
-  @include txt-title;
+.a-Title {
+  font-size: font-size('title');
+  line-height: line-height('title');
+  font-weight: font-weight('bold');
+  margin-bottom: 0;
 }
 
 // -----------------------------------------------------------------------------------------------------
@@ -450,7 +465,6 @@ p.label {
     display: flex;
     flex-direction: column;
   }
-
   
   &-g0 {
     gap: unit-x(0)
