@@ -34,8 +34,18 @@ p.label {
 // -----------------------------------------------------------------------------------------------------
 /// A Link is an element that will take you to another html page or to perform a lesser command than a button would do. A Link must clearly explain where the link will take you to, and this information must be undertandable out of context. Limit the label to two words at most, and these shoulnd't be generic or vague. Open in a new window only in cases when opening a document with different format e.g. PDF.
 .a-link {
-  @include no-select;
-  @include txt-link;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: font-weight('regular');
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:visited {
+    font-style: italic;
+    color: clr('red', 'base')
+  }
 }
 
 // -----------------------------------------------------------------------------------------------------

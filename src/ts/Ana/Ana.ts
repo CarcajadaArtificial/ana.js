@@ -12,6 +12,7 @@ import { rHeading } from '../Components/Atoms/Heading/Heading'
 import { rSubheading } from '../Components/Atoms/Subheading/Subheading'
 import { rParagraph } from '../Components/Atoms/Paragraph/Paragraph'
 import { rLabel } from '../Components/Atoms/Label/Label'
+import { rLink } from '../Components/Atoms/Link/Link'
 
 declare global {
   interface HTMLElement {
@@ -108,6 +109,7 @@ export class Ana implements iAna {
       Subheading: rSubheading(elements, this.configuration),
       Paragraph: rParagraph(elements, this.configuration),
       Label: rLabel(elements, this.configuration),
+      Link: rLink(elements, this.configuration),
       //   Display: rDisplay(elements, this.configuration),
     }
     // let organisms = {

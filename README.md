@@ -4,8 +4,7 @@
 
 ### This version
 
-- [ ] Add a CONTRIBUTING.md file with setup instructions, and correct feature development process.
-- [ ] Add Button, Input, Chip, and Card molecules.
+- [ ] Add Button, Input, Chip molecules
 - [ ] Add Page and TestPage organisms.
 - [ ] Add server running instructions, testing and how to add a new component inside `CONTRIBUTING.md`.
 
@@ -26,6 +25,7 @@ These are things that I will work on if I’m in the mood to spend time on tasks
 - [ ] Add a `setup` script for an easier initial setup.
 - [ ] Add server side rendering.
 - [ ] Add Chart, CoverArt, Mail, Record and Table Organisms.
+- [ ] Add a CONTRIBUTING.md file with setup instructions, and correct feature development process.
 - [ ] Setup Unit Testing
 - [ ] Setup Github Actions for CI/CD
 

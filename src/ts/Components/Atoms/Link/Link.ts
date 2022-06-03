@@ -1,28 +1,37 @@
-//    _    _      _   
-//   | |  (_)_ _ | |__
-//   | |__| | ' \| / /
-//   |____|_|_||_|_\_\
-//
-////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
- * @module Atoms
+ * @module Type/Link
  */
- import { AnaComponent } from '../../Components'
-
- /**
-  * Link Class
-  */
-  export class Link extends AnaComponent {
-   render: Function = (param: iLink = {}): HTMLElement => {
-     const a = this.a
-     //param = extendParameterDefaults<tLink>(param, {})
+ import { iAnaConfiguration } from '../../../Ana/Ana.interface'
+ import { RenderDictionary } from '../../../types'
+ import classNames from 'classnames'
  
-     return a.div()
+ //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ // Link
+ ////////////////////////////////////////////////////////////////////////////////////////////////////////
+ /**
+  * 
+  */
+ export function rLink(
+   a: RenderDictionary,
+   config: iAnaConfiguration
+ ): Function {
+   return (...children: [Node | string | Function]): Function  => {
+     return (param: iLink = {}): HTMLElement => {
+       param = {
+         ...{ href: '#' },
+         ...param,
+       }
+       let classes = {
+         Link: classNames('a-Link').split(' ')
+       }
+   
+       return a.a(...classes.Link)(...children).has({href: param.href})
+     }
    }
  }
- 
- interface iLink {
-   [key: string]: tLink
- }
- 
- type tLink = undefined
+
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+export interface iLink {
+  href? : string
+}
