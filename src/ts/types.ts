@@ -100,3 +100,16 @@ export type LayoutMargin = 'full' | 'single' | 'none'
  *
  */
 export type Spacing = 'triple' | 'double' | 'single' | 'none'
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+/**
+ *
+ */
+// prettier-ignore
+export type TextElements = | 'blockquote' | 'dd' | 'div' | 'dl' | 'dt' | 'figcaption' | 'figure' | 'hr' | 'li' | 'ol' | 'p' | 'pre' | 'ul' | 'a' | 'abbr' | 'b' | 'bdi' | 'cite' | 'code' | 'data' | 'dfn' | 'em' | 'i' | 'kbd' | 'mark' | 'q' | 'rp' | 'rt' | 'ruby' | 's' | 'samp' | 'small' | 'span' | 'strong' | 'sub' | 'sup' | 'time' | 'u' | 'var' | 'wbr'
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+/**
+ *
+ */
+export type AddClassDictionary = {[key:string]: string}

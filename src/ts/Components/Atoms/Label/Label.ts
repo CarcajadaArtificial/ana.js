@@ -2,12 +2,18 @@
  * @module Atoms/Label
  */
 import { iAnaConfiguration } from '../../../Ana/Ana.interface'
-import { RenderDictionary, ContrastValues, ColorValues } from '../../../types'
+import {
+  RenderDictionary,
+  ContrastValues,
+  ColorValues,
+  TextElements,
+  AddClassDictionary,
+} from '../../../types'
 import classNames from 'classnames'
 import { ColorContrastClass } from '../../Particles/Particles'
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-//   _          _          _ 
+//   _          _          _
 //  | |    __ _| |__   ___| |
 //  | |   / _` | '_ \ / _ \ |
 //  | |__| (_| | |_) |  __/ |
@@ -25,17 +31,20 @@ export function rLabel(
     return (param: iLabel = {}): HTMLElement => {
       // Default values
       param = {
-        ...{ contrast: 'highest', color: 'grey' },
+        ...{ contrast: 'highest', color: 'grey', tag: 'span', addClass: {} },
         ...param,
       }
       let classes = {
         Label: classNames(
           'a-Label',
-          ColorContrastClass(param.color, param.contrast, 'txt')
+          ColorContrastClass(param.color, param.contrast, 'txt'),
+          param.addClass ? param.addClass.Label : ''
         ).split(' '),
       }
 
-      return a.div(...classes.Label)(...children)
+      return param.tag
+        ? a[param.tag](...classes.Label)(...children)
+        : a.span(...classes.Label)(...children)
     }
   }
 }
@@ -44,4 +53,6 @@ export function rLabel(
 export interface iLabel {
   contrast?: ContrastValues
   color?: ColorValues
+  tag?: TextElements
+  addClass?: AddClassDictionary
 }

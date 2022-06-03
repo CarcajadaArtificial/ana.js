@@ -2,7 +2,19 @@
 
 ## Unreleased
 
-### **0.5.9** (Latest)
+### **0.5.10** (Latest)
+
+- `Added` the Checkbox molecule
+  - `~/src/ts/Components/Molecules/Checkbox/Checkbox.ts`
+  - `~/src/ts/Ana/Ana.ts`
+  - `~/src/ts/types.ts`
+  - `~/src/scss/molecules.mod.scss`
+  - `~/src/scss/style.scss`
+
+- `Added` the addClass and tag properties to the Label atom.
+  - `~/src/ts/Component/Atoms/Label/Label.ts`
+
+### **0.5.9**
 
 - `Added` the Link atom
   - `~/src/ts/Components/Atoms/Link.ts`

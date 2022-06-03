@@ -23,7 +23,6 @@ These are things that I will work on if I’m in the mood to spend time on tasks
 
 - [ ] Add a Standard Override Dictionary in Ana instance.
 - [ ] Add a `setup` script for an easier initial setup.
-- [ ] Add server side rendering.
 - [ ] Add Chart, CoverArt, Mail, Record and Table Organisms.
 - [ ] Add a CONTRIBUTING.md file with setup instructions, and correct feature development process.
 - [ ] Setup Unit Testing
@@ -33,6 +32,7 @@ These are things that I will work on if I’m in the mood to spend time on tasks
 
 These are things that I won’t be worrying about until the *time comes*.
 
+- [ ] Add server side rendering render content depending on the user's permissions.
 - [ ] Create own iconography.
 - [ ] Generate a `.md` file for every directory containing `.ts` files containing all tsdoc information contained in that directoy.
 - [ ] Generate a documentation website basted on all `.md` files generated, and publish it.
