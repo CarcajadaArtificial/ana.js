@@ -2,9 +2,15 @@
  * @module Atoms/Surface
  */
 import { iAnaConfiguration } from '../../../Ana/Ana.interface'
-import { ColorValues, ContrastValues, RenderDictionary } from '../../../types'
+import {
+  AddClassDictionary,
+  ColorValues,
+  ContrastValues,
+  RenderDictionary,
+  Spacing,
+} from '../../../types'
 import classNames from 'classnames'
-import { ColorContrastClass } from '../../Particles/Particles'
+import { ColorContrastClass, SpacingClass } from '../../Particles/Particles'
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 //   ____              __
@@ -15,7 +21,7 @@ import { ColorContrastClass } from '../../Particles/Particles'
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
- * 
+ *
  */
 export function rSurface(
   a: RenderDictionary,
@@ -25,14 +31,25 @@ export function rSurface(
     return (param: iSurface = {}): HTMLElement => {
       // Default values
       param = {
-        ...{ contrast: 'highest', background: 'grey' },
+        ...{
+          contrast: 'highest',
+          background: 'grey',
+          round: 'sgl',
+          elevation: 'sgl',
+          addClass: {},
+        },
         ...param,
       }
       let classes = {
-        surface: classNames(ColorContrastClass(param.background, param.contrast, 'bg')).split(' '),
+        Surface: classNames(
+          ColorContrastClass(param.background, param.contrast, 'bg'),
+          SpacingClass('r', param.round),
+          SpacingClass('l', param.elevation),
+          param.addClass ? param.addClass.Surface : ''
+        ).split(' '),
       }
 
-      return a.div(...classes.surface)(...children)
+      return a.div(...classes.Surface)(...children)
     }
   }
 }
@@ -41,6 +58,7 @@ export function rSurface(
 export interface iSurface {
   background?: ColorValues
   contrast?: ContrastValues
-  // round?:
-  // elevation?
+  round?: Spacing
+  elevation?: Spacing
+  addClass?: AddClassDictionary
 }

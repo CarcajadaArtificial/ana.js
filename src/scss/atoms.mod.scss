@@ -410,6 +410,7 @@ p.label {
 }
 
 // -----------------------------------------------------------------------------------------------------
+// Color Contrast
 @each $color, $shade in $colors {
   .#{$color} {
     &-txt {
@@ -451,41 +452,90 @@ p.label {
 }
 
 // -----------------------------------------------------------------------------------------------------
-.a-Box {
-  &-m0 {
+// Roundness
+.r {
+  &-non {
+    border-radius: 0;
+  }
+  &-sgl {
+    border-radius: unit-x($twelfth);
+  }
+  &-dbl {
+    border-radius: unit-x($sixth);
+  }
+  &-tpl {
+    border-radius: unit-x($third);
+  }
+}
+
+// -----------------------------------------------------------------------------------------------------
+.m {
+  &-non {
+    margin: unit-x(0)
+  }
+  &-sgl {
+    margin: unit-x($eighth)
+  }
+  &-dbl {
+    margin: unit-x($quarter)
+  }
+  &-tpl {
+    margin: unit-x($half)
+  }
+}
+
+// -----------------------------------------------------------------------------------------------------
+// Padding
+.p {
+  &-non {
     padding: unit-x(0)
   }
-  &-m1 {
+  &-sgl {
     padding: unit-x($eighth)
   }
-  &-m2 {
+  &-dbl {
     padding: unit-x($quarter)
   }
-  &-m3 {
+  &-tpl {
     padding: unit-x($half)
   }
 }
 
 // -----------------------------------------------------------------------------------------------------
-.a-List {
-  &-g0,
-  &-g1,
-  &-g2,
-  &-g3 {
-    display: flex;
-    flex-direction: column;
+// Elevation
+.l {
+  &-non {
+    box-shadow: none;
   }
-  
-  &-g0 {
+  &-sgl {
+    box-shadow: 0px 1px 4px -2px clr('grey', 'black');
+  }
+  &-dbl {
+    box-shadow: 0px 2px 8px -4px clr('grey', 'black');
+  }
+  &-tpl {
+    box-shadow: 0px 4px 16px -8px clr('grey', 'black');
+  }
+}
+
+// -----------------------------------------------------------------------------------------------------
+.g { 
+  &-non {
     gap: unit-x(0)
   }
-  &-g1 {
+  &-sgl {
     gap: unit-x($eighth)
   }
-  &-g2 {
+  &-dbl {
     gap: unit-x($quarter)
   }
-  &-g3 {
+  &-tpl {
     gap: unit-x($half)
   }
+}
+
+// -----------------------------------------------------------------------------------------------------
+.a-List {
+  display: flex;
+  flex-direction: column;
 }

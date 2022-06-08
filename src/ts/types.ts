@@ -99,7 +99,7 @@ export type LayoutMargin = 'full' | 'single' | 'none'
 /**
  *
  */
-export type Spacing = 'triple' | 'double' | 'single' | 'none'
+export type Spacing = 'tpl' | 'dbl' | 'sgl' | 'non'
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 /**

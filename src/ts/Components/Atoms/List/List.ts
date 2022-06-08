@@ -4,7 +4,7 @@
 import { iAnaConfiguration } from '../../../Ana/Ana.interface'
 import { Spacing, RenderDictionary } from '../../../types'
 import classNames from 'classnames'
-import { ListGapClass } from '../../Particles/Particles'
+import { SpacingClass } from '../../Particles/Particles'
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 //   _     _     _   
@@ -25,11 +25,11 @@ export function rList(
     return (param: iList = {}): HTMLElement => {
       // Default values
       param = {
-        ...{ gap: 'single' },
+        ...{ gap: 'sgl' },
         ...param,
       }
       let classes = {
-        box: classNames(ListGapClass(param.gap)).split(' ')
+        box: classNames(`a-List`, SpacingClass('g', param.gap)).split(' ')
       }
   
       return a.div(...classes.box)(...children)

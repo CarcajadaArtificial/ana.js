@@ -2,7 +2,34 @@
 
 ## Unreleased
 
-### **0.5.10** (Latest)
+### **0.5.11** (Latest)
+
+- `Added` the Testpage organism.
+  - `~/src/ts/Components/Organisms/Testpage/Testpage.ts`
+  - `~/src/ts/Ana/Ana.ts`
+  - `~/scss/organisms.mod.scss`
+
+- `Added` the round, elevation and addClass properties to the Surface atom
+  - `~/src/Components/Atoms/Surface/Surface.ts`
+  - `~/src/Components/Atoms/Surface/Surface.test.html`
+
+- `Added` standarized Spacing classes for roundness, margin, padding, and gap.
+  - `~/src/scss/atoms.mod.scss`
+  - `~/src/ts/types.ts`
+  - `~/src/ts/Components/Atoms/Box/Box.ts`
+  - `~/src/ts/Components/Atoms/List/List.ts`
+  - `~/src/ts/Components/Particles/Particles.ts`
+
+- `Added` the Test atom.
+  - `~/src/ts/Components/Molecules/Test/Test.ts`
+  - `~/src/ts/Ana/Ana.ts`
+
+- `Added` a fix for the testing server.
+  - `~/tsconfig.json`
+  - `~/test/app.ts`
+  - `~/test/index.html`
+
+### **0.5.10**
 
 - `Added` the Checkbox molecule
   - `~/src/ts/Components/Molecules/Checkbox/Checkbox.ts`

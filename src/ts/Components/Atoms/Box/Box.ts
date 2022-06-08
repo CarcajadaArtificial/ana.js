@@ -4,7 +4,7 @@
 import { iAnaConfiguration } from '../../../Ana/Ana.interface'
 import { Spacing, RenderDictionary } from '../../../types'
 import classNames from 'classnames'
-import { BoxMarginClass } from '../../Particles/Particles'
+import { SpacingClass } from '../../Particles/Particles'
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 //   ____            
@@ -25,11 +25,11 @@ export function rBox(
     return (param: iBox = {}): HTMLElement => {
       // Default values
       param = {
-        ...{ margin: 'single' },
+        ...{ padding: 'sgl' },
         ...param,
       }
       let classes = {
-        box: classNames(BoxMarginClass(param.margin)).split(' ')
+        box: classNames('a-Box', SpacingClass('p', param.padding)).split(' ')
       }
   
       return a.div(...classes.box)(...children)
@@ -39,5 +39,5 @@ export function rBox(
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 export interface iBox {
-  margin?: Spacing
+  padding?: Spacing
 }

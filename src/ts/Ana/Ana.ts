@@ -14,6 +14,8 @@ import { rParagraph } from '../Components/Atoms/Paragraph/Paragraph'
 import { rLabel } from '../Components/Atoms/Label/Label'
 import { rLink } from '../Components/Atoms/Link/Link'
 import { rCheckbox } from '../Components/Molecules/Checkbox/Checkbox'
+import { rTestpage } from '../Components/Organisms/Testpage/Testpage'
+import { rTest } from '../Components/Molecules/Test/Test'
 
 declare global {
   interface HTMLElement {
@@ -114,12 +116,13 @@ export class Ana implements iAna {
     }
     let molecules = {
       Checkbox: rCheckbox(elements, this.configuration),
+      Test: rTest(elements, this.configuration),
     }
-    // let organisms = {
-    //   Testpage: rTestpage(elements, this.configuration)
-    // }
-    // return { ...elements, ...atoms, ...organisms }
-    return { ...elements, ...atoms, ...molecules}
+    let organisms = {
+      Testpage: rTestpage(elements, this.configuration)
+    }
+    
+    return { ...elements, ...atoms, ...molecules, ...organisms}
   }
 
   /**

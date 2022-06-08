@@ -1,6 +1,6 @@
 {
   "name": "ana.js",
-  "version": "0.5.10",
+  "version": "0.5.11",
   "description": "Anarchy",
   "main": "gulpfile.js",
   "scripts": {
