@@ -16,6 +16,7 @@ import { rLink } from '../Components/Atoms/Link/Link'
 import { rCheckbox } from '../Components/Molecules/Checkbox/Checkbox'
 import { rTestpage } from '../Components/Organisms/Testpage/Testpage'
 import { rTest } from '../Components/Molecules/Test/Test'
+import { rColorpage } from '../Components/Pages/Colorpage/Colorpage'
 
 declare global {
   interface HTMLElement {
@@ -37,12 +38,12 @@ declare class Window {
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
- * 
+ *
  * @module Ana
  */
 export class Ana implements iAna {
   /**
-   * 
+   *
    */
   configuration: iAnaConfiguration = {
     standardVerificationMode: true,
@@ -54,9 +55,9 @@ export class Ana implements iAna {
   eId: Function = utils.eId
 
   /**
-   * 
+   *
    */
-   private has = function (
+  private has = function (
     this: HTMLElement,
     attributes: AttributeValuesDictionary
   ): HTMLElement {
@@ -69,7 +70,7 @@ export class Ana implements iAna {
   }
 
   /**
-   * 
+   *
    */
   private setAttributes = function (
     this: HTMLElement,
@@ -80,7 +81,7 @@ export class Ana implements iAna {
       if (typeof attribute === 'string') {
         this.setAttribute(attributeName, attribute)
       } else if (typeof attribute === 'boolean') {
-        if(attribute === true) {
+        if (attribute === true) {
           this.setAttribute(attributeName, '')
         } else {
           this.removeAttribute(attributeName)
@@ -96,7 +97,7 @@ export class Ana implements iAna {
   }
 
   /**
-   * 
+   *
    */
   render: Function = (): RenderDictionary => {
     HTMLElement.prototype.has = this.has
@@ -119,14 +120,17 @@ export class Ana implements iAna {
       Test: rTest(elements, this.configuration),
     }
     let organisms = {
-      Testpage: rTestpage(elements, this.configuration)
+      Testpage: rTestpage(elements, this.configuration),
     }
-    
-    return { ...elements, ...atoms, ...molecules, ...organisms}
+    let pages = {
+      Colorpage: rColorpage(elements, this.configuration),
+    }
+
+    return { ...elements, ...atoms, ...molecules, ...organisms, ...pages }
   }
 
   /**
-   * 
+   *
    */
   constructor(configuration: iAnaConfiguration = {}) {
     this.configuration = { ...this.configuration, ...configuration }

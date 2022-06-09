@@ -2,7 +2,26 @@
 
 ## Unreleased
 
-### **0.5.11** (Latest)
+### **0.5.12** (Latest)
+
+- `Added` the Colorpage organism. (for testing)
+  - `~/src/ts/Ana/Ana.ts`
+  - `~/src/ts/Components/Pages/Colorpage`
+
+- `Added` the Colors testing page.
+  - `~/test/app.ts`
+  - `~/test/colors.html`
+
+- `Added` css variable functionality.
+  - `~/src/scss/variables/colors.scss`
+  - `~/src/scss/utils/colors.mod.scss`
+  - `~/src/scss/style.scss`
+
+- `Added` basic Page organism.
+  - `~/src/ts/Components/Organism/Page/Page.ts`
+  - `~/src/scss/organisms.mod.scss`
+
+### **0.5.11**
 
 - `Added` the Testpage organism.
   - `~/src/ts/Components/Organisms/Testpage/Testpage.ts`

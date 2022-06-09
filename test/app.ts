@@ -31,6 +31,12 @@ app.get('/', (req: Request, res: Response, next: NextFunction) => {
   res.sendFile(path.join(__dirname, '/index.html'))
 })
 
+// Color Page
+app.get('/Colors', (req: Request, res: Response, next: NextFunction) => {
+  res.sendFile(path.join(__dirname, '/colors.html'))
+})
+
+// Component Pages
 app.get('/:componentType/:componentName', (req, res) => {
   const type = req.params.componentType
   const name = req.params.componentName

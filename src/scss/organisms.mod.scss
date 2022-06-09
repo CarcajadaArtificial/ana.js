@@ -471,6 +471,12 @@
 }
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+.a-Page {
+  padding: unit-x(2) 0;
+  min-height: 100vh;
+}
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 .a-Testpage {
   padding-top: unit-x(2);
   min-height: 100vh;

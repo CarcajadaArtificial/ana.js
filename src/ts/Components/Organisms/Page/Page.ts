@@ -1,33 +1,42 @@
-//   ___               
-//  | _ \__ _ __ _ ___ 
-//  |  _/ _` / _` / -_)
-//  |_| \__,_\__, \___|
-//           |___/     
+/**
+ * @module Organisms/Page
+ */
+import { iAnaConfiguration } from '../../../Ana/Ana.interface'
+import { RenderDictionary } from '../../../types'
+import classNames from 'classnames'
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+//   ____                  
+//  |  _ \ __ _  __ _  ___ 
+//  | |_) / _` |/ _` |/ _ \
+//  |  __/ (_| | (_| |  __/
+//  |_|   \__,_|\__, |\___|
+//              |___/      
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
- * @module Component/Organism/Page
- * Description
+ *
  */
- //import { AnaComponent, extendParameterDefaults } from '../../elements'
- // import { Component } from '../ComponentType/component'
- 
- /**
-  * Usage
-  */
- export class Page {
-   render: Function = (param: iPage = {}): void => {
-     //const a = this.a
- 
-     //return a.div(a.span('Page'))
-   }
- }
- 
- /**
-  * Properties
-  */
- interface iPage {
-   // Properties of Page
-   [key: string]: tPage
- }
- 
- type tPage = undefined // | Property types of Page
+export function rPage(
+  a: RenderDictionary,
+  config: iAnaConfiguration
+): Function {
+  return (...children: [Node | string | Function]): Function => {
+    return (param: iPage = {}): HTMLElement => {
+      param = {
+        ...{},
+        ...param,
+      }
+      let classes = {
+        Page: classNames('a-Page').split(' '),
+      }
+
+      return a.div(...classes.Page)(...children)
+    }
+  }
+}
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+export interface iPage {
+  // prependToBody?: boolean
+  // type?: PageTypeDictionary
+}
