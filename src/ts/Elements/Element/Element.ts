@@ -1,5 +1,5 @@
 /**
- * @module Ana/Element
+ * @module Element
  */
 
 import {

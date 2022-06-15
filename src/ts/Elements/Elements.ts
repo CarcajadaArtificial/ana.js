@@ -1,3 +1,6 @@
+/**
+ * @module Element/getElements
+ */
 import { AttList } from './Element/Attribute/AttList'
 import { AttBoolean } from './Element/Attribute/AttBoolean'
 import { AttDeprecated } from './Element/Attribute/AttDeprecated'
@@ -19,7 +22,6 @@ import { RenderDictionary } from '../types'
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
  * This dictionary is a compendium that contains instances of all of the `Element` and `Attribute` classes. Here lies what it means to be correct or incorrect in accordance to me. I studied every HTML reference I could find, it ended with this standard.
- * @module Ana/Render
  */
 export function getElements(configuration: iAnaConfiguration): RenderDictionary {
 

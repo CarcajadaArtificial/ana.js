@@ -1,11 +1,10 @@
 /**
- * @module Molecules/Checkbox
+ * @module Components/Molecules/Checkbox
  */
 import { iAnaConfiguration } from '../../../Ana/Ana.interface'
 import { RenderDictionary } from '../../../types'
 import classNames from 'classnames'
 import { rLabel } from '../../Atoms/Label/Label'
-import { Input } from '../Input/Input'
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 //    ____ _               _    _

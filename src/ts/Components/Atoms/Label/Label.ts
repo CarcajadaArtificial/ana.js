@@ -1,5 +1,5 @@
 /**
- * @module Atoms/Label
+ * @module Components/Atoms/Label
  */
 import { iAnaConfiguration } from '../../../Ana/Ana.interface'
 import {

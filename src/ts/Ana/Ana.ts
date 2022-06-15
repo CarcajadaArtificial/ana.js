@@ -1,24 +1,10 @@
+/**
+ * @module Ana
+ */
 import { iAna, iAnaConfiguration } from './Ana.interface'
-import { getElements } from '../Elements/Elements'
-import { RenderDictionary, State } from '../types'
-import { AttributeValuesDictionary, MatchFunctionsDictionary } from '../types'
-import * as utils from '../utils'
-import { rLayout } from '../Components/Atoms/Layout/Layout'
-import { rSurface } from '../Components/Atoms/Surface/Surface'
-import { rBox } from '../Components/Atoms/Box/Box'
-import { rList } from '../Components/Atoms/List/List'
-import { rTitle } from '../Components/Atoms/Title/Title'
-import { rHeading } from '../Components/Atoms/Heading/Heading'
-import { rSubheading } from '../Components/Atoms/Subheading/Subheading'
-import { rParagraph } from '../Components/Atoms/Paragraph/Paragraph'
-import { rLabel } from '../Components/Atoms/Label/Label'
-import { rLink } from '../Components/Atoms/Link/Link'
-import { rCheckbox } from '../Components/Molecules/Checkbox/Checkbox'
-import { rTestpage } from '../Components/Organisms/Testpage/Testpage'
-import { rTest } from '../Components/Molecules/Test/Test'
-import { rColorpage } from '../Components/Pages/Colorpage/Colorpage'
-import { rPage } from '../Components/Organisms/Page/Page'
+import { RenderDictionary, State, AttributeValuesDictionary, MatchFunctionsDictionary } from '../types'
 import { Observable } from '../Observable'
+import { createRenderDictionary } from '../Components/Components'
 
 declare global {
   interface HTMLElement {
@@ -40,129 +26,96 @@ declare class Window {
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
- *
- * @module Ana
+ * Home of the Ana framework.
  */
 export class Ana implements iAna {
   /**
-   *
+   * This object configures the framework's general functions.
    */
   configuration: iAnaConfiguration = {
     standardVerificationMode: true,
   }
 
   /**
-   *
+   * This private observable is in charge of making the UI react to changes in the state.
    */
-  eId: Function = utils.eId
+  private obs: Observable = new Observable()
 
   /**
-   * 
+   * This object functions as storage for the state up to the latest changes.
    */
-  obs: Observable = new Observable()
+  private state: State = {}
 
   /**
-   * 
+   * This function creates the starting app for the responsive rendering of a page.
    */
-  state: State = {}
-
-  /**
-   * 
-   */
-  app(state: State, render: Function):void {
+  app(state: State, render: Function): void {
     this.obs.subscribe(render)
     this.up(state)
   }
 
-
   /**
-   * 
+   * This function updates the state and emits the change to the observable.
    */
   up(state: State) {
-    this.state = {...this.state, ...state}
+    this.state = { ...this.state, ...state }
     this.obs.emit(this.state)
   }
 
   /**
-   *
+   * This function creates a dictionary of render functions for HTMLElements and UI components from the Ana framework.
    */
-  private has = function (
-    this: HTMLElement,
-    attributes: AttributeValuesDictionary
-  ): HTMLElement {
-    let tagName = this.tagName.toLowerCase()
-    if (Window.matchDictionary[tagName](attributes)) {
-      return this.setAttributes(attributes)
-    } else {
-      return this
-    }
-  }
+  render: Function = (): RenderDictionary => createRenderDictionary(this.configuration)
 
   /**
-   *
-   */
-  private setAttributes = function (
-    this: HTMLElement,
-    attributes: AttributeValuesDictionary
-  ): HTMLElement {
-    Object.keys(attributes).forEach((attributeName: string) => {
-      let attribute = attributes[attributeName]
-      if (typeof attribute === 'string') {
-        this.setAttribute(attributeName, attribute)
-      } else if (typeof attribute === 'boolean') {
-        if (attribute === true) {
-          this.setAttribute(attributeName, '')
-        } else {
-          this.removeAttribute(attributeName)
-        }
-      } else {
-        let listenerFunction: Function = attribute
-        this.addEventListener(attributeName, (event: Event) => {
-          listenerFunction(event)
-        })
-      }
-    })
-    return this
-  }
-
-  /**
-   *
-   */
-  render: Function = (): RenderDictionary => {
-    HTMLElement.prototype.setAttributes = this.setAttributes
-    HTMLElement.prototype.has = this.has
-    let elements = getElements(this.configuration)
-    let atoms = {
-      Layout: rLayout(elements, this.configuration),
-      Surface: rSurface(elements, this.configuration),
-      Box: rBox(elements, this.configuration),
-      List: rList(elements, this.configuration),
-      Title: rTitle(elements, this.configuration),
-      Heading: rHeading(elements, this.configuration),
-      Subheading: rSubheading(elements, this.configuration),
-      Paragraph: rParagraph(elements, this.configuration),
-      Label: rLabel(elements, this.configuration),
-      Link: rLink(elements, this.configuration),
-    }
-    let molecules = {
-      Checkbox: rCheckbox(elements, this.configuration),
-      Test: rTest(elements, this.configuration),
-    }
-    let organisms = {
-      Testpage: rTestpage(elements, this.configuration),
-      Page: rPage(elements, this.configuration),
-    }
-    let pages = {
-      Colorpage: rColorpage(elements, this.configuration),
-    }
-
-    return { ...elements, ...atoms, ...molecules, ...organisms, ...pages }
-  }
-
-  /**
-   *
+   * This function instantiates the framework.
    */
   constructor(configuration: iAnaConfiguration = {}) {
     this.configuration = { ...this.configuration, ...configuration }
+    HTMLElement.prototype.setAttributes = setAttributes
+    HTMLElement.prototype.has = has
   }
+}
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+/**
+ * This function applies HTMLElement.prototype.setAttributes according to the HTMLElement standard dictionary inside of Window.matchDictionary.
+ */
+const has = function (
+  this: HTMLElement,
+  attributes: AttributeValuesDictionary
+): HTMLElement {
+  let tagName = this.tagName.toLowerCase()
+  if (Window.matchDictionary[tagName](attributes)) {
+    return this.setAttributes(attributes)
+  } else {
+    return this
+  }
+}
+
+/**
+ * This function extends HTMLElement.prototype.setAttribute to support a dictionary of attributes instead of setting them one by one.
+ */
+const setAttributes = function (
+  this: HTMLElement,
+  attributes: AttributeValuesDictionary
+): HTMLElement {
+  Object.keys(attributes).forEach((attributeName: string) => {
+    let attribute = attributes[attributeName]
+    if (typeof attribute === 'string') {
+      this.setAttribute(attributeName, attribute)
+    } else if (typeof attribute === 'boolean') {
+      if (attribute === true) {
+        this.setAttribute(attributeName, '')
+      } else {
+        this.removeAttribute(attributeName)
+      }
+    } else {
+      let listenerFunction: Function = attribute
+      this.addEventListener(attributeName, (event: Event) => {
+        listenerFunction(event)
+      })
+    }
+  })
+  return this
 }

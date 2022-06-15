@@ -1,5 +1,5 @@
 /**
- * @module Molecules/Test
+ * @module Components/Molecules/Test
  */
 import { iAnaConfiguration } from '../../../Ana/Ana.interface'
 import { RenderDictionary } from '../../../types'

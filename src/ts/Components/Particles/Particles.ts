@@ -1,11 +1,35 @@
+/**
+ * @module Components/Particles
+ */
+
 import {
   ColorValues,
   ContrastValues,
   LayoutMargin,
   LayoutType,
   Spacing,
+  SpacingPrefix,
 } from '../../types'
 
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+//   ____            _   _      _           
+//  |  _ \ __ _ _ __| |_(_) ___| | ___  ___ 
+//  | |_) / _` | '__| __| |/ __| |/ _ \/ __|
+//  |  __/ (_| | |  | |_| | (__| |  __/\__ \
+//  |_|   \__,_|_|   \__|_|\___|_|\___||___/
+//                                          
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * This function creates a css class for background or text colors.
+ * @param color The full name of the color.
+ * @param contrast The contrast value for the color, this substitues the "light color / dark color" discrepancy.
+ * @param type Background or text.
+ * @returns A string with the color and contrast classes.
+ * 
+ * @todo Abbreviate contrast values. highest -> hst
+ * @todo Reference the css classes relevant to this function.
+ */
 export function ColorContrastClass(
   color?: ColorValues,
   contrast?: ContrastValues,
@@ -23,6 +47,14 @@ export function ColorContrastClass(
   ]
 }
 
+/**
+ * This function creates the layout classes for a given type and margin.
+ * @param type The type of the layout.
+ * @param margin The margin of the layout.
+ * @returns A string that contains the css classes for the layout type and margin.
+ * 
+ * @todo Reference the css classes relevant to this function.
+ */
 export function LayoutClass(type?: LayoutType, margin?: LayoutMargin) {
   return [
     {
@@ -43,6 +75,14 @@ export function LayoutClass(type?: LayoutType, margin?: LayoutMargin) {
   ]
 }
 
-export function SpacingClass(prefix: string, spacing?: Spacing) {
+/**
+ * This function creates the classes for the spacing attributes.
+ * @param prefix A character that abbreviates the spacing attribute.
+ * @param spacing The spacing magnitude.
+ * @returns A string with the spacing css class.
+ * 
+ * @todo Reference the css classes relevant to this function.
+ */
+export function SpacingClass(prefix: SpacingPrefix, spacing?: Spacing) {
   return `${prefix}-${spacing}`
 }

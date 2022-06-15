@@ -1,5 +1,5 @@
 /**
- * @module Atoms/Paragraph
+ * @module Components/Atoms/Paragraph
  */
 import { iAnaConfiguration } from '../../../Ana/Ana.interface'
 import { RenderDictionary, ContrastValues, ColorValues } from '../../../types'

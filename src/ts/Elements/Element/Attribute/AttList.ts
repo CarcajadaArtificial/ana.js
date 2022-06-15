@@ -1,13 +1,26 @@
+/**
+ * @module Element/Attribute/List
+ */
 import { MatchAttributeValue } from '../../../types'
 import { Attribute } from './Attribute'
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+//      _   _   _   _     _     _
+//     / \ | |_| |_| |   (_)___| |_
+//    / _ \| __| __| |   | / __| __|
+//   / ___ \ |_| |_| |___| \__ \ |_
+//  /_/   \_\__|\__|_____|_|___/\__|
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
  * A List Attribute is one that not only must be a string, it must be part of a predefined list of string values. This lists are organized in the `ATTRIBUTE_VALUES` dictionary.
- * @module Ana/Render
  */
 export class AttList extends Attribute {
-  constructor(name: string, public validList: string, public invalidList?: string) {
+  constructor(
+    name: string,
+    public validList: string,
+    public invalidList?: string
+  ) {
     if (!Object.keys(ATTRIBUTE_VALUES).includes(validList)) {
       // Error: the attribute ${this.name} received an unknown list name (${validList}), it must be included in the list of keys in the ATTRIBUTE_VALUES global constant: ${Object.keys(ATTRIBUTE_VALUES)}
     } else if (
@@ -16,7 +29,7 @@ export class AttList extends Attribute {
     ) {
       // Error: the attribute ${this.name} received an unknown list name (${invalidList}), it must be included in the list of keys in the ATTRIBUTE_VALUES global constant: ${Object.keys(ATTRIBUTE_VALUES)}
     }
-    
+
     super(name, (attributeValues: MatchAttributeValue): boolean => {
       let value = attributeValues.value
       if (typeof value === 'string') {

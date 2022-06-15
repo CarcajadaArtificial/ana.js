@@ -1,5 +1,5 @@
 /**
- * @module Atoms/Surface
+ * @module Components/Atoms/Surface
  */
 import { iAnaConfiguration } from '../../../Ana/Ana.interface'
 import {

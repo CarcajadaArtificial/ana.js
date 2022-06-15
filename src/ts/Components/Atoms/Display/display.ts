@@ -1,34 +1,39 @@
-//    ___  _         _
-//   |   \(_)____ __| |__ _ _  _
-//   | |) | (_-< '_ \ / _` | || |
-//   |___/|_/__/ .__/_\__,_|\_, |
-//             |_|          |__/
-////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
- * @module Component/Atom/Display
+ * @module Components/Atom/Display
  */
-import { AnaComponent } from "../../Components"
-
-/**
- * A Display is large decorative text found rarely on a page. It can be used in any way as long as the text doesn't feel crowded and is legible.
- */
-export class Display extends AnaComponent {
-  render: Function = (param: iDisplay = {}): HTMLElement => {
-    const a = this.a
-    // param = extendParameterDefaults<tDisplay>(param, { text: 'Display' })
-
-    return a
-      .div(a.span(param.text).has({ class: this.classRoot }))
-      .has({ class: `${this.classRoot}-container` })
-  }
-}
-
-interface iDisplay {
-  /**
-   * Every typographical element has the `text` property, it is the content inside the element.
-   */
-  text?: string
-  [key: string]: tDisplay
-}
-
-type tDisplay = undefined | string
+ import { iAnaConfiguration } from '../../../Ana/Ana.interface'
+ import { RenderDictionary } from '../../../types'
+ import classNames from 'classnames'
+ 
+ //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ //   ____  _           _             
+ //  |  _ \(_)___ _ __ | | __ _ _   _ 
+ //  | | | | / __| '_ \| |/ _` | | | |
+ //  | |_| | \__ \ |_) | | (_| | |_| |
+ //  |____/|_|___/ .__/|_|\__,_|\__, |
+ //              |_|            |___/ 
+ ////////////////////////////////////////////////////////////////////////////////////////////////////////
+ /**
+  * 
+  */
+ export function rDisplay(
+   a: RenderDictionary,
+   config: iAnaConfiguration
+ ): Function {
+   return (...children: [Node | string | Function]): Function  => {
+     return (param: iDisplay = {}): HTMLElement => {
+       param = {
+         ...{ },
+         ...param,
+       }
+       let classes = {
+         Display: classNames().split(' ')
+       }
+   
+       return a.div(...classes.Display)(...children)
+     }
+   }
+ }
+ 
+ //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ export interface iDisplay {}

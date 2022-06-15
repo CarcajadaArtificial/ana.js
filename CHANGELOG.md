@@ -2,6 +2,20 @@
 
 ## Unreleased
 
+### **0.5.14** (Latest)
+
+- `Added` Documentation for missing features.
+
+- `Removed` Markdown feature because it isn't in the alpha scope.
+  - `~/src/ts/markdown.ts`
+
+- `Removed` Button, Card, Chip, Input and Icon components because they aren't in the alpha scope.
+  - `~/src/ts/Components/Atoms/Icon/Icon.ts`
+  - `~/src/ts/Components/Molecules/Button/Button.ts`
+  - `~/src/ts/Components/Molecules/Card/Card.ts`
+  - `~/src/ts/Components/Molecules/Chip/Chip.ts`
+  - `~/src/ts/Components/Molecules/Input/Input.ts`
+
 ### **0.5.13** (Latest)
 
 - `Added` minimal reactive functionality. At the moment, rerenders the whole page when the state changes in any way.

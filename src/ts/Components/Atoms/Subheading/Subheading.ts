@@ -1,5 +1,5 @@
  /**
- * @module Atoms/Subheading
+ * @module Components/Atoms/Subheading
  */
 import { iAnaConfiguration } from '../../../Ana/Ana.interface'
 import { RenderDictionary, ContrastValues, ColorValues } from '../../../types'

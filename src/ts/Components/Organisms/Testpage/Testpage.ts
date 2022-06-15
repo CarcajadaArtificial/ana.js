@@ -1,5 +1,5 @@
 /**
- * @module Type/Testpage
+ * @module Components/Organisms/Testpage
  */
 import { iAnaConfiguration } from '../../../Ana/Ana.interface'
 import { RenderDictionary } from '../../../types'

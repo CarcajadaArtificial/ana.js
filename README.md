@@ -5,7 +5,7 @@
 ## Alpha version
 
 - [x] Add Page and TestPage organisms.
-- [ ] Reactivity.
+- [x] Reactivity.
 - [ ] Add server running instructions, testing and how to add a new component inside `CONTRIBUTING.md`.
 - [ ] Publish project's dist as a CDN and document process inside `CONTRIBUTING.md`.
 
@@ -15,6 +15,7 @@
 - [ ] Add component testing server.
 - [ ] Add SVG Elements support.
 - [ ] Publish the project as a TS npm package, and add publish process to `CONTRIBUTING.md`.
+- [ ] Error Handling.
 
 ## Beta version
 
@@ -22,6 +23,7 @@
 - [ ] Add HTMLElement standard configuration.
 - [ ] Setup Unit Testing
 - [ ] Setup Github Actions for CI/CD
+- [ ] Dockerize the project.
 
 ## Later beta versions
 

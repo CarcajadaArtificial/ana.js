@@ -1,5 +1,5 @@
 /**
- * @module Pages/Colorpage
+ * @module Components/Pages/Colorpage
  */
 import { iAnaConfiguration } from '../../../Ana/Ana.interface'
 import { RenderDictionary } from '../../../types'

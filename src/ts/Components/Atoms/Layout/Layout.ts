@@ -1,5 +1,5 @@
 /**
- * @module Atoms/Layout
+ * @module Components/Atoms/Layout
  */
 import { iAnaConfiguration } from '../../../Ana/Ana.interface'
 import { LayoutMargin, LayoutType, RenderDictionary } from '../../../types'

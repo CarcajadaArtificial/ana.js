@@ -1,5 +1,5 @@
 /**
- * @module Atoms/Box
+ * @module Components/Atoms/Box
  */
 import { iAnaConfiguration } from '../../../Ana/Ana.interface'
 import { Spacing, RenderDictionary } from '../../../types'

@@ -1,5 +1,5 @@
 /**
- * @module Type/Link
+ * @module Components/Atoms/Link
  */
  import { iAnaConfiguration } from '../../../Ana/Ana.interface'
  import { RenderDictionary } from '../../../types'

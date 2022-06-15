@@ -1,5 +1,5 @@
 /**
- * @module Organisms/Page
+ * @module Components/Organisms/Page
  */
 import { iAnaConfiguration } from '../../../Ana/Ana.interface'
 import { RenderDictionary } from '../../../types'

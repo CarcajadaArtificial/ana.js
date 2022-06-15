@@ -1,12 +1,21 @@
-import { MatchAttributeValue } from "../../../types"
-import { Attribute } from "./Attribute"
+/**
+ * @module Element/Attribute/Function
+ */
+import { MatchAttributeValue } from '../../../types'
+import { Attribute } from './Attribute'
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+//      _   _   _   _____                 _   _
+//     / \ | |_| |_|  ___|   _ _ __   ___| |_(_) ___  _ __
+//    / _ \| __| __| |_ | | | | '_ \ / __| __| |/ _ \| '_ \
+//   / ___ \ |_| |_|  _|| |_| | | | | (__| |_| | (_) | | | |
+//  /_/   \_\__|\__|_|   \__,_|_| |_|\___|\__|_|\___/|_| |_|
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
  * A Function Attribute works for event listeners that receive functions as values.
- * @module Ana/Render
  */
- export class AttFunction extends Attribute {
+export class AttFunction extends Attribute {
   constructor(name: string) {
     super(name, (attributeValues: MatchAttributeValue): boolean => {
       let value = attributeValues.value
