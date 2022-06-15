@@ -1,6 +1,6 @@
 import { iAna, iAnaConfiguration } from './Ana.interface'
 import { getElements } from '../Elements/Elements'
-import { RenderDictionary } from '../types'
+import { RenderDictionary, State } from '../types'
 import { AttributeValuesDictionary, MatchFunctionsDictionary } from '../types'
 import * as utils from '../utils'
 import { rLayout } from '../Components/Atoms/Layout/Layout'
@@ -17,6 +17,8 @@ import { rCheckbox } from '../Components/Molecules/Checkbox/Checkbox'
 import { rTestpage } from '../Components/Organisms/Testpage/Testpage'
 import { rTest } from '../Components/Molecules/Test/Test'
 import { rColorpage } from '../Components/Pages/Colorpage/Colorpage'
+import { rPage } from '../Components/Organisms/Page/Page'
+import { Observable } from '../Observable'
 
 declare global {
   interface HTMLElement {
@@ -53,6 +55,33 @@ export class Ana implements iAna {
    *
    */
   eId: Function = utils.eId
+
+  /**
+   * 
+   */
+  obs: Observable = new Observable()
+
+  /**
+   * 
+   */
+  state: State = {}
+
+  /**
+   * 
+   */
+  app(state: State, render: Function):void {
+    this.obs.subscribe(render)
+    this.up(state)
+  }
+
+
+  /**
+   * 
+   */
+  up(state: State) {
+    this.state = {...this.state, ...state}
+    this.obs.emit(this.state)
+  }
 
   /**
    *
@@ -100,8 +129,8 @@ export class Ana implements iAna {
    *
    */
   render: Function = (): RenderDictionary => {
-    HTMLElement.prototype.has = this.has
     HTMLElement.prototype.setAttributes = this.setAttributes
+    HTMLElement.prototype.has = this.has
     let elements = getElements(this.configuration)
     let atoms = {
       Layout: rLayout(elements, this.configuration),
@@ -121,6 +150,7 @@ export class Ana implements iAna {
     }
     let organisms = {
       Testpage: rTestpage(elements, this.configuration),
+      Page: rPage(elements, this.configuration),
     }
     let pages = {
       Colorpage: rColorpage(elements, this.configuration),

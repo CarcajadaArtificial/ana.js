@@ -1,42 +1,34 @@
 # ana.js
 
-## Super-General To-Do list
+## Roadmap
 
-### This version
+## Alpha version
+
+- [x] Add Page and TestPage organisms.
+- [ ] Reactivity.
+- [ ] Add server running instructions, testing and how to add a new component inside `CONTRIBUTING.md`.
+- [ ] Publish project's dist as a CDN and document process inside `CONTRIBUTING.md`.
+
+### Later alpha versions
 
 - [ ] Add Button, Input, Chip molecules
-- [ ] Add Page and TestPage organisms.
-- [ ] Add server running instructions, testing and how to add a new component inside `CONTRIBUTING.md`.
-
-### Soon
-
-These are the things I’m currently working on and planning to release in the next few updates.
-
 - [ ] Add component testing server.
-- [ ] Component reactivity using JS Proxies.
-- [ ] Publish the project as an npm package, and add publish process to `CONTRIBUTING.md`.
-
-### Next
-
-These are things that I will work on if I’m in the mood to spend time on tasks that improve my quality of life as a developer of this particular project.
-
-- [ ] Add global color palette configuration.
 - [ ] Add SVG Elements support.
-- [ ] Add a Standard Override Dictionary in Ana instance.
-- [ ] Add a `setup` script for an easier initial setup.
-- [ ] Add Chart, CoverArt, Mail, Record and Table Organisms.
-- [ ] Add a CONTRIBUTING.md file with setup instructions, and correct feature development process.
+- [ ] Publish the project as a TS npm package, and add publish process to `CONTRIBUTING.md`.
+
+## Beta version
+
+- [ ] Add color palette configuration.
+- [ ] Add HTMLElement standard configuration.
 - [ ] Setup Unit Testing
 - [ ] Setup Github Actions for CI/CD
 
-### Wild Dreams
+## Later beta versions
 
-These are things that I won’t be worrying about until the *time comes*.
+- [ ] Add server side rendering.
+- [ ] Setup Ana.js iconographic language.
 
-- [ ] Add server side rendering render content depending on the user's permissions.
-- [ ] Create own iconography.
-- [ ] Generate a `.md` file for every directory containing `.ts` files containing all tsdoc information contained in that directoy.
-- [ ] Generate a documentation website basted on all `.md` files generated, and publish it.
+---
 
 ## Node
 

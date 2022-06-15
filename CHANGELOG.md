@@ -2,7 +2,17 @@
 
 ## Unreleased
 
-### **0.5.12** (Latest)
+### **0.5.13** (Latest)
+
+- `Added` minimal reactive functionality. At the moment, rerenders the whole page when the state changes in any way.
+  - `~/src/ts/Observable.ts`
+  - `~/src/ts/types.ts`
+  - `~/src/ts/Ana.ts`
+
+- `Added` prependToBody functionality to the Page organism.
+  - `~/src/ts/Components/Organisms/Page/Page.ts`
+
+### **0.5.12**
 
 - `Added` the Colorpage organism. (for testing)
   - `~/src/ts/Ana/Ana.ts`

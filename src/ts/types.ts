@@ -113,3 +113,9 @@ export type TextElements = | 'blockquote' | 'dd' | 'div' | 'dl' | 'dt' | 'figcap
  *
  */
 export type AddClassDictionary = {[key:string]: string}
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+/**
+ *
+ */
+export type State = {[key:string]: any}

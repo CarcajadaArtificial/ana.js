@@ -4,6 +4,7 @@
 import { iAnaConfiguration } from '../../../Ana/Ana.interface'
 import { RenderDictionary } from '../../../types'
 import classNames from 'classnames'
+import { eId } from '../../../utils'
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 //   ____                  
@@ -21,22 +22,29 @@ export function rPage(
   config: iAnaConfiguration
 ): Function {
   return (...children: [Node | string | Function]): Function => {
-    return (param: iPage = {}): HTMLElement => {
+    return (param: iPage = {}): HTMLElement | undefined => {
       param = {
-        ...{},
+        ...{ prependToBody: true },
         ...param,
       }
       let classes = {
         Page: classNames('a-Page').split(' '),
       }
 
-      return a.div(...classes.Page)(...children)
+      const page =  a.div(...classes.Page)(...children)
+
+      if (param.prependToBody === true) {
+        eId('a-Body').prepend(page)
+        return undefined
+      } else {
+        return page
+      }
     }
   }
 }
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 export interface iPage {
-  // prependToBody?: boolean
+  prependToBody?: boolean
   // type?: PageTypeDictionary
 }
