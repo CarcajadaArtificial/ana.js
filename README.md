@@ -23,13 +23,13 @@ What is Ana? It is short for Anarchy, a system that questions all hierarchy, aut
   
   What does quality mean? What does good code look like? What is a valid use of HTML Elements and their attributes? The industry reduced these questions to a bunch of standards that most people blindly follow. Developers created linters for easy standardization. Ana.js has an integrated linter that checks if the code you’re writing goes according to your own definition of correct.
 
-- **Componentes escritos en js puro**
-  - Functional en lugar de declarativo
-  - El desarrollador puede desarrollar sus propios componentes.
+- **Good 'ol JavaScript Functions**
+  
+  This framework is non-declarative by nature. The main deal is that creating HTML Elements is done functionally. Render functions receive other render functions as parameters. There is no markup to interact and everything can fit inside a script tag. Web components are built using these functions, so they get added to the render dictionary like any other HTML Element.
 
-- **No necesita un compilador o herramiente de buildeo**
-  - Se puede importar el CDN desde un .html cualquiera.
-  - Pronto se agregará la función de server side rendering.
+- **No compilers, no builders**
+  
+  I would suppose that this is a controversial take, given that the industry is moving towards front-end compilers for smaller builds. But this framework is more of a library, a hypothetical JavaScript update for the language itself, for easier manipulation and creation of elements.
 
 [Back to top](#top)
 
@@ -77,8 +77,8 @@ Download the latest [release](https://github.com/CarcajadaArtificial/ana.js/rele
   - [ ] Project dockerization.
 
 - **Documentation**
-  - [ ] Server running instructions.
-  - [ ] How to add a new component.
+  - [x] Server running instructions.
+  - [x] How to add a new component.
   - [ ] Project publishing instructions.
 
 [Back to top](#top)

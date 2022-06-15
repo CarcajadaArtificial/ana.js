@@ -1,8 +1,15 @@
 # Contributing
 
-The documentation is written with MacOS Monterey in mind.
+### Table of contents
 
-## Initial Setup
+1. [Initial Setup](#initial-setup)
+2. [Developing Process](#developing-process)
+
+---
+
+## Initial setup
+
+The documentation is written with MacOS Monterey in mind.
 
 ### Prerequisites
 
@@ -12,15 +19,79 @@ The documentation is written with MacOS Monterey in mind.
 
 ### Initial setup steps
 
-1. Clone project `git clone git@github.com:CarcajadaArtificial/ana.js.git`.
+1. Fork and clone project.
 2. Install Node `nvm install 16.13.0` or `nvm use 16.13.0`.
 3. Install Sass `brew install sass/sass/sass`.
 4. Install Dependencies `npm i` and `npm i -D`.
 5. (Coming soon) Run the setup script `npm run setup`.
 
+### Node
+
+```
+$ node -v
+v16.13.0
+```
+
+### Global dependencies
+
+```
+$ npm list -g --depth 0
+├── corepack
+├── npm
+├── typedoc
+└── typescript
+```
+
+[Back to top](#top)
+
+---
+
 ## Developing Process
 
-### Main Package Scripts
+## Creating a Component
+
+```typescript
+/**
+ * @module Type/Example
+ */
+import { iAnaConfiguration } from '../../../Ana/Ana.interface'
+import { RenderDictionary } from '../../../types'
+import classNames from 'classnames'
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+// Example
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * 
+ */
+export function rExample(
+  a: RenderDictionary,
+  config: iAnaConfiguration
+): Function {
+  return (...children: [Node | string | Function]): Function  => {
+    return (param: iExample = {}): HTMLElement => {
+      param = {
+        ...{ },
+        ...param,
+      }
+      let classes = {
+        Example: classNames().split(' ')
+      }
+  
+      return a.div(...classes.Example)(...children)
+    }
+  }
+}
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+export interface iExample {}
+```
+
+[Back to top](#top)
+
+---
+
+## Package Scripts
 
 * `test`
   
@@ -64,86 +135,4 @@ The documentation is written with MacOS Monterey in mind.
 
   It creates a minified version of the compiled project and does not create a sourcemap for debugging. But the result is ready to be deployed.
 
-## Creating a Component
-
-```typescript
-/**
- * @module Type/Example
- */
-import { iAnaConfiguration } from '../../../Ana/Ana.interface'
-import { RenderDictionary } from '../../../types'
-import classNames from 'classnames'
-
-//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-// Example
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-/**
- * 
- */
-export function rExample(
-  a: RenderDictionary,
-  config: iAnaConfiguration
-): Function {
-  return (...children: [Node | string | Function]): Function  => {
-    return (param: iExample = {}): HTMLElement => {
-      param = {
-        ...{ },
-        ...param,
-      }
-      let classes = {
-        Example: classNames().split(' ')
-      }
-  
-      return a.div(...classes.Example)(...children)
-    }
-  }
-}
-
-//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-export interface iExample {}
-```
-
-```html
-<!-- 
-  _____       _   
- |_   _|__ __| |_ 
-   | |/ -_|_-<  _|
-   |_|\___/__/\__|
-                  
--->
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Title - Atom</title>
-    <link rel="stylesheet" href="ana.css" />
-  </head>
-  <body id="a-body">
-    <script src="ana.js"></script>
-    <script>
-      const a = new Ana()
-
-      a.eId('a-body').append(a.span('Test'))
-    </script>
-  </body>
-</html>
-```
-
-## Node
-
-```
-$ node -v
-v16.13.0
-```
-
-### Global dependencies
-
-```
-$ npm list -g --depth 0
-├── corepack@0.10.0
-├── npm@8.1.0
-├── typedoc@0.22.11
-└── typescript@4.5.5
-```
+  [Back to top](#top)
