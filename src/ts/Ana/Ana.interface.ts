@@ -11,11 +11,12 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-export interface iAna {
-  configuration: iAnaConfiguration
-  render: Function
-}
-
 export interface iAnaConfiguration {
   standardVerificationMode?: boolean
+  // includeComponentLibrary
+  // includeAtoms
+  // includeMolecules
+  // includeOrganisms
+  // includePages
+  // includeSVGLibrary
 }

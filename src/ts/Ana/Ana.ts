@@ -1,7 +1,7 @@
 /**
  * @module Ana
  */
-import { iAna, iAnaConfiguration } from './Ana.interface'
+import { iAnaConfiguration } from './Ana.interface'
 import { RenderDictionary, State, AttributeValuesDictionary, MatchFunctionsDictionary } from '../types'
 import { Observable } from '../Observable'
 import { createRenderDictionary } from '../Components/Components'
@@ -28,7 +28,7 @@ declare class Window {
 /**
  * Home of the Ana framework.
  */
-export class Ana implements iAna {
+export class Ana {
   /**
    * This object configures the framework's general functions.
    */

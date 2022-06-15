@@ -2,7 +2,13 @@
 
 ## Unreleased
 
-### **0.5.15** (Latest)
+### **0.5.16** (Latest)
+
+- `Added` Better documentation
+  - `~/README.md`
+  - `~/CONTRIBUTING.md`
+
+### **0.5.15**
 
 - `Added` Better documentation
   - `~/README.md`
