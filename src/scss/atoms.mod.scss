@@ -34,8 +34,18 @@ p.label {
 // -----------------------------------------------------------------------------------------------------
 /// A Link is an element that will take you to another html page or to perform a lesser command than a button would do. A Link must clearly explain where the link will take you to, and this information must be undertandable out of context. Limit the label to two words at most, and these shoulnd't be generic or vague. Open in a new window only in cases when opening a document with different format e.g. PDF.
 .a-link {
-  @include no-select;
-  @include txt-link;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: font-weight('regular');
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:visited {
+    font-style: italic;
+    color: clr('red', 'base')
+  }
 }
 
 // -----------------------------------------------------------------------------------------------------
@@ -47,31 +57,46 @@ p.label {
 // -----------------------------------------------------------------------------------------------------
 /// A Paragraph is one of two base typographical element, along with a Label. This element's use is for text that has multiple lines and more text after it, maybe a heading or another paragraph. If the content inside the element is a few words long, use a Label instead.
 .a-paragraph {
-  @include txt-paragraph;
+  font-size: font-size('paragraph');
+  line-height: line-height('paragraph');
+  font-weight: font-weight('regular');
+  margin-bottom: 0;
 }
 
 // -----------------------------------------------------------------------------------------------------
 /// A Label is one of two base typographical elements, along with a Paragraph. This element is used for short text, a few words at most. For multilinear text, use a Paragraph instead.
-.a-label {
-  @include txt-label;
+.a-Label {
+  font-size: font-size('label');
+  line-height: line-height('label');
+  font-weight: font-weight('regular');
+  margin-bottom: 0;
 }
 
 // -----------------------------------------------------------------------------------------------------
 /// A Subheading is the smallest of the three heading types, along with a Heading and Title. It is conventionally used for titles of subsections, multiple of these can be found inside a section.
-.a-subheading {
-  @include txt-subheading;
+.a-Subheading {
+  font-size: font-size('subheading');
+  line-height: line-height('subheading');
+  font-weight: font-weight('regular');
+  margin-bottom: 0;
 }
 
 // -----------------------------------------------------------------------------------------------------
 /// A Heading is the medium-sized heading of the three heading types, the other two being the Subheading and the Title. It is conventionally used for titles of page sections, multiple of these can be found inside a single page.
-.a-heading {
-  @include txt-heading;
+.a-Heading {
+  font-size: font-size('heading');
+  line-height: line-height('heading');
+  font-weight: font-weight('bold');
+  margin-bottom: 0;
 }
 
 // -----------------------------------------------------------------------------------------------------
 /// A Title is the largest heading of the three heading types, the other two being the Heading and Subheading. It is conventionally used for page title and only one can be found, usually at the top of the page.
-.a-title {
-  @include txt-title;
+.a-Title {
+  font-size: font-size('title');
+  line-height: line-height('title');
+  font-weight: font-weight('bold');
+  margin-bottom: 0;
 }
 
 // -----------------------------------------------------------------------------------------------------
@@ -79,8 +104,6 @@ p.label {
 .a-display {
   @include txt-display;
 }
-
-
 
 @mixin chip($background: clr('blue', 'tint-lightest')) {
   @include txt-label;
@@ -288,52 +311,6 @@ p.label {
 }
 
 // -----------------------------------------------------------------------------------------------------
-@each $name, $shades in $colors {
-  .#{$name}-white {
-    background-color: clr($name, 'white');
-  }
-  .#{$name}-lightest {
-    background-color: clr($name, 'lightest');
-  }
-  .#{$name}-lighter {
-    background-color: clr($name, 'lighter');
-  }
-  .#{$name}-light {
-    background-color: clr($name, 'light');
-  }
-  .#{$name}-base {
-    background-color: clr($name, 'base');
-  }
-  .#{$name}-dark {
-    background-color: clr($name, 'dark');
-  }
-  .#{$name}-darker {
-    background-color: clr($name, 'darker');
-  }
-  .#{$name}-darkest {
-    background-color: clr($name, 'darkest');
-  }
-  .#{$name}-black {
-    background-color: clr($name, 'black');
-  }
-
-  @if ($name != 'grey') {
-    .#{$name}-tint-lightest {
-      background-color: clr($name, 'tint-lightest');
-    }
-    .#{$name}-tint-lighter {
-      background-color: clr($name, 'tint-lighter');
-    }
-    .#{$name}-tint-light {
-      background-color: clr($name, 'tint-light');
-    }
-    .#{$name}-shade {
-      background-color: clr($name, 'shade');
-    }
-  }
-}
-
-// -----------------------------------------------------------------------------------------------------
 @mixin layout-block(
   $trio: 3,
   $sextet: 6,
@@ -344,7 +321,7 @@ p.label {
   $count: 'null'
 ) {
   @if ($count == 'null') {
-    .a-layout-block {
+    .a-Layout-block {
       @include column-span(
         $trio: $trio,
         $sextet: $sextet,
@@ -366,7 +343,7 @@ p.label {
       }
     }
   } @else {
-    .a-layout-block:nth-child(#{$count}) {
+    .a-Layout-block:nth-child(#{$count}) {
       @include column-span(
         $trio: $trio,
         $sextet: $sextet,
@@ -391,14 +368,14 @@ p.label {
 }
 
 // -----------------------------------------------------------------------------------------------------
-.a-layout {
+.a-Layout {
   &-full {
     @include layout-block;
   }
   &-center {
     @include layout-block(3, 6, 8, 0, 0, 3);
   }
-  &-focus {
+  &-focus { 
     @include layout-block(3, 4, 6, 0, 2, 4);
   }
   &-halves {
@@ -430,4 +407,135 @@ p.label {
       @include layout($offset-small: 0, $offset-desk: 0, $offset-wide: 0);
     }
   }
+}
+
+// -----------------------------------------------------------------------------------------------------
+// Color Contrast
+@each $color, $shade in $colors {
+  .#{$color} {
+    &-txt {
+      &.cont-hst {
+        color: clr($color, 'black')
+      }
+      &.cont-h {
+        color: clr($color, 'shade')
+      }
+      &.cont-m {
+        color: clr($color, 'darkest')
+      }
+      &.cont-l {
+        color: clr($color, 'darker')
+      }
+      &.cont-lst {
+        color: clr($color, 'dark')
+      }
+    }
+
+    &-bg {
+      &.cont-hst {
+        background-color: clr($color, 'white')
+      }
+      &.cont-h {
+        background-color: clr($color, 'tint-lightest')
+      }
+      &.cont-m {
+        background-color: clr($color, 'tint-lighter')
+      }
+      &.cont-l {
+        background-color: clr($color, 'tint-light')
+      }
+      &.cont-lst {
+        background-color: clr($color, 'lightest')
+      }
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------------------------------
+// Roundness
+.r {
+  &-non {
+    border-radius: 0;
+  }
+  &-sgl {
+    border-radius: unit-x($twelfth);
+  }
+  &-dbl {
+    border-radius: unit-x($sixth);
+  }
+  &-tpl {
+    border-radius: unit-x($third);
+  }
+}
+
+// -----------------------------------------------------------------------------------------------------
+.m {
+  &-non {
+    margin: unit-x(0)
+  }
+  &-sgl {
+    margin: unit-x($eighth)
+  }
+  &-dbl {
+    margin: unit-x($quarter)
+  }
+  &-tpl {
+    margin: unit-x($half)
+  }
+}
+
+// -----------------------------------------------------------------------------------------------------
+// Padding
+.p {
+  &-non {
+    padding: unit-x(0)
+  }
+  &-sgl {
+    padding: unit-x($eighth)
+  }
+  &-dbl {
+    padding: unit-x($quarter)
+  }
+  &-tpl {
+    padding: unit-x($half)
+  }
+}
+
+// -----------------------------------------------------------------------------------------------------
+// Elevation
+.l {
+  &-non {
+    box-shadow: none;
+  }
+  &-sgl {
+    box-shadow: 0px 1px 4px -2px clr('grey', 'black');
+  }
+  &-dbl {
+    box-shadow: 0px 2px 8px -4px clr('grey', 'black');
+  }
+  &-tpl {
+    box-shadow: 0px 4px 16px -8px clr('grey', 'black');
+  }
+}
+
+// -----------------------------------------------------------------------------------------------------
+.g { 
+  &-non {
+    gap: unit-x(0)
+  }
+  &-sgl {
+    gap: unit-x($eighth)
+  }
+  &-dbl {
+    gap: unit-x($quarter)
+  }
+  &-tpl {
+    gap: unit-x($half)
+  }
+}
+
+// -----------------------------------------------------------------------------------------------------
+.a-List {
+  display: flex;
+  flex-direction: column;
 }

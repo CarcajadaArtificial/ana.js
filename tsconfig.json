@@ -1,24 +1,24 @@
 {
   "compilerOptions": {
     "target": "es2016",
-    "lib": ["es2017", "dom"],
+    "lib": ["es2017", "dom", "DOM.Iterable"],
     "module": "es6",
     "moduleResolution": "node",
     "sourceMap": true,
-    "outDir": "./dist/js/build",
+    "outDir": "./dist/ana/build",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitAny": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "resolveJsonModule": true
   },
   "typedocOptions": {
     "entryPoints": [
-      "src/ts/index.ts",
-      "src/ts/ana.ts",
-      "src/ts/elements.ts",
-      "src/ts/standard.ts",
+      "src/ts/",
     ],
-    "out": "docs"
+    "entryPointStrategy": "expand",
+    "out": "dist/docs",
+    "json": "dist/docs/typedoc.json"
   }
 }
