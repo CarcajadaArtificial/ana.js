@@ -22,8 +22,6 @@ The documentation is written with MacOS Monterey in mind.
 
 ### Main Package Scripts
 
-This scripts are the main 
-
 * `test`
   
   It uses Nodemon watching for changes in the app (`.ts` and `.scss` files) and for changes in the test (`.html` files). It reruns the node server (`~/test/app.ts`) when a change is made.
@@ -38,17 +36,17 @@ This scripts are the main
 
 ### Secondary Package Scripts
 
-* `_build-sass`
+* `_build-css`
 
   It processes all of the project's scss code through `~/src/scss/style.scss` into a single css file inside the distribution directory (`~/dist/ana/ana.css` and `~/dist/ana/ana.css.map`).
 
-* `_build-sass:doc`
+* `_build-css:doc`
 
   It uses the sassdoc comment standard to process all scss files inside the source directoy (`~/src/scss/*.scss` and `~/src/scss/**/*.scss`).
 
-* `_build-sass:min`
+* `_build-css:min`
 
-  It builds the sass code, just like `_build-sass`, but minified and without the map. It is used for the publishing version.
+  It builds the scss code, just like `_build-css`, but minified and without the map. It is used for the publishing version.
 
 * `_build-ts`
 
@@ -131,4 +129,21 @@ export interface iExample {}
     </script>
   </body>
 </html>
+```
+
+## Node
+
+```
+$ node -v
+v16.13.0
+```
+
+### Global dependencies
+
+```
+$ npm list -g --depth 0
+├── corepack@0.10.0
+├── npm@8.1.0
+├── typedoc@0.22.11
+└── typescript@4.5.5
 ```

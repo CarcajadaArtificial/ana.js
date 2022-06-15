@@ -2,7 +2,16 @@
 
 ## Unreleased
 
-### **0.5.14** (Latest)
+### **0.5.15** (Latest)
+
+- `Added` Better documentation
+  - `~/README.md`
+  - `~/CONTRIBUTING.md`
+
+- `Added` Better package metadata for publishing
+  - `~/package.json`
+
+### **0.5.14**
 
 - `Added` Documentation for missing features.
 
