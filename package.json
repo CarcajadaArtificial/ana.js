@@ -1,9 +1,21 @@
 {
   "name": "ana.js",
-  "version": "0.6.8",
+  "version": "0.6.11",
   "description": "A JavaScript library for the cool kids.",
   "author": "Oscar Alfonso Guerrero Nuñez",
   "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/ana.umd.js",
+  "types": "./dist/ts/index.d.ts",
+  "module": "./dist/ana.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/ana.es.js",
+      "require": "./dist/ana.umd.js"
+    }
+  },
   "scripts": {
     "dev": "npm run build; vite",
     "dev-css": "sass ./src/scss/style.scss ./build/ana.css --watch",
@@ -12,7 +24,8 @@
   },
   "devDependencies": {
     "typescript": "^4.5.4",
-    "vite": "^2.9.9"
+    "vite": "^2.9.9",
+    "vite-plugin-dts": "^1.2.0"
   },
   "dependencies": {
     "classnames": "^2.3.1"

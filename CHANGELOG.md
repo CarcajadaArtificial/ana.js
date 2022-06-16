@@ -2,7 +2,16 @@
 
 ## Unreleased
 
-### **0.6.8** (Latest)
+### **0.6.11** (Latest)
+
+Skipped v0.6.9-v0.6.10 while testing different configurations and publishing again.
+
+- `Added` Correct publishing configuration, now anyone that installs the library can actually use it.
+  - `~/package.json`
+  - `~/tsconfig.json`
+  - `~/vite.config.js`
+
+### **0.6.8**
 
 - `Added` Small fixes to build warnings.
   - `~/src/*`
@@ -43,7 +52,7 @@ Skipped v0.6.1-v0.6.4 while testing different configurations and publishing agai
 
 - `Added` somewhat better build configurations.
 
-### **0.6.0** 
+### **0.6.0**
 
 - `Added` Exports.
   - `~/src/ts/index.ts`
