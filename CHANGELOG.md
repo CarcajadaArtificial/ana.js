@@ -2,13 +2,31 @@
 
 ## Unreleased
 
-### **0.6.6** (Latest)
+### **0.6.7** (Latest)
+
+Fuck webpack.
+
+- `Added` Vite bundler.
+  - `~/package.json`
+  - `~/tsconfig.json`
+  - `~/index.html`
+  - `~/.gitignore`
+  - `~/src/main.ts`
+  - `~/src/vite-env.d.ts`
+
+- `Removed` provisional Express test server.
+  - `~/test/*`
+
+- `Removed` Webpack bundler.
+  - `~/webpack.config.cjs`
+
+### **0.6.6**
 
 - `Added` SVG component support.
   - `~/src/ts/Components/Components.ts`
   - `~/src/ts/Elements/Elements.ts`
 
-### **0.6.5** (Latest)
+### **0.6.5**
 
 Skipped v0.6.1-v0.6.4 while testing different configurations and publishing again.
 

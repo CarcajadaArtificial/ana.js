@@ -1,41 +1,20 @@
 {
   "name": "ana.js",
-  "version": "0.6.6",
-  "description": "Anarchy",
+  "version": "0.6.7",
+  "description": "A JavaScript library for the cool kids.",
   "author": "Oscar Alfonso Guerrero Nuñez",
   "license": "MIT",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "files": ["/dist"],
-  "type": "module",
   "scripts": {
-    "_build-css": "sass ./src/scss/style.scss ./build/ana.css",
-    "_build-css:doc": "mkdir ./dist/sassdoc; sassdoc src/ --parse > ./dist/sassdoc/sassdoc.json",
-    "_build-css:watch": "sass ./src/scss/style.scss ./build/ana.css --watch",
-    "_publish-css": "sass --style=compressed --no-source-map ./src/scss/style.scss ./build/ana.min.css",
-    "_build-ts": "webpack --mode development",
-    "_build-ts:watch": "webpack --mode development --watch",
-    "_build-ts:doc": "npx typedoc",
-    "_publish-ts": "npx tsc; webpack --mode production",
-    "test": "nodemon -e ts,scss,html test/app.ts",
-    "build": "npm run _build-css; npm run _build-ts;",
-    "doc": "npm run _build-css:doc; npm run _build-ts:doc",
-    "publish": "npm run _publish-css; npm run _publish-ts"
+    "dev": "vite",
+    "dev-css": "sass ./src/scss/style.scss ./build/ana.css --watch",
+    "build": "tsc && vite build && sass ./src/scss/style.scss ./build/ana.css",
+    "preview": "vite preview"
   },
   "devDependencies": {
-    "@babel/core": "^7.16.7",
-    "@types/express": "^4.17.13",
-    "@types/node": "^17.0.17",
-    "babel-loader": "^8.2.3",
-    "nodemon": "^2.0.15",
-    "ts-loader": "^9.2.6",
-    "ts-node": "^10.5.0",
-    "typedoc": "^0.22.15",
-    "webpack": "^5.0.0",
-    "webpack-cli": "^4.9.2"
+    "typescript": "^4.5.4",
+    "vite": "^2.9.9"
   },
   "dependencies": {
-    "express": "^4.17.2",
     "classnames": "^2.3.1"
   },
   "repository": {
