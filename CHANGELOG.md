@@ -2,7 +2,12 @@
 
 ## Unreleased
 
-### **0.6.11** (Latest)
+### **0.6.12** (Latest)
+
+- `Added` getting started instructions
+  - `~/README.md`
+
+### **0.6.11**
 
 Skipped v0.6.9-v0.6.10 while testing different configurations and publishing again.
 
