@@ -2,7 +2,13 @@
 
 ## Unreleased
 
-### **0.6.0** (Latest)
+### **0.6.5** (Latest)
+
+Skipped v0.6.1-v0.6.4 while testing different configurations and publishing again.
+
+- `Added` somewhat better build configurations.
+
+### **0.6.0** 
 
 - `Added` Exports.
   - `~/src/ts/index.ts`
