@@ -23,8 +23,9 @@ import { RenderDictionary } from '../types'
 /**
  * This dictionary is a compendium that contains instances of all of the `Element` and `Attribute` classes. Here lies what it means to be correct or incorrect in accordance to me. I studied every HTML reference I could find, it ended with this standard.
  */
-export function getElements(configuration: iAnaConfiguration): RenderDictionary {
-
+export function getElements(
+  configuration: iAnaConfiguration
+): RenderDictionary {
   return {
     a: new Element('a', false, {
       rel: new AttList('rel', 'validLinkTypes', 'invalidLinkTypes').match,
@@ -40,8 +41,8 @@ export function getElements(configuration: iAnaConfiguration): RenderDictionary 
       rev: new AttDeprecated('rev').match,
       shape: new AttDeprecated('shape').match,
     }).render(configuration),
-  
-    audio:new Element('audio', false, {
+
+    audio: new Element('audio', false, {
       crossorigin: new AttList('crossorigin', 'crossorigin').match,
       preload: new AttList('preload', 'preload').match,
       src: new AttString('src').match,
@@ -51,12 +52,12 @@ export function getElements(configuration: iAnaConfiguration): RenderDictionary 
       muted: new AttBoolean('muted').match,
       disableRemotePlayback: new AttExperimental('disableRemotePlayback').match,
     }).render(configuration),
-  
-    blockquote:new Element('blockquote', false, {
+
+    blockquote: new Element('blockquote', false, {
       cite: new AttString('cite').match,
     }).render(configuration),
-  
-    body:new Element('body', false, {
+
+    body: new Element('body', false, {
       alink: new AttDeprecated('alink').match,
       background: new AttDeprecated('background').match,
       bgcolor: new AttDeprecated('bgcolor').match,
@@ -68,8 +69,8 @@ export function getElements(configuration: iAnaConfiguration): RenderDictionary 
       topmargin: new AttDeprecated('topmargin').match,
       vlink: new AttDeprecated('vlink').match,
     }).render(configuration),
-  
-    button:new Element('button', false, {
+
+    button: new Element('button', false, {
       formenctype: new AttList('formenctype', 'encryption').match,
       formmethod: new AttList('formmethod', 'formmethod').match,
       type: new AttList('type', 'buttonType').match,
@@ -83,18 +84,18 @@ export function getElements(configuration: iAnaConfiguration): RenderDictionary 
       formnovalidate: new AttBoolean('formnovalidate').match,
       autocomplete: new AttExperimental('autocomplete').match,
     }).render(configuration),
-  
-    canvas:new Element('canvas', false, {
+
+    canvas: new Element('canvas', false, {
       height: new AttString('height').match,
       width: new AttString('width').match,
       'moz-opaque': new AttDeprecated('moz-opaque').match,
     }).render(configuration),
-  
-    caption:new Element('caption', false, {
+
+    caption: new Element('caption', false, {
       align: new AttDeprecated('align').match,
     }).render(configuration),
-  
-    colgroup:new Element('colgroup', false, {
+
+    colgroup: new Element('colgroup', false, {
       span: new AttString('span').match,
       align: new AttDeprecated('align').match,
       bgcolor: new AttDeprecated('bgcolor').match,
@@ -102,40 +103,40 @@ export function getElements(configuration: iAnaConfiguration): RenderDictionary 
       charoff: new AttDeprecated('charoff').match,
       valign: new AttDeprecated('valign').match,
     }).render(configuration),
-  
-    data:new Element('data', false, {
+
+    data: new Element('data', false, {
       value: new AttString('value').match,
     }).render(configuration),
-  
-    dd:new Element('dd', false, {
+
+    dd: new Element('dd', false, {
       nowrap: new AttNonstandard('nowrap').match,
     }).render(configuration),
-  
-    del:new Element('del', false, {
+
+    del: new Element('del', false, {
       cite: new AttString('cite').match,
       datetime: new AttString('datetime').match,
     }).render(configuration),
-  
-    details:new Element('details', false, {
+
+    details: new Element('details', false, {
       open: new AttBoolean('open').match,
     }).render(configuration),
-  
-    dialog:new Element('dialog', false, {
+
+    dialog: new Element('dialog', false, {
       open: new AttBoolean('open').match,
       tabindex: new AttNonstandard('tabindex').match,
     }).render(configuration),
-  
-    div:new Element('div', false, {
+
+    div: new Element('div', false, {
       align: new AttDeprecated('align').match,
     }).render(configuration),
-  
-    fieldset:new Element('fieldset', false, {
+
+    fieldset: new Element('fieldset', false, {
       name: new AttString('name').match,
       form: new AttString('form').match,
       disabled: new AttBoolean('disabled').match,
     }).render(configuration),
-  
-    form:new Element('form', false, {
+
+    form: new Element('form', false, {
       autocomplete: new AttList('autocomplete', 'inputAutocomplete').match,
       method: new AttList('method', 'formmethod').match,
       enctype: new AttList('enctype', 'encryption').match,
@@ -146,42 +147,42 @@ export function getElements(configuration: iAnaConfiguration): RenderDictionary 
       'accept-charset': new AttString('accept-charset').match,
       novalidate: new AttBoolean('novalidate').match,
     }).render(configuration),
-  
-    h1:new Element('h1', false, {
+
+    h1: new Element('h1', false, {
       align: new AttDeprecated('align').match,
     }).render(configuration),
-  
-    h2:new Element('h2', false, {
+
+    h2: new Element('h2', false, {
       align: new AttDeprecated('align').match,
     }).render(configuration),
-  
-    h3:new Element('h3', false, {
+
+    h3: new Element('h3', false, {
       align: new AttDeprecated('align').match,
     }).render(configuration),
-  
-    h4:new Element('h4', false, {
+
+    h4: new Element('h4', false, {
       align: new AttDeprecated('align').match,
     }).render(configuration),
-  
-    h5:new Element('h5', false, {
+
+    h5: new Element('h5', false, {
       align: new AttDeprecated('align').match,
     }).render(configuration),
-  
-    h6:new Element('h6', false, {
+
+    h6: new Element('h6', false, {
       align: new AttDeprecated('align').match,
     }).render(configuration),
-  
-    head:new Element('head', false, {
+
+    head: new Element('head', false, {
       profile: new AttDeprecated('profile').match,
     }).render(configuration),
-  
-    html:new Element('html', false, {
+
+    html: new Element('html', false, {
       xmlns: new AttString('xmlns').match,
       manifest: new AttDeprecated('manifest').match,
       version: new AttDeprecated('version').match,
     }).render(configuration),
-  
-    iframe:new Element('iframe', false, {
+
+    iframe: new Element('iframe', false, {
       sandbox: new AttList('sandbox', 'validSandbox', 'invalidSandbox').match,
       allow: new AttString('allow').match,
       name: new AttString('name').match,
@@ -202,26 +203,26 @@ export function getElements(configuration: iAnaConfiguration): RenderDictionary 
       referrerpolicy: new AttExperimental('referrerpolicy').match,
       mozbrowser: new AttNonstandard('mozbrowser').match,
     }).render(configuration),
-  
-    ins:new Element('ins', false, {
+
+    ins: new Element('ins', false, {
       cite: new AttString('cite').match,
       datetime: new AttString('datetime').match,
     }).render(configuration),
-  
-    label:new Element('label', false, {
+
+    label: new Element('label', false, {
       for: new AttString('for').match,
     }).render(configuration),
-  
-    li:new Element('li', false, {
+
+    li: new Element('li', false, {
       value: new AttString('value').match,
       type: new AttDeprecated('type').match,
     }).render(configuration),
-  
-    map:new Element('map', false, {
+
+    map: new Element('map', false, {
       name: new AttString('name').match,
     }).render(configuration),
-  
-    meter:new Element('meter', false, {
+
+    meter: new Element('meter', false, {
       high: new AttString('high').match,
       low: new AttString('low').match,
       optimum: new AttString('optimum').match,
@@ -230,8 +231,8 @@ export function getElements(configuration: iAnaConfiguration): RenderDictionary 
       max: new AttString('max').match,
       min: new AttString('min').match,
     }).render(configuration),
-  
-    object:new Element('object', false, {
+
+    object: new Element('object', false, {
       data: new AttString('data').match,
       name: new AttString('name').match,
       form: new AttString('form').match,
@@ -247,51 +248,51 @@ export function getElements(configuration: iAnaConfiguration): RenderDictionary 
       declare: new AttDeprecated('declare').match,
       standby: new AttDeprecated('standby').match,
     }).render(configuration),
-  
-    ol:new Element('ol', false, {
+
+    ol: new Element('ol', false, {
       type: new AttList('type', 'orderedListType').match,
       start: new AttString('start').match,
       reversed: new AttBoolean('reversed').match,
     }).render(configuration),
-  
-    optgroup:new Element('optgroup', false, {
+
+    optgroup: new Element('optgroup', false, {
       label: new AttString('label').match,
       disabled: new AttBoolean('disabled').match,
     }).render(configuration),
-  
-    option:new Element('option', false, {
+
+    option: new Element('option', false, {
       selected: new AttBoolean('selected').match,
       disabled: new AttBoolean('disabled').match,
       label: new AttString('label').match,
       value: new AttString('value').match,
     }).render(configuration),
-  
-    output:new Element('output', false, {
+
+    output: new Element('output', false, {
       for: new AttString('for').match,
       name: new AttString('name').match,
       form: new AttString('form').match,
     }).render(configuration),
-  
-    portal:new Element('portal', false, {
+
+    portal: new Element('portal', false, {
       src: new AttString('src').match,
     }).render(configuration),
-  
-    pre:new Element('pre', false, {
+
+    pre: new Element('pre', false, {
       cols: new AttDeprecated('cols').match,
       width: new AttDeprecated('width').match,
       wrap: new AttNonstandard('wrap').match,
     }).render(configuration),
-  
-    progress:new Element('progress', false, {
+
+    progress: new Element('progress', false, {
       value: new AttString('value').match,
       max: new AttString('max').match,
     }).render(configuration),
-  
-    q:new Element('q', false, {
+
+    q: new Element('q', false, {
       cite: new AttString('cite').match,
     }).render(configuration),
-  
-    script:new Element('script', false, {
+
+    script: new Element('script', false, {
       crossorigin: new AttList('crossorigin', 'crossorigin').match,
       src: new AttString('src').match,
       type: new AttString('type').match,
@@ -304,8 +305,8 @@ export function getElements(configuration: iAnaConfiguration): RenderDictionary 
       charset: new AttDeprecated('charset').match,
       language: new AttDeprecated('language').match,
     }).render(configuration),
-  
-    select:new Element('select', false, {
+
+    select: new Element('select', false, {
       autocomplete: new AttList('autocomplete', 'inputAutocomplete').match,
       form: new AttString('form').match,
       name: new AttString('name').match,
@@ -315,18 +316,18 @@ export function getElements(configuration: iAnaConfiguration): RenderDictionary 
       multiple: new AttBoolean('multiple').match,
       required: new AttBoolean('required').match,
     }).render(configuration),
-  
-    slot:new Element('slot', false, {
+
+    slot: new Element('slot', false, {
       name: new AttString('name').match,
     }).render(configuration),
-  
-    style:new Element('style', false, {
+
+    style: new Element('style', false, {
       type: new AttList('type', 'typeStyle').match,
       media: new AttString('media').match,
       nonce: new AttString('nonce').match,
     }).render(configuration),
-  
-    table:new Element('table', false, {
+
+    table: new Element('table', false, {
       align: new AttDeprecated('align').match,
       bgcolor: new AttDeprecated('bgcolor').match,
       border: new AttDeprecated('border').match,
@@ -337,16 +338,16 @@ export function getElements(configuration: iAnaConfiguration): RenderDictionary 
       summary: new AttDeprecated('summary').match,
       width: new AttDeprecated('width').match,
     }).render(configuration),
-  
-    tbody:new Element('tbody', false, {
+
+    tbody: new Element('tbody', false, {
       align: new AttDeprecated('align').match,
       bgcolor: new AttDeprecated('bgcolor').match,
       char: new AttDeprecated('char').match,
       charoff: new AttDeprecated('charoff').match,
       valign: new AttDeprecated('valign').match,
     }).render(configuration),
-  
-    td:new Element('td', false, {
+
+    td: new Element('td', false, {
       colspan: new AttString('colspan').match,
       headers: new AttString('headers').match,
       rowspan: new AttString('rowspan').match,
@@ -360,8 +361,8 @@ export function getElements(configuration: iAnaConfiguration): RenderDictionary 
       valign: new AttDeprecated('valign').match,
       width: new AttDeprecated('width').match,
     }).render(configuration),
-  
-    textarea:new Element('textarea', false, {
+
+    textarea: new Element('textarea', false, {
       autocomplete: new AttList('autocomplete', 'inputAutocomplete').match,
       spellcheck: new AttList('spellcheck', 'softBoolean').match,
       wrap: new AttList('wrap', 'wrap').match,
@@ -377,16 +378,16 @@ export function getElements(configuration: iAnaConfiguration): RenderDictionary 
       autocapitalize: new AttDeprecated('autocapitalize').match,
       autocorrect: new AttDeprecated('autocorrect').match,
     }).render(configuration),
-  
-    tfoot:new Element('tfoot', false, {
+
+    tfoot: new Element('tfoot', false, {
       align: new AttDeprecated('align').match,
       bgcolor: new AttDeprecated('bgcolor').match,
       char: new AttDeprecated('char').match,
       charoff: new AttDeprecated('charoff').match,
       valign: new AttDeprecated('valign').match,
     }).render(configuration),
-  
-    th:new Element('th', false, {
+
+    th: new Element('th', false, {
       abbr: new AttString('abbr').match,
       colspan: new AttString('colspan').match,
       headers: new AttString('headers').match,
@@ -401,33 +402,33 @@ export function getElements(configuration: iAnaConfiguration): RenderDictionary 
       valign: new AttDeprecated('valign').match,
       width: new AttDeprecated('width').match,
     }).render(configuration),
-  
-    thead:new Element('thead', false, {
+
+    thead: new Element('thead', false, {
       align: new AttDeprecated('align').match,
       bgcolor: new AttDeprecated('bgcolor').match,
       char: new AttDeprecated('char').match,
       charoff: new AttDeprecated('charoff').match,
       valign: new AttDeprecated('valign').match,
     }).render(configuration),
-  
-    time:new Element('time', false, {
+
+    time: new Element('time', false, {
       datetime: new AttString('datetime').match,
     }).render(configuration),
-  
-    tr:new Element('tr', false, {
+
+    tr: new Element('tr', false, {
       align: new AttDeprecated('align').match,
       bgcolor: new AttDeprecated('bgcolor').match,
       char: new AttDeprecated('char').match,
       charoff: new AttDeprecated('charoff').match,
       valign: new AttDeprecated('valign').match,
     }).render(configuration),
-  
-    ul:new Element('ul', false, {
+
+    ul: new Element('ul', false, {
       compact: new AttDeprecated('compact').match,
       type: new AttDeprecated('type').match,
     }).render(configuration),
-  
-    video:new Element('video', false, {
+
+    video: new Element('video', false, {
       preload: new AttList('preload', 'preload').match,
       crossorigin: new AttList('crossorigin', 'crossorigin').match,
       poster: new AttString('poster').match,
@@ -440,10 +441,10 @@ export function getElements(configuration: iAnaConfiguration): RenderDictionary 
       autoplay: new AttBoolean('autoplay').match,
       controls: new AttBoolean('controls').match,
     }).render(configuration),
-  
+
     // Empty Elements
-  
-    area:new Element('area', true, {
+
+    area: new Element('area', true, {
       rel: new AttList('rel', 'validLinkTypes', 'invalidLinkTypes').match,
       hreflang: new AttList('hreflang', 'isoCodes').match,
       shape: new AttList('shape', 'areaShape').match,
@@ -454,17 +455,17 @@ export function getElements(configuration: iAnaConfiguration): RenderDictionary 
       target: new AttString('target').match,
       alt: new AttString('alt').match,
     }).render(configuration),
-  
-    base:new Element('base', true, {
+
+    base: new Element('base', true, {
       href: new AttString('href').match,
       target: new AttString('target').match,
     }).render(configuration),
-  
-    br:new Element('br', true, {
+
+    br: new Element('br', true, {
       clear: new AttDeprecated('clear').match,
     }).render(configuration),
-  
-    col:new Element('col', true, {
+
+    col: new Element('col', true, {
       span: new AttString('span').match,
       align: new AttDeprecated('align').match,
       bgcolor: new AttDeprecated('bgcolor').match,
@@ -473,23 +474,23 @@ export function getElements(configuration: iAnaConfiguration): RenderDictionary 
       valign: new AttDeprecated('valign').match,
       width: new AttDeprecated('width').match,
     }).render(configuration),
-  
-    embed:new Element('embed', true, {
+
+    embed: new Element('embed', true, {
       src: new AttString('src').match,
       height: new AttString('height').match,
       width: new AttString('width').match,
       type: new AttString('type').match,
     }).render(configuration),
-  
-    hr:new Element('hr', true, {
+
+    hr: new Element('hr', true, {
       align: new AttDeprecated('align').match,
       noshade: new AttDeprecated('noshade').match,
       size: new AttDeprecated('size').match,
       width: new AttDeprecated('width').match,
       color: new AttNonstandard('color').match,
     }).render(configuration),
-  
-    img:new Element('img', true, {
+
+    img: new Element('img', true, {
       crossorigin: new AttList('crossorigin', 'crossorigin').match,
       decoding: new AttList('decoding', 'decoding').match,
       srcset: new AttString('srcset').match,
@@ -501,8 +502,8 @@ export function getElements(configuration: iAnaConfiguration): RenderDictionary 
       usemap: new AttString('usemap').match,
       ismap: new AttBoolean('ismap').match,
     }).render(configuration),
-  
-    input:new Element('input', true, {
+
+    input: new Element('input', true, {
       autocomplete: new AttList('autocomplete', 'inputAutocomplete').match,
       type: new AttList('type', 'inputType', 'invalidInputType').match,
       form: new AttString('form').match,
@@ -549,8 +550,8 @@ export function getElements(configuration: iAnaConfiguration): RenderDictionary 
       // prettier-ignore
       step: new AttInput('step', ['date', 'month', 'week', 'time', 'datetime-local', 'number', 'range'], 'string').match,
     }).render(configuration),
-  
-    link:new Element('link', true, {
+
+    link: new Element('link', true, {
       rel: new AttList('rel', 'validLinkTypes', 'invalidLinkTypes').match,
       as: new AttList('as', 'linkAs').match,
       crossorigin: new AttList('crossorigin', 'crossorigin').match,
@@ -562,122 +563,286 @@ export function getElements(configuration: iAnaConfiguration): RenderDictionary 
       type: new AttString('type').match,
       disabled: new AttBoolean('disabled').match,
     }).render(configuration),
-  
-    meta:new Element('meta', true, {
+
+    meta: new Element('meta', true, {
       'http-equiv': new AttList('http-equiv', 'httpEquiv').match,
       content: new AttString('content').match,
       name: new AttString('name').match,
       charset: new AttString('charset').match,
     }).render(configuration),
-  
-    param:new Element('param', true, {
+
+    param: new Element('param', true, {
       name: new AttString('name').match,
       value: new AttString('value').match,
       type: new AttDeprecated('type').match,
       valuetype: new AttDeprecated('valuetype').match,
     }).render(configuration),
-  
-    source:new Element('source', true, {
+
+    source: new Element('source', true, {
       srcset: new AttDeprecated('srcset').match,
       src: new AttDeprecated('src').match,
       media: new AttDeprecated('media').match,
       sizes: new AttDeprecated('sizes').match,
       type: new AttDeprecated('type').match,
     }).render(configuration),
-  
-    track:new Element('track', true, {
+
+    track: new Element('track', true, {
       kind: new AttList('kind', 'trackKind').match,
       srclang: new AttList('srclang', 'isoCodes').match,
       src: new AttString('src').match,
       label: new AttString('label').match,
       default: new AttBoolean('default').match,
     }).render(configuration),
-  
-    wbr:new Element('wbr', true, {}).render(configuration),
-  
+
+    wbr: new Element('wbr', true, {}).render(configuration),
+
     // Elements with only global attributes
-    abbr:new Element('abbr', false, {}).render(configuration),
-  
-    address:new Element('address', false, {}).render(configuration),
-  
-    article:new Element('article', false, {}).render(configuration),
-  
-    aside:new Element('aside', false, {}).render(configuration),
-  
-    b:new Element('b', false, {}).render(configuration),
-  
-    bdi:new Element('bdi', false, {}).render(configuration),
-  
-    cite:new Element('cite', false, {}).render(configuration),
-  
-    code:new Element('code', false, {}).render(configuration),
-  
-    datalist:new Element('datalist', false, {}).render(configuration),
-  
-    dfn:new Element('dfn', false, {}).render(configuration),
-  
-    dl:new Element('dl', false, {}).render(configuration),
-  
-    dt:new Element('dt', false, {}).render(configuration),
-  
-    em:new Element('em', false, {}).render(configuration),
-  
-    figcaption:new Element('figcaption', false, {}).render(configuration),
-  
-    figure:new Element('figure', false, {}).render(configuration),
-  
-    footer:new Element('footer', false, {}).render(configuration),
-  
-    header:new Element('header', false, {}).render(configuration),
-  
-    i:new Element('i', false, {}).render(configuration),
-  
-    kbd:new Element('kbd', false, {}).render(configuration),
-  
-    legend:new Element('legend', false, {}).render(configuration),
-  
-    main:new Element('main', false, {}).render(configuration),
-  
-    mark:new Element('mark', false, {}).render(configuration),
-  
-    nav:new Element('nav', false, {}).render(configuration),
-  
-    noscript:new Element('noscript', false, {}).render(configuration),
-  
-    p:new Element('p', false, {}).render(configuration),
-  
-    picture:new Element('picture', false, {}).render(configuration),
-  
-    rp:new Element('rp', false, {}).render(configuration),
-  
-    rt:new Element('rt', false, {}).render(configuration),
-  
-    ruby:new Element('ruby', false, {}).render(configuration),
-  
-    s:new Element('s', false, {}).render(configuration),
-  
-    samp:new Element('samp', false, {}).render(configuration),
-  
-    section:new Element('section', false, {}).render(configuration),
-  
-    small:new Element('small', false, {}).render(configuration),
-  
-    span:new Element('span', false, {}).render(configuration),
-  
-    strong:new Element('strong', false, {}).render(configuration),
-  
-    sub:new Element('sub', false, {}).render(configuration),
-  
-    summary:new Element('summary', false, {}).render(configuration),
-  
-    sup:new Element('sup', false, {}).render(configuration),
-  
-    template:new Element('template', false, {}).render(configuration),
-  
-    title:new Element('title', false, {}).render(configuration),
-  
-    u:new Element('u', false, {}).render(configuration),
-  
-    var:new Element('var', false, {}).render(configuration)
+    abbr: new Element('abbr', false, {}).render(configuration),
+
+    address: new Element('address', false, {}).render(configuration),
+
+    article: new Element('article', false, {}).render(configuration),
+
+    aside: new Element('aside', false, {}).render(configuration),
+
+    b: new Element('b', false, {}).render(configuration),
+
+    bdi: new Element('bdi', false, {}).render(configuration),
+
+    cite: new Element('cite', false, {}).render(configuration),
+
+    code: new Element('code', false, {}).render(configuration),
+
+    datalist: new Element('datalist', false, {}).render(configuration),
+
+    dfn: new Element('dfn', false, {}).render(configuration),
+
+    dl: new Element('dl', false, {}).render(configuration),
+
+    dt: new Element('dt', false, {}).render(configuration),
+
+    em: new Element('em', false, {}).render(configuration),
+
+    figcaption: new Element('figcaption', false, {}).render(configuration),
+
+    figure: new Element('figure', false, {}).render(configuration),
+
+    footer: new Element('footer', false, {}).render(configuration),
+
+    header: new Element('header', false, {}).render(configuration),
+
+    i: new Element('i', false, {}).render(configuration),
+
+    kbd: new Element('kbd', false, {}).render(configuration),
+
+    legend: new Element('legend', false, {}).render(configuration),
+
+    main: new Element('main', false, {}).render(configuration),
+
+    mark: new Element('mark', false, {}).render(configuration),
+
+    nav: new Element('nav', false, {}).render(configuration),
+
+    noscript: new Element('noscript', false, {}).render(configuration),
+
+    p: new Element('p', false, {}).render(configuration),
+
+    picture: new Element('picture', false, {}).render(configuration),
+
+    rp: new Element('rp', false, {}).render(configuration),
+
+    rt: new Element('rt', false, {}).render(configuration),
+
+    ruby: new Element('ruby', false, {}).render(configuration),
+
+    s: new Element('s', false, {}).render(configuration),
+
+    samp: new Element('samp', false, {}).render(configuration),
+
+    section: new Element('section', false, {}).render(configuration),
+
+    small: new Element('small', false, {}).render(configuration),
+
+    span: new Element('span', false, {}).render(configuration),
+
+    strong: new Element('strong', false, {}).render(configuration),
+
+    sub: new Element('sub', false, {}).render(configuration),
+
+    summary: new Element('summary', false, {}).render(configuration),
+
+    sup: new Element('sup', false, {}).render(configuration),
+
+    template: new Element('template', false, {}).render(configuration),
+
+    title: new Element('title', false, {}).render(configuration),
+
+    u: new Element('u', false, {}).render(configuration),
+
+    var: new Element('var', false, {}).render(configuration),
+  }
+}
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+/**
+ * This function creates a similar dictionary to `getElements()`, it contains instances of the `Element` and `Attribute` classes. But instead of general HTML Elements, this function generates SVG elements exlcusively.
+ * @param configuration
+ * @returns
+ */
+export function getSVG(configuration: iAnaConfiguration): RenderDictionary {
+  return {
+    circle: new Element('circle', false, {
+      cx: new AttString('cx').match,
+      cy: new AttString('cy').match,
+      r: new AttString('r').match,
+      pathLength: new AttString('pathLength').match,
+    }).render(configuration),
+
+    ellipse: new Element('ellipse', false, {
+      cx: new AttString('cx').match,
+      cy: new AttString('cy').match,
+      rx: new AttString('rx').match,
+      ry: new AttString('ry').match,
+      pathLength: new AttString('pathLength').match,
+    }).render(configuration),
+
+    line: new Element('line', false, {
+      x1: new AttString('x1').match,
+      x2: new AttString('x2').match,
+      y1: new AttString('y1').match,
+      y2: new AttString('y2').match,
+      pathLength: new AttString('pathLength').match,
+    }).render(configuration),
+
+    polygon: new Element('polygon', false, {
+      points: new AttString('points').match,
+      pathLength: new AttString('pathLength').match,
+    }).render(configuration),
+
+    polyline: new Element('polyline', false, {
+      points: new AttString('points').match,
+      pathLength: new AttString('pathLength').match,
+    }).render(configuration),
+
+    rect: new Element('rect', false, {
+      width: new AttString('width').match,
+      height: new AttString('height').match,
+      x: new AttString('x').match,
+      y: new AttString('y').match,
+      rx: new AttString('rx').match,
+      ry: new AttString('ry').match,
+      pathLength: new AttString('pathLength').match,
+    }).render(configuration),
+
+    defs: new Element('defs', false, {}).render(configuration),
+
+    g: new Element('g', false, {}).render(configuration),
+
+    marker: new Element('marker', false, {
+      markerHeight: new AttString('markerHeight').match,
+      markerWidth: new AttString('markerWidth').match,
+      markerUnits: new AttString('markerUnits').match,
+      orient: new AttString('orient').match,
+      preserveAspectRatio: new AttString('preserveAspectRatio').match,
+      refX: new AttString('refX').match,
+      refY: new AttString('refY').match,
+      viewBox: new AttString('viewBox').match,
+    }).render(configuration),
+
+    mask: new Element('mask', false, {
+      width: new AttString('width').match,
+      height: new AttString('height').match,
+      x: new AttString('x').match,
+      y: new AttString('y').match,
+      maskContentUnits: new AttString('maskContentUnits').match,
+      maskUnits: new AttString('maskUnits').match,
+    }).render(configuration),
+
+    svg: new Element('svg', false, {
+      baseProfile: new AttDeprecated('baseProfile').match,
+      contentScriptType: new AttDeprecated('contentScriptType').match,
+      contentStyleType: new AttDeprecated('contentStyleType').match,
+      version: new AttDeprecated('version').match,
+      width: new AttString('width').match,
+      height: new AttString('height').match,
+      x: new AttString('x').match,
+      y: new AttString('y').match,
+      preserveAspectRatio: new AttString('preserveAspectRatio').match,
+      viewbox: new AttString('viewbox').match,
+    }).render(configuration),
+
+    switch: new Element('switch', false, {}).render(configuration),
+
+    symbol: new Element('symbol', false, {}).render(configuration),
+
+    desc: new Element('desc', false, {}).render(configuration),
+
+    linearGradient: new Element('linearGradient', false, {
+      gradientUnits: new AttString('gradientUnits').match,
+      gradientTransform: new AttString('gradientTransform').match,
+      href: new AttString('href').match,
+      spreadMethod: new AttString('spreadMethod').match,
+      x1: new AttString('x1').match,
+      x2: new AttString('x2').match,
+      y1: new AttString('y1').match,
+      y2: new AttString('y2').match,
+      'xlink:href': new AttDeprecated('xlink:href').match,
+    }).render(configuration),
+
+    radialGradient: new Element('radialGradient', false, {
+      gradientUnits: new AttString('gradientUnits').match,
+      gradientTransform: new AttString('gradientTransform').match,
+      href: new AttString('href').match,
+      spreadMethod: new AttString('spreadMethod').match,
+      cx: new AttString('cx').match,
+      cy: new AttString('cy').match,
+      fr: new AttString('fr').match,
+      fx: new AttString('fx').match,
+      fy: new AttString('fy').match,
+      r: new AttString('r').match,
+      'xlink:href': new AttDeprecated('xlink:href').match,
+    }).render(configuration),
+
+    stop: new Element('stop', false, {
+      offset: new AttExperimental('offset').match,
+      'stop-color': new AttString('stop-color').match,
+      'stop-opacity': new AttString('stop-opacity').match,
+    }).render(configuration),
+
+    // Remaining
+    image: new Element('image', false, {
+      width: new AttString('width').match,
+      height: new AttString('height').match,
+      x: new AttString('x').match,
+      y: new AttString('y').match,
+      preserveAspectRatio: new AttString('preserveAspectRatio').match,
+      crossorigin: new AttString('crossorigin').match,
+      url: new AttString('url').match,
+      'xlink:href': new AttDeprecated('xlink:href').match,
+    }).render(configuration),
+
+    path: new Element('path', false, {
+      d: new AttString('d').match,
+      pathLength: new AttString('pathLength').match,
+    }).render(configuration),
+
+    text: new Element('text', false, {
+      x: new AttString('x').match,
+      y: new AttString('y').match,
+      dx: new AttString('dx').match,
+      dy: new AttString('dy').match,
+      rotate: new AttString('rotate').match,
+      lengthAdjust: new AttString('lengthAdjust').match,
+      textLength: new AttString('textLength').match,
+    }).render(configuration),
+
+    use: new Element('use', false, {
+      width: new AttString('width').match,
+      height: new AttString('height').match,
+      x: new AttString('x').match,
+      y: new AttString('y').match,
+      href: new AttString('href').match,
+      'xlink:href': new AttDeprecated('xlink:href').match,
+    }).render(configuration),
   }
 }

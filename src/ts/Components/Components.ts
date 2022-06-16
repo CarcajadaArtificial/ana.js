@@ -2,7 +2,7 @@
  * @module Components
  */
 import { iAnaConfiguration } from '../Ana/Ana.interface'
-import { getElements } from '../Elements/Elements'
+import { getElements, getSVG } from '../Elements/Elements'
 import { RenderDictionary } from '../types'
 import { rBox } from './Atoms/Box/Box'
 import { rHeading } from './Atoms/Heading/Heading'
@@ -38,8 +38,10 @@ export const createRenderDictionary = (
   configuration: iAnaConfiguration
 ): RenderDictionary => {
   let elements = getElements(configuration)
+  let svgs = getSVG(configuration)
   return {
     ...elements,
+    ...svgs,
     // Atoms
     Layout: rLayout(elements, configuration),
     Surface: rSurface(elements, configuration),
