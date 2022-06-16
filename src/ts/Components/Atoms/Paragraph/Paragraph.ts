@@ -21,6 +21,7 @@ export function rParagraph(
   a: RenderDictionary,
   config: iAnaConfiguration
 ): Function {
+  config
   return (...children: [Node | string | Function]): Function => {
     return (param: iParagraph = {}): HTMLElement => {
       // Default values

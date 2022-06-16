@@ -21,6 +21,7 @@ export function rBox(
   a: RenderDictionary,
   config: iAnaConfiguration
 ): Function {
+  config
   return (...children: [Node | string | Function]): Function  => {
     return (param: iBox = {}): HTMLElement => {
       // Default values

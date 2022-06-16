@@ -93,46 +93,20 @@ export interface iExample {}
 
 ## Package Scripts
 
-* `test`
+* `npm run dev`
+
+  The developer should run this script to start developing any TypeScript feature. It runs a build before the server, this is to catch any build errors prior to the start of the development. This way, the developer knows if there are any build errors/warnings before even adding new code. Also, before any of that even happens, it builds all of the css into the `~/build` directory. It is necessary for a built css to exist before building any TypeScript code.
+
+* `npm run dev-css`
   
-  It uses Nodemon watching for changes in the app (`.ts` and `.scss` files) and for changes in the test (`.html` files). It reruns the node server (`~/test/app.ts`) when a change is made.
+  The developer should run this script when developing any CSS features. If the developer is creating new components that require this script and `npm run dev`, both should be run on separate but parallel terminal sessions.
 
-* `build`
+* `npm run build`
 
-  It processes the complete proyect, which is mainly divided in two parts: the contents inside `~/src/ts` and `~/src/scss` into a single directory `~/dist/ana/`. It runs `_build-sass` and `_build-ts` to achieve this.
+  The developer should run this script before commiting changes and publishing to NPM.
 
-* `doc`
+* `npm run preview`
   
-  It runs all the standard documentation processing, divided into sassdoc and typedoc. It runs `_build-sass:doc` and `_build-ts:doc` to achieve this.
-
-### Secondary Package Scripts
-
-* `_build-css`
-
-  It processes all of the project's scss code through `~/src/scss/style.scss` into a single css file inside the distribution directory (`~/dist/ana/ana.css` and `~/dist/ana/ana.css.map`).
-
-* `_build-css:doc`
-
-  It uses the sassdoc comment standard to process all scss files inside the source directoy (`~/src/scss/*.scss` and `~/src/scss/**/*.scss`).
-
-* `_build-css:min`
-
-  It builds the scss code, just like `_build-css`, but minified and without the map. It is used for the publishing version.
-
-* `_build-ts`
-
-  It processes all of the typescript part of the project. It uses the Typescript and Webpack configuration (`~/tsconfig.json` and `~/webpack.config.json`) to build everything into a single file in the distribution directory (`~/dist/ana/ana.js`)
-
-* `_build-ts:doc`
-
-  It uses the typedoc comment standard to process all typescript files inside the source directory (`~/src/ts/*.ts` and `~/src/ts/**/*.ts`)
-
-* `_build-ts:watch`
-
-  It runs the same process as `_build-ts`, but watches for changes made to source files.
-
-* `_publish-ts`
-
-  It creates a minified version of the compiled project and does not create a sourcemap for debugging. But the result is ready to be deployed.
+  It runs a local server using the built files inside the `~/dist` directory.
 
   [Back to top](#top)

@@ -28,6 +28,7 @@ export function rColorpage(
   config: iAnaConfiguration
 ): Function {
   return (...children: [Node | string | Function]): Function => {
+    children
     a.Heading = rHeading(a, config)
     a.Subheaidng = rSubheading(a, config)
     a.List = rList(a, config)

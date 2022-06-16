@@ -21,6 +21,7 @@ export function rTitle(
   a: RenderDictionary,
   config: iAnaConfiguration
 ): Function {
+  config
   return (...children: [Node | string | Function]): Function => {
     return (param: iTitle = {}): HTMLElement => {
       // Default values

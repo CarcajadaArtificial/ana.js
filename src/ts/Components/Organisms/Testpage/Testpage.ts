@@ -53,6 +53,7 @@ export function rTestpage(
       let classes = {
         Testpage: classNames('a-Testpage').split(' '),
       }
+      classes
 
       return a.Surface(
         a.List(
@@ -84,7 +85,7 @@ export function rTestpage(
             )()
           )({ type: 'left' }),
           ...children
-        )({ gap: 'tpl'})
+        )({ gap: 'tpl' })
       )({ contrast: 'high', addClass: { Surface: 'a-Testpage' } })
     }
   }

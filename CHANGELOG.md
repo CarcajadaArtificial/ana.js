@@ -2,7 +2,18 @@
 
 ## Unreleased
 
-### **0.6.7** (Latest)
+### **0.6.8** (Latest)
+
+- `Added` Small fixes to build warnings.
+  - `~/src/*`
+
+- `Added` Better package scripts
+  - `~/package.json`
+
+- `Added` Updated script documentation
+  - `~/CONTRIBUTING.md`
+
+### **0.6.7**
 
 Fuck webpack.
 

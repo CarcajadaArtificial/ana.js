@@ -20,6 +20,7 @@ export function rSmall(
   a: RenderDictionary,
   config: iAnaConfiguration
 ): Function {
+  config
   return (...children: [Node | string | Function]): Function => {
     return (param: iSmall = {}): HTMLElement => {
       param = {
