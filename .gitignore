@@ -6,6 +6,8 @@ package-lock.json
 
 # Directory of public exported files
 dist/
+build/
+docs/
 
 # Directory of files that are immediately deleted after being used.
 bin/
