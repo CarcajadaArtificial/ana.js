@@ -5,7 +5,7 @@
 
 ![Banner](https://user-images.githubusercontent.com/13631141/173929134-ff19b3c7-2f46-4ab6-9bfa-1d089f790c82.png)
 
-### Table of Contents
+## Table of Contents
 
 1. [About the project](#about-the-project)
 2. [Getting started](#getting-started)

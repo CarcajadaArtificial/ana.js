@@ -10,17 +10,5 @@
  * @module Ana/Index
  */
 
-import { Ana } from './Ana/Ana'
-
-//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-// Global Overrides
-declare global {
-  // Window interface override to support `const a = new Ana()`.
-  interface Window {
-    Ana: Object
-  }
-}
-
-//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-// Global prototype overrides
-window.Ana = Ana
+export { Ana } from './Ana/Ana'
+export { bring, eId } from './utils'

@@ -2,7 +2,12 @@
 
 ## Unreleased
 
-### **0.5.16** (Latest)
+### **0.6.0** (Latest)
+
+- `Added` Exports.
+  - `~/src/ts/index.ts`
+
+### **0.5.16**
 
 - `Added` Better documentation
   - `~/README.md`
