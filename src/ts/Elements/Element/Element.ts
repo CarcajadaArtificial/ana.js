@@ -137,6 +137,7 @@ export class Element {
    * @returns A render function that depends on the `this.empty`. `this.renderWithoutChildren` when true and `renderWhithoutChildren` when false.
    */
   render = (configuration: iAnaConfiguration): Function => {
+    configuration
     return this.isEmpty ? this.renderWithoutChildren : this.renderWithChildren
   }
 }

@@ -1,26 +1,21 @@
 {
   "compilerOptions": {
-    "target": "es2016",
-    "lib": ["es2017", "dom", "DOM.Iterable"],
-    "module": "ES6",
-    "moduleResolution": "node",
-    "sourceMap": true,
-    "outDir": "./dist",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "lib": ["ESNext", "DOM"],
+    "types": ["vite/client"],
+    "moduleResolution": "Node",
     "strict": true,
-    "noImplicitAny": true,
-    "skipLibCheck": true,
+    "sourceMap": true,
     "resolveJsonModule": true,
-    "declaration": false
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "noEmit": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "skipLibCheck": true
   },
-  "include": ["src/ts/**/*.ts"],
-  "typedocOptions": {
-    "entryPoints": [
-      "src/ts/",
-    ],
-    "entryPointStrategy": "expand",
-    "out": "docs",
-    "json": "docs/typedoc.json"
-  }
+  "include": ["src"]
 }

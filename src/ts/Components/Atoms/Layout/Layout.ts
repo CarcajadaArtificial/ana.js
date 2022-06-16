@@ -21,6 +21,7 @@ export function rLayout(
   a: RenderDictionary,
   config: iAnaConfiguration
 ): Function {
+  config
   return (...children: [Node | string | Function]): Function  => {
     return (param: iLayout = {}): HTMLElement => {
       // Default values

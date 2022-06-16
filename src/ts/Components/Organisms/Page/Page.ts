@@ -21,6 +21,7 @@ export function rPage(
   a: RenderDictionary,
   config: iAnaConfiguration
 ): Function {
+  config
   return (...children: [Node | string | Function]): Function => {
     return (param: iPage = {}): HTMLElement | undefined => {
       param = {

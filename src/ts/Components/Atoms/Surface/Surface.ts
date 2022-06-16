@@ -27,6 +27,7 @@ export function rSurface(
   a: RenderDictionary,
   config: iAnaConfiguration
 ): Function {
+  config
   return (...children: [Node | string | Function]): Function => {
     return (param: iSurface = {}): HTMLElement => {
       // Default values

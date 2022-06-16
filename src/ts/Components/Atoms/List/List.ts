@@ -21,6 +21,7 @@ export function rList(
   a: RenderDictionary,
   config: iAnaConfiguration
 ): Function {
+  config
   return (...children: [Node | string | Function]): Function  => {
     return (param: iList = {}): HTMLElement => {
       // Default values

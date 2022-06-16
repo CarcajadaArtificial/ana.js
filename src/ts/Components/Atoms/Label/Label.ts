@@ -27,6 +27,7 @@ export function rLabel(
   a: RenderDictionary,
   config: iAnaConfiguration
 ): Function {
+  config
   return (...children: [Node | string | Function]): Function => {
     return (param: iLabel = {}): HTMLElement => {
       // Default values

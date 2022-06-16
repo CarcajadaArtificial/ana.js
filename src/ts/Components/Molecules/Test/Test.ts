@@ -42,6 +42,7 @@ export function rTest(
       let classes = {
         Test: classNames().split(' '),
       }
+      classes
 
       return a.Layout(
         a.Surface(

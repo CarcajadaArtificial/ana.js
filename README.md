@@ -39,9 +39,38 @@ What is Ana? It is short for Anarchy, a system that questions all hierarchy, aut
 
 ### NPM
 
-```
-npm i ana.js
-```
+1. Install the library
+
+    ```node
+    npm i ana.js
+    ```
+
+2. Saffold a vanilla-ts project using [Vite](https://vitejs.dev/).
+
+    ```node
+    npm create vite@latest
+    ```
+
+    - Select project name.
+    - From the list of Frameworks choose `vanilla`, then `vanilla-ts`.
+    - Install all node modules.
+
+    <br>
+
+3. Install the Ana.js package.
+
+    ```node
+    npm i ana.js
+    ```
+
+4. Import the Ana module
+
+    ```typescript
+    import { Ana } from 'ana.js'
+
+    const A = new Ana()
+    const a = A.render()
+    ```
 
 ### Downloadable
 
