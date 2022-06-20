@@ -11,6 +11,11 @@ declare global {
     has(attributes: AttributeValuesDictionary): HTMLElement
     setAttributes(attributes: AttributeValuesDictionary): HTMLElement
   }
+
+  interface SVGElement {
+    has(attributes: AttributeValuesDictionary): HTMLElement
+    setAttributes(attributes: AttributeValuesDictionary): HTMLElement
+  }
 }
 
 declare class Window {
@@ -73,7 +78,9 @@ export class Ana {
   constructor(configuration: iAnaConfiguration = {}) {
     this.configuration = { ...this.configuration, ...configuration }
     HTMLElement.prototype.setAttributes = setAttributes
+    SVGElement.prototype.setAttributes = setAttributes
     HTMLElement.prototype.has = has
+    SVGElement.prototype.has = has
   }
 }
 

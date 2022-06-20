@@ -89,14 +89,9 @@ Download the latest [release](https://github.com/CarcajadaArtificial/ana.js/rele
 
 - **Features**
   - [x] Reactivity.
-  - [ ] SVG support.
+  - [x] SVG support. (~20% of SVG Elements)
   - [ ] Animation engine.
   - [ ] Server Side rendering.
-
-- **Components**
-  - [ ] Button
-  - [ ] Inputs
-  - [ ] Chip
 
 - **Development**
   - [ ] Testing server.
