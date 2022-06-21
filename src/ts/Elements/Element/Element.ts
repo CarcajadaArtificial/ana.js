@@ -140,6 +140,28 @@ export class Element {
     configuration
     return this.isEmpty ? this.renderWithoutChildren : this.renderWithChildren
   }
+
+  //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+  /**
+   * This function creates an SVGElement renderer, and it is the step where the framework's configuration affects the way the svgs are rendered. This function is necesary be
+   * @param configuration So far there is no use for the framework configuration inside the renderer function. When I enable render configurations, they are going to be applied here.
+   * @returns A render function for an SVGElement.
+   * 
+   * @todo Check if Obejct.getPrototypeOf(child).constructor.name starts with "HTML", and throw an error if so.
+   */
+  renderSVG = (configuration: iAnaConfiguration): Function => {
+    configuration
+    return (...children: [Node | string | Function]): Function => {
+      return (attributes: AttributeValuesDictionary): Node => {
+        let svgElement = document.createElementNS("http://www.w3.org/2000/svg", this.name)
+        svgElement.append(...this.checkChildren(children))
+        if(attributes) {
+          svgElement.setAttributes(attributes)
+        }
+        return svgElement
+      }
+    }
+  }
 }
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -

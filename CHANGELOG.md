@@ -1,8 +1,37 @@
 # CHANGELOG.md
 
+## **0.7.0 Goals**
+
+- [x] Minimal SVG support.
+- [ ] Unit testing.
+- [ ] Component testing.
+- [ ] Error handling.
+
 ## Unreleased
 
-### **0.6.12** (Latest)
+### **0.6.14** (Latest)
+
+- `Added` App and Navbar Components
+  - `~/src/main.ts`
+  - `~/src/ts/Components/Components.ts`
+  - `~/src/ts/Components/Molecules/Navbar/Navbar.ts`
+  - `~/src/ts/Components/Organisms/App/App.ts`
+  - `~/src/ts/Components/Organisms/Page/Page.ts`
+  - `~/src/scss/molecules.mod.scss`
+
+- `Removed` test Page Components
+  - `~/src/ts/Components/Molecules/Test/Test.tx`
+  - `~/src/ts/Components/Pages/Colorpage/Colorpage.tx`
+  - `~/src/ts/Components/Organisms/Testpage/Testpage.tx`
+
+### **0.6.13**
+
+- `Added` Minimal SVG support. About 20% of the available elements, and avoided most of the attributes that can be avoided.
+  - `~/src/ts/Ana/Ana.ts`
+  - `~/src/ts/Elements/Elements.ts`
+  - `~/src/ts/Elements/Element/Element.ts`
+
+### **0.6.12**
 
 - `Added` getting started instructions
   - `~/README.md`
@@ -96,7 +125,8 @@ Skipped v0.6.1-v0.6.4 while testing different configurations and publishing agai
 - `Added` minimal reactive functionality. At the moment, rerenders the whole page when the state changes in any way.
   - `~/src/ts/Observable.ts`
   - `~/src/ts/types.ts`
-  - `~/src/ts/Ana.ts`
+  - `~/src/ts/Elements.ts`
+  - `~/src/ts/Elements.ts`
 
 - `Added` prependToBody functionality to the Page organism.
   - `~/src/ts/Components/Organisms/Page/Page.ts`

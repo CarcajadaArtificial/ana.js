@@ -696,7 +696,7 @@ export function getSVG(configuration: iAnaConfiguration): RenderDictionary {
       cy: new AttString('cy').match,
       r: new AttString('r').match,
       pathLength: new AttString('pathLength').match,
-    }).render(configuration),
+    }).renderSVG(configuration),
 
     ellipse: new Element('ellipse', false, {
       cx: new AttString('cx').match,
@@ -704,7 +704,7 @@ export function getSVG(configuration: iAnaConfiguration): RenderDictionary {
       rx: new AttString('rx').match,
       ry: new AttString('ry').match,
       pathLength: new AttString('pathLength').match,
-    }).render(configuration),
+    }).renderSVG(configuration),
 
     line: new Element('line', false, {
       x1: new AttString('x1').match,
@@ -712,17 +712,17 @@ export function getSVG(configuration: iAnaConfiguration): RenderDictionary {
       y1: new AttString('y1').match,
       y2: new AttString('y2').match,
       pathLength: new AttString('pathLength').match,
-    }).render(configuration),
+    }).renderSVG(configuration),
 
     polygon: new Element('polygon', false, {
       points: new AttString('points').match,
       pathLength: new AttString('pathLength').match,
-    }).render(configuration),
+    }).renderSVG(configuration),
 
     polyline: new Element('polyline', false, {
       points: new AttString('points').match,
       pathLength: new AttString('pathLength').match,
-    }).render(configuration),
+    }).renderSVG(configuration),
 
     rect: new Element('rect', false, {
       width: new AttString('width').match,
@@ -732,11 +732,11 @@ export function getSVG(configuration: iAnaConfiguration): RenderDictionary {
       rx: new AttString('rx').match,
       ry: new AttString('ry').match,
       pathLength: new AttString('pathLength').match,
-    }).render(configuration),
+    }).renderSVG(configuration),
 
-    defs: new Element('defs', false, {}).render(configuration),
+    defs: new Element('defs', false, {}).renderSVG(configuration),
 
-    g: new Element('g', false, {}).render(configuration),
+    g: new Element('g', false, {}).renderSVG(configuration),
 
     marker: new Element('marker', false, {
       markerHeight: new AttString('markerHeight').match,
@@ -747,7 +747,7 @@ export function getSVG(configuration: iAnaConfiguration): RenderDictionary {
       refX: new AttString('refX').match,
       refY: new AttString('refY').match,
       viewBox: new AttString('viewBox').match,
-    }).render(configuration),
+    }).renderSVG(configuration),
 
     mask: new Element('mask', false, {
       width: new AttString('width').match,
@@ -756,7 +756,7 @@ export function getSVG(configuration: iAnaConfiguration): RenderDictionary {
       y: new AttString('y').match,
       maskContentUnits: new AttString('maskContentUnits').match,
       maskUnits: new AttString('maskUnits').match,
-    }).render(configuration),
+    }).renderSVG(configuration),
 
     svg: new Element('svg', false, {
       baseProfile: new AttDeprecated('baseProfile').match,
@@ -768,14 +768,15 @@ export function getSVG(configuration: iAnaConfiguration): RenderDictionary {
       x: new AttString('x').match,
       y: new AttString('y').match,
       preserveAspectRatio: new AttString('preserveAspectRatio').match,
-      viewbox: new AttString('viewbox').match,
-    }).render(configuration),
+      viewBox: new AttString('viewbox').match,
+      xmlns: new AttString('xmlns').match,
+    }).renderSVG(configuration),
 
-    switch: new Element('switch', false, {}).render(configuration),
+    switch: new Element('switch', false, {}).renderSVG(configuration),
 
-    symbol: new Element('symbol', false, {}).render(configuration),
+    symbol: new Element('symbol', false, {}).renderSVG(configuration),
 
-    desc: new Element('desc', false, {}).render(configuration),
+    desc: new Element('desc', false, {}).renderSVG(configuration),
 
     linearGradient: new Element('linearGradient', false, {
       gradientUnits: new AttString('gradientUnits').match,
@@ -787,7 +788,7 @@ export function getSVG(configuration: iAnaConfiguration): RenderDictionary {
       y1: new AttString('y1').match,
       y2: new AttString('y2').match,
       'xlink:href': new AttDeprecated('xlink:href').match,
-    }).render(configuration),
+    }).renderSVG(configuration),
 
     radialGradient: new Element('radialGradient', false, {
       gradientUnits: new AttString('gradientUnits').match,
@@ -801,13 +802,13 @@ export function getSVG(configuration: iAnaConfiguration): RenderDictionary {
       fy: new AttString('fy').match,
       r: new AttString('r').match,
       'xlink:href': new AttDeprecated('xlink:href').match,
-    }).render(configuration),
+    }).renderSVG(configuration),
 
     stop: new Element('stop', false, {
       offset: new AttExperimental('offset').match,
       'stop-color': new AttString('stop-color').match,
       'stop-opacity': new AttString('stop-opacity').match,
-    }).render(configuration),
+    }).renderSVG(configuration),
 
     // Remaining
     image: new Element('image', false, {
@@ -819,12 +820,12 @@ export function getSVG(configuration: iAnaConfiguration): RenderDictionary {
       crossorigin: new AttString('crossorigin').match,
       url: new AttString('url').match,
       'xlink:href': new AttDeprecated('xlink:href').match,
-    }).render(configuration),
+    }).renderSVG(configuration),
 
     path: new Element('path', false, {
       d: new AttString('d').match,
       pathLength: new AttString('pathLength').match,
-    }).render(configuration),
+    }).renderSVG(configuration),
 
     text: new Element('text', false, {
       x: new AttString('x').match,
@@ -834,7 +835,7 @@ export function getSVG(configuration: iAnaConfiguration): RenderDictionary {
       rotate: new AttString('rotate').match,
       lengthAdjust: new AttString('lengthAdjust').match,
       textLength: new AttString('textLength').match,
-    }).render(configuration),
+    }).renderSVG(configuration),
 
     use: new Element('use', false, {
       width: new AttString('width').match,
@@ -843,6 +844,6 @@ export function getSVG(configuration: iAnaConfiguration): RenderDictionary {
       y: new AttString('y').match,
       href: new AttString('href').match,
       'xlink:href': new AttDeprecated('xlink:href').match,
-    }).render(configuration),
+    }).renderSVG(configuration),
   }
 }
