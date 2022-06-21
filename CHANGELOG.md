@@ -9,7 +9,22 @@
 
 ## Unreleased
 
-### **0.6.13** (Latest)
+### **0.6.14** (Latest)
+
+- `Added` App and Navbar Components
+  - `~/src/main.ts`
+  - `~/src/ts/Components/Components.ts`
+  - `~/src/ts/Components/Molecules/Navbar/Navbar.ts`
+  - `~/src/ts/Components/Organisms/App/App.ts`
+  - `~/src/ts/Components/Organisms/Page/Page.ts`
+  - `~/src/scss/molecules.mod.scss`
+
+- `Removed` test Page Components
+  - `~/src/ts/Components/Molecules/Test/Test.tx`
+  - `~/src/ts/Components/Pages/Colorpage/Colorpage.tx`
+  - `~/src/ts/Components/Organisms/Testpage/Testpage.tx`
+
+### **0.6.13**
 
 - `Added` Minimal SVG support. About 20% of the available elements, and avoided most of the attributes that can be avoided.
   - `~/src/ts/Ana/Ana.ts`

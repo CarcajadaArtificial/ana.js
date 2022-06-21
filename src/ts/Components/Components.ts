@@ -16,9 +16,9 @@ import { rSubheading } from './Atoms/Subheading/Subheading'
 import { rSurface } from './Atoms/Surface/Surface'
 import { rTitle } from './Atoms/Title/Title'
 import { rCheckbox } from './Molecules/Checkbox/Checkbox'
-import { rTest } from './Molecules/Test/Test'
+import { rNavbar } from './Molecules/Navbar/Navbar'
+import { rApp } from './Organisms/App/App'
 import { rPage } from './Organisms/Page/Page'
-import { rTestpage } from './Organisms/Testpage/Testpage'
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 //    ____                                             _
@@ -56,9 +56,9 @@ export const createRenderDictionary = (
     Small: rSmall(elements, configuration),
     // Molecules
     Checkbox: rCheckbox(elements, configuration),
-    Test: rTest(elements, configuration),
+    Navbar: rNavbar(elements, configuration),
     // Organisms
-    Testpage: rTestpage(elements, configuration),
+    App: rApp(elements, configuration),
     Page: rPage(elements, configuration),
   }
 }

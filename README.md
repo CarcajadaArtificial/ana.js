@@ -105,4 +105,9 @@ Download the latest [release](https://github.com/CarcajadaArtificial/ana.js/rele
   - [x] How to add a new component.
   - [ ] Project publishing instructions.
 
+- **External**
+  - [ ] Prettier plugin or configuration file.
+  - [ ] VSCode syntax highlighting.
+  - [ ] Scaffolding CLI package `ana-cli`.
+
 [Back to top](#top)

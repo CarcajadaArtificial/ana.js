@@ -23,29 +23,22 @@ export function rPage(
 ): Function {
   config
   return (...children: [Node | string | Function]): Function => {
-    return (param: iPage = {}): HTMLElement | undefined => {
+    return (param: iPage = {}): HTMLElement => {
       param = {
-        ...{ prependToBody: true },
+        ...{ },
         ...param,
       }
       let classes = {
         Page: classNames('a-Page').split(' '),
       }
 
-      const page =  a.div(...classes.Page)(...children)
-
-      if (param.prependToBody === true) {
-        eId('a-Body').prepend(page)
-        return undefined
-      } else {
-        return page
-      }
+      return a.div(...classes.Page)(...children)
     }
   }
 }
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 export interface iPage {
-  prependToBody?: boolean
+  // prependToBody?: boolean
   // type?: PageTypeDictionary
 }
