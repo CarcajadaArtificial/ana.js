@@ -15,6 +15,9 @@ declare global {
   interface HTMLElement {
     has(attributes: AttributeValuesDictionary): HTMLElement
   }
+  interface SVGElement {
+    has(attributes: AttributeValuesDictionary): HTMLElement
+  }
 }
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
@@ -70,6 +73,7 @@ export class Ana {
     >(dAnaConfiguration, configuration)
 
     HTMLElement.prototype.has = has
+    SVGElement.prototype.has = has
 
     // Adds ana.js-check
     if(config.extensions.check) {

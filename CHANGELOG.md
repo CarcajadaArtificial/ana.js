@@ -8,6 +8,14 @@ Goal for v1.0.0 is to slowly move all other main features to their own repos and
 
 ## Unreleased
 
+### **0.6.19**
+
+Skipped 0.6.18 due to publishing tests
+
+- `Added` Svg functionality
+  - `~/src/ts/Render.ts`
+  - `~/src/ts/Ana/Ana.ts`
+
 ### **0.6.17** (Latest)
 
 - `Added` Ana.js extension executions.
