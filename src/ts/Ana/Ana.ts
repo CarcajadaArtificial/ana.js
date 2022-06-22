@@ -1,10 +1,15 @@
 /**
  * @module Ana
  */
-import { iAnaConfiguration } from './Ana.interface'
-import { State, AttributeValuesDictionary, MatchFunctionsDictionary } from '../types'
+import {
+  AnaConfiguration,
+  dAnaConfiguration,
+  iAnaConfiguration,
+} from './Ana.interface'
+import { State, AttributeValuesDictionary } from '../types'
 import { Observable } from '../Observable'
 import { Render } from '../Elements/Elements'
+import { applyDefaultParameters } from '../utils'
 
 declare global {
   interface HTMLElement {
@@ -28,9 +33,7 @@ export class Ana {
   /**
    * This object configures the framework's general functions.
    */
-  configuration: iAnaConfiguration = {
-    standardVerificationMode: true,
-  }
+  configuration: AnaConfiguration
 
   /**
    * This private observable is in charge of making the UI react to changes in the state.
@@ -68,7 +71,11 @@ export class Ana {
    * This function instantiates the framework.
    */
   constructor(configuration: iAnaConfiguration = {}) {
-    this.configuration = { ...this.configuration, ...configuration }
+    this.configuration = applyDefaultParameters<
+      AnaConfiguration,
+      iAnaConfiguration
+    >(dAnaConfiguration, configuration)
+
     HTMLElement.prototype.setAttributes = setAttributes
     HTMLElement.prototype.has = has
   }

@@ -11,15 +11,23 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 export interface iAnaConfiguration {
-  standardVerificationMode?: boolean
   // includeComponentLibrary?: boolean
   // includeAtoms?: boolean
   // includeMolecules?: boolean
   // includeOrganisms?: boolean
   // includePages?: boolean
   // includeSVGLibrary?: boolean
-  // plugins?: {[key:string]: any}
+  extensions?: { [key:string]: any }
 
   // Component/Organisms/App
   // appContainerId?: string = 'app' // index.html -> <body><div id="app"></div></body>
+}
+
+export interface AnaConfiguration {
+  extensions: { [key:string]: any }
+}
+
+
+export const dAnaConfiguration: AnaConfiguration = {
+  extensions: {}
 }

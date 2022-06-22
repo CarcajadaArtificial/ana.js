@@ -156,7 +156,7 @@ export class Element {
         let svgElement = document.createElementNS("http://www.w3.org/2000/svg", this.name)
         svgElement.append(...this.checkChildren(children))
         if(attributes) {
-          svgElement.setAttributes(attributes)
+          // svgElement.setAttributes(attributes)
         }
         return svgElement
       }

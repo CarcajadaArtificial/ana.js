@@ -8,7 +8,19 @@ Goal for v1.0.0 is to slowly move all other main features to their own repos and
 
 ## Unreleased
 
-### **0.6.16** (Latest)
+### **0.6.17** (Latest)
+
+- `Added` Property for library extensions.
+  - `~/src/ts/Ana/Ana.interface.ts`
+  - `~/src/ts/Ana/Ana.ts`
+
+- `Removed` All main features except for HTMLElement rendering and Reactiveness.
+  - `~/src/main.ts`
+
+- `Removed` SVG Renderer set Attributes.
+  - `~/src/ts/Elements/Element/Element.ts`
+
+### **0.6.16**
 
 - `Added` Minimal render class without svg, components, and standard linting.
   - `~/src/ts/Elements/Elements.ts`
