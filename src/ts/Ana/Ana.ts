@@ -8,13 +8,12 @@ import {
 } from './Ana.interface'
 import { State, AttributeValuesDictionary } from '../types'
 import { Observable } from '../Observable'
-import { Render } from '../Elements/Elements'
+import { Render } from '../Render'
 import { applyDefaultParameters } from '../utils'
 
 declare global {
   interface HTMLElement {
     has(attributes: AttributeValuesDictionary): HTMLElement
-    setAttributes(attributes: AttributeValuesDictionary): HTMLElement
   }
 }
 
@@ -30,11 +29,6 @@ declare global {
  * Home of the Ana framework.
  */
 export class Ana {
-  /**
-   * This object configures the framework's general functions.
-   */
-  configuration: AnaConfiguration
-
   /**
    * This private observable is in charge of making the UI react to changes in the state.
    */
@@ -64,38 +58,38 @@ export class Ana {
   /**
    * This function creates a dictionary of render functions for HTMLElements and UI components from the Ana framework.
    */
-  // render: Function = (): RenderDictionary => createRenderDictionary(this.configuration)
-  render: Render = new Render()
+  render: Render
 
   /**
    * This function instantiates the framework.
    */
   constructor(configuration: iAnaConfiguration = {}) {
-    this.configuration = applyDefaultParameters<
+    let config = applyDefaultParameters<
       AnaConfiguration,
       iAnaConfiguration
     >(dAnaConfiguration, configuration)
 
-    HTMLElement.prototype.setAttributes = setAttributes
     HTMLElement.prototype.has = has
+
+    // Adds ana.js-check
+    if(config.extensions.check) {
+      config.extensions.check()
+    }
+
+    // Adds ana.js-components
+    if(config.extensions.components) {
+      this.render = new Render()
+    } else {
+      this.render = new Render()
+    }
   }
 }
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 /**
- * This function applies HTMLElement.prototype.setAttributes according to the HTMLElement standard dictionary inside of Window.matchDictionary.
- */
-const has = function (
-  this: HTMLElement,
-  attributes: AttributeValuesDictionary
-): HTMLElement {
-  return this.setAttributes(attributes)
-}
-
-/**
  * This function extends HTMLElement.prototype.setAttribute to support a dictionary of attributes instead of setting them one by one.
  */
-const setAttributes = function (
+const has = function (
   this: HTMLElement,
   attributes: AttributeValuesDictionary
 ): HTMLElement {

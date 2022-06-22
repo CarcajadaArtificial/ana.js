@@ -10,6 +10,20 @@ Goal for v1.0.0 is to slowly move all other main features to their own repos and
 
 ### **0.6.17** (Latest)
 
+- `Added` Ana.js extension executions.
+  - `~/src/ts/Ana/Ana.ts`
+
+- `Added` The render module as the formal HTMLElement renderer class.
+  - `~/src/ts/Render.ts`
+
+- `Removed` The createRenderDictionary function
+  - `~/src/ts/Components/Components.ts`
+
+- `Removed` Transfered all of the standard linter functionalities to ana.js-check repository.
+  - `~/src/ts/Element/*`
+
+### **0.6.17**
+
 - `Added` Property for library extensions.
   - `~/src/ts/Ana/Ana.interface.ts`
   - `~/src/ts/Ana/Ana.ts`
