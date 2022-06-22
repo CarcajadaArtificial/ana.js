@@ -99,6 +99,7 @@ Download the latest [release](https://github.com/CarcajadaArtificial/ana.js/rele
   - [ ] Unit testing.
   - [ ] Github actions for CI/CD.
   - [ ] Project dockerization.
+  - [ ] Optionally imported features.
 
 - **Documentation**
   - [x] Server running instructions.

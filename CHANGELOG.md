@@ -9,7 +9,16 @@
 
 ## Unreleased
 
-### **0.6.14** (Latest)
+### **0.6.15** (Latest)
+
+- `Added` New component schema added to Box atom
+  - `~/src/ts/Components/Atoms/Box/Box.interface.ts`
+  - `~/src/ts/Components/Atoms/Box/Box.ts`
+
+- `Added` applyDefaultParameters function for simpler parameter notations.
+  - `~/src/ts/utils.ts`
+
+### **0.6.14**
 
 - `Added` App and Navbar Components
   - `~/src/main.ts`

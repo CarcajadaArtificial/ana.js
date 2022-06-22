@@ -2,9 +2,9 @@
  * @module Components/Atoms/Box
  */
 import { iAnaConfiguration } from '../../../Ana/Ana.interface'
-import { Spacing, RenderDictionary } from '../../../types'
-import classNames from 'classnames'
-import { SpacingClass } from '../../Particles/Particles'
+import { RenderDictionary } from '../../../types'
+import { Box, cBox, dBox, iBox } from './Box.interface'
+import { applyDefaultParameters } from '../../../utils'
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 //   ____            
@@ -24,21 +24,10 @@ export function rBox(
   config
   return (...children: [Node | string | Function]): Function  => {
     return (param: iBox = {}): HTMLElement => {
-      // Default values
-      param = {
-        ...{ padding: 'sgl' },
-        ...param,
-      }
-      let classes = {
-        box: classNames('a-Box', SpacingClass('p', param.padding)).split(' ')
-      }
+      let p: Box = applyDefaultParameters<Box, iBox>(dBox, param)
+      let c = cBox(p)
   
-      return a.div(...classes.box)(...children)
+      return a.div(c.box)(...children)
     }
   }
-}
-
-//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-export interface iBox {
-  padding?: Spacing
 }
