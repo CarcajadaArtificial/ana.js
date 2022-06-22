@@ -2,14 +2,27 @@
 
 ## **0.7.0 Goals**
 
-- [x] Minimal SVG support.
-- [ ] Unit testing.
-- [ ] Component testing.
-- [ ] Error handling.
+- [ ] Make Ana.js an element renderer without all other features.
+
+Goal for v1.0.0 is to slowly move all other main features to their own repos and create a plugin adder function.
 
 ## Unreleased
 
-### **0.6.15** (Latest)
+### **0.6.16** (Latest)
+
+- `Added` Minimal render class without svg, components, and standard linting.
+  - `~/src/ts/Elements/Elements.ts`
+  - `~/src/ts/Ana/Ana.ts`
+
+- `Added` byId util instead of eid for better reading
+  - `~/src/ts/utils.ts`
+  - `~/src/ts/Components/Organisms/App/App.ts`
+  - `~/src/ts/Components/Organisms/Page/Page.ts`
+
+- `Removed` Surface test page.
+  - `~/src/ts/Components/Atoms/Surface/Surface.test.html`
+
+### **0.6.15**
 
 - `Added` New component schema added to Box atom
   - `~/src/ts/Components/Atoms/Box/Box.interface.ts`
@@ -129,7 +142,7 @@ Skipped v0.6.1-v0.6.4 while testing different configurations and publishing agai
   - `~/src/ts/Components/Molecules/Chip/Chip.ts`
   - `~/src/ts/Components/Molecules/Input/Input.ts`
 
-### **0.5.13** (Latest)
+### **0.5.13**
 
 - `Added` minimal reactive functionality. At the moment, rerenders the whole page when the state changes in any way.
   - `~/src/ts/Observable.ts`

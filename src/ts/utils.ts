@@ -37,7 +37,7 @@ export const bring: Function = (url: string, data: any): Promise<any> => {
  * @param id
  * @returns
  */
-export const eId: Function = (id: string): HTMLElement | undefined => {
+export const byId: Function = (id: string): HTMLElement | undefined => {
   const element = document.getElementById(id)
   return element ? element : undefined
 }

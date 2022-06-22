@@ -847,3 +847,161 @@ export function getSVG(configuration: iAnaConfiguration): RenderDictionary {
     }).renderSVG(configuration),
   }
 }
+
+// /*
+export class Render {
+  /**
+   * Anchor description
+   */
+  a: Function = renderWithChildren('a')
+  /**
+   * Audio description
+   */
+  audio: Function = renderWithChildren('audio')
+  blockquote: Function = renderWithChildren('blockquote')
+  body: Function = renderWithChildren('body')
+  button: Function = renderWithChildren('button')
+  canvas: Function = renderWithChildren('canvas')
+  caption: Function = renderWithChildren('caption')
+  colgroup: Function = renderWithChildren('colgroup')
+  data: Function = renderWithChildren('data')
+  dd: Function = renderWithChildren('dd')
+  del: Function = renderWithChildren('del')
+  details: Function = renderWithChildren('details')
+  dialog: Function = renderWithChildren('dialog')
+  div: Function = renderWithChildren('div')
+  fieldset: Function = renderWithChildren('fieldset')
+  form: Function = renderWithChildren('form')
+  h1: Function = renderWithChildren('h1')
+  h2: Function = renderWithChildren('h2')
+  h3: Function = renderWithChildren('h3')
+  h4: Function = renderWithChildren('h4')
+  h5: Function = renderWithChildren('h5')
+  h6: Function = renderWithChildren('h6')
+  head: Function = renderWithChildren('head')
+  html: Function = renderWithChildren('html')
+  iframe: Function = renderWithChildren('iframe')
+  ins: Function = renderWithChildren('ins')
+  label: Function = renderWithChildren('label')
+  li: Function = renderWithChildren('li')
+  map: Function = renderWithChildren('map')
+  meter: Function = renderWithChildren('meter')
+  object: Function = renderWithChildren('object')
+  ol: Function = renderWithChildren('ol')
+  optgroup: Function = renderWithChildren('optgroup')
+  option: Function = renderWithChildren('option')
+  output: Function = renderWithChildren('output')
+  portal: Function = renderWithChildren('portal')
+  pre: Function = renderWithChildren('pre')
+  progress: Function = renderWithChildren('progress')
+  q: Function = renderWithChildren('q')
+  script: Function = renderWithChildren('script')
+  select: Function = renderWithChildren('select')
+  slot: Function = renderWithChildren('slot')
+  style: Function = renderWithChildren('style')
+  table: Function = renderWithChildren('table')
+  tbody: Function = renderWithChildren('tbody')
+  td: Function = renderWithChildren('td')
+  textarea: Function = renderWithChildren('textarea')
+  tfoot: Function = renderWithChildren('tfoot')
+  th: Function = renderWithChildren('th')
+  thead: Function = renderWithChildren('thead')
+  time: Function = renderWithChildren('time')
+  tr: Function = renderWithChildren('tr')
+  ul: Function = renderWithChildren('ul')
+  video: Function = renderWithChildren('video')
+
+  // Empty Elements
+  area: Function = renderWithoutChildren('area')
+  base: Function = renderWithoutChildren('base')
+  br: Function = renderWithoutChildren('br')
+  col: Function = renderWithoutChildren('col')
+  embed: Function = renderWithoutChildren('embed')
+  hr: Function = renderWithoutChildren('hr')
+  img: Function = renderWithoutChildren('img')
+  input: Function = renderWithoutChildren('input')
+  link: Function = renderWithoutChildren('link')
+  meta: Function = renderWithoutChildren('meta')
+  param: Function = renderWithoutChildren('param')
+  source: Function = renderWithoutChildren('source')
+  track: Function = renderWithoutChildren('track')
+  wbr: Function = renderWithoutChildren('wbr')
+
+  // Elements with only global attributes
+  abbr: Function = renderWithChildren('abbr')
+  address: Function = renderWithChildren('address')
+  article: Function = renderWithChildren('article')
+  aside: Function = renderWithChildren('aside')
+  b: Function = renderWithChildren('b')
+  bdi: Function = renderWithChildren('bdi')
+  cite: Function = renderWithChildren('cite')
+  code: Function = renderWithChildren('code')
+  datalist: Function = renderWithChildren('datalist')
+  dfn: Function = renderWithChildren('dfn')
+  dl: Function = renderWithChildren('dl')
+  dt: Function = renderWithChildren('dt')
+  em: Function = renderWithChildren('em')
+  figcaption: Function = renderWithChildren('figcaption')
+  figure: Function = renderWithChildren('figure')
+  footer: Function = renderWithChildren('footer')
+  header: Function = renderWithChildren('header')
+  i: Function = renderWithChildren('i')
+  kbd: Function = renderWithChildren('kbd')
+  legend: Function = renderWithChildren('legend')
+  main: Function = renderWithChildren('main')
+  mark: Function = renderWithChildren('mark')
+  nav: Function = renderWithChildren('nav')
+  noscript: Function = renderWithChildren('noscript')
+  p: Function = renderWithChildren('p')
+  picture: Function = renderWithChildren('picture')
+  rp: Function = renderWithChildren('rp')
+  rt: Function = renderWithChildren('rt')
+  ruby: Function = renderWithChildren('ruby')
+  s: Function = renderWithChildren('s')
+  samp: Function = renderWithChildren('samp')
+  section: Function = renderWithChildren('section')
+  small: Function = renderWithChildren('small')
+  span: Function = renderWithChildren('span')
+  strong: Function = renderWithChildren('strong')
+  sub: Function = renderWithChildren('sub')
+  summary: Function = renderWithChildren('summary')
+  sup: Function = renderWithChildren('sup')
+  template: Function = renderWithChildren('template')
+  title: Function = renderWithChildren('title')
+  u: Function = renderWithChildren('u')
+  var: Function = renderWithChildren('var')
+}
+// */
+
+function checkChildren (
+  children: [Node | string | Function]
+): [Node | string] {
+  var checkedChildren: any[] = []
+  children.forEach((child) => {
+    if (typeof child === 'function') {
+      // Error: Recieved a function as an element's child. This is because the second parentesis was missed: a.div() => a.div()()
+    } else {
+      checkedChildren.push(child)
+    }
+  })
+  return checkedChildren as [Node | string]
+}
+
+const renderWithChildren = (elementName: string):Function => (...classes: string[]): Function => {
+  let htmlelement = document.createElement(elementName)
+  if (classes.length > 0) {
+    htmlelement.classList.add(...classes)
+  }
+  return (...children: [Node | string | Function]): HTMLElement => {
+    htmlelement.append(...checkChildren(children))
+    return htmlelement
+  }
+}
+
+const renderWithoutChildren = (elementName: string):Function => (...classes: string[]): HTMLElement => {
+  let htmlelement = document.createElement(elementName)
+  if (classes.length > 0) {
+    htmlelement.classList.add(...classes)
+  }
+  return htmlelement
+}

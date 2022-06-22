@@ -2,24 +2,15 @@
  * @module Ana
  */
 import { iAnaConfiguration } from './Ana.interface'
-import { RenderDictionary, State, AttributeValuesDictionary, MatchFunctionsDictionary } from '../types'
+import { State, AttributeValuesDictionary, MatchFunctionsDictionary } from '../types'
 import { Observable } from '../Observable'
-import { createRenderDictionary } from '../Components/Components'
+import { Render } from '../Elements/Elements'
 
 declare global {
   interface HTMLElement {
     has(attributes: AttributeValuesDictionary): HTMLElement
     setAttributes(attributes: AttributeValuesDictionary): HTMLElement
   }
-
-  interface SVGElement {
-    has(attributes: AttributeValuesDictionary): HTMLElement
-    setAttributes(attributes: AttributeValuesDictionary): HTMLElement
-  }
-}
-
-declare class Window {
-  static matchDictionary: MatchFunctionsDictionary
 }
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
@@ -70,7 +61,8 @@ export class Ana {
   /**
    * This function creates a dictionary of render functions for HTMLElements and UI components from the Ana framework.
    */
-  render: Function = (): RenderDictionary => createRenderDictionary(this.configuration)
+  // render: Function = (): RenderDictionary => createRenderDictionary(this.configuration)
+  render: Render = new Render()
 
   /**
    * This function instantiates the framework.
@@ -78,9 +70,7 @@ export class Ana {
   constructor(configuration: iAnaConfiguration = {}) {
     this.configuration = { ...this.configuration, ...configuration }
     HTMLElement.prototype.setAttributes = setAttributes
-    SVGElement.prototype.setAttributes = setAttributes
     HTMLElement.prototype.has = has
-    SVGElement.prototype.has = has
   }
 }
 
@@ -92,12 +82,7 @@ const has = function (
   this: HTMLElement,
   attributes: AttributeValuesDictionary
 ): HTMLElement {
-  let tagName = this.tagName.toLowerCase()
-  if (Window.matchDictionary[tagName](attributes)) {
-    return this.setAttributes(attributes)
-  } else {
-    return this
-  }
+  return this.setAttributes(attributes)
 }
 
 /**

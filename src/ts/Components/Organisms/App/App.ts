@@ -4,7 +4,7 @@
 import { iAnaConfiguration } from '../../../Ana/Ana.interface'
 import { RenderDictionary } from '../../../types'
 import classNames from 'classnames'
-import { eId } from '../../../utils'
+import { byId } from '../../../utils'
 import { rNavbar } from '../../Molecules/Navbar/Navbar'
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
@@ -20,7 +20,7 @@ import { rNavbar } from '../../Molecules/Navbar/Navbar'
  */
 export function rApp(a: RenderDictionary, config: iAnaConfiguration): Function {
   a.Navbar = rNavbar(a, config)
-  return (...children: [Node | string | Function]): Function => {
+  // return (...children: [Node | string | Function]): Function => {
     return (param: iApp = {}): HTMLElement | undefined => {
       param = {
         ...{ prependToBody: true },
@@ -33,13 +33,13 @@ export function rApp(a: RenderDictionary, config: iAnaConfiguration): Function {
       const app = a.main(...classes.App)(a.Navbar()())
 
       if (param.prependToBody === true) {
-        eId('app').prepend(app)
+        byId('app').prepend(app)
         return undefined
       } else {
         return app
       }
     }
-  }
+  // }
 }
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -

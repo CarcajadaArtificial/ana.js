@@ -10,13 +10,16 @@
 //  /_/   \_\_| |_|\__,_| |___|_| |_|\__\___|_|  |_|  \__,_|\___\___|
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 export interface iAnaConfiguration {
   standardVerificationMode?: boolean
-  // includeComponentLibrary
-  // includeAtoms
-  // includeMolecules
-  // includeOrganisms
-  // includePages
-  // includeSVGLibrary
+  // includeComponentLibrary?: boolean
+  // includeAtoms?: boolean
+  // includeMolecules?: boolean
+  // includeOrganisms?: boolean
+  // includePages?: boolean
+  // includeSVGLibrary?: boolean
+  // plugins?: {[key:string]: any}
+
+  // Component/Organisms/App
+  // appContainerId?: string = 'app' // index.html -> <body><div id="app"></div></body>
 }
