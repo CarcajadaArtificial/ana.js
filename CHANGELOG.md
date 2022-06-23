@@ -11,6 +11,12 @@
 
 ## Unreleased
 
+### **0.7.4** (Latest)
+
+- `Added` Observable unit tests.
+  - `~/src/ts/Observable/Observable.ts`
+  - `~/src/ts/Observable/Observable.test.ts`
+
 ### **0.7.3** (Latest)
 
 - `Added` Vitest package.

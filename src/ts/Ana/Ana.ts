@@ -7,7 +7,7 @@ import {
   iAnaConfiguration,
 } from './Ana.interface'
 import { State, AttributeValuesDictionary } from '../types'
-import { Observable } from '../Observable'
+import { Observable } from '../Observable/Observable'
 import { Render } from '../Render'
 import { applyDefaultParameters } from '../utils'
 

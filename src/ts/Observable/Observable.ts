@@ -1,7 +1,7 @@
 /**
  * @module Ana/Observable
  */
-import { State } from './types'
+import { State } from '../types'
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 //    ___  _                              _     _
@@ -29,8 +29,14 @@ export class Observable {
    * This function receives an update in the app's state and executes all functions inside `this.callbascks`.
    * @param state The new state of the app
    */
-  emit(state: State): void {
-    this.callbacks.map(thrush(state))
+  emit(state: State): State | undefined {
+    if(this.callbacks.length === 0) {
+      throw new Error()
+      return undefined
+    } else {
+      this.callbacks.map(thrush(state))
+      return state
+    }
   }
 }
 
