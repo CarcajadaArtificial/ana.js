@@ -8,6 +8,14 @@ Goal for v1.0.0 is to slowly move all other main features to their own repos and
 
 ## Unreleased
 
+### **0.6.20**  (Latest)
+
+- `Added` ana.js-ui extension.
+  - `~/src/ts/Ana/Ana.ts`
+
+- `Removed` components, transfered them to ana.js-ui repository.
+  - `~/src/ts/Components/*`
+
 ### **0.6.19**
 
 Skipped 0.6.18 due to publishing tests
@@ -16,7 +24,7 @@ Skipped 0.6.18 due to publishing tests
   - `~/src/ts/Render.ts`
   - `~/src/ts/Ana/Ana.ts`
 
-### **0.6.17** (Latest)
+### **0.6.17**
 
 - `Added` Ana.js extension executions.
   - `~/src/ts/Ana/Ana.ts`

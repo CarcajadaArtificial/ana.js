@@ -80,9 +80,9 @@ export class Ana {
       config.extensions.check()
     }
 
-    // Adds ana.js-components
-    if(config.extensions.components) {
-      this.render = new Render()
+    // Adds ana.js-atoms
+    if(config.extensions.atoms) {
+      this.render = config.extensions.atoms
     } else {
       this.render = new Render()
     }
