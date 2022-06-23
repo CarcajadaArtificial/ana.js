@@ -3,7 +3,7 @@
 ## **0.8.0 Goals**
 
 - Feature Goals
-  - [ ] Unit testing
+  - [x] Unit testing
   - [ ] Error Handling
 
 - Fixes
@@ -11,7 +11,11 @@
 
 ## Unreleased
 
-### **0.7.2** (Latest)
+### **0.7.3** (Latest)
+
+- `Added` Vitest package.
+
+### **0.7.2**
 
 - `Removed` documentation relevant only to the features that were transfered to other repos.
   - `~/CONTRIBUTING.md`

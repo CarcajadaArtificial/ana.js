@@ -10,5 +10,8 @@ export default defineConfig({
       fileName: (format) => `ana.${format}.js`,
     }
   },
-  plugins: [dts()]
+  plugins: [dts()],
+  test: {
+    globals: true
+  }
 })
