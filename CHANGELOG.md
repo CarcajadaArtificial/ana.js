@@ -2,12 +2,24 @@
 
 ## **0.8.0 Goals**
 
-- [ ] Unit testing
-- [ ] Error Handling
+- Feature Goals
+  - [ ] Unit testing
+  - [ ] Error Handling
+
+- Fixes
+  - [x] CONTRIBUTING.md
 
 ## Unreleased
 
-### **0.7.1** (Latest)
+### **0.7.2** (Latest)
+
+- `Removed` documentation relevant only to the features that were transfered to other repos.
+  - `~/CONTRIBUTING.md`
+
+- `Removed` unused types
+  - `~/src/ts/types.ts`
+
+### **0.7.1**
 
 - `Removed` components scss, transfered them to ana.js-ui repository.
   - `~/src/scss*`
@@ -22,13 +34,11 @@
 
 ### **0.6.19**
 
-Skipped 0.6.18 due to publishing tests
-
 - `Added` Svg functionality
   - `~/src/ts/Render.ts`
   - `~/src/ts/Ana/Ana.ts`
 
-### **0.6.17**
+### **0.6.18**
 
 - `Added` Ana.js extension executions.
   - `~/src/ts/Ana/Ana.ts`

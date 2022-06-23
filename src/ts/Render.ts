@@ -1,6 +1,9 @@
 /**
  * @module Render
  */
+
+import { AttributeValuesDictionary } from './types'
+
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 //   ____                _
 //  |  _ \ ___ _ __   __| | ___ _ __
@@ -9,8 +12,6 @@
 //  |_| \_\___|_| |_|\__,_|\___|_|
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-import { AttributeValuesDictionary } from './types'
 
 /**
  * This dictionary is a compendium that contains instances of all of the `Element` and `Attribute` classes. Here lies what it means to be correct or incorrect in accordance to me. I studied every HTML reference I could find, it ended with this standard.
