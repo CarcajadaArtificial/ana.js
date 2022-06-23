@@ -1,14 +1,18 @@
 # CHANGELOG.md
 
-## **0.7.0 Goals**
+## **0.8.0 Goals**
 
-- [x] Make Ana.js an element renderer without all other features.
-
-Goal for v1.0.0 is to slowly move all other main features to their own repos and create a plugin adder function.
+- [ ] Unit testing
+- [ ] Error Handling
 
 ## Unreleased
 
-### **0.6.20**  (Latest)
+### **0.7.1** (Latest)
+
+- `Removed` components scss, transfered them to ana.js-ui repository.
+  - `~/src/scss*`
+
+### **0.6.20**
 
 - `Added` ana.js-ui extension.
   - `~/src/ts/Ana/Ana.ts`
