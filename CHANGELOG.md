@@ -2,14 +2,78 @@
 
 ## **0.7.0 Goals**
 
-- [x] Minimal SVG support.
-- [ ] Unit testing.
-- [ ] Component testing.
-- [ ] Error handling.
+- [x] Make Ana.js an element renderer without all other features.
+
+Goal for v1.0.0 is to slowly move all other main features to their own repos and create a plugin adder function.
 
 ## Unreleased
 
-### **0.6.14** (Latest)
+### **0.6.20**  (Latest)
+
+- `Added` ana.js-ui extension.
+  - `~/src/ts/Ana/Ana.ts`
+
+- `Removed` components, transfered them to ana.js-ui repository.
+  - `~/src/ts/Components/*`
+
+### **0.6.19**
+
+Skipped 0.6.18 due to publishing tests
+
+- `Added` Svg functionality
+  - `~/src/ts/Render.ts`
+  - `~/src/ts/Ana/Ana.ts`
+
+### **0.6.17**
+
+- `Added` Ana.js extension executions.
+  - `~/src/ts/Ana/Ana.ts`
+
+- `Added` The render module as the formal HTMLElement renderer class.
+  - `~/src/ts/Render.ts`
+
+- `Removed` The createRenderDictionary function
+  - `~/src/ts/Components/Components.ts`
+
+- `Removed` Transfered all of the standard linter functionalities to ana.js-check repository.
+  - `~/src/ts/Element/*`
+
+### **0.6.17**
+
+- `Added` Property for library extensions.
+  - `~/src/ts/Ana/Ana.interface.ts`
+  - `~/src/ts/Ana/Ana.ts`
+
+- `Removed` All main features except for HTMLElement rendering and Reactiveness.
+  - `~/src/main.ts`
+
+- `Removed` SVG Renderer set Attributes.
+  - `~/src/ts/Elements/Element/Element.ts`
+
+### **0.6.16**
+
+- `Added` Minimal render class without svg, components, and standard linting.
+  - `~/src/ts/Elements/Elements.ts`
+  - `~/src/ts/Ana/Ana.ts`
+
+- `Added` byId util instead of eid for better reading
+  - `~/src/ts/utils.ts`
+  - `~/src/ts/Components/Organisms/App/App.ts`
+  - `~/src/ts/Components/Organisms/Page/Page.ts`
+
+- `Removed` Surface test page.
+  - `~/src/ts/Components/Atoms/Surface/Surface.test.html`
+
+### **0.6.15**
+
+- `Added` New component schema added to Box atom
+  - `~/src/ts/Components/Atoms/Box/Box.interface.ts`
+  - `~/src/ts/Components/Atoms/Box/Box.ts`
+
+- `Added` applyDefaultParameters function for simpler parameter notations.
+  - `~/src/ts/utils.ts`
+
+### **0.6.14**
 
 - `Added` App and Navbar Components
   - `~/src/main.ts`
@@ -120,7 +184,7 @@ Skipped v0.6.1-v0.6.4 while testing different configurations and publishing agai
   - `~/src/ts/Components/Molecules/Chip/Chip.ts`
   - `~/src/ts/Components/Molecules/Input/Input.ts`
 
-### **0.5.13** (Latest)
+### **0.5.13**
 
 - `Added` minimal reactive functionality. At the moment, rerenders the whole page when the state changes in any way.
   - `~/src/ts/Observable.ts`

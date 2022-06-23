@@ -1,25 +1,23 @@
 /**
  * @module Ana
  */
-import { iAnaConfiguration } from './Ana.interface'
-import { RenderDictionary, State, AttributeValuesDictionary, MatchFunctionsDictionary } from '../types'
+import {
+  AnaConfiguration,
+  dAnaConfiguration,
+  iAnaConfiguration,
+} from './Ana.interface'
+import { State, AttributeValuesDictionary } from '../types'
 import { Observable } from '../Observable'
-import { createRenderDictionary } from '../Components/Components'
+import { Render } from '../Render'
+import { applyDefaultParameters } from '../utils'
 
 declare global {
   interface HTMLElement {
     has(attributes: AttributeValuesDictionary): HTMLElement
-    setAttributes(attributes: AttributeValuesDictionary): HTMLElement
   }
-
   interface SVGElement {
     has(attributes: AttributeValuesDictionary): HTMLElement
-    setAttributes(attributes: AttributeValuesDictionary): HTMLElement
   }
-}
-
-declare class Window {
-  static matchDictionary: MatchFunctionsDictionary
 }
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
@@ -34,13 +32,6 @@ declare class Window {
  * Home of the Ana framework.
  */
 export class Ana {
-  /**
-   * This object configures the framework's general functions.
-   */
-  configuration: iAnaConfiguration = {
-    standardVerificationMode: true,
-  }
-
   /**
    * This private observable is in charge of making the UI react to changes in the state.
    */
@@ -70,40 +61,39 @@ export class Ana {
   /**
    * This function creates a dictionary of render functions for HTMLElements and UI components from the Ana framework.
    */
-  render: Function = (): RenderDictionary => createRenderDictionary(this.configuration)
+  render: Render
 
   /**
    * This function instantiates the framework.
    */
   constructor(configuration: iAnaConfiguration = {}) {
-    this.configuration = { ...this.configuration, ...configuration }
-    HTMLElement.prototype.setAttributes = setAttributes
-    SVGElement.prototype.setAttributes = setAttributes
+    let config = applyDefaultParameters<
+      AnaConfiguration,
+      iAnaConfiguration
+    >(dAnaConfiguration, configuration)
+
     HTMLElement.prototype.has = has
     SVGElement.prototype.has = has
+
+    // Adds ana.js-check
+    if(config.extensions.check) {
+      config.extensions.check()
+    }
+
+    // Adds ana.js-atoms
+    if(config.extensions.atoms) {
+      this.render = config.extensions.atoms
+    } else {
+      this.render = new Render()
+    }
   }
 }
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 /**
- * This function applies HTMLElement.prototype.setAttributes according to the HTMLElement standard dictionary inside of Window.matchDictionary.
- */
-const has = function (
-  this: HTMLElement,
-  attributes: AttributeValuesDictionary
-): HTMLElement {
-  let tagName = this.tagName.toLowerCase()
-  if (Window.matchDictionary[tagName](attributes)) {
-    return this.setAttributes(attributes)
-  } else {
-    return this
-  }
-}
-
-/**
  * This function extends HTMLElement.prototype.setAttribute to support a dictionary of attributes instead of setting them one by one.
  */
-const setAttributes = function (
+const has = function (
   this: HTMLElement,
   attributes: AttributeValuesDictionary
 ): HTMLElement {

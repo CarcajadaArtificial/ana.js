@@ -3,12 +3,12 @@
  */
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-//   _   _ _   _ _ _ _   _           
-//  | | | | |_(_) (_) |_(_) ___  ___ 
+//   _   _ _   _ _ _ _   _
+//  | | | | |_(_) (_) |_(_) ___  ___
 //  | | | | __| | | | __| |/ _ \/ __|
 //  | |_| | |_| | | | |_| |  __/\__ \
 //   \___/ \__|_|_|_|\__|_|\___||___/
-//                                   
+//
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
@@ -37,7 +37,20 @@ export const bring: Function = (url: string, data: any): Promise<any> => {
  * @param id
  * @returns
  */
-export const eId: Function = (id: string): HTMLElement | undefined => {
-  const element = document.getElementById(id) 
+export const byId: Function = (id: string): HTMLElement | undefined => {
+  const element = document.getElementById(id)
   return element ? element : undefined
+}
+
+/**
+ * 
+ * @param defaultParameters 
+ * @param inputParameters 
+ * @returns 
+ */
+export function applyDefaultParameters<Type, iType>(
+  defaultParameters: Type,
+  inputParameters: iType
+): Type {
+  return { ...defaultParameters, ...inputParameters }
 }
