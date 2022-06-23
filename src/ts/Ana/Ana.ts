@@ -8,8 +8,9 @@ import {
 } from './Ana.interface'
 import { State, AttributeValuesDictionary } from '../types'
 import { Observable } from '../Observable/Observable'
-import { Render } from '../Render'
+import { createRenderer } from '../Render/Render'
 import { applyDefaultParameters } from '../utils'
+import { Render } from '../Render/Render.interface'
 
 declare global {
   interface HTMLElement {
@@ -80,11 +81,11 @@ export class Ana {
       config.extensions.check()
     }
 
-    // Adds ana.js-atoms
+    // Adds ana.js-ui
     if(config.extensions.atoms) {
       this.render = config.extensions.atoms
     } else {
-      this.render = new Render()
+      this.render = createRenderer()
     }
   }
 }

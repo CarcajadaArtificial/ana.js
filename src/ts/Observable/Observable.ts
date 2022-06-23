@@ -2,6 +2,7 @@
  * @module Ana/Observable
  */
 import { State } from '../types'
+import { thrush } from '../utils'
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 //    ___  _                              _     _
@@ -32,15 +33,9 @@ export class Observable {
   emit(state: State): State | undefined {
     if(this.callbacks.length === 0) {
       throw new Error()
-      return undefined
     } else {
-      this.callbacks.map(thrush(state))
+      this.callbacks.map(thrush<State>(state))
       return state
     }
   }
 }
-
-/**
- * `x => f => f(x)`
- */
-const thrush = (state: State) => (subscription: Function) => subscription(state)

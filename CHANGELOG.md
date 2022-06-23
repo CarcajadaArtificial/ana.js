@@ -11,13 +11,31 @@
 
 ## Unreleased
 
-### **0.7.4** (Latest)
+### **0.7.5** (Latest)
+
+- `Added` a complete coverage of Observable testing.
+  - `~/src/ts/Observable.ts`
+
+- `Added` trush function to utils
+  - `~/src/ts/utils.ts`
+
+- `Added` `happy-dom` plugin to vite
+  - `~/vite.config.js`
+
+- `Added` a more powerfull and simple renderer.
+  - `~/src/ts/Render/Render.ts`
+  - `~/src/ts/Ana/Ana.ts`
+
+- `Added` an interface for standard elements.
+  - `~/src/ts/Render/Render.interface.ts`
+
+### **0.7.4**
 
 - `Added` Observable unit tests.
   - `~/src/ts/Observable/Observable.ts`
   - `~/src/ts/Observable/Observable.test.ts`
 
-### **0.7.3** (Latest)
+### **0.7.3**
 
 - `Added` Vitest package.
 

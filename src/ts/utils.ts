@@ -54,3 +54,8 @@ export function applyDefaultParameters<Type, iType>(
 ): Type {
   return { ...defaultParameters, ...inputParameters }
 }
+
+/**
+ * `x => f => f(x)`
+ */
+ export const thrush = <T>(x: T) => (f: Function) => f(x)

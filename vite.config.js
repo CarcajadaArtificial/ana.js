@@ -12,6 +12,7 @@ export default defineConfig({
   },
   plugins: [dts()],
   test: {
-    globals: true
+    globals: true,
+    environment: 'happy-dom'
   }
 })
