@@ -2,7 +2,7 @@
 
 ## **0.7.0 Goals**
 
-- [ ] Make Ana.js an element renderer without all other features.
+- [x] Make Ana.js an element renderer without all other features.
 
 Goal for v1.0.0 is to slowly move all other main features to their own repos and create a plugin adder function.
 
