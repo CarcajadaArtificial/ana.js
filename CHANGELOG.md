@@ -6,7 +6,11 @@
 
 ## Unreleased
 
-### **0.8.2** (Latest)
+### **0.8.3** (Latest)
+
+- `Added` gituhb workflow fix
+
+### **0.8.2**
 
 - `Added` the App module
   - `~/src/Ana/App/App.ts`
