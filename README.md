@@ -19,17 +19,13 @@ This is my take on frameworks. Firstly, I am the only man developing this tool. 
 
 What is Ana? It is short for Anarchy, a system that questions all hierarchy, authority, and, established rules. Ok, that’s too real-lifey. What does Ana.js question? What is considered to be a hierarchy, authority, or rules in the world of Front-End JavaScript Framework? Well, any answer to this will be completely arbitrary. I wouldn’t even say that the framework goes entirely against the “establishment”, it being the numerous highly competent frameworks that solve problems in the industry. Nevertheless, it does go against certain industry standards.
 
-- **Not a standard, but your standard.**
+- **No compilers, no builders**
   
-  What does quality mean? What does good code look like? What is a valid use of HTML Elements and their attributes? The industry reduced these questions to a bunch of standards that most people blindly follow. Developers created linters for easy standardization. Ana.js has an integrated linter that checks if the code you’re writing goes according to your own definition of correct.
+  I would suppose that this is a controversial take, given that the industry is moving towards front-end compilers for smaller builds. But this framework is more of a library, a hypothetical JavaScript update for the language itself, for easier manipulation and creation of elements.
 
 - **Good 'ol JavaScript Functions**
   
   This framework is non-declarative by nature. The main deal is that creating HTML Elements is done functionally. Render functions receive other render functions as parameters. There is no markup to interact and everything can fit inside a script tag. Web components are built using these functions, so they get added to the render dictionary like any other HTML Element.
-
-- **No compilers, no builders**
-  
-  I would suppose that this is a controversial take, given that the industry is moving towards front-end compilers for smaller builds. But this framework is more of a library, a hypothetical JavaScript update for the language itself, for easier manipulation and creation of elements.
 
 [Back to top](#top)
 
@@ -90,16 +86,14 @@ Download the latest [release](https://github.com/CarcajadaArtificial/ana.js/rele
 - **Features**
   - [x] Reactivity.
   - [x] SVG support. (~20% of SVG Elements)
-  - [ ] Animation engine.
   - [ ] Server Side rendering.
 
 - **Development**
-  - [ ] Testing server.
   - [ ] Error handling.
   - [ ] Unit testing.
   - [ ] Github actions for CI/CD.
   - [ ] Project dockerization.
-  - [ ] Optionally imported features.
+  - [x] Optionally imported features.
 
 - **Documentation**
   - [x] Server running instructions.

@@ -5,10 +5,14 @@ import dts from 'vite-plugin-dts'
 export default defineConfig({
   build: {
     lib: {
-      entry: path.resolve(__dirname, 'src/ts/index.ts'),
+      entry: path.resolve(__dirname, 'src/Ana/index.ts'),
       name: 'Ana',
       fileName: (format) => `ana.${format}.js`,
     }
   },
-  plugins: [dts()]
+  plugins: [dts()],
+  test: {
+    globals: true,
+    environment: 'jsdom'
+  }
 })

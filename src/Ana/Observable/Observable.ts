@@ -1,7 +1,9 @@
 /**
  * @module Ana/Observable
  */
-import { State } from './types'
+import { error_emitEmptyObservable } from '../errors'
+import { GenericData } from '../types'
+import { thrush } from '../Utils/Utils'
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 //    ___  _                              _     _
@@ -29,12 +31,12 @@ export class Observable {
    * This function receives an update in the app's state and executes all functions inside `this.callbascks`.
    * @param state The new state of the app
    */
-  emit(state: State): void {
-    this.callbacks.map(thrush(state))
+  emit(state: GenericData): GenericData | undefined {
+    if(this.callbacks.length === 0) {
+      throw new Error(error_emitEmptyObservable)
+    } else {
+      this.callbacks.map(thrush<GenericData>(state))
+      return state
+    }
   }
 }
-
-/**
- * `x => f => f(x)`
- */
-const thrush = (state: State) => (subscription: Function) => subscription(state)

@@ -8,6 +8,7 @@ package-lock.json
 dist/
 build/
 docs/
+coverage/
 
 # Directory of files that are immediately deleted after being used.
 bin/

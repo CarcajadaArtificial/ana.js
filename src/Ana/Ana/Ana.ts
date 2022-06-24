@@ -6,10 +6,11 @@ import {
   dAnaConfiguration,
   iAnaConfiguration,
 } from './Ana.interface'
-import { State, AttributeValuesDictionary } from '../types'
-import { Observable } from '../Observable'
-import { Render } from '../Render'
-import { applyDefaultParameters } from '../utils'
+import { GenericData, AttributeValuesDictionary } from '../types'
+import { Observable } from '../Observable/Observable'
+import { createRenderer } from '../Render/Render'
+import { applyDefaultParameters } from '../Utils/Utils'
+import { Render } from '../Render/Render.interface'
 
 declare global {
   interface HTMLElement {
@@ -40,12 +41,12 @@ export class Ana {
   /**
    * This object functions as storage for the state up to the latest changes.
    */
-  private state: State = {}
+  private state: GenericData = {}
 
   /**
    * This function creates the starting app for the responsive rendering of a page.
    */
-  app(state: State, render: Function): void {
+  app(state: GenericData, render: Function): void {
     this.obs.subscribe(render)
     this.up(state)
   }
@@ -53,7 +54,7 @@ export class Ana {
   /**
    * This function updates the state and emits the change to the observable.
    */
-  up(state: State) {
+  up(state: GenericData) {
     this.state = { ...this.state, ...state }
     this.obs.emit(this.state)
   }
@@ -80,11 +81,11 @@ export class Ana {
       config.extensions.check()
     }
 
-    // Adds ana.js-atoms
+    // Adds ana.js-ui
     if(config.extensions.atoms) {
       this.render = config.extensions.atoms
     } else {
-      this.render = new Render()
+      this.render = createRenderer(config)
     }
   }
 }
@@ -93,7 +94,7 @@ export class Ana {
 /**
  * This function extends HTMLElement.prototype.setAttribute to support a dictionary of attributes instead of setting them one by one.
  */
-const has = function (
+export const has = function (
   this: HTMLElement,
   attributes: AttributeValuesDictionary
 ): HTMLElement {

@@ -1,14 +1,96 @@
 # CHANGELOG.md
 
-## **0.7.0 Goals**
+## **0.9.0 Goals**
 
-- [x] Make Ana.js an element renderer without all other features.
-
-Goal for v1.0.0 is to slowly move all other main features to their own repos and create a plugin adder function.
+- [ ] Better reactiveness. Rerender only afected elements and not the whole page.
+- [ ] Jenkins CI/CD.
 
 ## Unreleased
 
-### **0.6.20**  (Latest)
+### **0.7.10** (Latest)
+
+- `Added` a renamed directory `~/src/Ana` that replaces `~/src/ts`
+  - `~/src/Ana/*`
+  - `~/vite.config.js`
+
+### **0.7.9**
+
+- `Removed` node-fetch
+  - `~/src/ts/Utils/Utils.test.ts`
+
+- `Added` Error handling messages.
+  - `~/src/ts/errors.ts`
+  - `~/src/ts/Observable/Observable.ts`
+  - `~/src/ts/Utils/Utils.ts`
+
+### **0.7.8**
+
+- `Added` GenericData type for dictionaries with `any` type.
+
+- `Added` a few tests and test requirements for the Utils module.
+  - `~/src/ts/Utils/Utils.test.ts`
+  - `~/src/ts/Utils/Utils.ts`
+
+### **0.7.7**
+
+- `Added` a directory for the Utils module.
+  - `~/src/ts/Utils/Utils.ts`
+
+### **0.7.6**
+
+- `Added` a complete coverage of testing the Render module.
+  - `~/src/ts/Render/Render.test.ts`
+  - `~/src/ts/Render/Render.ts`
+
+- `Added` jsdom instead of happydom for dom emulation during testing.
+  - `~/vite.config.js`
+
+- `Added` svgElements and emptyElements to Ana Configuration
+  - `~/src/ts/Ana/Ana.ts`
+  - `~/src/ts/Ana/Ana.interface.ts`
+
+### **0.7.5**
+
+- `Added` a complete coverage of Observable testing.
+  - `~/src/ts/Observable.ts`
+
+- `Added` trush function to utils
+  - `~/src/ts/utils.ts`
+
+- `Added` `happy-dom` plugin to vite
+  - `~/vite.config.js`
+
+- `Added` a more powerfull and simple renderer.
+  - `~/src/ts/Render/Render.ts`
+  - `~/src/ts/Ana/Ana.ts`
+
+- `Added` an interface for standard elements.
+  - `~/src/ts/Render/Render.interface.ts`
+
+### **0.7.4**
+
+- `Added` Observable unit tests.
+  - `~/src/ts/Observable/Observable.ts`
+  - `~/src/ts/Observable/Observable.test.ts`
+
+### **0.7.3**
+
+- `Added` Vitest package.
+
+### **0.7.2**
+
+- `Removed` documentation relevant only to the features that were transfered to other repos.
+  - `~/CONTRIBUTING.md`
+
+- `Removed` unused types
+  - `~/src/ts/types.ts`
+
+### **0.7.1**
+
+- `Removed` components scss, transfered them to ana.js-ui repository.
+  - `~/src/scss*`
+
+### **0.6.20**
 
 - `Added` ana.js-ui extension.
   - `~/src/ts/Ana/Ana.ts`
@@ -18,13 +100,11 @@ Goal for v1.0.0 is to slowly move all other main features to their own repos and
 
 ### **0.6.19**
 
-Skipped 0.6.18 due to publishing tests
-
 - `Added` Svg functionality
   - `~/src/ts/Render.ts`
   - `~/src/ts/Ana/Ana.ts`
 
-### **0.6.17**
+### **0.6.18**
 
 - `Added` Ana.js extension executions.
   - `~/src/ts/Ana/Ana.ts`

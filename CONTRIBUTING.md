@@ -1,6 +1,6 @@
 # Contributing
 
-### Table of contents
+## Table of contents
 
 1. [Initial Setup](#initial-setup)
 2. [Developing Process](#developing-process)
@@ -27,14 +27,14 @@ The documentation is written with MacOS Monterey in mind.
 
 ### Node
 
-```
+```plain
 $ node -v
 v16.13.0
 ```
 
 ### Global dependencies
 
-```
+```plain
 $ npm list -g --depth 0
 ├── corepack
 ├── npm
@@ -48,58 +48,11 @@ $ npm list -g --depth 0
 
 ## Developing Process
 
-## Creating a Component
-
-```typescript
-/**
- * @module Type/Example
- */
-import { iAnaConfiguration } from '../../../Ana/Ana.interface'
-import { RenderDictionary } from '../../../types'
-import classNames from 'classnames'
-
-//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-// Example
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-/**
- * 
- */
-export function rExample(
-  a: RenderDictionary,
-  config: iAnaConfiguration
-): Function {
-  return (...children: [Node | string | Function]): Function  => {
-    return (param: iExample = {}): HTMLElement => {
-      param = {
-        ...{ },
-        ...param,
-      }
-      let classes = {
-        Example: classNames().split(' ')
-      }
-  
-      return a.div(...classes.Example)(...children)
-    }
-  }
-}
-
-//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-export interface iExample {}
-```
-
-[Back to top](#top)
-
----
-
 ## Package Scripts
 
 * `npm run dev`
 
   The developer should run this script to start developing any TypeScript feature. It runs a build before the server, this is to catch any build errors prior to the start of the development. This way, the developer knows if there are any build errors/warnings before even adding new code. Also, before any of that even happens, it builds all of the css into the `~/build` directory. It is necessary for a built css to exist before building any TypeScript code.
-
-* `npm run dev-css`
-  
-  The developer should run this script when developing any CSS features. If the developer is creating new components that require this script and `npm run dev`, both should be run on separate but parallel terminal sessions.
 
 * `npm run build`
 
