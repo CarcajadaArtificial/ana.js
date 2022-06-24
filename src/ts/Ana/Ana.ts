@@ -85,7 +85,7 @@ export class Ana {
     if(config.extensions.atoms) {
       this.render = config.extensions.atoms
     } else {
-      this.render = createRenderer()
+      this.render = createRenderer(config)
     }
   }
 }
@@ -94,7 +94,7 @@ export class Ana {
 /**
  * This function extends HTMLElement.prototype.setAttribute to support a dictionary of attributes instead of setting them one by one.
  */
-const has = function (
+export const has = function (
   this: HTMLElement,
   attributes: AttributeValuesDictionary
 ): HTMLElement {

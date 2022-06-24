@@ -3,15 +3,35 @@
 ## **0.8.0 Goals**
 
 - Feature Goals
-  - [x] Unit testing
+  - [ ] Unit testing
+    - [x] Added Vitest
+    - [x] Observable Module
+    - [x] Render Module
+    - [ ] Ana Module
+    - [ ] Utils Module
   - [ ] Error Handling
+    - [ ] Added throws to all modules
+    - [ ] Created a file for throw strings.
 
 - Fixes
   - [x] CONTRIBUTING.md
 
 ## Unreleased
 
-### **0.7.5** (Latest)
+### **0.7.6** (Latest)
+
+- `Added` a complete coverage of testing the Render module.
+  - `~/src/ts/Render/Render.test.ts`
+  - `~/src/ts/Render/Render.ts`
+
+- `Added` jsdom instead of happydom for dom emulation during testing.
+  - `~/vite.config.js`
+
+- `Added` svgElements and emptyElements to Ana Configuration
+  - `~/src/ts/Ana/Ana.ts`
+  - `~/src/ts/Ana/Ana.interface.ts`
+
+### **0.7.5**
 
 - `Added` a complete coverage of Observable testing.
   - `~/src/ts/Observable.ts`

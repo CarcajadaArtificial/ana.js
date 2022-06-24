@@ -1,6 +1,7 @@
 /**
  * @module Render
  */
+import { AnaConfiguration } from '../Ana/Ana.interface'
 import { AttributeValuesDictionary } from '../types'
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
@@ -12,20 +13,29 @@ import { AttributeValuesDictionary } from '../types'
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 /**
+ * This function is an extremely simplified HTMLElement/SVGElement renderer. It receives a property in a `a.div` syntax (`a`, being the renderer and `div` being the property). The renderer `a` is a mere ES6 Proxy Object. When the prop `div` is passed to the proxy, it looks inside the configured `svgElements` list and uses a SVG Renderer. Then, it looks inside the configured `emptyElements` list and uses a Renderer Without Children. If the property is not found in any of these lists uses a Renderer With Children.
  * 
- * @returns 
+ * @param config The library's configuration object is necessary because the function accesses `svgElements` and `emptyElements`
+ * 
+ * @returns a Proxy that emulates a dictionary of render functions. Some properties of this dictionary render SVG Wlements, other render Empty Elements, and others render Elements that can be parents. If it "tries to access" property not defined inside this emulated dictionary, then it renders a custom Element.
+ * 
+ * SVG Render:
+ * `a.svg(children)(attributes)`
+ * 
+ * Empty Element Render:
+ * `a.input(class).has(attributes)`
+ * 
+ * Parent Element (and Custom Element):
+ * `a.div(class)(children).has(attributes)`, `a.custom(class)(children).has(attributes)`
  */
-export const createRenderer = (): any => {
+export const createRenderer = (config: AnaConfiguration): any => {
   return new Proxy({}, { 
     get: (target, prop) => {
       target
-      const tagName = String(prop)
-      // prettier-ignore
-      const svgElements: string[] = ['circle','ellipse','line','polygon','polyline','rect','defs','g','marker','mask','svg','switch','symbol','desc','linearGradient','radialGradient','stop','image','path','text','use']
-      // prettier-ignore
-      const emptyElements: string[] = ['area','base','br','col','embed','hr','img','input','link','meta','param','source','track','wbr']
+      const tagName: string = String(prop)
+      const svgElements: string[] = config.svgElements
+      const emptyElements: string[] = config.emptyElements
       
       if(svgElements.includes(tagName)) {
         return renderSVG(tagName)
@@ -36,26 +46,6 @@ export const createRenderer = (): any => {
       }
     }
   })
-}
-
-//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-/**
- * Checks if a function is being passed as children to an element. Usually because of a missed parenthesis: Incorrect: `div('class')(div('class'))` Correct: `div('class')(div('class')())`
- * @param children This array of *potential* children, must have the functions filtered out. These happen when the developer using this framework forgets to add a second set of parenthesis when rendering an element.
- * @returns An array of children, with the functions filtered out.
- */
-const checkChildren = (
-  children: [Node | string | Function]
-): [Node | string] => {
-  var checkedChildren: any[] = []
-  children.forEach((child) => {
-    if (typeof child === 'function') {
-      // Error: Recieved a function as an element's child. This is because the second parentesis was missed: a.div() => a.div()()
-    } else {
-      checkedChildren.push(child)
-    }
-  })
-  return checkedChildren as [Node | string]
 }
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
@@ -72,8 +62,8 @@ const renderWithChildren =
     if (classes.length > 0) {
       htmlelement.classList.add(...classes)
     }
-    return (...children: [Node | string | Function]): HTMLElement => {
-      htmlelement.append(...checkChildren(children))
+    return (...children: [Node | string]): HTMLElement => {
+      htmlelement.append(...children)
       return htmlelement
     }
   }
@@ -103,13 +93,13 @@ const renderWithoutChildren =
  */
 const renderSVG =
   (elementName: string): Function =>
-  (...children: [Node | string | Function]): Function =>
+  (...children: [Node | string]): Function =>
   (attributes: AttributeValuesDictionary): Node => {
     let svgElement = document.createElementNS(
       'http://www.w3.org/2000/svg',
       elementName
     )
-    svgElement.append(...checkChildren(children))
+    svgElement.append(...children)
     if (attributes) {
       svgElement.has(attributes)
     }
