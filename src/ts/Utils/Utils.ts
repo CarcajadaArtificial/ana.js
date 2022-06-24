@@ -2,7 +2,7 @@
  * @module Ana/Utils
  */
 
-import fetch from 'node-fetch'
+import { error_couldntBring } from '../errors'
 import { GenericData } from '../types'
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
@@ -34,11 +34,11 @@ export const bring: Function = (
     method: method,
     body: JSON.stringify(fetchBody),
   })
-    .then((response) => {
+    .then((response: Response) => {
       return response.json()
     })
     .catch(() => {
-      // throw new Error()
+      throw new Error(error_couldntBring)
     })
 }
 
@@ -69,6 +69,6 @@ export function applyDefaultParameters<Type, iType>(
  * `x => f => f(x)`
  */
 export const thrush =
-  <T>(x: T): Function =>
+  <T>(x: T) =>
   (f: Function) =>
     f(x)

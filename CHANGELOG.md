@@ -1,23 +1,23 @@
 # CHANGELOG.md
 
-## **0.8.0 Goals**
+## **0.9.0 Goals**
 
-- Feature Goals
-  - [x] Unit testing
-    - [x] Added Vitest
-    - [x] Observable Module
-    - [x] Render Module
-    - [x] Utils Module
-  - [ ] Error Handling
-    - [ ] Added throws to all modules
-    - [ ] Created a file for throw strings.
-
-- Fixes
-  - [x] CONTRIBUTING.md
+- [ ] Better reactiveness. Rerender only afected elements and not the whole page.
+- [ ] Jenkins CI/CD.
 
 ## Unreleased
 
-### **0.7.8** (Latest)
+### **0.7.9** (Latest)
+
+- `Removed` node-fetch
+  - `~/src/ts/Utils/Utils.test.ts`
+
+- `Added` Error handling messages.
+  - `~/src/ts/errors.ts`
+  - `~/src/ts/Observable/Observable.ts`
+  - `~/src/ts/Utils/Utils.ts`
+
+### **0.7.8**
 
 - `Added` GenericData type for dictionaries with `any` type.
 
