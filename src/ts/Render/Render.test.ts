@@ -1,4 +1,3 @@
-import { describe, test } from 'vitest'
 import { has } from '../Ana/Ana'
 import { dAnaConfiguration } from '../Ana/Ana.interface'
 import { AttributeValuesDictionary } from '../types'

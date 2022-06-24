@@ -9,7 +9,7 @@ import {
 import { State, AttributeValuesDictionary } from '../types'
 import { Observable } from '../Observable/Observable'
 import { createRenderer } from '../Render/Render'
-import { applyDefaultParameters } from '../utils'
+import { applyDefaultParameters } from '../Utils/Utils'
 import { Render } from '../Render/Render.interface'
 
 declare global {

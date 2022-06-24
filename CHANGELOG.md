@@ -18,7 +18,12 @@
 
 ## Unreleased
 
-### **0.7.6** (Latest)
+### **0.7.7** (Latest)
+
+- `Added` a directory for the Utils module.
+  - `~/src/ts/Utils/Utils.ts`
+
+### **0.7.6**
 
 - `Added` a complete coverage of testing the Render module.
   - `~/src/ts/Render/Render.test.ts`

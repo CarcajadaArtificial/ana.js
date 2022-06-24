@@ -2,7 +2,7 @@
  * @module Ana/Observable
  */
 import { State } from '../types'
-import { thrush } from '../utils'
+import { thrush } from '../Utils/Utils'
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 //    ___  _                              _     _
