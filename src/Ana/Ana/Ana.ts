@@ -11,6 +11,7 @@ import { Observable } from '../Observable/Observable'
 import { createRenderer } from '../Render/Render'
 import { applyDefaultParameters } from '../Utils/Utils'
 import { Render } from '../Render/Render.interface'
+import { App } from '../App/App'
 
 declare global {
   interface HTMLElement {
@@ -33,6 +34,11 @@ declare global {
  * Home of the Ana framework.
  */
 export class Ana {
+  /**
+   * 
+   */
+  createApp: App = new App()
+
   /**
    * This private observable is in charge of making the UI react to changes in the state.
    */
