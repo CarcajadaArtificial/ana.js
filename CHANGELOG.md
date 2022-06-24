@@ -3,12 +3,11 @@
 ## **0.8.0 Goals**
 
 - Feature Goals
-  - [ ] Unit testing
+  - [x] Unit testing
     - [x] Added Vitest
     - [x] Observable Module
     - [x] Render Module
-    - [ ] Ana Module
-    - [ ] Utils Module
+    - [x] Utils Module
   - [ ] Error Handling
     - [ ] Added throws to all modules
     - [ ] Created a file for throw strings.
@@ -18,7 +17,15 @@
 
 ## Unreleased
 
-### **0.7.7** (Latest)
+### **0.7.8** (Latest)
+
+- `Added` GenericData type for dictionaries with `any` type.
+
+- `Added` a few tests and test requirements for the Utils module.
+  - `~/src/ts/Utils/Utils.test.ts`
+  - `~/src/ts/Utils/Utils.ts`
+
+### **0.7.7**
 
 - `Added` a directory for the Utils module.
   - `~/src/ts/Utils/Utils.ts`

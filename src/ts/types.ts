@@ -23,4 +23,4 @@ export type AttributeValuesDictionary = {
 /**
  * This type is used for the dictionary that holds the mutable data in the app. This dictionary will be linked to an Observable that exectues callback functions when the state is modified.
  */
-export type State = { [key: string]: any }
+export type GenericData = { [key: string]: any }

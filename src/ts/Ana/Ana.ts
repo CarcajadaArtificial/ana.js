@@ -6,7 +6,7 @@ import {
   dAnaConfiguration,
   iAnaConfiguration,
 } from './Ana.interface'
-import { State, AttributeValuesDictionary } from '../types'
+import { GenericData, AttributeValuesDictionary } from '../types'
 import { Observable } from '../Observable/Observable'
 import { createRenderer } from '../Render/Render'
 import { applyDefaultParameters } from '../Utils/Utils'
@@ -41,12 +41,12 @@ export class Ana {
   /**
    * This object functions as storage for the state up to the latest changes.
    */
-  private state: State = {}
+  private state: GenericData = {}
 
   /**
    * This function creates the starting app for the responsive rendering of a page.
    */
-  app(state: State, render: Function): void {
+  app(state: GenericData, render: Function): void {
     this.obs.subscribe(render)
     this.up(state)
   }
@@ -54,7 +54,7 @@ export class Ana {
   /**
    * This function updates the state and emits the change to the observable.
    */
-  up(state: State) {
+  up(state: GenericData) {
     this.state = { ...this.state, ...state }
     this.obs.emit(this.state)
   }

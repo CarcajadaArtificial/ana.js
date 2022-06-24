@@ -2,6 +2,9 @@
  * @module Ana/Utils
  */
 
+import fetch from 'node-fetch'
+import { GenericData } from '../types'
+
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 //   _   _ _   _ _ _ _   _
 //  | | | | |_(_) (_) |_(_) ___  ___
@@ -17,19 +20,26 @@
  * @param data
  * @returns
  */
-export const bring: Function = (url: string, data: any): Promise<any> => {
+export const bring: Function = (
+  url: string,
+  data: GenericData,
+  headers: { [key: string]: string } = { 'Content-Type': 'application/json' },
+  method: string = 'POST'
+): Promise<any> => {
   let fetchBody = {
     ...data,
   }
   return fetch(url, {
-    headers: { 'Content-Type': 'application/json' },
-    method: 'POST',
+    headers: headers,
+    method: method,
     body: JSON.stringify(fetchBody),
   })
     .then((response) => {
       return response.json()
     })
-    .catch((error) => console.error(error))
+    .catch(() => {
+      // throw new Error()
+    })
 }
 
 /**
@@ -43,10 +53,10 @@ export const byId: Function = (id: string): HTMLElement | undefined => {
 }
 
 /**
- * 
- * @param defaultParameters 
- * @param inputParameters 
- * @returns 
+ *
+ * @param defaultParameters
+ * @param inputParameters
+ * @returns
  */
 export function applyDefaultParameters<Type, iType>(
   defaultParameters: Type,
@@ -58,4 +68,7 @@ export function applyDefaultParameters<Type, iType>(
 /**
  * `x => f => f(x)`
  */
- export const thrush = <T>(x: T) => (f: Function) => f(x)
+export const thrush =
+  <T>(x: T): Function =>
+  (f: Function) =>
+    f(x)

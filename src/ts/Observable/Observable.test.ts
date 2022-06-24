@@ -1,4 +1,4 @@
-import { State } from '../types'
+import { GenericData } from '../types'
 import { Observable } from './Observable'
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
@@ -30,7 +30,7 @@ describe('Observable', () => {
   describe('subscribe()', () => {
     test('Subscribing one function, adds it to the callbacks.', () => {
       expect(obs.callbacks.length).toBe(0)
-      obs.subscribe((state: State) => state)
+      obs.subscribe((state: GenericData) => state)
       expect(obs.callbacks.length).toBe(1)
     })
   })
