@@ -1,4 +1,4 @@
-import { Ana, byId } from './ts/index'
+import { Ana, byId } from './Ana/index'
 
 const A = new Ana()
 const a = A.render

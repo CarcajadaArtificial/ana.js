@@ -7,7 +7,13 @@
 
 ## Unreleased
 
-### **0.7.9** (Latest)
+### **0.7.10** (Latest)
+
+- `Added` a renamed directory `~/src/Ana` that replaces `~/src/ts`
+  - `~/src/Ana/*`
+  - `~/vite.config.js`
+
+### **0.7.9**
 
 - `Removed` node-fetch
   - `~/src/ts/Utils/Utils.test.ts`
