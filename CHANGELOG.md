@@ -6,7 +6,16 @@
 
 ## Unreleased
 
-### **0.8.1** (Latest)
+### **0.8.3** (Latest)
+
+- `Added` gituhb workflow fix
+
+### **0.8.2**
+
+- `Added` the App module
+  - `~/src/Ana/App/App.ts`
+
+### **0.8.1**
 
 - `Added` github workflow for CI
   - `~/.github/workflows/integrate.yml`
