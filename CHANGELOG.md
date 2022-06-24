@@ -6,9 +6,14 @@
 
 ## Unreleased
 
-### **0.8.3** (Latest)
+### **0.8.4** (Latest)
 
-- `Added` gituhb workflow fix
+- `Added` the App module to the Ana class.
+  - `~/src/Ana/Ana/Ana.ts`
+
+### **0.8.3**
+
+- `Added` github workflow fix
 
 ### **0.8.2**
 
