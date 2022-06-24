@@ -2,12 +2,16 @@
 
 ## **0.9.0 Goals**
 
-- [ ] Better reactiveness. Rerender only afected elements and not the whole page.
-- [ ] Jenkins CI/CD.
+- [ ] Add Github testing action
 
 ## Unreleased
 
-### **0.7.10** (Latest)
+### **0.8.1** (Latest)
+
+- `Added` github workflow for CI
+  - `~/.github/workflows/integrate.yml`
+
+### **0.7.10**
 
 - `Added` a renamed directory `~/src/Ana` that replaces `~/src/ts`
   - `~/src/Ana/*`
