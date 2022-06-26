@@ -3,24 +3,46 @@
  */
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-//   _____                      
-//  |_   _|   _ _ __   ___  ___ 
+//   _____
+//  |_   _|   _ _ __   ___  ___
 //    | || | | | '_ \ / _ \/ __|
 //    | || |_| | |_) |  __/\__ \
 //    |_| \__, | .__/ \___||___/
-//        |___/|_|              
+//        |___/|_|
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 /**
- * This type represents the dictionary of attribte values inputed by the user.
+ * Why is there a need for a type for a dictionary with 'any' value? Because that is what an App State is. When creating an app, one should be able to store any piece of data of any type in a dictionary for referencing along the app.
  */
-export type AttributeValuesDictionary = {
-  [key: string]: boolean | string | Function
-}
+export type GenericData = { [key: string]: any }
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 /**
- * This type is used for the dictionary that holds the mutable data in the app. This dictionary will be linked to an Observable that exectues callback functions when the state is modified.
+ * 
  */
-export type GenericData = { [key: string]: any }
+export type StaticAttribute = boolean | string | Function
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+/**
+ *
+ */
+export type StaticAttributes = { [key: string]: StaticAttribute }
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+/**
+ *
+ */
+export type StaticChild = Node | string
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+/**
+ *
+ */
+export type StaticChildren = StaticChild[]
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+/**
+ *
+ */
+export type StaticClasses = string[]

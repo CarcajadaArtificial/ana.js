@@ -2,7 +2,7 @@
  * @module Render
  */
 import { AnaConfiguration } from '../Ana/Ana.interface'
-import { AttributeValuesDictionary } from '../types'
+import { StaticAttributes, StaticChildren, StaticClasses } from '../types'
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 //   ____                _
@@ -15,37 +15,40 @@ import { AttributeValuesDictionary } from '../types'
 
 /**
  * This function is an extremely simplified HTMLElement/SVGElement renderer. It receives a property in a `a.div` syntax (`a`, being the renderer and `div` being the property). The renderer `a` is a mere ES6 Proxy Object. When the prop `div` is passed to the proxy, it looks inside the configured `svgElements` list and uses a SVG Renderer. Then, it looks inside the configured `emptyElements` list and uses a Renderer Without Children. If the property is not found in any of these lists uses a Renderer With Children.
- * 
+ *
  * @param config The library's configuration object is necessary because the function accesses `svgElements` and `emptyElements`
- * 
+ *
  * @returns a Proxy that emulates a dictionary of render functions. Some properties of this dictionary render SVG Wlements, other render Empty Elements, and others render Elements that can be parents. If it "tries to access" property not defined inside this emulated dictionary, then it renders a custom Element.
- * 
+ *
  * SVG Render:
  * `a.svg(children)(attributes)`
- * 
+ *
  * Empty Element Render:
  * `a.input(class).has(attributes)`
- * 
+ *
  * Parent Element (and Custom Element):
  * `a.div(class)(children).has(attributes)`, `a.custom(class)(children).has(attributes)`
  */
 export const createRenderer = (config: AnaConfiguration): any => {
-  return new Proxy({}, { 
-    get: (target, prop) => {
-      target
-      const tagName: string = String(prop)
-      const svgElements: string[] = config.svgElements
-      const emptyElements: string[] = config.emptyElements
-      
-      if(svgElements.includes(tagName)) {
-        return renderSVG(tagName)
-      } else if(emptyElements.includes(tagName)) {
-        return renderWithoutChildren(tagName)
-      } else {
-        return renderWithChildren(tagName)
-      }
+  return new Proxy(
+    {},
+    {
+      get: (target, prop) => {
+        target
+        const tagName: string = String(prop)
+        const svgElements: string[] = config.svgElements
+        const emptyElements: string[] = config.emptyElements
+
+        if (svgElements.includes(tagName)) {
+          return renderSVG(tagName)
+        } else if (emptyElements.includes(tagName)) {
+          return renderWithoutChildren(tagName)
+        } else {
+          return renderWithChildren(tagName)
+        }
+      },
     }
-  })
+  )
 }
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
@@ -57,12 +60,12 @@ export const createRenderer = (config: AnaConfiguration): any => {
    */
 const renderWithChildren =
   (elementName: string): Function =>
-  (...classes: string[]): Function => {
+  (...classes: StaticClasses): Function => {
     let htmlelement = document.createElement(elementName)
     if (classes.length > 0) {
       htmlelement.classList.add(...classes)
     }
-    return (...children: [Node | string]): HTMLElement => {
+    return (...children: StaticChildren): HTMLElement => {
       htmlelement.append(...children)
       return htmlelement
     }
@@ -76,7 +79,7 @@ const renderWithChildren =
  */
 const renderWithoutChildren =
   (elementName: string): Function =>
-  (...classes: string[]): HTMLElement => {
+  (...classes: StaticClasses): HTMLElement => {
     let htmlelement = document.createElement(elementName)
     if (classes.length > 0) {
       htmlelement.classList.add(...classes)
@@ -93,8 +96,8 @@ const renderWithoutChildren =
  */
 const renderSVG =
   (elementName: string): Function =>
-  (...children: [Node | string]): Function =>
-  (attributes: AttributeValuesDictionary): Node => {
+  (...children: StaticChildren): Function =>
+  (attributes: StaticAttributes): Node => {
     let svgElement = document.createElementNS(
       'http://www.w3.org/2000/svg',
       elementName

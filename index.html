@@ -6,6 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
   </head>
+  <style>
+    * {
+      animation-duration: 5s;
+      animation-name: appear;
+    }
+
+    @keyframes appear {
+      from {
+        background: #FFF000;
+      }
+      to {
+        background: #FFFFFF;
+      }
+    }
+  </style>
   <body>
     <div id="app"></div>
     <script type="module" src="/src/main.ts"></script>

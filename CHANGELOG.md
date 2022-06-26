@@ -6,7 +6,22 @@
 
 ## Unreleased
 
-### **0.8.4** (Latest)
+### **0.8.5** (Latest)
+
+- `Added` Added an element rerender tester.
+  - `~/src/main.ts`
+  - `~/index.html`
+
+- `Added` Better types for static data. All of this are ment to be reactive in the future.
+  - `~/src/Ana/types.ts`
+  - `~/src/Ana/Render/Render.test.ts`
+  - `~/src/Ana/Render/Render.ts`
+
+- `Added` the app functionality to the App Module.
+  - `~/src/Ana/App/App.ts`
+  - `~/src/Ana/Ana/Ana.ts`
+
+### **0.8.4**
 
 - `Added` the App module to the Ana class.
   - `~/src/Ana/Ana/Ana.ts`

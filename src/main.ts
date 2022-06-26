@@ -1,14 +1,17 @@
-import { Ana, byId } from './Ana/index'
+import { Ana } from './Ana/index'
+import { GenericData } from './Ana/types'
 
 const A = new Ana()
 const a = A.render
+const app = A.createApp
 
-A.app({
-  title: 'Example title'
-}, (state: any) => byId('app').replaceChildren(
-  a.h1()(state.title)
-))
+app.init(
+  {
+    title: 'Example title',
+  },
+  (d: GenericData) => a.h1()(d.title)
+)
 
 setTimeout(() => {
-  A.up({ title: 'Title changed after 5 seconds' })
-}, 5000);
+  app.up({ title: 'Title changed after 5 seconds' })
+}, 5000)
