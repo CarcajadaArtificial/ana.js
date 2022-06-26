@@ -1,9 +1,9 @@
 import { Ana } from './Ana/index'
 import { GenericData } from './Ana/types'
 
-const A = new Ana()
-const a = A.render
-const app = A.createApp
+const ana = new Ana()
+const app = ana.createApp
+const a = app.render
 
 app.init(
   {
@@ -24,7 +24,7 @@ app.init(
 
 setTimeout(() => {
   renderRandoms()
-}, 2000)
+}, 1000)
 
 
 async function renderRandoms() {
@@ -33,5 +33,5 @@ async function renderRandoms() {
     let updateSnapshot: GenericData = {}
     updateSnapshot[options[Math.floor(Math.random() * 5)]] = Math.floor(Math.random() * 100)
     app.up(updateSnapshot)
-  }, 2000 )
+  }, 1000 )
 }

@@ -7,7 +7,11 @@
 
 ## Unreleased
 
-### **0.8.6** (Latest)
+### **0.8.7** (Latest)
+
+- `Added` the render function to the App class, removed it from the Ana class.
+
+### **0.8.6**
 
 - `Added` a test list that automatically updates to the element rerender tester.
   - `~/src/main.ts`

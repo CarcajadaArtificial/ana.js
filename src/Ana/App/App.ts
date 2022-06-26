@@ -1,7 +1,10 @@
 /**
  * @module App
  */
+import { AnaConfiguration } from '../Ana/Ana.interface'
 import { Observable } from '../Observable/Observable'
+import { createRenderer } from '../Render/Render'
+import { Render } from '../Render/Render.interface'
 import { GenericData } from '../types'
 import { byId } from '../Utils/Utils'
 
@@ -17,6 +20,10 @@ import { byId } from '../Utils/Utils'
  *
  */
 export class App {
+  constructor(config: AnaConfiguration) {
+    this.render = createRenderer(config)
+  }
+
   /**
    *
    */
@@ -26,6 +33,11 @@ export class App {
    *
    */
   private obs: Observable = new Observable()
+
+  /**
+   * 
+   */
+  render: Render
 
   /**
    *

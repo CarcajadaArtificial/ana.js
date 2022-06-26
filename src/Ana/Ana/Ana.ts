@@ -7,9 +7,7 @@ import {
   iAnaConfiguration,
 } from './Ana.interface'
 import { StaticAttributes } from '../types'
-import { createRenderer } from '../Render/Render'
 import { applyDefaultParameters } from '../Utils/Utils'
-import { Render } from '../Render/Render.interface'
 import { App } from '../App/App'
 
 declare global {
@@ -36,12 +34,7 @@ export class Ana {
   /**
    *
    */
-  createApp: App = new App()
-
-  /**
-   * This function creates a dictionary of render functions for HTMLElements and UI components from the Ana framework.
-   */
-  render: Render
+  createApp: App
 
   /**
    * This function instantiates the framework.
@@ -52,19 +45,14 @@ export class Ana {
       configuration
     )
 
+    this.createApp= new App(config)
+
     HTMLElement.prototype.has = has
     SVGElement.prototype.has = has
 
     // Adds ana.js-check
     if (config.extensions.check) {
       config.extensions.check()
-    }
-
-    // Adds ana.js-ui
-    if (config.extensions.atoms) {
-      this.render = config.extensions.atoms
-    } else {
-      this.render = createRenderer(config)
     }
   }
 }
