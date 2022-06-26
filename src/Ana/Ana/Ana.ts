@@ -8,7 +8,7 @@ import {
 } from './Ana.interface'
 import { StaticAttributes } from '../types'
 import { applyDefaultParameters } from '../Utils/Utils'
-import { App } from '../App/App'
+import { ReactiveRenderer } from '../Render/Render'
 
 declare global {
   interface HTMLElement {
@@ -34,7 +34,7 @@ export class Ana {
   /**
    *
    */
-  createApp: App
+  createApp: ReactiveRenderer
 
   /**
    * This function instantiates the framework.
@@ -45,7 +45,7 @@ export class Ana {
       configuration
     )
 
-    this.createApp= new App(config)
+    this.createApp= new ReactiveRenderer(config)
 
     HTMLElement.prototype.has = has
     SVGElement.prototype.has = has

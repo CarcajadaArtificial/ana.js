@@ -3,6 +3,10 @@
  */
 import { AnaConfiguration } from '../Ana/Ana.interface'
 import { StaticAttributes, StaticChildren, StaticClasses } from '../types'
+import { Observable } from '../Observable/Observable'
+import { Render } from '../Render/Render.interface'
+import { GenericData } from '../types'
+import { byId } from '../Utils/Utils'
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 //   ____                _
@@ -12,6 +16,48 @@ import { StaticAttributes, StaticChildren, StaticClasses } from '../types'
 //  |_| \_\___|_| |_|\__,_|\___|_|
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+export class ReactiveRenderer {
+  constructor(config: AnaConfiguration) {
+    this.render = createRenderer(config)
+  }
+
+  /**
+   *
+   */
+  private d: GenericData = {}
+
+  /**
+   *
+   */
+  private obs: Observable = new Observable()
+
+  /**
+   *
+   */
+  render: Render
+
+  /**
+   *
+   * @param initialRender
+   */
+  init: Function = (data: GenericData, appRenderFunction: Function): void => {
+    this.d = data
+    const rerender = (d: GenericData) =>
+      (byId('app').innerHTML = appRenderFunction(d).outerHTML)
+    rerender(this.d)
+    this.obs.subscribe(rerender)
+  }
+
+  /**
+   *
+   * @param data
+   */
+  up: Function = (data: GenericData): void => {
+    this.d = { ...this.d, ...data }
+    this.obs.emit(this.d)
+  }
+}
 
 /**
  * This function is an extremely simplified HTMLElement/SVGElement renderer. It receives a property in a `a.div` syntax (`a`, being the renderer and `div` being the property). The renderer `a` is a mere ES6 Proxy Object. When the prop `div` is passed to the proxy, it looks inside the configured `svgElements` list and uses a SVG Renderer. Then, it looks inside the configured `emptyElements` list and uses a Renderer Without Children. If the property is not found in any of these lists uses a Renderer With Children.

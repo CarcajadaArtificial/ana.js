@@ -7,7 +7,11 @@
 
 ## Unreleased
 
-### **0.8.7** (Latest)
+### **0.8.8** (Latest)
+
+- `Added` the App class to the Render module, renamed as ReactiveRenderer.
+
+### **0.8.7**
 
 - `Added` the render function to the App class, removed it from the Ana class.
 
