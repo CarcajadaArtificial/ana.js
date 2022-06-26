@@ -34,15 +34,3 @@ export type StaticAttributes = { [key: string]: StaticAttribute }
  *
  */
 export type StaticChild = Node | string
-
-//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-/**
- *
- */
-export type StaticChildren = StaticChild[]
-
-//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-/**
- *
- */
-export type StaticClasses = string[]

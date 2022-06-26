@@ -1,7 +1,7 @@
 import { has } from '../Ana/Ana'
 import { dAnaConfiguration } from '../Ana/Ana.interface'
 import { StaticAttributes } from '../types'
-import { createRenderer } from './Render'
+import { ReactiveRenderer } from './Render'
 
 declare global {
   interface HTMLElement {
@@ -25,7 +25,8 @@ SVGElement.prototype.has = has
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 describe('Render', () => {
-  const a = createRenderer(dAnaConfiguration)
+  const renderer = new ReactiveRenderer(dAnaConfiguration)
+  const a: { [key:string]: any } = renderer.render
 
   //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
   describe('createRenderer', () => {

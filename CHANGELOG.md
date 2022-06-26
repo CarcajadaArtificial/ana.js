@@ -2,12 +2,18 @@
 
 ## **0.9.0 Goals**
 
-- [ ] Add Github testing action
-- [ ] Add true reactiveness instead of full app rendering.
+- Finish up documentation:
+  - [ ] Types
+  - [ ] Render
+  - [ ] Utils
 
 ## Unreleased
 
-### **0.8.8** (Latest)
+### **0.8.9** (Latest)
+
+- `Added` the .has function extension of HTMLElement to the Render module.
+
+### **0.8.8**
 
 - `Added` the App class to the Render module, renamed as ReactiveRenderer.
 

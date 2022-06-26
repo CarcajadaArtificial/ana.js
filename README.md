@@ -84,21 +84,23 @@ Download the latest [release](https://github.com/CarcajadaArtificial/ana.js/rele
 ## Roadmap
 
 - **Features**
-  - [x] Reactivity.
+  - [x] Basic Reactivity.
+    - [ ] Intelligent reactivity.
   - [x] SVG support. (~20% of SVG Elements)
+    - [ ] Complete SVG Support
   - [ ] Server Side rendering.
 
 - **Development**
-  - [ ] Error handling.
-  - [ ] Unit testing.
+  - [x] Error handling.
+  - [x] Unit testing.
   - [ ] Github actions for CI/CD.
   - [ ] Project dockerization.
   - [x] Optionally imported features.
+    - [ ] Add custom components
 
 - **Documentation**
   - [x] Server running instructions.
   - [x] How to add a new component.
-  - [ ] Project publishing instructions.
 
 - **External**
   - [ ] Prettier plugin or configuration file.
