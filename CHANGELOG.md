@@ -3,10 +3,17 @@
 ## **0.9.0 Goals**
 
 - [ ] Add Github testing action
+- [ ] Add true reactiveness instead of full app rendering.
 
 ## Unreleased
 
-### **0.8.5** (Latest)
+### **0.8.6** (Latest)
+
+- `Added` a test list that automatically updates to the element rerender tester.
+  - `~/src/main.ts`
+  - `~/index.html`
+
+### **0.8.5**
 
 - `Added` Added an element rerender tester.
   - `~/src/main.ts`
