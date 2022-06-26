@@ -3,13 +3,18 @@
 ## **0.9.0 Goals**
 
 - Finish up documentation:
-  - [ ] Types
+  - [x] Types
   - [ ] Render
   - [ ] Utils
+  - [ ] Contributing
 
 ## Unreleased
 
-### **0.8.9** (Latest)
+### **0.8.10** (Latest)
+
+- `Added` better documentation to types.
+
+### **0.8.9**
 
 - `Added` the .has function extension of HTMLElement to the Render module.
 

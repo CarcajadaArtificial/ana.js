@@ -1,6 +1,6 @@
 {
   "name": "ana.js",
-  "version": "0.8.9",
+  "version": "0.8.10",
   "description": "A JavaScript library for the cool kids.",
   "author": "Oscar Alfonso Guerrero Nuñez",
   "license": "MIT",
@@ -19,9 +19,6 @@
     "vite": "^2.9.9",
     "vite-plugin-dts": "^1.2.0",
     "vitest": "^0.15.2"
-  },
-  "dependencies": {
-    "classnames": "^2.3.1"
   },
   "files": [
     "dist"
