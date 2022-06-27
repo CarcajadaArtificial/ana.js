@@ -1,14 +1,13 @@
-import { has } from '../Ana/Ana'
 import { dAnaConfiguration } from '../Ana/Ana.interface'
-import { AttributeValuesDictionary } from '../types'
-import { createRenderer } from './Render'
+import { StaticAttributes } from '../types'
+import { has, ReactiveRenderer } from './Render'
 
 declare global {
   interface HTMLElement {
-    has(attributes: AttributeValuesDictionary): HTMLElement
+    has(attributes: StaticAttributes): HTMLElement
   }
   interface SVGElement {
-    has(attributes: AttributeValuesDictionary): HTMLElement
+    has(attributes: StaticAttributes): HTMLElement
   }
 }
 
@@ -25,7 +24,8 @@ SVGElement.prototype.has = has
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 describe('Render', () => {
-  const a = createRenderer(dAnaConfiguration)
+  const renderer = new ReactiveRenderer(dAnaConfiguration)
+  const a: { [key:string]: any } = renderer.render
 
   //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
   describe('createRenderer', () => {
@@ -105,7 +105,9 @@ describe('Render', () => {
 
     test('Render a Parent Element with class', () => {
       parentElements.forEach((name) => {
-        expect(a[name]('test')().outerHTML).toBe(`<${name} class="test"></${name}>`)
+        expect(a[name]('test')().outerHTML).toBe(
+          `<${name} class="test"></${name}>`
+        )
       })
     })
 
@@ -120,8 +122,10 @@ describe('Render', () => {
     })
 
     test('Render a Parent Element with attributes', () => {
-      parentElements.forEach(name => {
-        expect(a[name]()().has({class: 'test'}).outerHTML).toBe(`<${name} class="test"></${name}>`)
+      parentElements.forEach((name) => {
+        expect(a[name]()().has({ class: 'test' }).outerHTML).toBe(
+          `<${name} class="test"></${name}>`
+        )
       })
     })
   })

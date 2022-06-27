@@ -1,12 +1,68 @@
 # CHANGELOG.md
 
-## **0.9.0 Goals**
+## **0.10.0 Goals**
 
-- [ ] Add Github testing action
+- [ ] CI/CD using github actions.
+- [ ] Project dockerization.
 
 ## Unreleased
 
-### **0.8.4** (Latest)
+### **0.8.12** (Latest)
+
+- `Removed` default watch mode on vitest.
+  - `~/vite.config.js`
+
+- `Removed` Utils testing module.
+
+- `Added` better documentation to:
+  - `~/CONTRIBUTING.md`
+  - `~/src/Ana/Utils/Utils.ts`
+  - `~/src/Ana/Render/Render.ts`
+  - `~/src/Ana/Ana/Ana.interface.ts`
+
+### **0.8.11**
+
+- `Added` better documentation to the Render module.
+- `Removed` The error handling function.
+
+### **0.8.10**
+
+- `Added` better documentation to types.
+
+### **0.8.9**
+
+- `Added` the .has function extension of HTMLElement to the Render module.
+
+### **0.8.8**
+
+- `Added` the App class to the Render module, renamed as ReactiveRenderer.
+
+### **0.8.7**
+
+- `Added` the render function to the App class, removed it from the Ana class.
+
+### **0.8.6**
+
+- `Added` a test list that automatically updates to the element rerender tester.
+  - `~/src/main.ts`
+  - `~/index.html`
+
+### **0.8.5**
+
+- `Added` Added an element rerender tester.
+  - `~/src/main.ts`
+  - `~/index.html`
+
+- `Added` Better types for static data. All of this are ment to be reactive in the future.
+  - `~/src/Ana/types.ts`
+  - `~/src/Ana/Render/Render.test.ts`
+  - `~/src/Ana/Render/Render.ts`
+
+- `Added` the app functionality to the App Module.
+  - `~/src/Ana/App/App.ts`
+  - `~/src/Ana/Ana/Ana.ts`
+
+### **0.8.4**
 
 - `Added` the App module to the Ana class.
   - `~/src/Ana/Ana/Ana.ts`

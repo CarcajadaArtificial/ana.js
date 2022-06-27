@@ -11,4 +11,5 @@
  */
 
 export { Ana } from './Ana/Ana'
-export { bring, byId } from './Utils/Utils'
+export * from './Utils/Utils'
+export * from './types'

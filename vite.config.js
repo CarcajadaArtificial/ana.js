@@ -13,6 +13,7 @@ export default defineConfig({
   plugins: [dts()],
   test: {
     globals: true,
-    environment: 'jsdom'
+    environment: 'jsdom',
+    watch: false
   }
 })
