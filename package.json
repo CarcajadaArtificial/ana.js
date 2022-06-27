@@ -1,6 +1,6 @@
 {
   "name": "ana.js",
-  "version": "0.8.11",
+  "version": "0.8.12",
   "description": "A JavaScript library for the cool kids.",
   "author": "Oscar Alfonso Guerrero Nuñez",
   "license": "MIT",
@@ -8,7 +8,7 @@
     "dev": "npm run build; vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "test": "vitest",
+    "test": "vitest --watch",
     "coverage": "vitest run --coverage"
   },
   "devDependencies": {

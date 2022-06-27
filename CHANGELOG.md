@@ -1,17 +1,37 @@
 # CHANGELOG.md
 
+## **0.10.0 Goals**
+
+- [ ] CI/CD using github actions.
+- [ ] Project dockerization.
+
 ## **0.9.0 Goals**
 
 - Finish up documentation:
   - [x] Types
   - [x] Render
-  - [ ] Utils
-  - [ ] Contributing
-  - [ ] Ana Interface
+  - [x] Utils
+  - [x] Contributing (Enough for now)
+  - [x] Ana Interface
+
+- [x] Add custom components
 
 ## Unreleased
 
-### **0.8.11** (Latest)
+### **0.8.12** (Latest)
+
+- `Removed` default watch mode on vitest.
+  - `~/vite.config.js`
+
+- `Removed` Utils testing module.
+
+- `Added` better documentation to:
+  - `~/CONTRIBUTING.md`
+  - `~/src/Ana/Utils/Utils.ts`
+  - `~/src/Ana/Render/Render.ts`
+  - `~/src/Ana/Ana/Ana.interface.ts`
+
+### **0.8.11**
 
 - `Added` better documentation to the Render module.
 - `Removed` The error handling function.

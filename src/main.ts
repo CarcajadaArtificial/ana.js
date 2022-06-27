@@ -1,5 +1,4 @@
-import { Ana } from './Ana/index'
-import { GenericData } from './Ana/types'
+import { Ana, GenericData } from './Ana/index'
 
 const ana = new Ana()
 const app = ana.createApp

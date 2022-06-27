@@ -2,6 +2,8 @@
  * @module Ana/Interface
  */
 
+import { GenericData } from "../types"
+
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 //      _                  ___       _             __                
 //     / \   _ __   __ _  |_ _|_ __ | |_ ___ _ __ / _| __ _  ___ ___ 
@@ -12,17 +14,17 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 export interface iAnaConfiguration {
   /**
-   * 
+   * This dictionary is used to extend the framework using official plugins.
    */
-  extensions?: { [key:string]: any }
+  extensions?: GenericData
 
   /**
-   * 
+   * This is the list of supported SVG element tagnames.
    */
   svgElements?: string[]
 
   /**
-   * 
+   * This is the list of HTMLElement tagnames marked as empty. 
    */
   emptyElements?: string[]
 
@@ -34,7 +36,7 @@ export interface iAnaConfiguration {
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 export interface AnaConfiguration {
-  extensions: { [key:string]: any }
+  extensions: GenericData
   svgElements: string[]
   emptyElements: string[]
   appContainerId: string

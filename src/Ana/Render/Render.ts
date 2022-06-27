@@ -114,6 +114,13 @@ export class ReactiveRenderer {
 
   //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
   /**
+   * This dictionary is used to contain the render functions of custom components. As a convention, 
+   * component names should start with uppercase.
+   */
+  components: { [key:string]: Function } = {}
+
+  //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+  /**
    * This function is an extremely simplified HTMLElement/SVGElement renderer. It receives a property in
    * an `a.div` syntax (`a`, being the renderer and `div` being the property). The renderer `a` is a
    * mere ES6 Proxy Object. When the prop `div` is passed to the proxy, it looks inside the configured
@@ -147,8 +154,11 @@ export class ReactiveRenderer {
           const tagName: string = String(prop)
           const svgElements: string[] = config.svgElements
           const emptyElements: string[] = config.emptyElements
+          // const componentNames: Object.keys(this.components)
 
-          if (svgElements.includes(tagName)) {
+          /* if (componentNames.includes(tagName)) {
+            return this.components[tagName]
+          } else /**/ if (svgElements.includes(tagName)) {
             return this.renderSVG(tagName)
           } else if (emptyElements.includes(tagName)) {
             return this.renderEmpty(tagName)

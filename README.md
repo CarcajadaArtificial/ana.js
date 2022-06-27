@@ -53,7 +53,6 @@ What is Ana? It is short for Anarchy, a system that questions all hierarchy, aut
 
     - Install all node modules.
 
-
 3. Install the Ana.js package.
 
     ```node

@@ -1,9 +1,13 @@
 # Contributing
 
+Before anything else is said, thank you for reading this and showing interest in my project. I never expected anyone to even consider to contribute, so, for even reaching you have my deepest thanks.
+
 ## Table of contents
 
 1. [Initial Setup](#initial-setup)
-2. [Developing Process](#developing-process)
+2. [Running the project](#running-the-project)
+3. [What is what](#what-is-what)
+3. [Pull Requests](#pull-requests)
 
 ---
 
@@ -25,41 +29,85 @@ The documentation is written with MacOS Monterey in mind.
 4. Install Dependencies `npm i` and `npm i -D`.
 5. (Coming soon) Run the setup script `npm run setup`.
 
-### Node
+---
 
-```plain
-$ node -v
-v16.13.0
-```
+## Running the project
 
-### Global dependencies
+* `npm run dev`
 
-```plain
-$ npm list -g --depth 0
-├── corepack
-├── npm
-├── typedoc
-└── typescript
-```
+  *(Vite default script)*
+  The developer should run this script to start developing any TypeScript feature. It runs a build before the server, this is to catch any build errors prior to the start of the development. This way, the developer knows if there are any build errors/warnings before even adding new code.
+
+* `npm run build`
+
+  *(Vite default script)*
+  The developer should run this script before commiting changes and publishing to NPM.
+
+* `npm run preview`
+  
+  *(Vite default script)*
+  It runs a local server using the built files inside the `~/dist` directory.
+
+* `npm run test`
+
+  *(Vitest default script)*
+  It runs all the tests in watch mode. The tests are extremely fast so they can be run frequently without issues. During Continuous Integration, a similar script will be run but without the watch mode.
+
+* `npm run coverage`
+
+  It runs the coverage function in Vitest using the c8 package. This scrpit will be run during Continuous Integration to display coverage results on the project's README.
 
 [Back to top](#top)
 
 ---
 
-## Developing Process
+## What is what
 
-## Package Scripts
+`Work in progress`
 
-* `npm run dev`
+### Ana
 
-  The developer should run this script to start developing any TypeScript feature. It runs a build before the server, this is to catch any build errors prior to the start of the development. This way, the developer knows if there are any build errors/warnings before even adding new code. Also, before any of that even happens, it builds all of the css into the `~/build` directory. It is necessary for a built css to exist before building any TypeScript code.
+* AnaConfiguration interface.
+* The Ana class.
 
-* `npm run build`
+### Observable
 
-  The developer should run this script before commiting changes and publishing to NPM.
+* The Observable class.
 
-* `npm run preview`
-  
-  It runs a local server using the built files inside the `~/dist` directory.
+### Render
 
-  [Back to top](#top)
+* The Render class.
+* The Render interface.
+* Different types elements and the functions that render them.
+
+### Utilities
+
+* Utils
+* Types
+* Index
+
+### Testing
+
+* How to write tests?
+* When to write tests?
+
+### Documentation
+
+* How to document?
+
+[Back to top](#top)
+
+---
+
+## Pull Requests
+
+`Work in progress`
+
+### Version management
+
+* When to advance a version?
+* How will my changes be merged?
+
+### Content of a pull request
+
+* What to write as a description?
