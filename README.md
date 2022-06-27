@@ -48,10 +48,11 @@ What is Ana? It is short for Anarchy, a system that questions all hierarchy, aut
     ```
 
     - Select project name.
+
     - From the list of Frameworks choose `vanilla`, then `vanilla-ts`.
+
     - Install all node modules.
 
-    <br>
 
 3. Install the Ana.js package.
 
@@ -89,6 +90,7 @@ Download the latest [release](https://github.com/CarcajadaArtificial/ana.js/rele
   - [x] SVG support. (~20% of SVG Elements)
     - [ ] Complete SVG Support
   - [ ] Server Side rendering.
+  - [ ] Lazy Loading.
 
 - **Development**
   - [x] Error handling.
@@ -97,10 +99,6 @@ Download the latest [release](https://github.com/CarcajadaArtificial/ana.js/rele
   - [ ] Project dockerization.
   - [x] Optionally imported features.
     - [ ] Add custom components
-
-- **Documentation**
-  - [x] Server running instructions.
-  - [x] How to add a new component.
 
 - **External**
   - [ ] Prettier plugin or configuration file.

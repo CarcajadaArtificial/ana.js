@@ -4,13 +4,19 @@
 
 - Finish up documentation:
   - [x] Types
-  - [ ] Render
+  - [x] Render
   - [ ] Utils
   - [ ] Contributing
+  - [ ] Ana Interface
 
 ## Unreleased
 
-### **0.8.10** (Latest)
+### **0.8.11** (Latest)
+
+- `Added` better documentation to the Render module.
+- `Removed` The error handling function.
+
+### **0.8.10**
 
 - `Added` better documentation to types.
 

@@ -1,8 +1,6 @@
 /**
- * @module Ana/Utils
+ * @module Utils
  */
-
-import { error_couldntBring } from '../errors'
 import { GenericData } from '../types'
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
@@ -38,7 +36,7 @@ export const bring: Function = (
       return response.json()
     })
     .catch(() => {
-      throw new Error(error_couldntBring)
+      throw new Error()
     })
 }
 

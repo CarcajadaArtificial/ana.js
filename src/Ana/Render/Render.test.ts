@@ -1,7 +1,6 @@
-import { has } from '../Ana/Ana'
 import { dAnaConfiguration } from '../Ana/Ana.interface'
 import { StaticAttributes } from '../types'
-import { ReactiveRenderer } from './Render'
+import { has, ReactiveRenderer } from './Render'
 
 declare global {
   interface HTMLElement {

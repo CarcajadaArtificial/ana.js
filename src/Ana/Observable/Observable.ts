@@ -1,7 +1,6 @@
 /**
- * @module Ana/Observable
+ * @module Observable
  */
-import { error_emitEmptyObservable } from '../errors'
 import { GenericData } from '../types'
 import { thrush } from '../Utils/Utils'
 
@@ -33,7 +32,7 @@ export class Observable {
    */
   emit(state: GenericData): GenericData | undefined {
     if(this.callbacks.length === 0) {
-      throw new Error(error_emitEmptyObservable)
+      throw new Error()
     } else {
       this.callbacks.map(thrush<GenericData>(state))
       return state
