@@ -7,7 +7,7 @@ Before anything else is said, thank you for reading this and showing interest in
 1. [Initial Setup](#initial-setup)
 2. [Running the project](#running-the-project)
 3. [What is what](#what-is-what)
-3. [Pull Requests](#pull-requests)
+4. [Pull Requests](#pull-requests)
 
 ---
 

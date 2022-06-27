@@ -4,7 +4,6 @@
 import { AnaConfiguration } from '../Ana/Ana.interface'
 import { StaticAttributes, StaticChild } from '../types'
 import { Observable } from '../Observable/Observable'
-import { Render } from '../Render/Render.interface'
 import { GenericData } from '../types'
 import { byId } from '../Utils/Utils'
 
@@ -52,8 +51,6 @@ export class ReactiveRenderer {
     this.config = config
     HTMLElement.prototype.has = has
     SVGElement.prototype.has = has
-
-    this.render = this.createRenderer(config)
   }
 
   private config: AnaConfiguration
@@ -69,15 +66,6 @@ export class ReactiveRenderer {
    * This property is in charge of emitting changes to the app's data state and running rerendering functions.
    */
   private obs: Observable = new Observable()
-
-  //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-  /**
-   * This property will be used by the developer right after constructing the instance of 
-   * ReactiveRenderer. It uses the function `createRenderer()` to create an element renderer. Also, it 
-   * provides intellisense functionalities to TypeScript developers using Ana.js this is thanks to the 
-   * Render Interface.
-   */
-  render: Render
 
   //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
   /**
@@ -127,6 +115,10 @@ export class ReactiveRenderer {
    * `svgElements` list and uses an SVG Renderer. Then, it looks inside the configured `emptyElements`
    * list and uses a Renderer Without Children. If the property is not found in any of these lists use a
    * Renderer With Children.
+   * 
+   * This property will be used by the developer right after constructing the instance of 
+   * ReactiveRenderer. Also, it provides intellisense functionalities to TypeScript developers using Ana.
+   * js this is thanks to the Render Interface.
    *
    * @param config The library's configuration object is necessary because the function accesses
    * `svgElements` and `emptyElements`.
@@ -145,20 +137,20 @@ export class ReactiveRenderer {
    * Parent Element (and Custom Element):
    * `a.div(class)(children).has(attributes)`, `a.custom(class)(children).has(attributes)`
    */
-  private createRenderer = (config: AnaConfiguration): any => {
+  render = <RenderType>(): RenderType => {
     return new Proxy(
       {},
       {
         get: (target, prop) => {
           target
           const tagName: string = String(prop)
-          const svgElements: string[] = config.svgElements
-          const emptyElements: string[] = config.emptyElements
-          // const componentNames: Object.keys(this.components)
+          const svgElements: string[] = this.config.svgElements
+          const emptyElements: string[] = this.config.emptyElements
+          const componentNames: string[] = Object.keys(this.components)
 
-          /* if (componentNames.includes(tagName)) {
+          if (componentNames.includes(tagName)) {
             return this.components[tagName]
-          } else /**/ if (svgElements.includes(tagName)) {
+          } else if (svgElements.includes(tagName)) {
             return this.renderSVG(tagName)
           } else if (emptyElements.includes(tagName)) {
             return this.renderEmpty(tagName)
@@ -167,7 +159,7 @@ export class ReactiveRenderer {
           }
         },
       }
-    )
+    ) as RenderType
   }
 
   //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -

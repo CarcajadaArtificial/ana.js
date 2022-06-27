@@ -2,12 +2,27 @@
 
 ## **0.10.0 Goals**
 
+- [x] Support custom components.
 - [ ] CI/CD using github actions.
 - [ ] Project dockerization.
 
+- Documentation
+  - [ ] Ana.ts.
+  - [ ] Utils.ts @ thrush.
+  - [ ] Contributing @ What is what
+
+- Testing
+  - [ ] Render.ts
+  - [ ] Ana.ts
+  - [ ] Utils.ts
+
 ## Unreleased
 
-### **0.8.12** (Latest)
+### **0.9.1** (Latest)
+
+- `Added` features that make the project extensible by custom components.
+
+### **0.8.12**
 
 - `Removed` default watch mode on vitest.
   - `~/vite.config.js`

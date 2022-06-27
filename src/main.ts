@@ -1,8 +1,8 @@
-import { Ana, GenericData } from './Ana/index'
+import { Ana, GenericData, Render } from './Ana/index'
 
 const ana = new Ana()
 const app = ana.createApp
-const a = app.render
+const a = app.render<Render>()
 
 app.init(
   {
