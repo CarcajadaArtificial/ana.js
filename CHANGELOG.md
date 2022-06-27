@@ -18,7 +18,11 @@
 
 ## Unreleased
 
-### **0.9.1** (Latest)
+### **0.9.2** (Latest)
+
+- `Added` hotfix for publishing the library.
+
+### **0.9.1**
 
 - `Added` features that make the project extensible by custom components.
 
