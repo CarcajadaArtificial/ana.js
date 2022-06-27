@@ -5,17 +5,6 @@
 - [ ] CI/CD using github actions.
 - [ ] Project dockerization.
 
-## **0.9.0 Goals**
-
-- Finish up documentation:
-  - [x] Types
-  - [x] Render
-  - [x] Utils
-  - [x] Contributing (Enough for now)
-  - [x] Ana Interface
-
-- [x] Add custom components
-
 ## Unreleased
 
 ### **0.8.12** (Latest)
