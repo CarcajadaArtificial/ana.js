@@ -18,7 +18,13 @@
 
 ## Unreleased
 
-### **0.9.2** (Latest)
+### **0.9.3** (Latest)
+
+- `Added` a fix and tests for cases where classes are written like this: `a.div('test foo', 'bar', 'a b c')()`
+  - `src/Ana/Render/Render.ts`
+  - `src/Ana/Render/Render.test.ts`
+
+### **0.9.2**
 
 - `Added` hotfix for publishing the library.
 

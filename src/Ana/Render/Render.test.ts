@@ -109,6 +109,15 @@ describe('Render', () => {
         expect(a[name]('test')().outerHTML).toBe(
           `<${name} class="test"></${name}>`
         )
+        expect(a[name]('test', 'foo', 'bar')().outerHTML).toBe(
+          `<${name} class="test foo bar"></${name}>`
+        )
+        expect(a[name]('test foo bar')().outerHTML).toBe(
+          `<${name} class="test foo bar"></${name}>`
+        )
+        expect(a[name]('test foo', 'bar', 'a b c')().outerHTML).toBe(
+          `<${name} class="test foo bar a b c"></${name}>`
+        )
       })
     })
 

@@ -194,7 +194,7 @@ export class ReactiveRenderer {
     (...classes: string[]): Function => {
       let htmlelement = document.createElement(elementName)
       if (classes.length > 0) {
-        htmlelement.classList.add(...classes)
+        htmlelement.setAttribute('class', classes.join(' '))
       }
       return (
         /**
@@ -243,7 +243,7 @@ export class ReactiveRenderer {
     (...classes: string[]): HTMLElement => {
       let htmlelement = document.createElement(elementName)
       if (classes.length > 0) {
-        htmlelement.classList.add(...classes)
+        htmlelement.setAttribute('class', classes.join(' '))
       }
       return htmlelement
     }
