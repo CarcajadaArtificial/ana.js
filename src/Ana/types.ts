@@ -38,3 +38,45 @@ export type StaticChild = Node | string
 export class StateReference {
   constructor(public value: any, public name: string) {}
 }
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+/**
+ *
+ */
+export interface ReactivityDictionary {}
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+/**
+ *
+ */
+export type RenderClass<T> = (...classes: string[]) => T
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+/**
+ *
+ */
+export type RenderChildren<T> = (...children: StaticChild[]) => T
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+/**
+ *
+ */
+export type RenderAttributes<T> = (attributes: StaticAttributes) => T
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+/**
+ *
+ */
+export type EmptyElement = RenderClass<Element>
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+/**
+ *
+ */
+export type ParentElement = RenderClass<RenderChildren<Element>>
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+/**
+ *
+ */
+export type SVGElement = RenderChildren<RenderAttributes<Element>>

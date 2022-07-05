@@ -2,17 +2,16 @@
 
 ## **0.11.0 Goals**
 
+- [ ] Fix XSS vulnerabilities.
 - [ ] CI/CD using github actions.
 - [ ] Project dockerization.
 
 - Documentation
-
   - [ ] Ana.ts.
   - [ ] Utils.ts @ thrush.
   - [ ] Contributing @ What is what
 
 - Testing
-
   - [ ] Render.ts
   - [ ] Ana.ts
   - [ ] Utils.ts
@@ -21,11 +20,11 @@
 
 - [x] Support custom components.
 - [ ] Support intelligent reactivity.
-
   - [x] Supports reactive classes in `div(x)()`
   - [x] Supports reactive children in `div()(x)`
   - [ ] Supports other reactive attributes `div()().has(x)`
   - [ ] Supports lists reactive to more or less children.
+- [x] Support Extended intellisense.
 
 - Documentation
 
@@ -40,7 +39,12 @@
 
 ## Unreleased
 
-### **0.9.4** (Latest)
+### **0.9.5** (Latest)
+
+- `Added` the reaction dictionary to the Window object.
+  - `~/src/Render/Render.ts`
+
+### **0.9.4**
 
 - `Added` intelligent reactivity using `data-ref-#`
   - `~/src/Render/Render.ts`
