@@ -1,11 +1,13 @@
-/**
- * @module Render
- */
 import { AnaConfiguration } from '../Ana/Ana.interface'
-import { StaticAttributes, StaticChild } from '../types'
+import {
+  StateReference,
+  StaticAttribute,
+  StaticAttributes,
+  StaticChild,
+} from '../types'
 import { Observable } from '../Observable/Observable'
 import { GenericData } from '../types'
-import { byId } from '../Utils/Utils'
+import { byId, query } from '../Utils/Utils'
 
 /**
  * Ana.js extends the HTMLElement and SVGELement modules. This module extensions are essential to the
@@ -13,11 +15,12 @@ import { byId } from '../Utils/Utils'
  */
 declare global {
   interface HTMLElement {
-    rerender(): Function
     has(attributes: StaticAttributes): HTMLElement
+    setAnyAttribute(name: string, attributes: StaticAttribute): HTMLElement
   }
   interface SVGElement {
     has(attributes: StaticAttributes): HTMLElement
+    setAnyAttribute(name: string, attributes: StaticAttribute): HTMLElement
   }
 }
 
@@ -30,9 +33,9 @@ declare global {
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
- * This class is in charge of rendering the application and react to changes made to the app's data 
+ * This class is in charge of rendering the application and react to changes made to the app's data
  * state by rerendering the app.
- * 
+ *
  * ```Typescript
  * const ana = new Ana()
  * const app = ana.createApp
@@ -41,7 +44,7 @@ declare global {
  */
 export class ReactiveRenderer {
   /**
-   * Using the global configuration, creates the renderer function. This step happens after the Ana 
+   * Using the global configuration, creates the renderer function. This step happens after the Ana
    * instance is constructed and there should be only one instance of ReactiveRenderer per application.
    * It adds the extensions for the HTMLElement and SVGElement interfaces.
    *
@@ -51,8 +54,14 @@ export class ReactiveRenderer {
     this.config = config
     HTMLElement.prototype.has = has
     SVGElement.prototype.has = has
+    HTMLElement.prototype.setAnyAttribute = setAnyAttribute
+    SVGElement.prototype.setAnyAttribute = setAnyAttribute
   }
 
+  /**
+   //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+   * 
+   */
   private config: AnaConfiguration
 
   //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
@@ -65,12 +74,12 @@ export class ReactiveRenderer {
   /**
    * This property is in charge of emitting changes to the app's data state and running rerendering functions.
    */
-  private obs: Observable = new Observable()
+  private obs: { [key: string]: Observable } = {}
 
   //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
   /**
-   * Used to mount the application and start the rendering process. By default, it adds the rendered 
-   * elements inside an element with a predefined id. This can be configured using the attribute 
+   * Used to mount the application and start the rendering process. By default, it adds the rendered
+   * elements inside an element with a predefined id. This can be configured using the attribute
    * `appContainerId` in the global configuration object.
    *
    * @param data This is the initial state of the app's data. Contains all of the values that can be
@@ -81,13 +90,24 @@ export class ReactiveRenderer {
    * an the HTMLElement containing the app. For example: `(d: GenericData) => a.div()()`
    */
   init: Function = (data: GenericData, appRenderFunction: Function): void => {
-    this.d = data
-    const rerender = (d: GenericData) =>
-      (byId(this.config.appContainerId).innerHTML =
-        appRenderFunction(d).outerHTML)
-    rerender(this.d)
-    this.obs.subscribe(rerender)
+    for (const key in data) {
+      this.d[key] = new StateReference(data[key], key)
+      this.obs[key] = new Observable()
+      this.up[key] = (value: any) => this.obs[key].emit(value)
+    }
+    this.initialRender(this.d, appRenderFunction)
   }
+
+  //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+  /**
+   *
+   * @param d
+   * @param appRenderFunction
+   * @returns
+   */
+  private initialRender = (d: GenericData, appRenderFunction: Function) =>
+    (byId(this.config.appContainerId).innerHTML =
+      appRenderFunction(d).outerHTML)
 
   //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
   /**
@@ -95,17 +115,20 @@ export class ReactiveRenderer {
    *
    * @param data The new values that will update the current app's data state.
    */
-  up: Function = (data: GenericData): void => {
-    this.d = { ...this.d, ...data }
-    this.obs.emit(this.d)
-  }
+  up: { [key: string]: Function } = {}
 
   //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
   /**
-   * This dictionary is used to contain the render functions of custom components. As a convention, 
+   * This dictionary is used to contain the render functions of custom components. As a convention,
    * component names should start with uppercase.
    */
-  components: { [key:string]: Function } = {}
+  components: { [key: string]: Function } = {}
+
+  //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+  /**
+   *
+   */
+  private reactiveElements: number = 0
 
   //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
   /**
@@ -115,8 +138,8 @@ export class ReactiveRenderer {
    * `svgElements` list and uses an SVG Renderer. Then, it looks inside the configured `emptyElements`
    * list and uses a Renderer Without Children. If the property is not found in any of these lists use a
    * Renderer With Children.
-   * 
-   * This property will be used by the developer right after constructing the instance of 
+   *
+   * This property will be used by the developer right after constructing the instance of
    * ReactiveRenderer. Also, it provides intellisense functionalities to TypeScript developers using Ana.
    * js this is thanks to the Render Interface.
    *
@@ -169,7 +192,7 @@ export class ReactiveRenderer {
    * of the interface must be designed with element classes in mind. Secondly, the children are rendered
    * inside the element. Their functionality is essential for the framework, they are the most basic
    * feature, demonstrated here: `a.div(...classes)(...children)`.
-   * 
+   *
    * ```TypeScript
    * renderParent(name)(...classes)(...children)
    * ```
@@ -185,41 +208,35 @@ export class ReactiveRenderer {
      * a.div(...classes)(...children)
      * //   | <- This function
      * ```
-     * 
+     *
      * @param classes It is the only attribute not added with the `.has()` function, it is special that
      * way, first the class, then everything else.
      *
      * @returns A function that can render an HTMLElement.
      */
-    (...classes: string[]): Function => {
-      let htmlelement = document.createElement(elementName)
-      if (classes.length > 0) {
-        htmlelement.setAttribute('class', classes.join(' '))
-      }
-      return (
-        /**
-         *```TypeScript
-         * a.div(...classes)(...children)
-         * //               | <- This function
-         * ```
-         * 
-         * @param children The array of elements to be placed inside this one.
-         *
-         * @returns An element, fully classed, with the list of children inside of it.
-         */
-        (...children: StaticChild[]): HTMLElement => {
-          htmlelement.append(...children)
-          return htmlelement
-        }
+    (...classes: string[]): Function =>
+    /**
+     *```TypeScript
+     * a.div(...classes)(...children)
+     * //               | <- This function
+     * ```
+     *
+     * @param children The array of elements to be placed inside this one.
+     *
+     * @returns An element, fully classed, with the list of children inside of it.
+     */
+    (...children: StaticChild[]): HTMLElement | SVGElement =>
+      this.addChildren(
+        this.addClasses(document.createElement(elementName), ...classes),
+        ...children
       )
-    }
 
   //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
   /**
    * What is an "empty element"? It's not designed to have any other elements inside of it. Examples of
    * this are: `<input />`, `<img />`, `<link />`, `<meta />`, etc. This function renders these kinds of
    * elements. `a.input(class).has(attributes)`.
-   * 
+   *
    * ```TypeScript
    * renderEmpty(name)(...classes)
    * ```
@@ -240,13 +257,8 @@ export class ReactiveRenderer {
      *
      * @returns A complete html element without any attributes other than the class.
      */
-    (...classes: string[]): HTMLElement => {
-      let htmlelement = document.createElement(elementName)
-      if (classes.length > 0) {
-        htmlelement.setAttribute('class', classes.join(' '))
-      }
-      return htmlelement
-    }
+    (...classes: string[] | StateReference[]): HTMLElement =>
+      this.addClasses(document.createElement(elementName), ...classes)
 
   //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
   /**
@@ -298,6 +310,98 @@ export class ReactiveRenderer {
       }
       return svgElement
     }
+
+  //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+  /**
+   *
+   */
+  private addClasses(
+    htmlelement: HTMLElement,
+    ...classes: string[] | StateReference[]
+  ): HTMLElement {
+    let reactiveReference = false
+
+    // Validates that the array is not empty
+    if (classes.length > 0) {
+      let staticClasses: string[] = classes.map(
+        (child: string | StateReference): string => {
+          // If it is a reactive element
+          if (child instanceof StateReference) {
+            reactiveReference = true
+            let referenceAttribute = `[data-ref-${this.reactiveElements}]`
+            console.log(referenceAttribute)
+            return typeof this.getValueAndSubscribe(child, (value: any) =>
+              query(referenceAttribute).setAttribute('class', value)
+            ) === 'string'
+              ? child.value
+              : String(child.value)
+          } else {
+            // If it is not a reactive element
+            return child
+          }
+        }
+      )
+      htmlelement.setAttribute('class', staticClasses.join(' '))
+    }
+
+    if (reactiveReference) {
+      htmlelement.dataset[`ref-${this.reactiveElements}`] = ''
+      this.reactiveElements++
+    }
+
+    return htmlelement
+  }
+
+  //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+  /**
+   *
+   */
+  private addChildren(
+    element: HTMLElement | SVGElement,
+    ...children: StaticChild[] | StateReference[]
+  ): HTMLElement | SVGElement {
+    let reactiveReference = undefined
+
+    // Validates that the array is not empty
+    if (children.length > 0) {
+      let staticChildren: StaticChild[] = []
+      // If it is a reactive element
+      if (children[0] instanceof StateReference) {
+        reactiveReference = true
+        let referenceAttribute = `[data-ref-${this.reactiveElements}]`
+        staticChildren = [
+          this.getValueAndSubscribe(
+            children[0],
+            (value: any) => (query(referenceAttribute).innerHTML = value)
+          ),
+        ]
+      } else {
+        // If it is not a reactive element
+        staticChildren = children as StaticChild[]
+      }
+
+      element.append(...staticChildren)
+    }
+
+    if (reactiveReference !== undefined) {
+      element.dataset[`ref-${this.reactiveElements}`] = ''
+      this.reactiveElements++
+    }
+
+    return element
+  }
+
+  //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+  /**
+   *
+   */
+  private getValueAndSubscribe(
+    stateref: StateReference,
+    subscription: Function
+  ): any {
+    this.obs[stateref.name].subscribe(subscription)
+    return stateref.value
+  }
 }
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
@@ -317,21 +421,49 @@ export const has = function (
   attributes: StaticAttributes
 ): HTMLElement {
   Object.keys(attributes).forEach((attributeName: string) => {
-    let attribute = attributes[attributeName]
-    if (typeof attribute === 'string') {
-      this.setAttribute(attributeName, attribute)
-    } else if (typeof attribute === 'boolean') {
-      if (attribute === true) {
-        this.setAttribute(attributeName, '')
-      } else {
-        this.removeAttribute(attributeName)
-      }
-    } else {
-      let listenerFunction: Function = attribute
-      this.addEventListener(attributeName, (event: Event) => {
-        listenerFunction(event)
-      })
-    }
+    let attribute: StaticAttribute = attributes[attributeName]
+    this.setAnyAttribute(attributeName, attribute)
   })
+  return this
+}
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+/**
+ * This function extends `HTMLElement.prototype.setAttribute()`. It generalizes boolean, string and
+ * function attributes. The main problem with the limits of `.setAttribute()` is that it defaults only
+ * to strings. For boolean attributes you can't do something like `.setAttribute('hidden', false)`. To
+ * correctly remove boolean attributes like `hidden`, one must use the `.removeAttribute()` function,
+ * something that `setAnyAttribute()` takes into account. Also, event listeners cannot be used inside
+ * `.setAttribute()`, because they must use then `addEventListener()` function.
+ *
+ * @param this The HTMLElement that will have an attribute set.
+ *
+ * @param name The name of the attribute like on `.setAttribute()`, but unlike it, it can be used to
+ * remove boolean elements and add event listener functions.
+ *
+ * @param value The attribute's value, can be string, boolean or a function.
+ *
+ * @returns An HTMLElement with a property set.
+ */
+export const setAnyAttribute = function (
+  this: HTMLElement,
+  name: string,
+  value: StaticAttribute
+): HTMLElement {
+  if (typeof value === 'string') {
+    this.setAttribute(name, value)
+  } else if (typeof value === 'boolean') {
+    if (value === true) {
+      this.setAttribute(name, '')
+    } else {
+      this.removeAttribute(name)
+    }
+  } else {
+    let listenerFunction: Function = value
+    this.addEventListener(name, (event: Event) => {
+      listenerFunction(event)
+    })
+  }
+
   return this
 }

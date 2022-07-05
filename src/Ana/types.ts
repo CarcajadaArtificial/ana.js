@@ -1,7 +1,3 @@
-/**
- * @module Types
- */
-
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 //   _____
 //  |_   _|   _ _ __   ___  ___
@@ -34,3 +30,11 @@ export type StaticAttributes = { [key: string]: StaticAttribute }
  * There are only two types of children of HTMLElements, strings and other elements. They can be in any number and order.
  */
 export type StaticChild = Node | string
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+/**
+ *
+ */
+export class StateReference {
+  constructor(public value: any, public name: string) {}
+}

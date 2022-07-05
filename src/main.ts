@@ -13,26 +13,20 @@ app.init(
     e: 5,
   },
   (d: GenericData) =>
-    a.ol()(a.li()(d.a), a.li()(d.b), a.li()(d.c), a.li()(d.d), a.li()(d.e))
+    a.div()(
+      a.p()('List 1'),
+      a.ol()(a.li()(d.a), a.li()(d.b), a.li()(d.c), a.li()(d.d), a.li()(d.e)),
+      a.p()('List 2'),
+      a.ol()(a.li()(d.a), a.li()(d.b), a.li()(d.c), a.li()(d.d), a.li()(d.e))
+    )
 )
 
-setTimeout(() => {
-  renderRandoms()
-}, 1000)
+var interval: NodeJS.Timeout = setInterval(
+  () =>
+    app.up[['a', 'b', 'c', 'd', 'e'][Math.floor(Math.random() * 5)]](
+      Math.floor(Math.random() * 100)
+    ),
+  1000
+)
 
-var interval: NodeJS.Timeout | undefined = undefined
-
-async function renderRandoms() {
-  let options: string[] = ['a', 'b', 'c', 'd', 'e']
-  interval = setInterval(() => {
-    let updateSnapshot: GenericData = {}
-    updateSnapshot[options[Math.floor(Math.random() * 5)]] = Math.floor(
-      Math.random() * 100
-    )
-    app.up(updateSnapshot)
-  }, 1000)
-}
-
-document.body.addEventListener('click', () => {
-  if (interval !== undefined) clearInterval(interval)
-})
+document.body.addEventListener('click', () => clearInterval(interval))
