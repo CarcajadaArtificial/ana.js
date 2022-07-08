@@ -40,6 +40,7 @@ export type StaticChild = Node | string
  */
 export class StateReference {
   constructor(public value: any, public name: string) {}
+  get: Function = (): any => this.value
 }
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
@@ -52,13 +53,15 @@ export interface ReactivityDictionary {}
 /**
  *
  */
-export type RenderClass<T> = (...classes: string[]) => T
+export type RenderClass<T> = (...classes: (StateReference | string)[]) => T
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 /**
  *
  */
-export type RenderChildren<T> = (...children: StaticChild[]) => T
+export type RenderChildren<T> = (
+  ...children: (StateReference | StaticChild)[]
+) => T
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 /**

@@ -1,6 +1,6 @@
 import { dAnaConfiguration } from '../Ana/Ana.interface'
 import { globalOverrides } from '../global'
-import { ReactiveRenderer } from './Render'
+import { render } from './Render'
 import { Render } from './Render.interface'
 
 globalOverrides(dAnaConfiguration)
@@ -15,8 +15,7 @@ globalOverrides(dAnaConfiguration)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 describe('Render', () => {
-  const renderer = new ReactiveRenderer()
-  const a: { [key: string]: any } = renderer.render<Render>()
+  const a: { [key: string]: any } = render<Render>()
 
   //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
   describe('createRenderer', () => {

@@ -24,6 +24,7 @@
   - [x] Supports reactive children in `div()(x)`
   - [ ] Supports other reactive attributes `div()().has(x)`
   - [ ] Supports lists reactive to more or less children.
+  - [ ] Supports other render methods (Parent, Empty, SVG)
 - [x] Support Extended intellisense.
 
 - Documentation
@@ -38,7 +39,19 @@
 
 ## Unreleased
 
-### **0.9.8** (Latest)
+### **0.9.9** (Latest)
+
+- `Removed` the app API and the createApp method.
+  - `~/src/Ana/Ana/Ana.ts`
+
+- `Removed` ReactiveRenderer class. The render method was moved to a stand-alone function and everything else to the Ana framework.
+  - `~/src/Ana/Render/Render.ts`
+
+- `Added` full support to reactive classes and children.
+  - `~/src/Ana/Render/Render.ts`
+  - `~/src/Ana/Reactive/Reactive.ts`
+
+### **0.9.8**
 
 - `Added` reactives and relations properties on AnaWindow.
 

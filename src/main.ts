@@ -1,32 +1,52 @@
-import { Ana, GenericData, Render } from './Ana/index'
+import { Ana, Render } from './Ana/index'
 
 const ana = new Ana()
-const app = ana.createApp
-const a = app.render<Render>()
+const a = ana.render<Render>()
 
-app.init(
+const d = window.ana.state
+
+ana.init(
   {
-    a: 1,
-    b: 2,
-    c: 3,
-    d: 4,
-    e: 5,
+    a: '1',
+    b: '2',
+    c: '3',
+    d: '4',
+    e: '5',
+    list: [],
   },
-  (d: GenericData) =>
-    a.div()(
-      a.p('Test', 'test')('List 1'),
-      a.ol()(a.li()(d.a), a.li()(d.b), a.li()(d.c), a.li()(d.d), a.li()(d.e)),
-      a.p('Test', 'test')('List 2'),
-      a.ol()(a.li()(d.a), a.li()(d.b), a.li()(d.c), a.li()(d.d), a.li()(d.e))
+  () => {
+    return a.div()(
+      a.h1()('Live test'),
+      a.div()(a.h2()('Single Static'), a.p()('A')),
+      a.div()(a.h2()('Single Reactive'), a.p(d.a)(d.a)),
+      a.div()(
+        a.h2()('Multiple Reactive'),
+        a.p()(
+          a.span()('Results:  '),
+          'A: ',
+          d.a,
+          ', B: ',
+          d.b,
+          ', C: ',
+          d.c,
+          ', D: ',
+          d.d,
+          ', E: ',
+          d.e
+        )
+      )
     )
+  }
 )
 
-var interval: NodeJS.Timeout = setInterval(
-  () =>
-    app.up[['a', 'b', 'c', 'd', 'e'][Math.floor(Math.random() * 5)]](
-      Math.floor(Math.random() * 100)
-    ),
-  1000
-)
+// /*
+var interval: NodeJS.Timeout = setInterval(() => {
+  let randomLetter = ['a', 'b', 'c', 'd', 'e'][Math.floor(Math.random() * 5)]
+  let randomNumber = Math.floor(Math.random() * 100)
+  ana.up[randomLetter](String(randomNumber))
+
+  if (randomNumber % 5 === 0) ana.up.list([...d.list.value, randomLetter])
+}, 1000)
 
 document.body.addEventListener('click', () => clearInterval(interval))
+// */

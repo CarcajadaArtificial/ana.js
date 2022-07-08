@@ -27,7 +27,7 @@ export class Observable {
    * This function receives an update in the app's state and executes all functions inside `this.callbascks`.
    * @param state The new state of the app
    */
-  emit(state: GenericData): GenericData | undefined {
+  emit(state?: GenericData): GenericData | undefined {
     if (this.callbacks.length === 0) {
       throw new Error()
     } else {

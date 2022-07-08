@@ -150,4 +150,7 @@ export interface Render {
   path: Function
   text: Function
   use: Function
+
+  // Key
+  [key: string]: ParentElement | EmptyElement | Function
 }

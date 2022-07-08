@@ -102,6 +102,6 @@ export function applyDefaults<Type, iType>(
  * `x => f => f(x)`
  */
 export const thrush =
-  <T>(x: T) =>
+  <T>(x?: T) =>
   (f: Function) =>
     f(x)

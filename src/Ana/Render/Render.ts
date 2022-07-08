@@ -1,7 +1,5 @@
 import { StateReference, StaticAttributes, StaticChild } from '../types'
-import { Observable } from '../Observable/Observable'
-import { GenericData } from '../types'
-import { byId, query } from '../Utils/Utils'
+import { Reactive } from '../Reactive.ts/Reactive'
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 //   ____                _
@@ -12,277 +10,147 @@ import { byId, query } from '../Utils/Utils'
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
- * This class is in charge of rendering the application and react to changes made to the app's data
- * state by rerendering the app.
+ * This function is an extremely simplified HTMLElement/SVGElement renderer. It receives a property in
+ * an `a.div` syntax (`a`, being the renderer and `div` being the property). The renderer `a` is a
+ * mere ES6 Proxy Object. When the prop `div` is passed to the proxy, it looks inside the configured
+ * `svgElements` list and uses an SVG Renderer. Then, it looks inside the configured `emptyElements`
+ * list and uses a Renderer Without Children. If the property is not found in any of these lists use a
+ * Renderer With Children.
  *
- * ```Typescript
- * const ana = new Ana()
- * const app = ana.createApp
- * const a = app.render // This is the ReactiveRenderer instance
- * ```
+ * This property will be used by the developer right after constructing the instance of
+ * ReactiveRenderer. Also, it provides intellisense functionalities to TypeScript developers using Ana.
+ * js this is thanks to the Render Interface.
+ *
+ * Empty Element Render:
+ * What is an "empty element"? It's not designed to have any other elements inside of it. Examples of
+ * this are: `<input />`, `<img />`, `<link />`, `<meta />`, etc. This function renders these kinds of
+ * elements. `a.input(class).has(attributes)`.
+ *
+ * Parent Element (and Custom Element):
+ * By design, Ana.js gives priority to two properties of an HTML element. Firstly, in their classes,
+ * the most important of them all. There shouldn't be any filler elements without classes, every part
+ * of the interface must be designed with element classes in mind. Secondly, the children are rendered
+ * inside the element. Their functionality is essential for the framework, they are the most basic
+ * feature, demonstrated here: `a.div(...classes)(...children)`.
+ *
+ * SVG Render:
+ * This function creates an SVGElement renderer using only the element's tag name. To finish the
+ * rendering process, two additional steps must be made, one that adds children, and another that sets
+ * attributes. `renderSVG('svg')` will be accessed like this: `a.svg`.
+ *
+ * @returns a Proxy that emulates a dictionary of render functions. Some properties of this dictionary
+ * render SVGElements, others render Empty Elements, and others render Elements that can be parents.
+ * If it "tries to access" property not defined inside this emulated dictionary, then it renders a
+ * custom Element.
  */
-export class ReactiveRenderer {
-  /**
-   * Using the global configuration, creates the renderer function. This step happens after the Ana
-   * instance is constructed and there should be only one instance of ReactiveRenderer per application.
-   * It adds the extensions for the HTMLElement and SVGElement interfaces.
-   *
-   * @param config The global configuration is required for various rendering functionalities.
-   */
-  constructor() {}
+export function render<RenderType>(): RenderType {
+  return new Proxy(
+    {},
+    {
+      get: (target, prop) => {
+        target
+        const tagName: string = String(prop)
+        const svgElements: string[] = window.ana.config.svgElements
+        const emptyElements: string[] = window.ana.config.emptyElements
 
-  //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-  /**
-   * This property is in charge of emitting changes to the app's data state and running rerendering functions.
-   */
-  private obs: { [key: string]: Observable } = {}
-
-  //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-  /**
-   * Used to mount the application and start the rendering process. By default, it adds the rendered
-   * elements inside an element with a predefined id. This can be configured using the attribute
-   * `appContainerId` in the global configuration object.
-   *
-   * @param data This is the initial state of the app's data. Contains all of the values that can be
-   * changed after the rendering has finished. Also, the application will rerender when any of these
-   * change.
-   *
-   * @param appRenderFunction This function should receive the app's data state as argument and return
-   * an the HTMLElement containing the app. For example: `(d: GenericData) => a.div()()`
-   */
-  init: Function = (data: GenericData, appRenderFunction: Function): void => {
-    for (const key in data) {
-      window.ana.state[key] = new StateReference(data[key], key)
-      this.obs[key] = new Observable()
-      this.up[key] = (value: any) => this.obs[key].emit(value)
-    }
-    byId(window.ana.config.appContainerId).append(
-      appRenderFunction(window.ana.state)
-    )
-  }
-
-  //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-  /**
-   * This funciton is used to update the state and rerender the app's view.
-   *
-   * @param data The new values that will update the current app's data state.
-   */
-  up: { [key: string]: Function } = {}
-
-  //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-  /**
-   *
-   */
-  private reactiveElements: number = 0
-
-  //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-  /**
-   * This function is an extremely simplified HTMLElement/SVGElement renderer. It receives a property in
-   * an `a.div` syntax (`a`, being the renderer and `div` being the property). The renderer `a` is a
-   * mere ES6 Proxy Object. When the prop `div` is passed to the proxy, it looks inside the configured
-   * `svgElements` list and uses an SVG Renderer. Then, it looks inside the configured `emptyElements`
-   * list and uses a Renderer Without Children. If the property is not found in any of these lists use a
-   * Renderer With Children.
-   *
-   * This property will be used by the developer right after constructing the instance of
-   * ReactiveRenderer. Also, it provides intellisense functionalities to TypeScript developers using Ana.
-   * js this is thanks to the Render Interface.
-   *
-   * Empty Element Render:
-   * What is an "empty element"? It's not designed to have any other elements inside of it. Examples of
-   * this are: `<input />`, `<img />`, `<link />`, `<meta />`, etc. This function renders these kinds of
-   * elements. `a.input(class).has(attributes)`.
-   *
-   * Parent Element (and Custom Element):
-   * By design, Ana.js gives priority to two properties of an HTML element. Firstly, in their classes,
-   * the most important of them all. There shouldn't be any filler elements without classes, every part
-   * of the interface must be designed with element classes in mind. Secondly, the children are rendered
-   * inside the element. Their functionality is essential for the framework, they are the most basic
-   * feature, demonstrated here: `a.div(...classes)(...children)`.
-   *
-   * SVG Render:
-   * This function creates an SVGElement renderer using only the element's tag name. To finish the
-   * rendering process, two additional steps must be made, one that adds children, and another that sets
-   * attributes. `renderSVG('svg')` will be accessed like this: `a.svg`.
-   *
-   * @returns a Proxy that emulates a dictionary of render functions. Some properties of this dictionary
-   * render SVGElements, others render Empty Elements, and others render Elements that can be parents.
-   * If it "tries to access" property not defined inside this emulated dictionary, then it renders a
-   * custom Element.
-   */
-  render = <RenderType>(): RenderType => {
-    return new Proxy(
-      {},
-      {
-        get: (target, prop) => {
-          target
-          const tagName: string = String(prop)
-          const svgElements: string[] = window.ana.config.svgElements
-          const emptyElements: string[] = window.ana.config.emptyElements
-
-          if (svgElements.includes(tagName)) {
-            // Render SVG
-            return (...children: StaticChild[]): Function =>
-              (attributes: StaticAttributes): SVGElement => {
-                let svgElement = document.createElementNS(
-                  'http://www.w3.org/2000/svg',
-                  tagName
-                )
-                svgElement.append(...children)
-                svgElement.has(attributes)
-                return svgElement
-              }
-          } else if (emptyElements.includes(tagName)) {
-            // Render Empty
-            return (...classes: string[] | StateReference[]): HTMLElement =>
-              this.addClasses(document.createElement(tagName), ...classes)
-          } else {
-            // Render Parent
-            return (...classes: string[]): Function =>
-              (...children: StaticChild[]): HTMLElement | SVGElement =>
-                this.addChildren(
-                  this.addClasses(document.createElement(tagName), ...classes),
-                  ...children
-                )
-          }
-        },
-      }
-    ) as RenderType
-  }
-
-  //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-  /**
-   *
-   */
-  private addClasses(
-    htmlelement: HTMLElement,
-    ...classes: string[] | StateReference[]
-  ): HTMLElement {
-    let reactiveReference = false
-
-    // Validates that the array is not empty
-    if (classes.length > 0) {
-      let staticClasses: string[] = classes.map(
-        (child: string | StateReference): string => {
-          // If it is a reactive element
-          if (child instanceof StateReference) {
-            reactiveReference = true
-            let referenceAttribute = `[data-ref-${this.reactiveElements}]`
-            return typeof this.getValueAndSubscribe(child, (value: any) =>
-              query(referenceAttribute).setAttribute('class', value)
-            ) === 'string'
-              ? child.value
-              : String(child.value)
-          } else {
-            // If it is not a reactive element
-            return child
-          }
+        if (svgElements.includes(tagName)) {
+          // Render SVG
+          return (...children: StaticChild[]): Function =>
+            (attributes: StaticAttributes): SVGElement => {
+              let svgElement = document.createElementNS(
+                'http://www.w3.org/2000/svg',
+                tagName
+              )
+              svgElement.append(...children)
+              svgElement.has(attributes)
+              return svgElement
+            }
+        } else if (emptyElements.includes(tagName)) {
+          // Render Empty
+          return (...classes: (string | StateReference)[]): HTMLElement =>
+            addClasses(document.createElement(tagName), ...classes)
+        } else {
+          // Render Parent
+          return (...classes: (string | StateReference)[]): Function =>
+            (
+              ...children: (StaticChild | StateReference)[]
+            ): HTMLElement | SVGElement =>
+              addChildren(
+                addClasses(document.createElement(tagName), ...classes),
+                ...children
+              )
         }
-      )
-      htmlelement.setAttribute('class', staticClasses.join(' '))
+      },
     }
-
-    if (reactiveReference) {
-      htmlelement.dataset[`ref-${this.reactiveElements}`] = ''
-      this.reactiveElements++
-    }
-
-    return htmlelement
-  }
+  ) as RenderType
 
   //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
   /**
    *
    */
-  private addChildren(
-    element: HTMLElement | SVGElement,
-    ...children: StaticChild[] | StateReference[]
-  ): HTMLElement | SVGElement {
-    let reactiveReference = undefined
+  function addClasses(
+    element: HTMLElement,
+    ...classes: (string | StateReference)[]
+  ): HTMLElement {
+    classes.forEach((reactiveClass: string | StateReference): void => {
+      if (reactiveClass instanceof StateReference) {
+        // Is StateReference
+        if (element.dataset.ref === undefined) {
+          let reactive = new Reactive(element)
+          element.dataset.ref = reactive.id
+        }
+        window.ana.reactives[element.dataset.ref].classes.push(
+          window.ana.state[reactiveClass.name]
+        )
+        window.ana.relations[reactiveClass.name].push(element.dataset.ref)
 
-    // Validates that the array is not empty
-    if (children.length > 0) {
-      let staticChildren: StaticChild[] = []
-      // If it is a reactive element
-      if (children[0] instanceof StateReference) {
-        reactiveReference = true
-        let referenceAttribute = `[data-ref-${this.reactiveElements}]`
-        staticChildren = [
-          this.getValueAndSubscribe(
-            children[0],
-            (value: any) => (query(referenceAttribute).innerHTML = value)
-          ),
-        ]
+        element.classList.add(reactiveClass.value)
       } else {
-        // If it is not a reactive element
-        staticChildren = children as StaticChild[]
+        // Is not State Reference
+        if (element.dataset.ref !== undefined) {
+          window.ana.reactives[element.dataset.ref].classes.push(reactiveClass)
+        }
+
+        element.classList.add(reactiveClass)
       }
-
-      element.append(...staticChildren)
-    }
-
-    if (reactiveReference !== undefined) {
-      element.dataset[`ref-${this.reactiveElements}`] = ''
-      this.reactiveElements++
-    }
+    })
 
     return element
   }
 
   //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
   /**
-   * @deprecated
-   */
-  private getValueAndSubscribe(
-    stateref: StateReference,
-    subscription: Function
-  ): any {
-    this.obs[stateref.name].subscribe(subscription)
-    return stateref.value
-  }
-
-  //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-  /**
    *
    */
-  /*
-  private chargeArray<T>(
-    reactiveArray: T[] | StateReference[],
+  function addChildren(
     element: HTMLElement | SVGElement,
-    arrayType: 'children' | 'classes'
-  ): T[] {
-    return reactiveArray.map((reactiveItem: T | StateReference) => {
-      if (reactiveItem instanceof StateReference) {
+    ...children: (StaticChild | StateReference)[]
+  ): HTMLElement | SVGElement {
+    children.forEach((reactiveChildren: StaticChild | StateReference): void => {
+      if (reactiveChildren instanceof StateReference) {
+        // Is StateReference
         if (element.dataset.ref === undefined) {
-          // element = createReactive(element)
+          let reactive = new Reactive(element)
+          element.dataset.ref = reactive.id
         }
+        window.ana.reactives[element.dataset.ref].children.push(
+          window.ana.state[reactiveChildren.name]
+        )
+        window.ana.relations[reactiveChildren.name].push(element.dataset.ref)
 
-        if (arrayType === 'classes') {
-          Window.Reactives[element.dataset.ref!].classes.push(
-            reactiveItem.value
-          )
-        } else if (arrayType === 'children') {
-          Window.Reactives[element.dataset.ref!].children.push(
-            reactiveItem.value
-          )
-        }
-
-        return reactiveItem.value as T
+        element.append(reactiveChildren.value)
       } else {
-        if (element.dataset.ref === undefined) {
-          if (arrayType === 'classes') {
-            Window.Reactives[element.dataset.ref!].classes.push(
-              typeof reactiveItem === 'string'
-                ? reactiveItem
-                : String(reactiveItem)
-            )
-          } else if (arrayType === 'children') {
-          }
+        // Is not State Reference
+        if (element.dataset.ref !== undefined) {
+          window.ana.reactives[element.dataset.ref].children.push(
+            reactiveChildren
+          )
         }
 
-        return reactiveItem
+        element.append(reactiveChildren)
       }
     })
+
+    return element
   }
-  // */
 }
