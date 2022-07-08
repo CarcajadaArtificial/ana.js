@@ -38,7 +38,15 @@
 
 ## Unreleased
 
-### **0.9.6** (Latest)
+### **0.9.7** (Latest)
+
+- `Removed` renderParent, renderEmpty and renderSVG and moved them all to the render function.
+  `~/src/Ana/Render/Render.ts`
+
+- `Removed` components from the element render api.
+  `~/src/Ana/Render/Render.ts`
+
+### **0.9.6**
 
 - `Added` state and config properties to AnaWindow.
 

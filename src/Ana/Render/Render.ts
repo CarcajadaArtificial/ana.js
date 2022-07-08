@@ -71,13 +71,6 @@ export class ReactiveRenderer {
 
   //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
   /**
-   * This dictionary is used to contain the render functions of custom components. As a convention,
-   * component names should start with uppercase.
-   */
-  components: { [key: string]: Function } = {}
-
-  //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-  /**
    *
    */
   private reactiveElements: number = 0
@@ -95,19 +88,27 @@ export class ReactiveRenderer {
    * ReactiveRenderer. Also, it provides intellisense functionalities to TypeScript developers using Ana.
    * js this is thanks to the Render Interface.
    *
+   * Empty Element Render:
+   * What is an "empty element"? It's not designed to have any other elements inside of it. Examples of
+   * this are: `<input />`, `<img />`, `<link />`, `<meta />`, etc. This function renders these kinds of
+   * elements. `a.input(class).has(attributes)`.
+   *
+   * Parent Element (and Custom Element):
+   * By design, Ana.js gives priority to two properties of an HTML element. Firstly, in their classes,
+   * the most important of them all. There shouldn't be any filler elements without classes, every part
+   * of the interface must be designed with element classes in mind. Secondly, the children are rendered
+   * inside the element. Their functionality is essential for the framework, they are the most basic
+   * feature, demonstrated here: `a.div(...classes)(...children)`.
+   *
+   * SVG Render:
+   * This function creates an SVGElement renderer using only the element's tag name. To finish the
+   * rendering process, two additional steps must be made, one that adds children, and another that sets
+   * attributes. `renderSVG('svg')` will be accessed like this: `a.svg`.
+   *
    * @returns a Proxy that emulates a dictionary of render functions. Some properties of this dictionary
    * render SVGElements, others render Empty Elements, and others render Elements that can be parents.
    * If it "tries to access" property not defined inside this emulated dictionary, then it renders a
    * custom Element.
-   *
-   * SVG Render:
-   * `a.svg(children)(attributes)`
-   *
-   * Empty Element Render:
-   * `a.input(class).has(attributes)`
-   *
-   * Parent Element (and Custom Element):
-   * `a.div(class)(children).has(attributes)`, `a.custom(class)(children).has(attributes)`
    */
   render = <RenderType>(): RenderType => {
     return new Proxy(
@@ -118,147 +119,36 @@ export class ReactiveRenderer {
           const tagName: string = String(prop)
           const svgElements: string[] = window.ana.config.svgElements
           const emptyElements: string[] = window.ana.config.emptyElements
-          const componentNames: string[] = Object.keys(this.components)
 
-          if (componentNames.includes(tagName)) {
-            return this.components[tagName]
-          } else if (svgElements.includes(tagName)) {
-            return this.renderSVG(tagName)
+          if (svgElements.includes(tagName)) {
+            // Render SVG
+            return (...children: StaticChild[]): Function =>
+              (attributes: StaticAttributes): SVGElement => {
+                let svgElement = document.createElementNS(
+                  'http://www.w3.org/2000/svg',
+                  tagName
+                )
+                svgElement.append(...children)
+                svgElement.has(attributes)
+                return svgElement
+              }
           } else if (emptyElements.includes(tagName)) {
-            return this.renderEmpty(tagName)
+            // Render Empty
+            return (...classes: string[] | StateReference[]): HTMLElement =>
+              this.addClasses(document.createElement(tagName), ...classes)
           } else {
-            return this.renderParent(tagName)
+            // Render Parent
+            return (...classes: string[]): Function =>
+              (...children: StaticChild[]): HTMLElement | SVGElement =>
+                this.addChildren(
+                  this.addClasses(document.createElement(tagName), ...classes),
+                  ...children
+                )
           }
         },
       }
     ) as RenderType
   }
-
-  //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-  /**
-   * By design, Ana.js gives priority to two properties of an HTML element. Firstly, in their classes,
-   * the most important of them all. There shouldn't be any filler elements without classes, every part
-   * of the interface must be designed with element classes in mind. Secondly, the children are rendered
-   * inside the element. Their functionality is essential for the framework, they are the most basic
-   * feature, demonstrated here: `a.div(...classes)(...children)`.
-   *
-   * ```TypeScript
-   * renderParent(name)(...classes)(...children)
-   * ```
-   *
-   * @param elementName To create an element renderer
-   *
-   * @returns Function that can start the rendering process of a parent HTMLElement.
-   */
-  private renderParent =
-    (elementName: string): Function =>
-    /**
-     * ```TypeScript
-     * a.div(...classes)(...children)
-     * //   | <- This function
-     * ```
-     *
-     * @param classes It is the only attribute not added with the `.has()` function, it is special that
-     * way, first the class, then everything else.
-     *
-     * @returns A function that can render an HTMLElement.
-     */
-    (...classes: string[]): Function =>
-    /**
-     *```TypeScript
-     * a.div(...classes)(...children)
-     * //               | <- This function
-     * ```
-     *
-     * @param children The array of elements to be placed inside this one.
-     *
-     * @returns An element, fully classed, with the list of children inside of it.
-     */
-    (...children: StaticChild[]): HTMLElement | SVGElement =>
-      this.addChildren(
-        this.addClasses(document.createElement(elementName), ...classes),
-        ...children
-      )
-
-  //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-  /**
-   * What is an "empty element"? It's not designed to have any other elements inside of it. Examples of
-   * this are: `<input />`, `<img />`, `<link />`, `<meta />`, etc. This function renders these kinds of
-   * elements. `a.input(class).has(attributes)`.
-   *
-   * ```TypeScript
-   * renderEmpty(name)(...classes)
-   * ```
-   *
-   * @param elementName The name of the element that will be rendered.
-   *
-   * @returns A completely rendered empty element with classes.
-   */
-  private renderEmpty =
-    (elementName: string): Function =>
-    /**
-     * ```TypeScript
-     * a.img(...classes)
-     * //   | <- This function
-     * ```
-     * @param classes The only input that an empty element need is a class. Anything else will be added
-     * later, using auxiliary functions like 'has'.
-     *
-     * @returns A complete html element without any attributes other than the class.
-     */
-    (...classes: string[] | StateReference[]): HTMLElement =>
-      this.addClasses(document.createElement(elementName), ...classes)
-
-  //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-  /**
-   * This function creates an SVGElement renderer using only the element's tag name. To finish the
-   * rendering process, two additional steps must be made, one that adds children, and another that sets
-   * attributes. `renderSVG('svg')` will be accessed like this: `a.svg`.
-   *
-   * ```TypeScript
-   * renderSVG(name)(...children)(attributes)
-   * ```
-   *
-   * @returns A render function for an SVGElement.
-   *
-   * @todo Check if Obejct.getPrototypeOf(child).constructor.name starts with "HTML", and throw an error
-   * if so.
-   */
-  private renderSVG =
-    (elementName: string): Function =>
-    /**
-     * ```TypeScript
-     * a.svg(...children)(attributes)
-     * //   | <- This function
-     * ```
-     * @param children This spread argument contains the elements that will be appended inside the one
-     * being rendered.
-     *
-     * @returns A function that renders an SVGElement given a dictionary of attributes.
-     */
-    (...children: StaticChild[]): Function =>
-    /**
-     * * ```TypeScript
-     * a.svg(...children)(attributes)
-     * //                | <- This function
-     * ```
-     *
-     * @param attributes A dictionary of attributes to render the SVGElement.
-     *
-     * @returns A completely rendered SVG Element with children an attributes.
-     */
-    (attributes: StaticAttributes): Node => {
-      let svgElement = document.createElementNS(
-        'http://www.w3.org/2000/svg',
-
-        elementName
-      )
-      svgElement.append(...children)
-      if (attributes) {
-        svgElement.has(attributes)
-      }
-      return svgElement
-    }
 
   //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
   /**
