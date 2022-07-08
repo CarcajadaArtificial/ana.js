@@ -7,6 +7,8 @@
 //        |___/|_|
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+import { AnaConfiguration } from './Ana/Ana.interface'
+
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 /**
  * Why is there a need for a dictionary with 'any' value? Because that is what the state of the application is. When creating an app, one should be able to store any piece of data of any type in a dictionary for reference along with the app. Everything that depends on the application's reactive data dictionary, will also involve this type.
@@ -80,3 +82,14 @@ export type ParentElement = RenderClass<RenderChildren<Element>>
  *
  */
 export type SVGElement = RenderChildren<RenderAttributes<Element>>
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+/**
+ *
+ */
+export interface WindowAna {
+  config: AnaConfiguration
+  state: { [key: string]: StateReference }
+  // reactives: { [key: string]: Reactive }
+  // relations: { [key: string]: string[] }
+}

@@ -90,7 +90,7 @@ export const query: Function = (selector: string): Element | undefined => {
  *
  * @returns An object of a non-input interface overwritten with input property values.
  */
-export function applyDefaultParameters<Type, iType>(
+export function applyDefaults<Type, iType>(
   defaultParameters: Type,
   inputParameters: iType
 ): Type {

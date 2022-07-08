@@ -27,7 +27,6 @@
 - [x] Support Extended intellisense.
 
 - Documentation
-
   - [ ] Render.config
   - [ ] Render.initialRender
   - [ ] Render.reactiveElements
@@ -39,7 +38,13 @@
 
 ## Unreleased
 
-### **0.9.5** (Latest)
+### **0.9.6** (Latest)
+
+- `Added` state and config properties to AnaWindow.
+
+- `Added` all global overrides to a `global.ts` file.
+
+### **0.9.5**
 
 - `Added` the reaction dictionary to the Window object.
   - `~/src/Render/Render.ts`

@@ -1,19 +1,9 @@
 import { dAnaConfiguration } from '../Ana/Ana.interface'
-import { StaticAttributes } from '../types'
-import { has, ReactiveRenderer } from './Render'
+import { globalOverrides } from '../global'
+import { ReactiveRenderer } from './Render'
 import { Render } from './Render.interface'
 
-declare global {
-  interface HTMLElement {
-    has(attributes: StaticAttributes): HTMLElement
-  }
-  interface SVGElement {
-    has(attributes: StaticAttributes): HTMLElement
-  }
-}
-
-HTMLElement.prototype.has = has
-SVGElement.prototype.has = has
+globalOverrides(dAnaConfiguration)
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 //   ____                _             _____         _
@@ -25,8 +15,8 @@ SVGElement.prototype.has = has
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 describe('Render', () => {
-  const renderer = new ReactiveRenderer(dAnaConfiguration)
-  const a: { [key:string]: any } = renderer.render<Render>()
+  const renderer = new ReactiveRenderer()
+  const a: { [key: string]: any } = renderer.render<Render>()
 
   //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
   describe('createRenderer', () => {

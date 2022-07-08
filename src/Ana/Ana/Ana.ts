@@ -1,13 +1,11 @@
-/**
- * @module Ana
- */
 import {
   AnaConfiguration,
   dAnaConfiguration,
   iAnaConfiguration,
 } from './Ana.interface'
-import { applyDefaultParameters } from '../Utils/Utils'
+import { applyDefaults } from '../Utils/Utils'
 import { ReactiveRenderer } from '../Render/Render'
+import { globalOverrides } from '../global'
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 //       _
@@ -29,17 +27,14 @@ export class Ana {
   /**
    * This function instantiates the framework.
    */
-  constructor(configuration: iAnaConfiguration = {}) {
-    let config = applyDefaultParameters<AnaConfiguration, iAnaConfiguration>(
-      dAnaConfiguration,
-      configuration
+  constructor(config: iAnaConfiguration = {}) {
+    globalOverrides(
+      applyDefaults<AnaConfiguration, iAnaConfiguration>(
+        dAnaConfiguration,
+        config
+      )
     )
 
-    this.createApp = new ReactiveRenderer(config)
-
-    // Adds ana.js-check
-    if (config.extensions.check) {
-      config.extensions.check()
-    }
+    this.createApp = new ReactiveRenderer()
   }
 }

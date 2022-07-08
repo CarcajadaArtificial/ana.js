@@ -1,28 +1,7 @@
-import { AnaConfiguration } from '../Ana/Ana.interface'
-import {
-  StateReference,
-  StaticAttribute,
-  StaticAttributes,
-  StaticChild,
-} from '../types'
+import { StateReference, StaticAttributes, StaticChild } from '../types'
 import { Observable } from '../Observable/Observable'
 import { GenericData } from '../types'
 import { byId, query } from '../Utils/Utils'
-
-/**
- * Ana.js extends the HTMLElement and SVGELement modules. This module extensions are essential to the
- * library.
- */
-declare global {
-  interface HTMLElement {
-    has(attributes: StaticAttributes): HTMLElement
-    setAnyAttribute(name: string, attributes: StaticAttribute): HTMLElement
-  }
-  interface SVGElement {
-    has(attributes: StaticAttributes): HTMLElement
-    setAnyAttribute(name: string, attributes: StaticAttribute): HTMLElement
-  }
-}
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 //   ____                _
@@ -50,25 +29,7 @@ export class ReactiveRenderer {
    *
    * @param config The global configuration is required for various rendering functionalities.
    */
-  constructor(config: AnaConfiguration) {
-    this.config = config
-    HTMLElement.prototype.has = has
-    SVGElement.prototype.has = has
-    HTMLElement.prototype.setAnyAttribute = setAnyAttribute
-    SVGElement.prototype.setAnyAttribute = setAnyAttribute
-  }
-
-  /**
-   //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-   * 
-   */
-  private config: AnaConfiguration
-
-  //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-  /**
-   * This property makes the latest snapshot of the app's data sate available to the rest of the class.
-   */
-  private d: GenericData = {}
+  constructor() {}
 
   //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
   /**
@@ -91,23 +52,14 @@ export class ReactiveRenderer {
    */
   init: Function = (data: GenericData, appRenderFunction: Function): void => {
     for (const key in data) {
-      this.d[key] = new StateReference(data[key], key)
+      window.ana.state[key] = new StateReference(data[key], key)
       this.obs[key] = new Observable()
       this.up[key] = (value: any) => this.obs[key].emit(value)
     }
-    this.initialRender(this.d, appRenderFunction)
+    byId(window.ana.config.appContainerId).append(
+      appRenderFunction(window.ana.state)
+    )
   }
-
-  //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-  /**
-   *
-   * @param d
-   * @param appRenderFunction
-   * @returns
-   */
-  private initialRender = (d: GenericData, appRenderFunction: Function) =>
-    (byId(this.config.appContainerId).innerHTML =
-      appRenderFunction(d).outerHTML)
 
   //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
   /**
@@ -143,9 +95,6 @@ export class ReactiveRenderer {
    * ReactiveRenderer. Also, it provides intellisense functionalities to TypeScript developers using Ana.
    * js this is thanks to the Render Interface.
    *
-   * @param config The library's configuration object is necessary because the function accesses
-   * `svgElements` and `emptyElements`.
-   *
    * @returns a Proxy that emulates a dictionary of render functions. Some properties of this dictionary
    * render SVGElements, others render Empty Elements, and others render Elements that can be parents.
    * If it "tries to access" property not defined inside this emulated dictionary, then it renders a
@@ -167,8 +116,8 @@ export class ReactiveRenderer {
         get: (target, prop) => {
           target
           const tagName: string = String(prop)
-          const svgElements: string[] = this.config.svgElements
-          const emptyElements: string[] = this.config.emptyElements
+          const svgElements: string[] = window.ana.config.svgElements
+          const emptyElements: string[] = window.ana.config.emptyElements
           const componentNames: string[] = Object.keys(this.components)
 
           if (componentNames.includes(tagName)) {
@@ -329,7 +278,6 @@ export class ReactiveRenderer {
           if (child instanceof StateReference) {
             reactiveReference = true
             let referenceAttribute = `[data-ref-${this.reactiveElements}]`
-            console.log(referenceAttribute)
             return typeof this.getValueAndSubscribe(child, (value: any) =>
               query(referenceAttribute).setAttribute('class', value)
             ) === 'string'
@@ -393,7 +341,7 @@ export class ReactiveRenderer {
 
   //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
   /**
-   *
+   * @deprecated
    */
   private getValueAndSubscribe(
     stateref: StateReference,
@@ -402,68 +350,49 @@ export class ReactiveRenderer {
     this.obs[stateref.name].subscribe(subscription)
     return stateref.value
   }
-}
 
-//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-/**
- * This function extends HTMLElement.prototype.setAttribute to support a dictionary of attributes
- * instead of setting them one by one. For more information regarding types of attributes, read the
- * description of the StaticAttribute type.
- *
- * @param this The HTMLElement that will have attributes set.
- *
- * @param attributes The attributes to be set to the element.
- *
- * @returns The same HTMLElement but with all attributes set.
- */
-export const has = function (
-  this: HTMLElement,
-  attributes: StaticAttributes
-): HTMLElement {
-  Object.keys(attributes).forEach((attributeName: string) => {
-    let attribute: StaticAttribute = attributes[attributeName]
-    this.setAnyAttribute(attributeName, attribute)
-  })
-  return this
-}
+  //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+  /**
+   *
+   */
+  /*
+  private chargeArray<T>(
+    reactiveArray: T[] | StateReference[],
+    element: HTMLElement | SVGElement,
+    arrayType: 'children' | 'classes'
+  ): T[] {
+    return reactiveArray.map((reactiveItem: T | StateReference) => {
+      if (reactiveItem instanceof StateReference) {
+        if (element.dataset.ref === undefined) {
+          // element = createReactive(element)
+        }
 
-//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-/**
- * This function extends `HTMLElement.prototype.setAttribute()`. It generalizes boolean, string and
- * function attributes. The main problem with the limits of `.setAttribute()` is that it defaults only
- * to strings. For boolean attributes you can't do something like `.setAttribute('hidden', false)`. To
- * correctly remove boolean attributes like `hidden`, one must use the `.removeAttribute()` function,
- * something that `setAnyAttribute()` takes into account. Also, event listeners cannot be used inside
- * `.setAttribute()`, because they must use then `addEventListener()` function.
- *
- * @param this The HTMLElement that will have an attribute set.
- *
- * @param name The name of the attribute like on `.setAttribute()`, but unlike it, it can be used to
- * remove boolean elements and add event listener functions.
- *
- * @param value The attribute's value, can be string, boolean or a function.
- *
- * @returns An HTMLElement with a property set.
- */
-export const setAnyAttribute = function (
-  this: HTMLElement,
-  name: string,
-  value: StaticAttribute
-): HTMLElement {
-  if (typeof value === 'string') {
-    this.setAttribute(name, value)
-  } else if (typeof value === 'boolean') {
-    if (value === true) {
-      this.setAttribute(name, '')
-    } else {
-      this.removeAttribute(name)
-    }
-  } else {
-    let listenerFunction: Function = value
-    this.addEventListener(name, (event: Event) => {
-      listenerFunction(event)
+        if (arrayType === 'classes') {
+          Window.Reactives[element.dataset.ref!].classes.push(
+            reactiveItem.value
+          )
+        } else if (arrayType === 'children') {
+          Window.Reactives[element.dataset.ref!].children.push(
+            reactiveItem.value
+          )
+        }
+
+        return reactiveItem.value as T
+      } else {
+        if (element.dataset.ref === undefined) {
+          if (arrayType === 'classes') {
+            Window.Reactives[element.dataset.ref!].classes.push(
+              typeof reactiveItem === 'string'
+                ? reactiveItem
+                : String(reactiveItem)
+            )
+          } else if (arrayType === 'children') {
+          }
+        }
+
+        return reactiveItem
+      }
     })
   }
-
-  return this
+  // */
 }
