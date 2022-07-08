@@ -1,6 +1,3 @@
-/**
- * @module Observable
- */
 import { GenericData } from '../types'
 import { thrush } from '../Utils/Utils'
 
@@ -31,7 +28,7 @@ export class Observable {
    * @param state The new state of the app
    */
   emit(state: GenericData): GenericData | undefined {
-    if(this.callbacks.length === 0) {
+    if (this.callbacks.length === 0) {
       throw new Error()
     } else {
       this.callbacks.map(thrush<GenericData>(state))

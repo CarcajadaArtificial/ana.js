@@ -1,12 +1,5 @@
 import { AnaConfiguration } from './Ana/Ana.interface'
-import { Observable } from './Observable/Observable'
-import {
-  StaticAttribute,
-  StaticAttributes,
-  StaticChild,
-  WindowAna,
-} from './types'
-import { query } from './Utils/Utils'
+import { StaticAttribute, StaticAttributes, WindowAna } from './types'
 
 declare global {
   interface HTMLElement {
@@ -34,8 +27,8 @@ export function globalOverrides(config: AnaConfiguration): void {
   window.ana = {
     config: config,
     state: {},
-    // reactives: {},
-    // relations: {},
+    reactives: {},
+    relations: {},
   }
 }
 
@@ -101,29 +94,4 @@ const setAnyAttribute = function (
   }
 
   return this
-}
-
-/**
- *
- */
-export class Reactive {
-  observable: Observable = new Observable()
-
-  // Reference
-  dataset: string
-  reference: string
-  query?: HTMLElement | SVGElement
-
-  // Element
-  tag: string
-  classes: string[] = []
-  children: StaticChild[] = []
-  attributes: StaticAttributes = {}
-
-  constructor(id: string, elementBase: HTMLElement | SVGElement) {
-    this.dataset = `ref=${id}`
-    this.reference = `[data-${this.dataset}]`
-    this.query = query(this.reference)
-    this.tag = elementBase.tagName.toLowerCase()
-  }
 }

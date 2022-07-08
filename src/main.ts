@@ -14,9 +14,9 @@ app.init(
   },
   (d: GenericData) =>
     a.div()(
-      a.p()('List 1'),
+      a.p('Test', 'test')('List 1'),
       a.ol()(a.li()(d.a), a.li()(d.b), a.li()(d.c), a.li()(d.d), a.li()(d.e)),
-      a.p()('List 2'),
+      a.p('Test', 'test')('List 2'),
       a.ol()(a.li()(d.a), a.li()(d.b), a.li()(d.c), a.li()(d.d), a.li()(d.e))
     )
 )

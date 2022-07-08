@@ -8,6 +8,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 import { AnaConfiguration } from './Ana/Ana.interface'
+import { Reactive } from './Reactive.ts/Reactive'
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 /**
@@ -69,19 +70,19 @@ export type RenderAttributes<T> = (attributes: StaticAttributes) => T
 /**
  *
  */
-export type EmptyElement = RenderClass<Element>
+export type EmptyElement = RenderClass<HTMLElement>
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 /**
  *
  */
-export type ParentElement = RenderClass<RenderChildren<Element>>
+export type ParentElement = RenderClass<RenderChildren<HTMLElement>>
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 /**
  *
  */
-export type SVGElement = RenderChildren<RenderAttributes<Element>>
+// export type SVGElement = RenderChildren<RenderAttributes<SVGElement>>
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 /**
@@ -90,6 +91,6 @@ export type SVGElement = RenderChildren<RenderAttributes<Element>>
 export interface WindowAna {
   config: AnaConfiguration
   state: { [key: string]: StateReference }
-  // reactives: { [key: string]: Reactive }
-  // relations: { [key: string]: string[] }
+  reactives: { [key: string]: Reactive }
+  relations: { [key: string]: string[] }
 }

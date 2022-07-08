@@ -38,7 +38,13 @@
 
 ## Unreleased
 
-### **0.9.7** (Latest)
+### **0.9.8** (Latest)
+
+- `Added` reactives and relations properties on AnaWindow.
+
+- `Added` Reactive class
+
+### **0.9.7**
 
 - `Removed` renderParent, renderEmpty and renderSVG and moved them all to the render function.
   `~/src/Ana/Render/Render.ts`
