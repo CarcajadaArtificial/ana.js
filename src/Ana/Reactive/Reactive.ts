@@ -1,5 +1,5 @@
 import { Observable } from '../Observable/Observable'
-import { Reference } from '../Reference/Reference'
+import { Reference, ReferenceFunction } from '../Reference/Reference'
 import { render } from '../Render/Render'
 import { Render } from '../Render/Render.interface'
 import { StaticAttribute, StaticChild } from '../types'
@@ -47,7 +47,7 @@ export class Reactive {
   /**
    *
    */
-  children: (StaticChild | Reference)[] = []
+  children: (StaticChild | Reference | ReferenceFunction)[] = []
 
   /**
    *
@@ -60,17 +60,27 @@ export class Reactive {
   private rerender: Function = (): void => {
     let tag: string = this.tag instanceof Reference ? this.tag.get() : this.tag
 
-    // console.log(this.classes)
     let classes: string[] = this.classes.map(
       (reactiveClass: string | Reference): string =>
         reactiveClass instanceof Reference ? reactiveClass.get() : reactiveClass
     )
 
-    let children: StaticChild[] = this.children.map(
-      (reactiveChildren: StaticChild | Reference) =>
-        reactiveChildren instanceof Reference
-          ? reactiveChildren.get()
-          : reactiveChildren
+    let children: StaticChild[] = []
+    this.children.forEach(
+      (reactiveChildren: StaticChild | Reference | ReferenceFunction) => {
+        if (reactiveChildren instanceof Reference) {
+          children.push(reactiveChildren.get())
+        } else if (reactiveChildren instanceof ReferenceFunction) {
+          let childrenReturned = reactiveChildren.f()
+          if (Array.isArray(childrenReturned)) {
+            children.push(...reactiveChildren.f())
+          } else {
+            children.push(reactiveChildren.f())
+          }
+        } else {
+          children.push(reactiveChildren)
+        }
+      }
     )
 
     query(this.reference).replaceWith(
@@ -87,16 +97,20 @@ export class Reactive {
     this.reference = '[data-ref="' + this.id + '"]'
 
     // Element
+    // Tag
     this.tag = elementBase.tagName.toLowerCase()
+    // Classes
     elementBase.classList.length > 0
       ? (this.classes = elementBase.classList.value.split(' '))
       : (this.classes = [])
     elementBase.removeAttribute('class')
-    console.log(elementBase.outerHTML)
+    // Children
     this.children = Array.from(elementBase.childNodes)
+    // Attributes
     Array.prototype.map.call(elementBase.attributes, (attribute) => {
       this.attributes[attribute.name] = attribute.value
     })
+    // Data Attribute Reference
     this.attributes['data-ref'] = this.id
 
     // Observable

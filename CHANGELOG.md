@@ -22,24 +22,19 @@
 - [ ] Support intelligent reactivity.
   - [x] Supports reactive classes in `div(x)()`
   - [x] Supports reactive children in `div()(x)`
+    - [x] Supports lists reactive to more or less children.
+    - [ ] Supports conditionally rendered children.
   - [ ] Supports other reactive attributes `div()().has(x)`
-  - [ ] Supports lists reactive to more or less children.
   - [ ] Supports other render methods (Parent, Empty, SVG)
 - [x] Support Extended intellisense.
 
-- Documentation
-  - [ ] Render.config
-  - [ ] Render.initialRender
-  - [ ] Render.reactiveElements
-  - [ ] Render.addClasses
-  - [ ] Render.addChildren
-  - [ ] Render.getValueAndSubscribe
-  - [ ] Types.StateRefernece
-  - [ ] Utils.query
-
 ## Unreleased
 
-### **0.9.10** (Latest)
+### **0.9.11** (Latest)
+
+- `Added` the ReferenceFunction class inside the Reference module.
+
+### **0.9.10**
 
 - `Added` the Reference module, substituing the StateReference class.
 - `Added` Reactive module to a correct directory.

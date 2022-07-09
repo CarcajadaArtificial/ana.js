@@ -1,6 +1,6 @@
 import { StaticAttributes, StaticChild } from '../types'
 import { Reactive } from '../Reactive/Reactive'
-import { Reference } from '../Reference/Reference'
+import { Reference, ReferenceFunction } from '../Reference/Reference'
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 //   ____                _
@@ -140,6 +140,17 @@ export function render<RenderType>(): RenderType {
         window.ana.relations[reactiveChildren.name].push(element.dataset.ref)
 
         element.append(reactiveChildren.value)
+      } else if (reactiveChildren instanceof ReferenceFunction) {
+        if (element.dataset.ref === undefined) {
+          let reactive = new Reactive(element)
+          element.dataset.ref = reactive.id
+        }
+        window.ana.reactives[element.dataset.ref].children.push(
+          reactiveChildren
+        )
+        window.ana.relations[reactiveChildren.name].push(element.dataset.ref)
+
+        element.append(...reactiveChildren.f())
       } else {
         // Is not State Reference
         if (element.dataset.ref !== undefined) {

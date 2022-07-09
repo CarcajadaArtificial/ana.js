@@ -37,7 +37,7 @@ ana.init(
       ),
       a.div()(
         a.h2()('Array Reactive'),
-        a.p()(...d.list.map((item: string) => a.strong()(item)))
+        a.p()(d.list.map((item: string) => a.strong()(item)))
       )
     )
   }
