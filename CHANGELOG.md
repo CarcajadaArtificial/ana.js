@@ -39,7 +39,13 @@
 
 ## Unreleased
 
-### **0.9.9** (Latest)
+### **0.9.10** (Latest)
+
+- `Added` the Reference module, substituing the StateReference class.
+- `Added` Reactive module to a correct directory.
+- `Added` a utils module outside a redundant utils directory.
+
+### **0.9.9**
 
 - `Removed` the app API and the createApp method.
   - `~/src/Ana/Ana/Ana.ts`

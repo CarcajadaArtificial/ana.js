@@ -1,5 +1,5 @@
 import { GenericData } from '../types'
-import { thrush } from '../Utils/Utils'
+import { thrush } from '../utils'
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 //    ___  _                              _     _

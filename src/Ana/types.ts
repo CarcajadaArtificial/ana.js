@@ -8,7 +8,8 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 import { AnaConfiguration } from './Ana/Ana.interface'
-import { Reactive } from './Reactive.ts/Reactive'
+import { Reactive } from './Reactive/Reactive'
+import { Reference } from './Reference/Reference'
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 /**
@@ -38,30 +39,19 @@ export type StaticChild = Node | string
 /**
  *
  */
-export class StateReference {
-  constructor(public value: any, public name: string) {}
-  get: Function = (): any => this.value
-}
-
-//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-/**
- *
- */
 export interface ReactivityDictionary {}
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 /**
  *
  */
-export type RenderClass<T> = (...classes: (StateReference | string)[]) => T
+export type RenderClass<T> = (...classes: (Reference | string)[]) => T
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 /**
  *
  */
-export type RenderChildren<T> = (
-  ...children: (StateReference | StaticChild)[]
-) => T
+export type RenderChildren<T> = (...children: (Reference | StaticChild)[]) => T
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 /**
@@ -93,7 +83,7 @@ export type ParentElement = RenderClass<RenderChildren<HTMLElement>>
  */
 export interface WindowAna {
   config: AnaConfiguration
-  state: { [key: string]: StateReference }
+  state: { [key: string]: Reference }
   reactives: { [key: string]: Reactive }
   relations: { [key: string]: string[] }
 }

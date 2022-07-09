@@ -13,6 +13,6 @@
  */
 
 export { Ana } from './Ana/Ana'
-export * from './Utils/Utils'
+export * from './utils'
 export * from './types'
 export type { Render } from './Render/Render.interface'

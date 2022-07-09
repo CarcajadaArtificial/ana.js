@@ -1,7 +1,7 @@
 /**
  * @module Utils
  */
-import { GenericData } from '../types'
+import { GenericData } from './types'
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 //   _   _ _   _ _ _ _   _

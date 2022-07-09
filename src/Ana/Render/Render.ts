@@ -1,5 +1,6 @@
-import { StateReference, StaticAttributes, StaticChild } from '../types'
-import { Reactive } from '../Reactive.ts/Reactive'
+import { StaticAttributes, StaticChild } from '../types'
+import { Reactive } from '../Reactive/Reactive'
+import { Reference } from '../Reference/Reference'
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 //   ____                _
@@ -67,13 +68,13 @@ export function render<RenderType>(): RenderType {
             }
         } else if (emptyElements.includes(tagName)) {
           // Render Empty
-          return (...classes: (string | StateReference)[]): HTMLElement =>
+          return (...classes: (string | Reference)[]): HTMLElement =>
             addClasses(document.createElement(tagName), ...classes)
         } else {
           // Render Parent
-          return (...classes: (string | StateReference)[]): Function =>
+          return (...classes: (string | Reference)[]): Function =>
             (
-              ...children: (StaticChild | StateReference)[]
+              ...children: (StaticChild | Reference)[]
             ): HTMLElement | SVGElement =>
               addChildren(
                 addClasses(document.createElement(tagName), ...classes),
@@ -90,11 +91,11 @@ export function render<RenderType>(): RenderType {
    */
   function addClasses(
     element: HTMLElement,
-    ...classes: (string | StateReference)[]
+    ...classes: (string | Reference)[]
   ): HTMLElement {
-    classes.forEach((reactiveClass: string | StateReference): void => {
-      if (reactiveClass instanceof StateReference) {
-        // Is StateReference
+    classes.forEach((reactiveClass: string | Reference): void => {
+      if (reactiveClass instanceof Reference) {
+        // Is Reference
         if (element.dataset.ref === undefined) {
           let reactive = new Reactive(element)
           element.dataset.ref = reactive.id
@@ -124,11 +125,11 @@ export function render<RenderType>(): RenderType {
    */
   function addChildren(
     element: HTMLElement | SVGElement,
-    ...children: (StaticChild | StateReference)[]
+    ...children: (StaticChild | Reference)[]
   ): HTMLElement | SVGElement {
-    children.forEach((reactiveChildren: StaticChild | StateReference): void => {
-      if (reactiveChildren instanceof StateReference) {
-        // Is StateReference
+    children.forEach((reactiveChildren: StaticChild | Reference): void => {
+      if (reactiveChildren instanceof Reference) {
+        // Is Reference
         if (element.dataset.ref === undefined) {
           let reactive = new Reactive(element)
           element.dataset.ref = reactive.id

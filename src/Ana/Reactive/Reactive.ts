@@ -1,8 +1,9 @@
 import { Observable } from '../Observable/Observable'
+import { Reference } from '../Reference/Reference'
 import { render } from '../Render/Render'
 import { Render } from '../Render/Render.interface'
-import { StateReference, StaticAttribute, StaticChild } from '../types'
-import { query } from '../Utils/Utils'
+import { StaticAttribute, StaticChild } from '../types'
+import { query } from '../utils'
 
 const a = render<Render>()
 
@@ -36,41 +37,38 @@ export class Reactive {
   /**
    *
    */
-  tag: string | StateReference
+  tag: string | Reference
 
   /**
    *
    */
-  classes: (string | StateReference)[] = []
+  classes: (string | Reference)[] = []
 
   /**
    *
    */
-  children: (StaticChild | StateReference)[] = []
+  children: (StaticChild | Reference)[] = []
 
   /**
    *
    */
-  attributes: { [key: string]: StaticAttribute | StateReference } = {}
+  attributes: { [key: string]: StaticAttribute | Reference } = {}
 
   /**
    * @todo determinar el tipo de elemento: Parent/Empty/SVG
    */
   private rerender: Function = (): void => {
-    let tag: string =
-      this.tag instanceof StateReference ? this.tag.get() : this.tag
+    let tag: string = this.tag instanceof Reference ? this.tag.get() : this.tag
 
     // console.log(this.classes)
     let classes: string[] = this.classes.map(
-      (reactiveClass: string | StateReference): string =>
-        reactiveClass instanceof StateReference
-          ? reactiveClass.get()
-          : reactiveClass
+      (reactiveClass: string | Reference): string =>
+        reactiveClass instanceof Reference ? reactiveClass.get() : reactiveClass
     )
 
     let children: StaticChild[] = this.children.map(
-      (reactiveChildren: StaticChild | StateReference) =>
-        reactiveChildren instanceof StateReference
+      (reactiveChildren: StaticChild | Reference) =>
+        reactiveChildren instanceof Reference
           ? reactiveChildren.get()
           : reactiveChildren
     )

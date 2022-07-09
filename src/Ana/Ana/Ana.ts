@@ -3,10 +3,11 @@ import {
   dAnaConfiguration,
   iAnaConfiguration,
 } from './Ana.interface'
-import { applyDefaults, byId } from '../Utils/Utils'
+import { applyDefaults, byId } from '../utils'
 import { globalOverrides } from '../global'
-import { GenericData, StateReference } from '../types'
+import { GenericData } from '../types'
 import { render } from '../Render/Render'
+import { Reference } from '../Reference/Reference'
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 //       _
@@ -47,7 +48,7 @@ export class Ana {
    */
   init: Function = (data: GenericData, appRenderFunction: Function): void => {
     for (const key in data) {
-      window.ana.state[key] = new StateReference(data[key], key)
+      window.ana.state[key] = new Reference(data[key], key)
       window.ana.relations[key] = []
       // Iterate over relations
       this.up[key] = (value: any) => {

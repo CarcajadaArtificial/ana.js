@@ -12,7 +12,7 @@ ana.init(
     c: '3',
     d: '4',
     e: '5',
-    list: [],
+    list: ['x', 'y', 'z'],
   },
   () => {
     return a.div()(
@@ -34,6 +34,10 @@ ana.init(
           ', E: ',
           d.e
         )
+      ),
+      a.div()(
+        a.h2()('Array Reactive'),
+        a.p()(...d.list.map((item: string) => a.strong()(item)))
       )
     )
   }
