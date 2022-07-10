@@ -12,13 +12,16 @@
 export class Reference {
   constructor(public value: any, public name: string) {}
   get: Function = (): any => this.value
-  map: Function = (cb: Function) =>
-    new ReferenceFunction(this.name, () => this.value.map(cb))
 }
 
 /**
  *
  */
 export class ReferenceFunction {
-  constructor(public name: string, public f: Function) {}
+  argNames: string[]
+  constructor(public f: Function, ...args: Reference[]) {
+    this.argNames = args.map((arg) => arg.name)
+  }
+  run: Function = () =>
+    this.f(...this.argNames.map((name: string) => window.ana.state[name]))
 }

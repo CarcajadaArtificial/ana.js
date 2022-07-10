@@ -7,7 +7,7 @@ import { applyDefaults, byId } from '../utils'
 import { globalOverrides } from '../global'
 import { GenericData } from '../types'
 import { render } from '../Render/Render'
-import { Reference } from '../Reference/Reference'
+import { Reference, ReferenceFunction } from '../Reference/Reference'
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 //       _
@@ -68,6 +68,13 @@ export class Ana {
    *
    */
   render = render
+
+  //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+  /**
+   *
+   */
+  f: Function = (cb: Function, ...args: Reference[]) =>
+    new ReferenceFunction(cb, ...args)
 
   //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
   /**

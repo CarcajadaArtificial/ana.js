@@ -71,11 +71,11 @@ export class Reactive {
         if (reactiveChildren instanceof Reference) {
           children.push(reactiveChildren.get())
         } else if (reactiveChildren instanceof ReferenceFunction) {
-          let childrenReturned = reactiveChildren.f()
+          let childrenReturned = reactiveChildren.run()
           if (Array.isArray(childrenReturned)) {
-            children.push(...reactiveChildren.f())
+            children.push(...reactiveChildren.run())
           } else {
-            children.push(reactiveChildren.f())
+            children.push(reactiveChildren.run())
           }
         } else {
           children.push(reactiveChildren)

@@ -148,9 +148,17 @@ export function render<RenderType>(): RenderType {
         window.ana.reactives[element.dataset.ref].children.push(
           reactiveChildren
         )
-        window.ana.relations[reactiveChildren.name].push(element.dataset.ref)
+        reactiveChildren.argNames.forEach((argName: string) => {
+          window.ana.relations[argName].push(element.dataset.ref!)
+        })
 
-        element.append(...reactiveChildren.f())
+        let referenceFunctionResult = reactiveChildren.run()
+
+        if (Array.isArray(referenceFunctionResult)) {
+          element.append(...referenceFunctionResult)
+        } else {
+          element.append(referenceFunctionResult)
+        }
       } else {
         // Is not State Reference
         if (element.dataset.ref !== undefined) {

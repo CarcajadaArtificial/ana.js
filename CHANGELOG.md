@@ -7,9 +7,7 @@
 - [ ] Project dockerization.
 
 - Documentation
-  - [ ] Ana.ts.
-  - [ ] Utils.ts @ thrush.
-  - [ ] Contributing @ What is what
+  - [ ] TSdoc
 
 - Testing
   - [ ] Render.ts
@@ -23,14 +21,18 @@
   - [x] Supports reactive classes in `div(x)()`
   - [x] Supports reactive children in `div()(x)`
     - [x] Supports lists reactive to more or less children.
-    - [ ] Supports conditionally rendered children.
+    - [x] Supports conditionally rendered children.
   - [ ] Supports other reactive attributes `div()().has(x)`
   - [ ] Supports other render methods (Parent, Empty, SVG)
 - [x] Support Extended intellisense.
 
 ## Unreleased
 
-### **0.9.11** (Latest)
+### **0.9.12** (Latest)
+
+- `Added` the posibility of any function to be added to the ReferenceFunction class.
+
+### **0.9.11**
 
 - `Added` the ReferenceFunction class inside the Reference module.
 

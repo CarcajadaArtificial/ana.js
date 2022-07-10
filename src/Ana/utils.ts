@@ -1,6 +1,3 @@
-/**
- * @module Utils
- */
 import { GenericData } from './types'
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
