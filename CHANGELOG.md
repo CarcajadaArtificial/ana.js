@@ -1,15 +1,116 @@
 # CHANGELOG.md
 
-## **0.10.0 Goals**
+## **0.11.0 Goals**
 
+- [ ] Fix XSS vulnerabilities.
 - [ ] CI/CD using github actions.
 - [ ] Project dockerization.
 
+- Documentation
+  - [ ] TSdoc
+
+- Testing
+  - [ ] Render.ts
+  - [ ] Ana.ts
+  - [ ] Utils.ts
+
+## **0.10.0 Goals**
+
+- [x] Support custom components.
+- [ ] Support intelligent reactivity.
+  - [x] Supports reactive classes in `div(x)()`
+  - [x] Supports reactive children in `div()(x)`
+    - [x] Supports lists reactive to more or less children.
+    - [x] Supports conditionally rendered children.
+  - [ ] Supports other reactive attributes `div()().has(x)`
+  - [ ] Supports other render methods (Parent, Empty, SVG)
+- [x] Support Extended intellisense.
+
 ## Unreleased
 
-### **0.8.12** (Latest)
+### **0.9.12** (Latest)
+
+- `Added` the posibility of any function to be added to the ReferenceFunction class.
+
+### **0.9.11**
+
+- `Added` the ReferenceFunction class inside the Reference module.
+
+### **0.9.10**
+
+- `Added` the Reference module, substituing the StateReference class.
+- `Added` Reactive module to a correct directory.
+- `Added` a utils module outside a redundant utils directory.
+
+### **0.9.9**
+
+- `Removed` the app API and the createApp method.
+  - `~/src/Ana/Ana/Ana.ts`
+
+- `Removed` ReactiveRenderer class. The render method was moved to a stand-alone function and everything else to the Ana framework.
+  - `~/src/Ana/Render/Render.ts`
+
+- `Added` full support to reactive classes and children.
+  - `~/src/Ana/Render/Render.ts`
+  - `~/src/Ana/Reactive/Reactive.ts`
+
+### **0.9.8**
+
+- `Added` reactives and relations properties on AnaWindow.
+
+- `Added` Reactive class
+
+### **0.9.7**
+
+- `Removed` renderParent, renderEmpty and renderSVG and moved them all to the render function.
+  `~/src/Ana/Render/Render.ts`
+
+- `Removed` components from the element render api.
+  `~/src/Ana/Render/Render.ts`
+
+### **0.9.6**
+
+- `Added` state and config properties to AnaWindow.
+
+- `Added` all global overrides to a `global.ts` file.
+
+### **0.9.5**
+
+- `Added` the reaction dictionary to the Window object.
+  - `~/src/Render/Render.ts`
+
+### **0.9.4**
+
+- `Added` intelligent reactivity using `data-ref-#`
+  - `~/src/Render/Render.ts`
+
+- `Added` a better reactivity testing server.
+  - `~/src/main.ts`
+
+- `Added` the query function
+  - `~/src/Ana/Utils/Utils.ts`
+
+- `Added` the StateReference class
+  - `~/src/Ana/types.ts`
+
+### **0.9.3**
+
+- `Added` a fix and tests for cases where classes are written like this: `a.div('test foo', 'bar', 'a b c')()`
+  - `src/Ana/Render/Render.ts`
+  - `src/Ana/Render/Render.test.ts`
+
+### **0.9.2**
+
+- `Added` hotfix for publishing the library.
+
+### **0.9.1**
+
+- `Added` features that make the project extensible by custom components.
+
+### **0.8.12**
 
 - `Removed` default watch mode on vitest.
+
   - `~/vite.config.js`
 
 - `Removed` Utils testing module.
@@ -50,10 +151,12 @@
 ### **0.8.5**
 
 - `Added` Added an element rerender tester.
+
   - `~/src/main.ts`
   - `~/index.html`
 
 - `Added` Better types for static data. All of this are ment to be reactive in the future.
+
   - `~/src/Ana/types.ts`
   - `~/src/Ana/Render/Render.test.ts`
   - `~/src/Ana/Render/Render.ts`
@@ -90,6 +193,7 @@
 ### **0.7.9**
 
 - `Removed` node-fetch
+
   - `~/src/ts/Utils/Utils.test.ts`
 
 - `Added` Error handling messages.
@@ -113,10 +217,12 @@
 ### **0.7.6**
 
 - `Added` a complete coverage of testing the Render module.
+
   - `~/src/ts/Render/Render.test.ts`
   - `~/src/ts/Render/Render.ts`
 
 - `Added` jsdom instead of happydom for dom emulation during testing.
+
   - `~/vite.config.js`
 
 - `Added` svgElements and emptyElements to Ana Configuration
@@ -126,15 +232,18 @@
 ### **0.7.5**
 
 - `Added` a complete coverage of Observable testing.
+
   - `~/src/ts/Observable.ts`
 
 - `Added` trush function to utils
+
   - `~/src/ts/utils.ts`
 
 - `Added` `happy-dom` plugin to vite
   - `~/vite.config.js`
 
 - `Added` a more powerfull and simple renderer.
+
   - `~/src/ts/Render/Render.ts`
   - `~/src/ts/Ana/Ana.ts`
 
@@ -154,6 +263,7 @@
 ### **0.7.2**
 
 - `Removed` documentation relevant only to the features that were transfered to other repos.
+
   - `~/CONTRIBUTING.md`
 
 - `Removed` unused types
@@ -167,6 +277,7 @@
 ### **0.6.20**
 
 - `Added` ana.js-ui extension.
+
   - `~/src/ts/Ana/Ana.ts`
 
 - `Removed` components, transfered them to ana.js-ui repository.
@@ -181,12 +292,15 @@
 ### **0.6.18**
 
 - `Added` Ana.js extension executions.
+
   - `~/src/ts/Ana/Ana.ts`
 
 - `Added` The render module as the formal HTMLElement renderer class.
+
   - `~/src/ts/Render.ts`
 
 - `Removed` The createRenderDictionary function
+
   - `~/src/ts/Components/Components.ts`
 
 - `Removed` Transfered all of the standard linter functionalities to ana.js-check repository.
@@ -195,10 +309,12 @@
 ### **0.6.17**
 
 - `Added` Property for library extensions.
+
   - `~/src/ts/Ana/Ana.interface.ts`
   - `~/src/ts/Ana/Ana.ts`
 
 - `Removed` All main features except for HTMLElement rendering and Reactiveness.
+
   - `~/src/main.ts`
 
 - `Removed` SVG Renderer set Attributes.
@@ -207,10 +323,12 @@
 ### **0.6.16**
 
 - `Added` Minimal render class without svg, components, and standard linting.
+
   - `~/src/ts/Elements/Elements.ts`
   - `~/src/ts/Ana/Ana.ts`
 
 - `Added` byId util instead of eid for better reading
+
   - `~/src/ts/utils.ts`
   - `~/src/ts/Components/Organisms/App/App.ts`
   - `~/src/ts/Components/Organisms/Page/Page.ts`
@@ -221,6 +339,7 @@
 ### **0.6.15**
 
 - `Added` New component schema added to Box atom
+
   - `~/src/ts/Components/Atoms/Box/Box.interface.ts`
   - `~/src/ts/Components/Atoms/Box/Box.ts`
 
@@ -230,6 +349,7 @@
 ### **0.6.14**
 
 - `Added` App and Navbar Components
+
   - `~/src/main.ts`
   - `~/src/ts/Components/Components.ts`
   - `~/src/ts/Components/Molecules/Navbar/Navbar.ts`
@@ -266,9 +386,11 @@ Skipped v0.6.9-v0.6.10 while testing different configurations and publishing aga
 ### **0.6.8**
 
 - `Added` Small fixes to build warnings.
+
   - `~/src/*`
 
 - `Added` Better package scripts
+
   - `~/package.json`
 
 - `Added` Updated script documentation
@@ -279,6 +401,7 @@ Skipped v0.6.9-v0.6.10 while testing different configurations and publishing aga
 Fuck webpack.
 
 - `Added` Vite bundler.
+
   - `~/package.json`
   - `~/tsconfig.json`
   - `~/index.html`
@@ -287,6 +410,7 @@ Fuck webpack.
   - `~/src/vite-env.d.ts`
 
 - `Removed` provisional Express test server.
+
   - `~/test/*`
 
 - `Removed` Webpack bundler.
@@ -318,6 +442,7 @@ Skipped v0.6.1-v0.6.4 while testing different configurations and publishing agai
 ### **0.5.15**
 
 - `Added` Better documentation
+
   - `~/README.md`
   - `~/CONTRIBUTING.md`
 
@@ -329,6 +454,7 @@ Skipped v0.6.1-v0.6.4 while testing different configurations and publishing agai
 - `Added` Documentation for missing features.
 
 - `Removed` Markdown feature because it isn't in the alpha scope.
+
   - `~/src/ts/markdown.ts`
 
 - `Removed` Button, Card, Chip, Input and Icon components because they aren't in the alpha scope.
@@ -341,6 +467,7 @@ Skipped v0.6.1-v0.6.4 while testing different configurations and publishing agai
 ### **0.5.13**
 
 - `Added` minimal reactive functionality. At the moment, rerenders the whole page when the state changes in any way.
+
   - `~/src/ts/Observable.ts`
   - `~/src/ts/types.ts`
   - `~/src/ts/Elements.ts`
@@ -352,14 +479,17 @@ Skipped v0.6.1-v0.6.4 while testing different configurations and publishing agai
 ### **0.5.12**
 
 - `Added` the Colorpage organism. (for testing)
+
   - `~/src/ts/Ana/Ana.ts`
   - `~/src/ts/Components/Pages/Colorpage`
 
 - `Added` the Colors testing page.
+
   - `~/test/app.ts`
   - `~/test/colors.html`
 
 - `Added` css variable functionality.
+
   - `~/src/scss/variables/colors.scss`
   - `~/src/scss/utils/colors.mod.scss`
   - `~/src/scss/style.scss`
@@ -371,15 +501,18 @@ Skipped v0.6.1-v0.6.4 while testing different configurations and publishing agai
 ### **0.5.11**
 
 - `Added` the Testpage organism.
+
   - `~/src/ts/Components/Organisms/Testpage/Testpage.ts`
   - `~/src/ts/Ana/Ana.ts`
   - `~/scss/organisms.mod.scss`
 
 - `Added` the round, elevation and addClass properties to the Surface atom
+
   - `~/src/Components/Atoms/Surface/Surface.ts`
   - `~/src/Components/Atoms/Surface/Surface.test.html`
 
 - `Added` standarized Spacing classes for roundness, margin, padding, and gap.
+
   - `~/src/scss/atoms.mod.scss`
   - `~/src/ts/types.ts`
   - `~/src/ts/Components/Atoms/Box/Box.ts`
@@ -387,6 +520,7 @@ Skipped v0.6.1-v0.6.4 while testing different configurations and publishing agai
   - `~/src/ts/Components/Particles/Particles.ts`
 
 - `Added` the Test atom.
+
   - `~/src/ts/Components/Molecules/Test/Test.ts`
   - `~/src/ts/Ana/Ana.ts`
 
@@ -398,6 +532,7 @@ Skipped v0.6.1-v0.6.4 while testing different configurations and publishing agai
 ### **0.5.10**
 
 - `Added` the Checkbox molecule
+
   - `~/src/ts/Components/Molecules/Checkbox/Checkbox.ts`
   - `~/src/ts/Ana/Ana.ts`
   - `~/src/ts/types.ts`
@@ -417,9 +552,11 @@ Skipped v0.6.1-v0.6.4 while testing different configurations and publishing agai
 ### **0.5.8**
 
 - `Added` a better component example in `CONTRIBUTING.md`.
+
   - `~/CONTRIBUTING.md`
 
 - `Added` a Title, Heading, Subheading, Label and Paragraph atoms
+
   - `~/src/ts/Components/Atoms/Title/Title.ts`
   - `~/src/ts/Components/Atoms/Heading/Heading.ts`
   - `~/src/ts/Components/Atoms/Subheading/Subheading.ts`
@@ -443,6 +580,7 @@ Skipped v0.6.1-v0.6.4 while testing different configurations and publishing agai
 ### **0.5.6**
 
 - `Added` the Box atom
+
   - `~/src/scss/atoms.mod.scss`
   - `~/src/ts/Ana/Ana.ts`
   - `~/src/ts/Components/Atoms/Box/Box.ts`
@@ -459,6 +597,7 @@ Skipped v0.6.1-v0.6.4 while testing different configurations and publishing agai
 ### **0.5.5**
 
 - `Added` the Surface atom
+
   - `~/src/scss/utils/colors.mod.scss`
   - `~/src/scss/atoms.mod.scss`
   - `~/src/ts/Ana/Ana.ts`
@@ -473,6 +612,7 @@ Skipped v0.6.1-v0.6.4 while testing different configurations and publishing agai
 ### **0.5.4**
 
 - `Added` the Layout atom
+
   - `~/src/scss/atoms.mod.scss`
   - `~/src/ts/Components/Atoms/Layout/Layout.ts`
   - `~/src/ts/Components/Particles/Particles.ts`
@@ -483,9 +623,11 @@ Skipped v0.6.1-v0.6.4 while testing different configurations and publishing agai
 ### **0.5.3**
 
 - `Added` cleaner code inside in the Element class.
+
   - `~/src/ts/Elements/Element/Element.ts`
 
 - `Added` playground to the gitignore file, because now the changes made on it wont be staged.
+
   - `~/.gitignore``
 
 - `Added` references to the package scripts `_build-ts:watch` and `_publish-ts` in the changelog.
@@ -497,18 +639,10 @@ I made a design decision regarding the project's readability when using the Ana 
 
 ```typescript
 // Before
-a.div(
-  a.div(
-    ...children
-  ).has({ class: 'child' })
-).has({ class: 'parent' })
+a.div(a.div(...children).has({ class: 'child' })).has({ class: 'parent' })
 
 // After
-a.div('parent')(
-  a.div('child')(
-    ...children
-  )
-)
+a.div('parent')(a.div('child')(...children))
 
 // --- Empty Elements ---
 
@@ -522,12 +656,11 @@ a.div(
 ).has({ class: 'parent' })
 
 // After
-a.div('parent')(
-  a.input('child').has({ type: 'checkbox', checked: true })
-)
+a.div('parent')(a.input('child').has({ type: 'checkbox', checked: true }))
 ```
 
 - `Added` a more readable render function.
+
   - `~/src/ts/Elements/Element/Element.ts`
 
 - `Added` minor documentation to playrgound.
@@ -538,6 +671,7 @@ a.div('parent')(
 This is another update with lots of files but few changes.
 
 - `Added` cleaner code to the framework in general:
+
   - `~/src/ts/Ana/*`
   - `~/src/ts/Elements/*` - Implemented the matching dictionary inside `Window` instead of `HTMLElement`.
   - `~/src/ts/types.ts`
@@ -547,17 +681,20 @@ This is another update with lots of files but few changes.
 
 ### **0.5.0**
 
-In this update, I'm going all-in with TypeScript and using this opportunity to do it cleanly. The source code is modular now, with every *one thing* inside a directory. That is why there are a lot of changes, but really, not much has changed. The function `extendParameterDefaults` has been in my mind a lot lately. I know how to avoid it altogether using a "constants" object, maybe inside a new file with the name: `component.constants.ts`.
+In this update, I'm going all-in with TypeScript and using this opportunity to do it cleanly. The source code is modular now, with every _one thing_ inside a directory. That is why there are a lot of changes, but really, not much has changed. The function `extendParameterDefaults` has been in my mind a lot lately. I know how to avoid it altogether using a "constants" object, maybe inside a new file with the name: `component.constants.ts`.
 
 - `Added` new fraction system, this has been going on back and forth for a while. I need to decide for one sasslinter and stick to it.
+
   - `~/src/scss/utils/layout.mod.scss`
 
 - `Added` modular organization to the Ana framework.
+
   - `~/src/ts/Ana/*`
   - `~/src/ts/Components/*`
   - `~/src/ts/Elements/*`
 
 - `Removed` previous organization of the Ana framework.
+
   - `~/src/ts/ana.ts`
   - `~/src/ts/elements.ts`
   - `~/src/ts/molecules.ts`
@@ -565,18 +702,22 @@ In this update, I'm going all-in with TypeScript and using this opportunity to d
   - `~/src/ts/standard.ts`
 
 - `Removed` previous organization of component testing
+
   - `~/src/test/components/*`
 
 - `Added` a home view for component testing
+
   - `~/src/test/index.html`
 
 - `Added` a cleaner organization of package scripts.
+
   - `~/package.json`
   - `~/tsconfig.json`
   - `~/test/tsconfig.json`
   - `~/webpack.config.js`
 
 - `Added` a better contributing file.
+
   - `~/CONTRIBUTING.md`
 
 - `Removed` Docuemnation getter function. The problem is that the typedoc script uses all .ts files to generate the `~/dist/typedoc/typedoc.json`, including `~/test/app.ts` that references the generated `typedoc.json`. So, the typedoc script must exclude the test server or else it won't run.
@@ -594,6 +735,7 @@ In this update, I'm going all-in with TypeScript and using this opportunity to d
 ### **0.3.0**
 
 - `Added` Typescript Classes
+
   - `~/src/ts/standard.ts` constains the classes that make up the Ana standard's data structures.
   - `~/src/ts/elements.ts` constains the class AnaElements that renders all HTMLElements using the standard.
   - `~/src/ts/ana.ts` constains the class Ana, the target developer will mainly interact with this class.
@@ -602,15 +744,19 @@ In this update, I'm going all-in with TypeScript and using this opportunity to d
   - `~/webpack.config.json` contains Webpack global configurations.
 
 - `Added` Playground testing HTML file.
+
   - `~/test/playground-html`
 
 - `Removed` Gulpfile because all gulp functions were substituted by NPM scripts.
+
   - `~/gulpfile.js`
 
 - `Removed` package-lock.json because is automatically generated.
+
   - `~/package-lock.json`
 
 - `Changed` Package to newer framework technology (`./package.json`)
+
   - `Removed` All gulp dependencies (`gulp`, `gulp-concat`, `gulp-minify`, `gulp-rename`, `gulp-sass`, `gulp-jsdoc3`, and `gulp-sourcemaps`) becuase they were substituted by the TypeScript compiler and NPM scripts.
   - `Removed` All jest dependencies (`jest` and `jest-html-reporter`) because unit tests will be implemented in a future release.
   - `Removed` The `jsdoc-json` dependency becuse they were substituted by TypeScript's TypeDoc.
@@ -619,6 +765,7 @@ In this update, I'm going all-in with TypeScript and using this opportunity to d
   - `Added` Webpack required dependencies for TypeScript compiling (`webpack` and `webpack-cli`)
 
 - `Changed` Layout math syntax from `math.div(1, 2)` to `1/2.`
+
   - `~/src/scss/utils/layouts.mod.scss`
 
 - `Changed` Gitignore directory from `public/` to `dist/`.
@@ -627,31 +774,38 @@ In this update, I'm going all-in with TypeScript and using this opportunity to d
 ### **0.2.0**
 
 - `Added` Storybook module.
+
   - `~/.storybook/main.js` contains the general configuration for the storybook module. [Read more](https://storybook.js.org/docs/react/configure/overview)
   - `~/.storybook/preview.js` contains story level confguration and global variables or functions. [Read more](https://storybook.js.org/docs/react/configure/overview#configure-story-rendering)
   - `~/test/stories/helpers/documentation.js` contains all elements and functions exclusive to Storybook documentation.
-  - `~/test/stories/utils/sampleData.js` contains samples of standarized Data. This prevents inconsitencies in testing samples. *This file still needs lots of data samples and should be expanded with time.*
+  - `~/test/stories/utils/sampleData.js` contains samples of standarized Data. This prevents inconsitencies in testing samples. _This file still needs lots of data samples and should be expanded with time._
 
 - `Added` Storybook stories for multiple components.
+
   - `~/test/stories/atoms.story.mdx` contains miscelaneous atom components, the uncategorizable.
   - `~/test/stories/input.story.mdx` contains aInputText, aInputCheckbox, aInputSelect, and all future input components.
   - `~/test/stories/layout.story.mdx` contains aLayout but needs a lot of custom documentation that illustrates correctly how to configure the component.
   - `~/test/stories/typography.story.mdx` contains aLabel, aSmall, aParagraph, aSubheading, aHeading, aTitle, and aDisplay components.
 
 - `Added` custom documentation styles.
+
   - `~/src/scss/docs.mod.scss` contains styles exclusive to the process of documenting elements inside the Storybook site.
   - `~/src/scss/styles.scss` added the import.
 
-- `Added` layout-block mixin inside the atoms module. *Missing mixin sassdoc documentation*
+- `Added` layout-block mixin inside the atoms module. _Missing mixin sassdoc documentation_
+
   - `~/src/scss/atoms.mod.scss`
 
 - `Added` Column skip functionality to the layout mixin.
+
   - `~/src/scss/utils/layouts.mod.scss`
 
 - `Added` Material design icons to main file.
+
   - `~/src/scss/styles.scss`
 
 - `Added` Component documentation to track progress.
+
   - `~/README.md`
 
 - `Changed` component documentation to be more understandable.
@@ -665,4 +819,3 @@ In this update, I'm going all-in with TypeScript and using this opportunity to d
   - `~/src/js/atoms/subheading.js`
   - `~/src/js/atoms/title.js`
   - `~/src/js/molecules/input.js`
-  

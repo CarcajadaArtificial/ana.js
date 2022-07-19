@@ -1,6 +1,4 @@
-/**
- * @module Render
- */
+import { ParentElement, EmptyElement } from '../types'
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 //   ____                _
@@ -14,121 +12,121 @@
 /**
  * This dictionary is a compendium that contains instances of all of the `Element` and `Attribute` classes. Here lies what it means to be correct or incorrect in accordance to me. I studied every HTML reference I could find, it ended with this standard.
  */
- export interface Render {
-  a: Function
-  audio: Function
-  blockquote: Function
-  body: Function
-  button: Function
-  canvas: Function
-  caption: Function
-  colgroup: Function
-  data: Function
-  dd: Function
-  del: Function
-  details: Function
-  dialog: Function
-  div: Function
-  fieldset: Function
-  form: Function
-  h1: Function
-  h2: Function
-  h3: Function
-  h4: Function
-  h5: Function
-  h6: Function
-  head: Function
-  html: Function
-  iframe: Function
-  ins: Function
-  label: Function
-  li: Function
-  map: Function
-  meter: Function
-  object: Function
-  ol: Function
-  optgroup: Function
-  option: Function
-  output: Function
-  portal: Function
-  pre: Function
-  progress: Function
-  q: Function
-  script: Function
-  select: Function
-  slot: Function
-  style: Function
-  table: Function
-  tbody: Function
-  td: Function
-  textarea: Function
-  tfoot: Function
-  th: Function
-  thead: Function
-  time: Function
-  tr: Function
-  ul: Function
-  video: Function
+export interface Render {
+  a: ParentElement
+  audio: ParentElement
+  blockquote: ParentElement
+  body: ParentElement
+  button: ParentElement
+  canvas: ParentElement
+  caption: ParentElement
+  colgroup: ParentElement
+  data: ParentElement
+  dd: ParentElement
+  del: ParentElement
+  details: ParentElement
+  dialog: ParentElement
+  div: ParentElement
+  fieldset: ParentElement
+  form: ParentElement
+  h1: ParentElement
+  h2: ParentElement
+  h3: ParentElement
+  h4: ParentElement
+  h5: ParentElement
+  h6: ParentElement
+  head: ParentElement
+  html: ParentElement
+  iframe: ParentElement
+  ins: ParentElement
+  label: ParentElement
+  li: ParentElement
+  map: ParentElement
+  meter: ParentElement
+  object: ParentElement
+  ol: ParentElement
+  optgroup: ParentElement
+  option: ParentElement
+  output: ParentElement
+  portal: ParentElement
+  pre: ParentElement
+  progress: ParentElement
+  q: ParentElement
+  script: ParentElement
+  select: ParentElement
+  slot: ParentElement
+  style: ParentElement
+  table: ParentElement
+  tbody: ParentElement
+  td: ParentElement
+  textarea: ParentElement
+  tfoot: ParentElement
+  th: ParentElement
+  thead: ParentElement
+  time: ParentElement
+  tr: ParentElement
+  ul: ParentElement
+  video: ParentElement
 
   // Empty Elements
-  area: Function
-  base: Function
-  br: Function
-  col: Function
-  embed: Function
-  hr: Function
-  img: Function
-  input: Function
-  link: Function
-  meta: Function
-  param: Function
-  source: Function
-  track: Function
-  wbr: Function
+  area: EmptyElement
+  base: EmptyElement
+  br: EmptyElement
+  col: EmptyElement
+  embed: EmptyElement
+  hr: EmptyElement
+  img: EmptyElement
+  input: EmptyElement
+  link: EmptyElement
+  meta: EmptyElement
+  param: EmptyElement
+  source: EmptyElement
+  track: EmptyElement
+  wbr: EmptyElement
 
   // Elements with only global attributes
-  abbr: Function
-  address: Function
-  article: Function
-  aside: Function
-  b: Function
-  bdi: Function
-  cite: Function
-  code: Function
-  datalist: Function
-  dfn: Function
-  dl: Function
-  dt: Function
-  em: Function
-  figcaption: Function
-  figure: Function
-  footer: Function
-  header: Function
-  i: Function
-  kbd: Function
-  legend: Function
-  main: Function
-  mark: Function
-  nav: Function
-  noscript: Function
-  p: Function
-  picture: Function
-  rp: Function
-  rt: Function
-  ruby: Function
-  s: Function
-  samp: Function
-  section: Function
-  small: Function
-  span: Function
-  strong: Function
-  sub: Function
-  summary: Function
-  sup: Function
-  template: Function
-  title: Function
-  u: Function
-  var: Function
+  abbr: ParentElement
+  address: ParentElement
+  article: ParentElement
+  aside: ParentElement
+  b: ParentElement
+  bdi: ParentElement
+  cite: ParentElement
+  code: ParentElement
+  datalist: ParentElement
+  dfn: ParentElement
+  dl: ParentElement
+  dt: ParentElement
+  em: ParentElement
+  figcaption: ParentElement
+  figure: ParentElement
+  footer: ParentElement
+  header: ParentElement
+  i: ParentElement
+  kbd: ParentElement
+  legend: ParentElement
+  main: ParentElement
+  mark: ParentElement
+  nav: ParentElement
+  noscript: ParentElement
+  p: ParentElement
+  picture: ParentElement
+  rp: ParentElement
+  rt: ParentElement
+  ruby: ParentElement
+  s: ParentElement
+  samp: ParentElement
+  section: ParentElement
+  small: ParentElement
+  span: ParentElement
+  strong: ParentElement
+  sub: ParentElement
+  summary: ParentElement
+  sup: ParentElement
+  template: ParentElement
+  title: ParentElement
+  u: ParentElement
+  var: ParentElement
 
   // SVG
   circle: Function
@@ -152,4 +150,7 @@
   path: Function
   text: Function
   use: Function
+
+  // Key
+  [key: string]: ParentElement | EmptyElement | Function
 }

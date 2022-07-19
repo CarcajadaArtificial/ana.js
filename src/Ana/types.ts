@@ -1,7 +1,3 @@
-/**
- * @module Types
- */
-
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 //   _____
 //  |_   _|   _ _ __   ___  ___
@@ -10,6 +6,10 @@
 //    |_| \__, | .__/ \___||___/
 //        |___/|_|
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+import { AnaConfiguration } from './Ana/Ana.interface'
+import { Reactive } from './Reactive/Reactive'
+import { Reference } from './Reference/Reference'
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 /**
@@ -34,3 +34,56 @@ export type StaticAttributes = { [key: string]: StaticAttribute }
  * There are only two types of children of HTMLElements, strings and other elements. They can be in any number and order.
  */
 export type StaticChild = Node | string
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+/**
+ *
+ */
+export interface ReactivityDictionary {}
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+/**
+ *
+ */
+export type RenderClass<T> = (...classes: (Reference | string)[]) => T
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+/**
+ *
+ */
+export type RenderChildren<T> = (...children: (Reference | StaticChild)[]) => T
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+/**
+ *
+ */
+export type RenderAttributes<T> = (attributes: StaticAttributes) => T
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+/**
+ *
+ */
+export type EmptyElement = RenderClass<HTMLElement>
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+/**
+ *
+ */
+export type ParentElement = RenderClass<RenderChildren<HTMLElement>>
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+/**
+ *
+ */
+// export type SVGElement = RenderChildren<RenderAttributes<SVGElement>>
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+/**
+ *
+ */
+export interface WindowAna {
+  config: AnaConfiguration
+  state: { [key: string]: Reference }
+  reactives: { [key: string]: Reactive }
+  relations: { [key: string]: string[] }
+}

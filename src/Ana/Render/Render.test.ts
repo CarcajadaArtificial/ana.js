@@ -1,18 +1,8 @@
+import { Ana } from '../Ana/Ana'
 import { dAnaConfiguration } from '../Ana/Ana.interface'
-import { StaticAttributes } from '../types'
-import { has, ReactiveRenderer } from './Render'
 
-declare global {
-  interface HTMLElement {
-    has(attributes: StaticAttributes): HTMLElement
-  }
-  interface SVGElement {
-    has(attributes: StaticAttributes): HTMLElement
-  }
-}
-
-HTMLElement.prototype.has = has
-SVGElement.prototype.has = has
+const ana = new Ana()
+const a = ana.render
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 //   ____                _             _____         _
@@ -24,9 +14,6 @@ SVGElement.prototype.has = has
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 describe('Render', () => {
-  const renderer = new ReactiveRenderer(dAnaConfiguration)
-  const a: { [key:string]: any } = renderer.render
-
   //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
   describe('createRenderer', () => {
     test('Returns a defined instance of a Proxy object', () => {
@@ -107,6 +94,15 @@ describe('Render', () => {
       parentElements.forEach((name) => {
         expect(a[name]('test')().outerHTML).toBe(
           `<${name} class="test"></${name}>`
+        )
+        expect(a[name]('test', 'foo', 'bar')().outerHTML).toBe(
+          `<${name} class="test foo bar"></${name}>`
+        )
+        expect(a[name]('test foo bar')().outerHTML).toBe(
+          `<${name} class="test foo bar"></${name}>`
+        )
+        expect(a[name]('test foo', 'bar', 'a b c')().outerHTML).toBe(
+          `<${name} class="test foo bar a b c"></${name}>`
         )
       })
     })

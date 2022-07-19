@@ -1,8 +1,5 @@
-/**
- * @module Observable
- */
 import { GenericData } from '../types'
-import { thrush } from '../Utils/Utils'
+import { thrush } from '../utils'
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 //    ___  _                              _     _
@@ -30,8 +27,8 @@ export class Observable {
    * This function receives an update in the app's state and executes all functions inside `this.callbascks`.
    * @param state The new state of the app
    */
-  emit(state: GenericData): GenericData | undefined {
-    if(this.callbacks.length === 0) {
+  emit(state?: GenericData): GenericData | undefined {
+    if (this.callbacks.length === 0) {
       throw new Error()
     } else {
       this.callbacks.map(thrush<GenericData>(state))

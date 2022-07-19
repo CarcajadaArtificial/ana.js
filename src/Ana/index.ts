@@ -1,3 +1,6 @@
+/**
+ * @module Index
+ */
 //    ___           _
 //   |_ _|_ __   __| | _____  __
 //    | || '_ \ / _` |/ _ \ \/ /
@@ -7,9 +10,9 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
  * This module contains overrides of global prototypes to support the functionality needed to execute the framework.
- * @module Ana/Index
  */
 
 export { Ana } from './Ana/Ana'
-export * from './Utils/Utils'
+export * from './utils'
 export * from './types'
+export type { Render } from './Render/Render.interface'
