@@ -1,11 +1,8 @@
+import { Ana } from '../Ana/Ana'
 import { Observable } from '../Observable/Observable'
 import { Reference, ReferenceFunction } from '../Reference/Reference'
-import { render } from '../Render/Render'
-import { Render } from '../Render/Render.interface'
 import { StaticAttribute, StaticChild } from '../types'
 import { query } from '../utils'
-
-const a = render<Render>()
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 //   ____                 _   _
@@ -83,6 +80,9 @@ export class Reactive {
       }
     )
 
+    let ana = new Ana()
+    let a = ana.render
+
     query(this.reference).replaceWith(
       a[tag](...classes)(...children).has(this.attributes)
     )
@@ -92,7 +92,7 @@ export class Reactive {
    *
    * @param elementBase
    */
-  constructor(elementBase: HTMLElement | SVGElement) {
+  constructor(elementBase: HTMLElement | SVGElement, anaRef: Ana) {
     // Reference
     this.reference = '[data-ref="' + this.id + '"]'
 

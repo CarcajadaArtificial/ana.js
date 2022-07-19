@@ -1,9 +1,8 @@
+import { Ana } from '../Ana/Ana'
 import { dAnaConfiguration } from '../Ana/Ana.interface'
-import { globalOverrides } from '../global'
-import { render } from './Render'
-import { Render } from './Render.interface'
 
-globalOverrides(dAnaConfiguration)
+const ana = new Ana()
+const a = ana.render
 
 //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 //   ____                _             _____         _
@@ -15,8 +14,6 @@ globalOverrides(dAnaConfiguration)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 describe('Render', () => {
-  const a: { [key: string]: any } = render<Render>()
-
   //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
   describe('createRenderer', () => {
     test('Returns a defined instance of a Proxy object', () => {

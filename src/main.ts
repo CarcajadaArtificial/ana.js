@@ -1,8 +1,8 @@
-import { Ana, Render } from './Ana/index'
+import { Ana, GenericData } from './Ana/index'
 import { Reference } from './Ana/Reference/Reference'
 
 const ana = new Ana()
-const a = ana.render<Render>()
+const a = ana.render
 
 const d = window.ana.state
 
@@ -16,8 +16,8 @@ ana.init(
     list: ['x', 'y', 'z'],
     last: 1,
   },
-  () => {
-    return a.div()(
+  (d: GenericData) =>
+    a.div()(
       a.h1()('Live test'),
       a.div()(a.h2()('Single Static'), a.p()('A')),
       a.div()(a.h2()('Single Reactive'), a.p(d.a)(d.a)),
@@ -60,7 +60,6 @@ ana.init(
         )
       )
     )
-  }
 )
 
 // /*

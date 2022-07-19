@@ -102,3 +102,15 @@ export const thrush =
   <T>(x?: T) =>
   (f: Function) =>
     f(x)
+
+//  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+export const objectMap = (
+  obj: GenericData,
+  cb: (value: any, key: string, obj?: GenericData) => any
+): GenericData => {
+  let mappedObject: GenericData = {}
+  Object.keys(obj).forEach((key: string) => {
+    mappedObject[key] = cb(obj[key], key, obj)
+  })
+  return mappedObject
+}
