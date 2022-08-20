@@ -83,21 +83,38 @@ Download the latest [release](https://github.com/CarcajadaArtificial/ana.js/rele
 
 ## Roadmap
 
+### 0.11.x Goals
+
+- [ ] SRR Functionality: Render HTML markup as strings on the server.
+  - [x] Render empty elements.
+  - [x] Render parent elements.
+  - [x] Render elements with attributes.
+  - [x] Render SVG elements.
+  - [ ] Publish library.
+  - [ ] Render a static site in the server.
+  - [ ] Add CSS and client js to the static site.
+  - [ ] Render elements with event listeners.
+
+- [ ] Reactivity: Make rendered elements reactive to a data state.
+- [ ] Components: Add an architecture that supports reusable UI components.
+
+### Features
+
 - **Features**
-  - [x] Basic Reactivity.
+  - [ ] Basic Reactivity.
     - [ ] Intelligent reactivity.
   - [x] SVG support. (~20% of SVG Elements)
-  - [ ] Server Side rendering.
+  - [x] Server Side rendering.
   - [ ] Lazy Loading.
   - [ ] Reduce library intializaiton to an external anaconfig.json file.
 
 - **Development**
-  - [x] Error handling.
+  - [ ] Error handling.
   - [x] Unit testing.
   - [ ] Github actions for CI/CD.
   - [ ] Project dockerization.
-  - [x] Optionally imported features.
-    - [x] Add custom components
+  - [ ] Optionally imported features.
+    - [ ] Add custom components
 
 - **External**
   - [ ] Prettier plugin or configuration file.

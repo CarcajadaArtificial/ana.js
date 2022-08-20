@@ -1,23 +1,12 @@
 # CHANGELOG.md
 
-## **0.11.0 Goals**
-
-- [ ] SRR Functionality: Render HTML markup as strings on the server.
-  - [x] Render empty elements.
-  - [x] Render parent elements.
-  - [x] Render elements with attributes.
-  - [x] Render SVG elements.
-  - [ ] Publish library.
-  - [ ] Render a static site in the server.
-  - [ ] Add CSS and client js to the static site.
-  - [ ] Render elements with event listeners.
-
-- [ ] Reactivity: Make rendered elements reactive to a data state.
-- [ ] Components: Add an architecture that supports reusable UI components.
-
 ## Unreleased
 
-### **0.11.0** (Latest)
+### **0.11.1** (Latest)
+
+- `Added` better goal documentation.
+
+### **0.11.0**
 
 This update was a major one, I translated Ana to Deno. This change is important because I've wanted to be part of the Deno community for a while an I thought this was a great way of doing so.
 
