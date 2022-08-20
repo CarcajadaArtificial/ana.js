@@ -2,33 +2,55 @@
 
 ## **0.11.0 Goals**
 
-- [ ] Fix XSS vulnerabilities.
-- [ ] CI/CD using github actions.
-- [ ] Project dockerization.
+- [ ] SRR Functionality: Render HTML markup as strings on the server.
+  - [x] Render empty elements.
+  - [x] Render parent elements.
+  - [x] Render elements with attributes.
+  - [x] Render SVG elements.
+  - [ ] Publish library.
+  - [ ] Render a static site in the server.
+  - [ ] Add CSS and client js to the static site.
+  - [ ] Render elements with event listeners.
 
-- Documentation
-  - [ ] TSdoc
-
-- Testing
-  - [ ] Render.ts
-  - [ ] Ana.ts
-  - [ ] Utils.ts
-
-## **0.10.0 Goals**
-
-- [x] Support custom components.
-- [ ] Support intelligent reactivity.
-  - [x] Supports reactive classes in `div(x)()`
-  - [x] Supports reactive children in `div()(x)`
-    - [x] Supports lists reactive to more or less children.
-    - [x] Supports conditionally rendered children.
-  - [ ] Supports other reactive attributes `div()().has(x)`
-  - [ ] Supports other render methods (Parent, Empty, SVG)
-- [x] Support Extended intellisense.
+- [ ] Reactivity: Make rendered elements reactive to a data state.
+- [ ] Components: Add an architecture that supports reusable UI components.
 
 ## Unreleased
 
-### **0.9.12** (Latest)
+### **0.11.0** (Latest)
+
+This update was a major one, I translated Ana to Deno. This change is important because I've wanted to be part of the Deno community for a while an I thought this was a great way of doing so.
+
+- `src/utils.ts`
+  - `Added` dictionary utility functions `dictionaryMap()` and `dictionaryReduce()`.
+  - `Added` `applyDefaults()` function.
+
+- `src/types.ts`
+  - `Added` the dictionary type `Dictionary`
+  - `Added` the HTMLElement types `Child`, `Children`, `Attribute`, and `Attributes`.
+
+- `src/Renderer.ts`
+  - `Added` a Renderer class that emulates elements and is used to eventually replicate the "outerHTML" and render elements as strings.
+
+- `src/Elements.ts`
+  - `Added` An interface with an HTMLElement standard.
+
+- `src/Ana/Ana.ts`
+  - `Added` the element rendering functionality `const a = ana.render`
+
+- `test/test.deps.ts`
+  - `Added` a module for importing dependencies for testing.
+
+- `test/units.test.ts`
+  - `Added` unit tests for `dictionaryMap()`, `dictionaryReduce()`, and `applyDefaults()`.
+
+- `test/Renderer.test.ts`
+  - `Added` unit tests for the `Renderer` class.
+
+- `test/Ana.test.ts`
+  - `Added` unit tests for the `Ana` class.
+
+### **0.9.12**
 
 - `Added` the posibility of any function to be added to the ReferenceFunction class.
 
