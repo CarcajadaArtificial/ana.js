@@ -1,81 +1,51 @@
 # ana.js
 
-![GitHub](https://img.shields.io/github/license/CarcajadaArtificial/ana.js)
-![GitHub all releases](https://img.shields.io/github/downloads/CarcajadaArtificial/ana.js/total)
-
 ![Banner](https://user-images.githubusercontent.com/13631141/173929134-ff19b3c7-2f46-4ab6-9bfa-1d089f790c82.png)
+
+Hello! Welcome to my module’s page! Firstly, thank you very much for being interested enough to click on my project, and secondly, for taking the time to read this. So what did you click on?
 
 ## Table of Contents
 
-1. [About the project](#about-the-project)
-2. [Getting started](#getting-started)
-3. [Roadmap](#roadmap)
+1. [What is Ana?](#what-is-ana)
+2. [Feature](#features)
+3. [Getting started](#getting-started)
+4. [Roadmap](#roadmap)
 
----
+## What is Ana?
 
-## About the project
+Ana (or `Ana.js`) is me trying to escape *framework hell*. Specifically, escape frameworks whose syntax looks like HTML (I'm looking at you JSX). Ana does this by still looking like TypeScript (and JavaScript). Rendering elements looks like readable phrases `a.button('primary')` renders `<button class=”primary” />`, and reads like “a button primary”. The aim of the framework is for it to look and feel as if it was another update for the JavaScript language itself, providing a set of shortcuts to known JS features, instead of proposing a new language itself.
 
-This is my take on frameworks. Firstly, I am the only man developing this tool. One that will be compared to other tools built and maintained by teams orders of magnitude larger than a team of one. Someone who stumbles upon this project may not find it apt for their needs, which is perfectly fine. It doesn’t fill my needs either, if it did, I wouldn’t be continuously building and upgrading it.
+### Why should I use Ana in my projects?
 
-What is Ana? It is short for Anarchy, a system that questions all hierarchy, authority, and, established rules. Ok, that’s too real-lifey. What does Ana.js question? What is considered to be a hierarchy, authority, or rules in the world of Front-End JavaScript Framework? Well, any answer to this will be completely arbitrary. I wouldn’t even say that the framework goes entirely against the “establishment”, it being the numerous highly competent frameworks that solve problems in the industry. Nevertheless, it does go against certain industry standards.
-
-- **No compilers, no builders**
-  
-  I would suppose that this is a controversial take, given that the industry is moving towards front-end compilers for smaller builds. But this framework is more of a library, a hypothetical JavaScript update for the language itself, for easier manipulation and creation of elements.
-
-- **Good 'ol JavaScript Functions**
-  
-  This framework is non-declarative by nature. The main deal is that creating HTML Elements is done functionally. Render functions receive other render functions as parameters. There is no markup to interact and everything can fit inside a script tag. Web components are built using these functions, so they get added to the render dictionary like any other HTML Element.
+The short answer is: if you need to render reactive HTML/SVG elements focusing on time to interaction. Pure Ana.js is like pure JSX, it is a very useful tool but requires others for complex applications.
 
 [Back to top](#top)
 
 ---
 
-## Getting started
+## Features
 
-### NPM
+### Good ‘ol JavaScript syntax
 
-1. Install the library
+The syntax doesn’t look like HTML. It doesn’t have any `< />`, and looks more like pure TypeScript (or JavaScript). Ana provides functions that render reactive web elements without the need for any .html files at all.
 
-    ```node
-    npm i ana.js
-    ```
+### Render anywhere
 
-2. Saffold a vanilla-ts project using [Vite](https://vitejs.dev/).
+You are not stuck to rendering on the server or the client. In its ideal form, Ana renderers all static content on the server and works the interactions with the client. Nevertheless, this feature is flexible for apps that render purely on the client or purely on the server.
 
-    ```node
-    npm create vite@latest
-    ```
+### Standard intellisense
 
-    - Select project name.
+Thanks to TypeScript Magic, I defined an interface with a standard of good practices for HTML/SVG elements that uses Ana’s render methods. This avoids the need of researching if an element’s attribute is a good practice, experimental, deprecated or whatever.
 
-    - From the list of Frameworks choose `vanilla`, then `vanilla-ts`.
+[Back to top](#top)
 
-    - Install all node modules.
+---
 
-3. Install the Ana.js package.
+## Getting Started
 
-    ```node
-    npm i ana.js
-    ```
+### Deno
 
-4. Import the Ana module
-
-    ```typescript
-    import { Ana } from 'ana.js'
-
-    const A = new Ana()
-    const a = A.render()
-    ```
-
-### Downloadable
-
-Download the latest [release](https://github.com/CarcajadaArtificial/ana.js/releases).
-
-```html
-<link rel="stylesheet" href="ana.min.css">
-<script src="ana.min.js"></script>
-```
+### Node.js
 
 [Back to top](#top)
 
@@ -83,42 +53,43 @@ Download the latest [release](https://github.com/CarcajadaArtificial/ana.js/rele
 
 ## Roadmap
 
-### 0.11.x Goals
+### Feature Roadmap
 
-- [ ] SRR Functionality: Render HTML markup as strings on the server.
-  - [x] Render empty elements.
-  - [x] Render parent elements.
-  - [x] Render elements with attributes.
-  - [x] Render SVG elements.
-  - [ ] Publish library.
-  - [ ] Render a static site in the server.
-  - [ ] Add CSS and client js to the static site.
-  - [ ] Render elements with event listeners.
+- [ ]  SRR Functionality: Render HTML markup as strings on the server.
+  - [x]  Render empty elements.
+  - [x]  Render parent elements.
+  - [x]  Render elements with attributes.
+  - [x]  Render SVG elements.
+  - [x]  Publish library.
+  - [x]  Render a static site in the server.
+  - [ ]  Add CSS and JS to the static site.
+  - [ ]  Render elements with event listeners.
+- [ ]  Reactivity: Make rendered elements reactive to a data state.
+- [ ]  Components: Add an architecture that supports reusable UI components.
 
-- [ ] Reactivity: Make rendered elements reactive to a data state.
-- [ ] Components: Add an architecture that supports reusable UI components.
+### Development
 
-### Features
+- [x]  Unit testing.
+  - [x]  Ana
+  - [x]  Renderer
+  - [x]  Utils
+- [ ]  Documentation
+  - [ ]  Contributing (update to Deno project)
+  - [x]  Changelog (edit to only have the current version’s changes)
+  - [ ]  Readme (add Getting Started)
+  - [x]  Utils
+  - [x]  Types
+  - [ ]  Renderer
+  - [ ]  Elements
+  - [x]  Ana
+- [ ]  Error handling.
+- [ ]  Github actions for CI/CD.
+- [ ]  Project dockerization.
 
-- **Features**
-  - [ ] Basic Reactivity.
-    - [ ] Intelligent reactivity.
-  - [x] SVG support. (~20% of SVG Elements)
-  - [x] Server Side rendering.
-  - [ ] Lazy Loading.
-  - [ ] Reduce library intializaiton to an external anaconfig.json file.
+### External
 
-- **Development**
-  - [ ] Error handling.
-  - [x] Unit testing.
-  - [ ] Github actions for CI/CD.
-  - [ ] Project dockerization.
-  - [ ] Optionally imported features.
-    - [ ] Add custom components
-
-- **External**
-  - [ ] Prettier plugin or configuration file.
-  - [ ] VSCode syntax highlighting.
-  - [ ] Scaffolding CLI package `ana-cli`.
+- [ ]  Prettier plugin or configuration file.
+- [ ]  VSCode syntax highlighting.
+- [ ]  Scaffolding CLI package `ana-cli`.
 
 [Back to top](#top)
