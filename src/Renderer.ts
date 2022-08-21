@@ -9,7 +9,7 @@ import { dictionaryReduce } from './utils.ts';
 import { Attribute, Attributes, Child, Children } from './types.ts';
 
 /**
- *
+ * A Renderer object contains HTML/SVG element data and a render() function.
  */
 export class Renderer {
   constructor(

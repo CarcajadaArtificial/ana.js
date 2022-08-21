@@ -1,5 +1,9 @@
-export { Ana } from './src/Ana/Ana.ts';
-
+//   __  __         _
+//  |  \/  |___  __| |
+//  | |\/| / _ \/ _` |
+//  |_|  |_\___/\__,_|
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
  *
  * ![Banner](https://user-images.githubusercontent.com/13631141/173929134-ff19b3c7-2f46-4ab6-9bfa-1d089f790c82.png)
@@ -78,3 +82,5 @@ export { Ana } from './src/Ana/Ana.ts';
  *
  * @module
  */
+
+export { Ana } from './src/Ana/Ana.ts';
