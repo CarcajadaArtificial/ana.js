@@ -6,8 +6,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
  *
- * ![Banner](https://user-images.githubusercontent.com/13631141/173929134-ff19b3c7-2f46-4ab6-9bfa-1d089f790c82.png)
- *
  * Hello! Welcome to my module’s page! Firstly, thank you very much for being interested enough to click on my project, and secondly, for taking the time to read this. So what did you click on?
  *
  * ## What is Ana?
@@ -27,58 +25,9 @@
  * ### Standard intellisense
  * Thanks to TypeScript Magic, I defined an interface with a standard of good practices for HTML/SVG elements that uses Ana’s render methods. This avoids the need of researching if an element’s attribute is a good practice, experimental, deprecated or whatever.
  *
- * ## Getting Started
- *
- * ### Deno
+ * ## Getting started
  *
  * *Comming soon*
- *
- * ### Node.js
- *
- * *Comming soon*
- *
- * ## Roadmap
- *
- * ### Features
- *
- * - [ ] SRR Functionality: Render HTML markup as strings on the server.
- *
- *   - [x] Render empty elements.
- *   - [x] Render parent elements.
- *   - [x] Render elements with attributes.
- *   - [x] Render SVG elements.
- *   - [x] Publish library.
- *   - [x] Render a static site in the server.
- *   - [ ] Add CSS and JS to the static site.
- *   - [ ] Render elements with event listeners.
- *
- * - [ ] Reactivity: Make rendered elements reactive to a data state.
- * - [ ] Components: Add an architecture that supports reusable UI components.
- *
- * ### Development
- *
- * - [x] Unit testing.
- *   - [x] Ana
- *   - [x] Renderer
- *   - [x] Utils
- * - [ ] Documentation
- *   - [ ] Contributing (update to Deno project)
- *   - [x] Changelog (edit to only have the current version’s changes)
- *   - [ ] Readme (add Getting Started)
- *   - [x] Utils
- *   - [x] Types
- *   - [ ] Renderer
- *   - [ ] Elements
- *   - [x] Ana
- * - [ ] Error handling.
- * - [ ] Github actions for CI/CD.
- * - [ ] Project dockerization.
- *
- * ### **External**
- *
- * - [ ] Prettier plugin or configuration file.
- * - [ ] VSCode syntax highlighting.
- * - [ ] Scaffolding CLI package `ana-cli`.
  *
  * @module
  */
