@@ -83,4 +83,25 @@ export class Ana {
       },
     }
   ) as Elements;
+
+  app = (app: Renderer): string => {
+    const a = this.render;
+
+    const appDocument = a
+      .html()(
+        a.head()(
+          a.meta().has({ charset: 'UTF-8' }),
+          a.meta().has({ 'http-equiv': 'X-UA-Compatible', content: 'IE=edge' }),
+          a.meta().has({
+            name: 'viewport',
+            content: 'width=device-width, initial-scale=1.0',
+          }),
+          a.title()('Ana App')
+        ),
+        a.body()(app)
+      )
+      .has({ lang: 'en' });
+
+    return `<!DOCTYPE html>\n${appDocument.render()}`;
+  };
 }
