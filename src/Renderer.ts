@@ -5,13 +5,10 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-import { dictionaryReduce } from './utils.ts';
-import { Attribute, Attributes, Child, Children } from './types.ts';
-
 /**
  * What is a Renderer? It is an object that holds data and renders HTML/SVG code with it. This class is the minimum abstraction of an element. Ana uses Renderers as the objects delivered by the `const a = ana.render` Proxy. Renderers are not immutable, as soon as they are created, they are modified to have css classes and children nodes added to them. Afterwards, you may add attributes with the `.has()` function.
  *
- * @example
+ * ### Example
  * ```TypeScript
  * const divRenderer = new Renderer('div', false, false)
  * divRenderer.render() // -> <div></div>
@@ -22,6 +19,15 @@ import { Attribute, Attributes, Child, Children } from './types.ts';
  * const svgRenderer = new Renderer('svg', true, false)
  * svgRenderer.render() // -> <svg xmnls="http://www.w3.org/2000/svg"></svg>
  * ```
+ *
+ * @module
+ */
+
+import { dictionaryReduce } from './utils.ts';
+import { Attribute, Attributes, Child, Children } from './types.ts';
+
+/**
+ * Renderer class
  */
 export class Renderer {
   constructor(

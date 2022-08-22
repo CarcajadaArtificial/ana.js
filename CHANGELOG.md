@@ -1,9 +1,21 @@
 # Changelog
 
-## v0.11.4
+## v0.11.5
 
 ### Added
 
-- Better documentation
-  - `~/src/Renderer.ts`
+- Added static css and js files to the test server app.
+  - `~/app/app.deps.ts`
+  - `~/app/app.ts`
+  - `~/app/static/scripts.js`
+  - `~/app/static/styles.css`
+
+- Added a separate file for the app templating.
+  - `~/app/index.ts`
+  - `~/src/Ana/Ana.ts`
+
+- Updated documentation
+  - `~/README.md`
   - `~/mod.ts`
+  - `~/src/Ana/Ana.ts`
+  - `~/src/Renderer.ts`
