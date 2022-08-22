@@ -62,7 +62,7 @@ Thanks to TypeScript Magic, I defined an interface with a standard of good pract
   - [x]  Render SVG elements.
   - [x]  Publish library.
   - [x]  Render a static site in the server.
-  - [ ]  Add CSS and JS to the static site.
+  - [x]  Add CSS and JS to the static site.
   - [ ]  Render elements with event listeners.
 - [ ]  Reactivity: Make rendered elements reactive to a data state.
 - [ ]  Components: Add an architecture that supports reusable UI components.

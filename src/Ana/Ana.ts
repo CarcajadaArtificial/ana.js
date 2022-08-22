@@ -33,7 +33,7 @@ export class Ana {
 
   //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
   /**
-   * This function is an extremely simplified html renderer. It receives a property in the following
+   * This proxy is an extremely simplified html renderer. It receives a property in the following
    * syntax: `a.div`. The renderer `a` is a mere ES6 Proxy Object using the get() method. It will have
    * intellisense functionalities thanks to the `Elements` Interface.
    *
@@ -45,11 +45,6 @@ export class Ana {
    * What is an "empty element"? It's not designed to have any other elements inside of it. Examples of
    * this are: `<input />`, `<img />`, `<link />`, `<meta />`, etc. This function renders these kinds of
    * elements. `a.input(class).has(attributes)`.
-   *
-   * @returns a Proxy that emulates a dictionary of render functions. Some properties of this dictionary
-   * render SVGElements, others render Empty Elements, and others render Elements that can be parents.
-   * If it "tries to access" property not defined inside this emulated dictionary, then it renders a
-   * custom Element, e.g. `<foo></foo>`.
    */
   render = new Proxy(
     {},
@@ -84,6 +79,12 @@ export class Ana {
     }
   ) as Elements;
 
+  //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+  /**
+   *
+   * @param app
+   * @returns
+   */
   app = (app: Renderer): string => {
     const a = this.render;
 
@@ -96,9 +97,15 @@ export class Ana {
             name: 'viewport',
             content: 'width=device-width, initial-scale=1.0',
           }),
+          a.link().has({
+            rel: 'stylesheet',
+            href: '/styles.css',
+            type: 'text/css',
+          }),
           a.title()('Ana App')
         ),
-        a.body()(app)
+        a.body()(app),
+        a.script()().has({ type: 'text/javascript', src: '/scripts.js' })
       )
       .has({ lang: 'en' });
 
